@@ -102,7 +102,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * You can define a `mod_midcast(spell, midcast_set)` function to alter anything abou thte gear that's been chosen up to this point.
 
 ## Aftercast
-* Aftercast will always choose teh steady state gear based on whether you're engaged (TP set) or not (Idle set)
+* Aftercast will always choose the steady state gear based on whether you're engaged (TP set) or not (Idle set)
 
 ## Status Change
 * If you define `sets.Resting`, it will be equipped when you start resting
