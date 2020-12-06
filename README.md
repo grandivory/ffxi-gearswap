@@ -9,6 +9,8 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * TP modes can be cycled with `f9`. Idle modes can be cycled with `f10`
   * If you want your modes to be displayed in a particular order, you can do so by specifying `TP_Mode_Order` or `Idle_Mode_Order` as variables, e.g.:
       ```TP_Mode_Order = T{'Att', 'TH', 'Crit', 'DT', 'DTTH'}```
+* Magic burst mode:
+  * If you call `gs c MB` (or `/console gs c MB` from a macro), it will turn on magic-burst mode. This will use a magic-burst-specific set for your NEXT SPELL ONLY if one is defined. No matter what you cast next, magic burst mode will be turned off after you finish casting.
 * `f12` is set to equip whatever the correct gear is for that time. If you are engaged, it will equip the correct TP set. If you are not, it will equip the correct Idle set. It will also turn on the lockstyle for your job
 * Mode display:
   * The current modes will display on your screen in a position and style defined by `text_settings`. An example `text_settings` is:
@@ -54,9 +56,12 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 
 ## Midcast
 * If the spell has no cast time, midcast is ignored. Everything shou8ld happen in precast.
+* If magic burst mode is on and you have a `sets.midcast[spell name MB]` (e.g. `sets.midcast.HelixMB`), then that set will be used
+* If you're casting on yourself and you have a `sets.midcast[spell name Self']` (e.g. `sets.midcast.CureSelf)`, then that set will be used
 * If you have a `sets.midcast[spell name]` defined, that set will be used.
 * For ranged attacks, the lua looks for `sets.midcast.RA`
 * If you define a `sets.midcast["Something"]`, "Something" will be searched against the full name of the spell you're casting, then the type, so you could define (for example) a `sets.midcast.Cur` that would match to ANY Cure spell, Curaga, or Cura, or you can define `sets.midcast.Healing` for any Healing magic.
+* Additionally, you can define `sets.midcast["SomethingMB"]` or `sets.midcast["SomethingSelf"]` to match "Something" against the full name of the spell when magic burst mode is on or when you're targeting yourself, respectively.
 * For healing magic:
   * The lua will look for a `sets.midcast.NaSpell` for any -na spells.
   * The lua will look for a `sets.midcast.SelfCure` if you're targeting yourself.
@@ -74,9 +79,11 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * For Divine magic:
   * The lua will look for `sets.midcast.DivineEnfeeble` for Flash or Repose
   * The lua will look for `sets.midcast.DivineEnhancing` for Enlight
+  * The lua will look for `sets.midcast.DivineMB` if magic burst mode is on
   * The lua will look for `sets.midcast.Divine` for any other case
 * For Elemental magic:
-  * The lua will look for `sets.midcast.Elemental`
+  * If magic burst mode is on, the lua will look for `sets.midcast.ElementalMB`
+  * The lua will look for `sets.midcast.Elemental` otherwise
 * For Blue magic:
   * `sets.midcast.BlueMagic.Physical` for physical spells
   * `sets.midcast.BlueMagic.MAB` for magic spells

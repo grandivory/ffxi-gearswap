@@ -1,5 +1,6 @@
 include('texts')
 include('ability-data')
+include('utils')
 
 ---------------------------------------------------------
 ---- Configuration                                   ----
@@ -72,6 +73,8 @@ function get_sets()
         end
     end
     Idle_Mode = 1
+
+    MB_Mode = false
 
     send_command('bind f9 gs c TP')
     send_command('bind f10 gs c Idle')
@@ -269,15 +272,19 @@ function midcast(spell)
 
     midcast_set = nil
 
-    if sets.midcast[spell.name] then
+    if MB_Mode and sets.midcast[spell.name .. 'MB'] then
+        -- Spell-specific magic burst
+        midcast_set = get_set(sets.midcast[spell.name .. 'MB'])
+    elseif spell.target.type == 'SELF' and sets.midcast[spell.name .. 'Self'] then
+        -- Self-targeted spells
+        midcast_set = get_set(sets.midcast[spell.name .. 'Self'])
+    elseif sets.midcast[spell.name] then
         -- Spell-specific sets
         midcast_set = get_set(sets.midcast[spell.name])
-        send_command('input /echo Set spell-specific set')
     end
 
     if spell.action_type == 'Ranged Attack' and sets.midcast.RA ~= nil then
         midcast_set = sets.midcast.RA
-        send_command('input /echo set RA set')
     end
 
     ----------------------
@@ -285,7 +292,15 @@ function midcast(spell)
     ----------------------
     if midcast_set == nil then
         for name, set in pairs(sets.midcast) do
-            if string.find(spell.name, name) then
+            if MB_Mode and ends_with(name, 'MB') and string.find(spell.name, name:sub(1, -3)) then
+                -- Partial name magic burst
+                midcast_set = get_set(set)
+                break
+            elseif spell.target.type == 'SELF' and ends_with(name, 'Self') and string.find(spell.name, name:sub(1, -5)) then
+                -- Partial name self-targeted
+                midcast_set = get_set(set)
+                break
+            elseif string.find(spell.name, name) then
                 midcast_set = get_set(set)
             end
         end
@@ -298,8 +313,8 @@ function midcast(spell)
         if spell.skill == "Healing Magic" then
             if NaSpells:contains(spell.name) and sets.midcast.NaSpell ~= nil then
                 midcast_set = get_set(sets.midcast.NaSpell)
-            elseif spell.target.type == 'SELF' and sets.midcast.SelfCure ~= nil then
-                midcast_set = get_set(sets.midcast.SelfCure)
+            elseif spell.target.type == 'SELF' and sets.midcast.CureSelf ~= nil then
+                midcast_set = get_set(sets.midcast.CureSelf)
             elseif sets.midcast.Healing ~= nil then
                 midcast_set = get_set(sets.midcast.Healing)
             end
@@ -329,11 +344,16 @@ function midcast(spell)
                 midcast_set = get_set(sets.midcast.DivineEnfeeble)
             elseif DivineEnhancing:contains(spell.name) and sets.midcast.DivineEnhancing ~= nil then
                 midcast_set = get_set(sets.midcast.DivineEnhancing)
+            elseif MB_Mode and sets.midcast.DivineMB ~= nil then
+                midcast_set = get_set(sets.midcast.DivineMB)
             elseif sets.midcast.Divine ~= nil then
                 midcast_set = get_set(sets.midcast.Divine)
             end
         elseif spell.skill == "Elemental Magic" then
-            if sets.midcast.Elemental ~= nil then
+            if MB_Mode and sets.midcast.ElementalMB ~= nil then
+                send_command('input /echo Magic burst!')
+                midcast_set = get_set(sets.midcast.ElementalMB)
+            elseif sets.midcast.Elemental ~= nil then
                 midcast_set = get_set(sets.midcast.Elemental)
             end
         elseif spell.skill == "Dark Magic" then
@@ -352,13 +372,12 @@ function midcast(spell)
             elseif magic_type == 'breath' and sets.midcast.BlueMagic.Breath ~= nil then
                 midcast_set = get_set(sets.midcast.BlueMagic.Breath)
                 send_command('input /echo Equipping Magical Gear')
+            elseif magic_type == 'cure' and spell.target.type == 'SELF' and sets.midcast.BlueMagic.CureSelf ~= nil then
+                send_command('input /echo Equipping Self-Cure Gear')
+                midcast_set = get_set(sets.midcast.BlueMagic.CureSelf)
             elseif magic_type == 'cure' and sets.midcast.BlueMagic.Cure ~= nil then
-                midcast_set = get_set(sets.midcast.BlueMagic.Cure)
                 send_command('input /echo Equipping Cure Gear')
-                if spell.target.type == 'SELF' and sets.midcast.BlueMagic.SelfCure ~= nil then
-                    midcast_set = set_combine(midcast_set, sets.midcast.BlueMagic.SelfCure)
-                    send_command('input /echo Equipping Self-Cure Gear')
-                end
+                midcast_set = get_set(sets.midcast.BlueMagic.Cure)
             elseif magic_type == 'buff' then
                 if sets.midcast.BlueMagic.Buff ~= nil then
                     midcast_set = get_set(sets.midcast.BlueMagic.Buff)
@@ -415,6 +434,11 @@ function midcast(spell)
 
     midcast_set = mod_midcast(spell, midcast_set)
 
+    if MB_Mode then
+        MB_Mode = false
+        send_command('input /echo Magic Burst mode is OFF')
+    end
+
     equip(midcast_set)
 end
 
@@ -447,6 +471,10 @@ function self_command(command)
         Idle = function()
             Idle_Mode = cycle_table(Idle_Mode, Idle_Modes)
             mode_display.Idle_Mode = Idle_Modes[Idle_Mode]
+        end,
+        MB = function()
+            MB_Mode = true
+            send_command('input /echo Magic Burst mode is ON')
         end,
         EquipGear = function()
             equip(steady_state())

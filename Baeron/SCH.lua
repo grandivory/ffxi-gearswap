@@ -141,7 +141,7 @@ function define_sets()
         right_ring = "Ephedra Ring"
     }
     sets.midcast.Curaga = sets.midcast.Cure
-    sets.midcast.SelfCure = set_combine(sets.midcast.Cure, {
+    sets.midcast.CureSelf = set_combine(sets.midcast.Cure, {
         neck = "Phalaina Locket",
         waist = "Gishdubar Sash"
     })
@@ -238,7 +238,13 @@ function define_sets()
                         'Spell interruption rate down-10%'}
         }
     }
+    sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
+        left_ring = "Mujin Band"
+    })
     sets.midcast.Helix = set_combine(sets.midcast.Elemental, {
+        ammo = "Ghastly Tathlum +1"
+    })
+    sets.midcast.HelixMB = set_combine(sets.midcast.ElementalMB, {
         ammo = "Ghastly Tathlum +1"
     })
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {

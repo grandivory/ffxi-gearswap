@@ -349,7 +349,7 @@ function define_sets()
     sets.precast.Waltz = set_combine(sets.midcast.Cur, {
         body = "Passion Jacket"
     })
-    sets.midcast.SelfCure = set_combine(sets.midcast.Cur, {
+    sets.midcast.CureSelf = set_combine(sets.midcast.Cur, {
         neck = "Phalaina Locket",
         waist = "Gishdubar Sash"
     })
@@ -415,7 +415,7 @@ function define_sets()
         head = "Luhlaza Keffiyeh +1"
     })
     sets.midcast.BlueMagic.Cure = set_combine(sets.midcast.Cur, {})
-    sets.midcast.BlueMagic.SelfCure = set_combine(sets.midcast.SelfCure, {})
+    sets.midcast.BlueMagic.CureSelf = set_combine(sets.midcast.CureSelf, {})
     sets.midcast.BlueMagic.Skill = { -- +96
         ammo = "Mavi Tathlum", -- +5
         head = { -- +13
