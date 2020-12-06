@@ -328,6 +328,10 @@ function midcast(spell)
                 midcast_set = get_set(sets.midcast.EnhancingDurationSelf)
             elseif sets.midcast.EnhancingDuration ~= nil then
                 midcast_set = get_set(sets.midcast.EnhancingDuration)
+            elseif spell.target.type == 'SELF' and sets.midcast.EnhancingSelf ~= nil then
+                midcast_set = get_set(sets.midcast.EnhancingSelf)
+            elseif sets.midcast.Enhancing ~= nil then
+                midcast_set = get_set(sets.midcast.Enhancing)
             end
         elseif spell.skill == "Enfeebling Magic" then
             if EnfeeblingMND:contains(spell.name) and sets.midcast.EnfeeblingMND ~= nil then
