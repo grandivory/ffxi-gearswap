@@ -287,14 +287,19 @@ function midcast(spell)
         if spell.skill == "Healing Magic" then
             if NaSpells:contains(spell.name) and sets.midcast.NaSpell ~= nil then
                 midcast_set = get_set(sets.midcast.NaSpell)
-            elseif spell.targets['Self'] and sets.midcast.SelfCure ~= nil then
+            elseif spell.target.type == 'SELF' and sets.midcast.SelfCure ~= nil then
                 midcast_set = get_set(sets.midcast.SelfCure)
             elseif sets.midcast.Healing ~= nil then
                 midcast_set = get_set(sets.midcast.Healing)
             end
         elseif spell.skill == "Enhancing Magic" then
-            if EnhancingSpells:contains(spell.name) and sets.midcast.Enhancing ~= nil then
+            if EnhancingSpells:contains(spell.name) and spell.target.type == 'SELF' and sets.midcast.EnhancingSelf ~=
+                nil then
+                midcast_set = get_set(sets.midcast.EnhancingSelf)
+            elseif EnhancingSpells:contains(spell.name) and sets.midcast.Enhancing ~= nil then
                 midcast_set = get_set(sets.midcast.Enhancing)
+            elseif spell.target.type == 'SELF' and sets.midcast.EnhancingDurationSelf ~= nil then
+                midcast_set = get_set(sets.midcast.EnhancingDurationSelf)
             elseif sets.midcast.EnhancingDuration ~= nil then
                 midcast_set = get_set(sets.midcast.EnhancingDuration)
             end
@@ -339,7 +344,7 @@ function midcast(spell)
             elseif magic_type == 'cure' and sets.midcast.BlueMagic.Cure ~= nil then
                 midcast_set = get_set(sets.midcast.BlueMagic.Cure)
                 send_command('input /echo Equipping Cure Gear')
-                if spell.targets['Self'] and sets.midcast.BlueMagic.SelfCure ~= nil then
+                if spell.target.type == 'SELF' and sets.midcast.BlueMagic.SelfCure ~= nil then
                     midcast_set = set_combine(midcast_set, sets.midcast.BlueMagic.SelfCure)
                     send_command('input /echo Equipping Self-Cure Gear')
                 end
