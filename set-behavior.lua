@@ -280,6 +280,17 @@ function midcast(spell)
         send_command('input /echo set RA set')
     end
 
+    ----------------------
+    -- Spell name matching
+    ----------------------
+    if midcast_set == nil then
+        for name, set in pairs(sets.midcast) do
+            if string.find(spell.name, name) then
+                midcast_set = get_set(set)
+            end
+        end
+    end
+
     ------------------
     -- Magic-type sets
     ------------------
@@ -377,10 +388,7 @@ function midcast(spell)
 
     if midcast_set == nil then
         for name, set in pairs(sets.midcast) do
-            if string.find(spell.name, name) then
-                -- Spell-family sets
-                midcast_set = get_set(set)
-            elseif string.find(spell.type, name) then
+            if string.find(spell.type, name) then
                 -- Spell-type sets
                 midcast_set = get_set(set)
             end
