@@ -226,7 +226,7 @@ function define_sets()
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
         },
-        neck = "Sanctity Necklace",
+        neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Malignance Earring",
         right_ear = "Regal Earring",
@@ -269,7 +269,8 @@ function define_sets()
         back = "Bookworm's Cape"
     }
     sets.midcast.Drain = set_combine(sets.midcast.DarkMagic, {
-        feet = "Merlinic Crackows"
+        feet = "Merlinic Crackows",
+        right_ring = "Evanescence Ring"
     })
     sets.midcast.Aspir = sets.midcast.Drain
 
@@ -285,7 +286,7 @@ function define_sets()
         hands = "Jhakri Cuffs +2", -- MAcc +43
         legs = "Jhakri Slops +1", -- MAcc +39
         feet = "Jhakri Pigaches +1", -- MAcc +36
-        neck = "Sanctity Necklace", -- MAcc +10
+        neck = "Incanter's Torque", -- Enfeebling +10
         waist = "Luminary Sash", -- MAcc +10
         left_ear = "Malignance Earring", -- MAcc +10
         right_ear = "Regal Earring",

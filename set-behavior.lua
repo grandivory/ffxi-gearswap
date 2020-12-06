@@ -260,6 +260,8 @@ function midcast(spell)
         return
     end
 
+    -- send_command('input Spell target type: ' .. spell.target.type)
+
     -- For spells without a cast time (like job abilities or weapon skills), gear swaps happen in the precast
     if spell.cast_time == nil and spell.action_type ~= 'Ranged Attack' then
         return

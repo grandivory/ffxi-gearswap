@@ -8,7 +8,7 @@ function define_sets()
         head = "Malignance Chapeau", -- 6% DT
         body = "Malignance Tabard", -- 9% DT
         hands = "Malignance Gloves", -- 5% DT
-        legs = "Mummu Kecks +2", -- 4% DT
+        legs = "Malignance Tights", -- 7% DT
         feet = "Jute Boots +1",
         neck = "Loricate Torque +1", -- 6% DT
         waist = "Flume Belt +1", -- 4% PDT
@@ -33,7 +33,7 @@ function define_sets()
             name = "Ternion Dagger +1",
             augments = {'Path: A'}
         },
-        ammo = "Seeth. Bomblet +1",
+        ammo = "Ginsen",
         head = {
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
@@ -49,7 +49,7 @@ function define_sets()
         },
         feet = "Malignance Boots",
         neck = "Assassin's Gorget +2",
-        waist = "Windbuffet Belt +1",
+        waist = "Reiki Yotai",
         left_ear = "Telos Earring",
         right_ear = "Cessance Earring",
         left_ring = "Petrov Ring",
@@ -61,7 +61,7 @@ function define_sets()
     }
     TH_Gear = {
         sub = "Sandung",
-        hands = "Plunderer's Armlets +2",
+        hands = "Plunderer's Armlets +3",
         feet = "Skulker's Poulaines +1"
     }
     sets.TP.TH = set_combine(sets.TP.Att, TH_Gear)
@@ -69,7 +69,7 @@ function define_sets()
         head = "Malignance Chapeau", -- 6% DT
         body = "Malignance Tabard", -- 9% DT
         hands = "Malignance Gloves", -- 5% DT
-        legs = "Mummu Kecks +2", -- 5% DT
+        legs = "Malignance Tights", -- 7% DT
         feet = "Malignance Boots", -- 4% DT
         neck = "Loricate Torque +1", -- 6% DT
         left_ear = "Odnowa Earring +1", -- 2% MDT
@@ -81,7 +81,7 @@ function define_sets()
     })
     sets.TP.DTTH = set_combine(sets.TP.DT, TH_Gear)
     sets.TP.Crit = set_combine(sets.TP.Att, {
-        head = "Mummu Bonnet +1",
+        head = "Mummu Bonnet +2",
         body = "Mummu Jacket +2",
         hands = "Mummu Wrists +2",
         legs = "Mummu Kecks +2",
@@ -102,7 +102,7 @@ function define_sets()
                 body = "Meghanada Cuirie +2",
                 hands = "Meghanada Gloves +2",
                 feet = "Malignance Boots",
-                neck = "Caro Necklace",
+                neck = "Assassin's Gorget +2",
                 waist = "Wanion Belt",
                 left_ear = "Brutal Earring",
                 right_ear = "Odr Earring",
@@ -119,7 +119,7 @@ function define_sets()
                 hands = "Meghanada Gloves +2",
                 legs = "Meghanada Chausses +1",
                 feet = "Mummu Gamash. +2",
-                neck = "Houyi's Gorget",
+                neck = "Assassin's Gorget +2",
                 left_ring = "Apate Ring",
                 right_ring = "Stormsoul Ring"
             })
@@ -134,12 +134,12 @@ function define_sets()
         body = "Meghanada Cuirie +2",
         hands = "Meghanada Gloves +2",
         feet = "Malignance Boots",
-        neck = "Caro Necklace",
+        neck = "Assassin's Gorget +2",
         waist = "Wanion Belt",
         left_ear = "Brutal Earring",
         right_ear = "Odr Earring",
         left_ring = "Apate Ring",
-        right_ring = "Thundersoul Ring",
+        right_ring = "Regal Ring",
         back = {
             name = "Toutatis's Cape",
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
@@ -151,9 +151,9 @@ function define_sets()
         hands = "Meghanada Gloves +2",
         legs = "Meghanada Chausses +1",
         feet = "Mummu Gamash. +1",
-        neck = "Houyi's Gorget",
+        neck = "Assassin's Gorget +2",
         left_ring = "Apate Ring",
-        right_ring = "Stormsoul Ring"
+        right_ring = "Regal Ring"
     })
     sets.JA.Steal = {
         head = "Plunderer's Bonnet +2"
@@ -168,19 +168,19 @@ function define_sets()
         body = "Raider's Vest +2"
     }
     sets.JA["Perfect Dodge"] = {
-        hands = "Plunderer's Armlets +2"
+        hands = "Plunderer's Armlets +3"
     }
     sets.JA.Despoil = {
         feet = "Skulker's Poulaines +1"
     }
     sets.JA.Bully = {
-        hands = "Plunderer's Armlets +2",
+        hands = "Plunderer's Armlets +3",
         feet = "Skulker's Poulaines +1"
     }
 
     -- Non-THF JAs
     sets.JA['Waltz'] = {
-        head = "Mummu Bonnet +1",
+        head = "Mummu Bonnet +2",
         body = "Passion Jacket",
         hands = "Meg. Gloves +2",
         legs = "Meg. Chausses +1",
@@ -205,15 +205,15 @@ function define_sets()
             name = "Lustra. Leggings +1",
             augments = {'HP+65', 'STR+15', 'DEX+15'}
         },
-        neck = "Caro Necklace",
+        neck = "Assassin's Gorget +2",
         waist = "Grunfeld Rope",
         left_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Ishvara Earring",
-        left_ring = "Karieyh Ring",
-        right_ring = "Thundersoul Ring",
+        left_ring = "Ilabrat Ring",
+        right_ring = "Regal Ring",
         back = {
             name = "Toutatis's Cape",
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
@@ -254,7 +254,7 @@ function define_sets()
         },
         right_ear = "Odr Earring",
         left_ring = "Mummu Ring",
-        right_ring = "Thundersoul Ring",
+        right_ring = "Regal Ring",
         back = {
             name = "Toutatis's Cape",
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
@@ -262,7 +262,10 @@ function define_sets()
     }
     sets.WS.Exenterator = {
         ammo = "Seeth. Bomblet +1",
-        head = "Plunderer's Bonnet +2",
+        head = {
+            name = "Plun. Bonnet +2",
+            augments = {'Enhances "Aura Steal" effect'}
+        },
         body = "Meg. Cuirie +2",
         hands = "Mummu Wrists +2",
         legs = "Meg. Chausses +1",
@@ -274,8 +277,35 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Brutal Earring",
-        left_ring = "Mummu Ring",
-        right_ring = "Stormsoul Ring",
+        left_ring = "Ilabrat Ring",
+        right_ring = "Regal Ring",
+        back = {
+            name = "Toutatis's Cape",
+            augments = {'AGI+20', 'Accuracy+20 Attack+20', '"Dbl.Atk."+10', 'Damage taken-5%'}
+        }
+    }
+    sets.WS["Savage Blade"] = {
+        ammo = "Seeth. Bomblet +1",
+        head = {
+            name = "Plun. Bonnet +2",
+            augments = {'Enhances "Aura Steal" effect'}
+        },
+        body = "Meg. Cuirie +2",
+        hands = "Meg. Gloves +2",
+        legs = "Meg. Chausses +1",
+        feet = {
+            name = "Herculean Boots",
+            augments = {'Weapon skill damage +2%', 'Weapon Skill Acc.+7', 'Accuracy+18 Attack+18'}
+        },
+        neck = "Caro Necklace",
+        waist = "Sailfi Belt +1",
+        left_ear = {
+            name = "Moonshade Earring",
+            augments = {'Accuracy+4', 'TP Bonus +250'}
+        },
+        right_ear = "Ishvara Earring",
+        left_ring = "Regal Ring",
+        right_ring = "Karieyh Ring",
         back = {
             name = "Toutatis's Cape",
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
@@ -307,7 +337,7 @@ function define_sets()
             augments = {'Accuracy+25', 'DEX+13', 'INT+9 MND+9 CHR+9', 'Accuracy+6 Attack+6',
                         'Mag. Acc.+16 "Mag.Atk.Bns."+16'}
         },
-        neck = "Sanctity Necklace",
+        neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = {
             name = "Moonshade Earring",
@@ -351,7 +381,7 @@ function define_sets()
 
     sets.midcast.Poisonga = {
         sub = "Sandung",
-        hands = "Plunderer's Armlets +2",
+        hands = "Plunderer's Armlets +3",
         feet = "Skulker's Poulaines +1"
     }
 

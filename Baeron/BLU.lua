@@ -5,9 +5,9 @@ lockstyleset = 16
 
 function define_sets()
     -- Not Engaged
-    sets.Idle.Refresh = { -- Refresh +6, 39% PDT, 38% MDT, +10 MDB
-        main = "Bolelabunga",
-        sub = "Genmei Shield",
+    sets.Idle.Refresh = { -- Refresh +7, 49% PDT, 38% MDT, +10 MDB
+        main = "Bolelabunga", -- Refresh +1
+        sub = "Genmei Shield", -- PDT -10%
         ammo = "Vanir Battery", -- +4 MDB
         head = { -- Refresh +2
             name = "Spurrina Coif",
@@ -35,11 +35,7 @@ function define_sets()
         body = "Malignance Tabard" -- 9% DT
     })
 
-    sets.Idle.Slow = set_combine(sets.Idle.Refresh, {
-        legs = "Gyve Trousers"
-    })
-
-    Idle_Mode_Order = T {'Refresh', 'DT', 'Slow'}
+    Idle_Mode_Order = T {'Refresh', 'DT'}
 
     -- Engaged Sets
     sets.TP.Att = {
@@ -48,7 +44,7 @@ function define_sets()
             name = "Colada",
             augments = {'"Store TP"+5', 'VIT+1', 'Accuracy+12', 'Attack+21', 'DMG:+18'}
         },
-        ammo = "Falcon Eye",
+        ammo = "Ginsen",
         head = {
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
@@ -80,6 +76,7 @@ function define_sets()
         head = "Malignance Chapeau", -- 6% DT
         body = "Malignance Tabard", -- 9% DT
         hands = "Malignance Gloves", -- 5% DT
+        legs = "Malignance Tights", -- 7% DT
         feet = "Malignance Boots", -- 4%
         neck = "Loricate Torque +1", -- 6%
         left_ring = "Defending Ring", -- 10%
@@ -93,7 +90,7 @@ function define_sets()
         }
     })
 
-    TP_Mode_Order = T {'Att', 'DT'}
+    TP_Mode_Order = T {'Att', 'DT', 'Learn'}
 
     -- WS Sets
     sets.WS["Chant du Cygne"] = {
@@ -119,7 +116,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Odr Earring",
-        left_ring = "Apate Ring",
+        left_ring = "Ilabrat Ring",
         right_ring = "Epona's Ring",
         back = {
             name = "Rosmerta's Cape",
@@ -140,7 +137,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Brutal Earring",
-        left_ring = "Karieyh Ring",
+        left_ring = "Rufescent Ring",
         right_ring = "Epona's Ring",
         back = {
             name = "Rosmerta's Cape",
@@ -164,14 +161,14 @@ function define_sets()
             augments = {'Weapon skill damage +2%', 'Weapon Skill Acc.+7', 'Accuracy+18 Attack+18'}
         },
         neck = "Caro Necklace",
-        waist = "Wanion Belt",
+        waist = "Sailfi Belt +1",
         left_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Ishvara Earring",
-        left_ring = "Petrov Ring",
-        right_ring = "Epona's Ring",
+        left_ring = "Rufescent Ring",
+        right_ring = "Karieyh Ring",
         back = {
             name = "Rosmerta's Cape",
             augments = {'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
@@ -188,7 +185,7 @@ function define_sets()
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
         },
-        neck = "Sanctity Necklace",
+        neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
@@ -243,7 +240,7 @@ function define_sets()
             augments = {'Weapon skill damage +2%', 'Weapon Skill Acc.+7', 'Accuracy+18 Attack+18'}
         },
         neck = "Caro Necklace",
-        waist = "Wanion Belt",
+        waist = "Sailfi Belt +1",
         left_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
@@ -266,7 +263,7 @@ function define_sets()
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
         },
-        neck = "Sanctity Necklace",
+        neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
@@ -371,7 +368,7 @@ function define_sets()
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
         },
-        neck = "Sanctity Necklace",
+        neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
@@ -445,6 +442,7 @@ function define_sets()
     sets.TP.Learn = set_combine(TP_Skill_set, {
         hands = "Assimilator's Bazubands +1"
     })
+    sets.Idle.Learn = sets.TP.Learn
 
     -- Pieces to switch out when buffs are active
     sets.midcast.mod.Diffusion = {
