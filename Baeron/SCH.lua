@@ -143,7 +143,8 @@ function define_sets()
     sets.midcast.Curaga = sets.midcast.Cure
     sets.midcast.CureSelf = set_combine(sets.midcast.Cure, {
         neck = "Phalaina Locket",
-        waist = "Gishdubar Sash"
+        waist = "Gishdubar Sash",
+        left_ring = "Kunaji Ring"
     })
     sets.midcast.Cursna = set_combine(sets.midcast.Cure, {
         hands = "Hieros Mittens",
@@ -222,10 +223,7 @@ function define_sets()
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
         legs = "Jhakri Slops +1",
-        feet = {
-            name = "Amalric Nails",
-            augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
-        },
+        feet = "Jhakri Pigaches +1",
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Malignance Earring",

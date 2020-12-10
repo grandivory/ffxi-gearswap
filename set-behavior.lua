@@ -118,7 +118,7 @@ function precast(spell)
 
     -- Phantom roll
     if precast_set == nil then
-        if spell.type == "CorsairRoll" or spell.english == "Double-Up" then
+        if spell.type == "CorsairRoll" then
             if sets.precast["Phantom Roll"] ~= nil then
                 precast_set = get_set(sets.precast["Phantom Roll"])
             elseif sets.JA["Phantom Roll"] ~= nil then

@@ -152,10 +152,7 @@ function define_sets()
         },
         body = "Assim. Jubbah +2",
         hands = "Jhakri Cuffs +2",
-        legs = {
-            name = "Samnuha Tights",
-            augments = {'STR+8', 'DEX+9', '"Dbl.Atk."+3', '"Triple Atk."+2'}
-        },
+        legs = "Luhlaza Shalwar +2",
         feet = {
             name = "Herculean Boots",
             augments = {'Weapon skill damage +2%', 'Weapon Skill Acc.+7', 'Accuracy+18 Attack+18'}
@@ -180,7 +177,7 @@ function define_sets()
         head = "Pixie Hairpin +1",
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +1",
+        legs = "Luhlaza Shalwar +2",
         feet = {
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
@@ -297,7 +294,7 @@ function define_sets()
             name = "Leyline Gloves",
             augments = {'Accuracy+14', 'Mag. Acc.+13', '"Mag.Atk.Bns."+13', '"Fast Cast"+2'}
         },
-        legs = { -- -- 5%
+        legs = { -- 5%
             name = "Telchine Braconi",
             augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
         },
@@ -313,8 +310,8 @@ function define_sets()
     sets.precast.Utsusemi = set_combine(sets.precast.FastCast, {
         body = "Passion Jacket"
     })
-    sets.precast.BlueMagic = set_combine(sets.precast.FastCast, { -- 52%
-        body = "Hashishin Mintan"
+    sets.precast.BlueMagic = set_combine(sets.precast.FastCast, { -- 53%
+        body = "Hashishin Mintan +1"
     })
 
     -- Midcast sets for spells
@@ -351,7 +348,8 @@ function define_sets()
     })
     sets.midcast.CureSelf = set_combine(sets.midcast.Cur, {
         neck = "Phalaina Locket",
-        waist = "Gishdubar Sash"
+        waist = "Gishdubar Sash",
+        left_ring = "Kunaji Ring"
     })
     sets.midcast.Elemental = {
         main = "Kaja Rod",
@@ -363,7 +361,7 @@ function define_sets()
             augments = {'MP+60', 'Mag. Acc.+15', '"Mag.Atk.Bns."+15'}
         },
         hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +1",
+        legs = "Luhlaza Shalwar +2",
         feet = {
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
@@ -372,6 +370,26 @@ function define_sets()
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
+        left_ring = "Shiva Ring +1",
+        right_ring = "Shiva Ring +1",
+        back = {
+            name = "Rosmerta's Cape",
+            augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Mag.Atk.Bns."+10', 'Phys. dmg. taken-10%'}
+        }
+    }
+    sets.midcast.Enfeebling = {
+        main = "Naegling",
+        sub = "Kaja Rod",
+        ammo = "Vanir Battery",
+        head = "Jhakri Coronal +2",
+        body = "Jhakri Robe +2",
+        hands = "Malignance Gloves",
+        legs = "Malignance Tights",
+        feet = "Malignance Boots",
+        neck = "Sanctity Necklace",
+        waist = "Luminary Sash",
+        left_ear = "Regal Earring",
+        right_ear = "Enchntr. Earring +1",
         left_ring = "Shiva Ring +1",
         right_ring = "Shiva Ring +1",
         back = {
@@ -434,9 +452,7 @@ function define_sets()
             augments = {'MP+20', 'Accuracy+1', 'Blue Magic skill +10'}
         }
     }
-    -- sets.midcast.BlueMagic.Debuff = {
-    -- waist = "Luminary Sash",
-    -- }
+    sets.midcast.BlueMagic.Debuff = sets.midcast.Enfeebling
 
     TP_Skill_set = set_combine(sets.TP.Att, sets.midcast.BlueMagic.Skill)
     sets.TP.Learn = set_combine(TP_Skill_set, {
