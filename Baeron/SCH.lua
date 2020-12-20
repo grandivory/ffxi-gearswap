@@ -86,7 +86,7 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 64%
+    sets.precast.FastCast = { -- 74%
         main = "Oranyan", -- 7%
         sub = "Khonsu",
         head = { -- 10%
@@ -107,7 +107,8 @@ function define_sets()
         waist = "Embla Sash", -- 5%
         left_ear = "Loquac. Earring", -- 2%
         right_ear = "Malignance Earring", -- 4%
-        left_ring = "Kishar Ring" -- 4%
+        left_ring = "Kishar Ring", -- 4%
+        back = "Fi Follet Cape +1" -- 10%
     }
     sets.precast.Cure = set_combine(sets.precast.FastCast, { -- 79%
         body = "Heka's Kalasiris", -- 15% (+5% over FC set)
@@ -159,7 +160,7 @@ function define_sets()
         right_ring = "Ephedra Ring"
     })
 
-    sets.midcast.Enhancing = { -- +78
+    sets.midcast.Enhancing = { -- +87
         main = { -- +11
             name = "Kirin's Pole",
             augments = {'DMG:+25', 'Enha.mag. skill +11'}
@@ -175,7 +176,8 @@ function define_sets()
             augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
         },
         neck = "Incanter's Torque", -- +10
-        waist = "Embla Sash" -- Duration +10%
+        waist = "Embla Sash", -- Duration +10%
+        back = "Fi Follet Cape +1" -- +9
     }
     sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {
         main = "Oranyan",
@@ -229,7 +231,7 @@ function define_sets()
         left_ear = "Malignance Earring",
         right_ear = "Regal Earring",
         left_ring = "Shiva Ring +1",
-        right_ring = "Shiva Ring +1",
+        right_ring = "Metamorph Ring +1",
         back = {
             name = "Lugh's Cape",
             augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Mag.Atk.Bns."+10',
@@ -294,8 +296,8 @@ function define_sets()
         waist = "Luminary Sash", -- MAcc +10
         left_ear = "Malignance Earring", -- MAcc +10
         right_ear = "Regal Earring",
-        left_ring = "Shiva Ring +1",
-        right_ring = "Shiva Ring +1",
+        left_ring = "Kishar Ring",
+        right_ring = "Metamorph Ring +1",
         back = { -- MAcc +20
             name = "Lugh's Cape",
             augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Mag.Atk.Bns."+10',
