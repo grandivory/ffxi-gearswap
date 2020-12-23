@@ -417,7 +417,7 @@ function midcast(spell)
     end
 
     -- Look for a generic midcast set if none has been chosen yet
-    if sets.midcast.Generic ~= nil then
+    if midcast_set == nil and sets.midcast.Generic ~= nil then
         midcast_set = sets.midcast.Generic
     end
 

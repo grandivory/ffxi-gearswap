@@ -53,7 +53,7 @@ function define_sets()
             augments = {'Path: A'}
         },
         waist = "Reiki Yotai",
-        left_ear = "Telos Earring",
+        left_ear = "Sherida Earring",
         right_ear = "Cessance Earring",
         left_ring = "Petrov Ring",
         right_ring = "Epona's Ring",
@@ -85,8 +85,8 @@ function define_sets()
         feet = "Malignance Boots",
         neck = "Assassin's Gorget +2",
         waist = "Reiki Yotai",
-        left_ear = "Telos Earring",
-        right_ear = "Cessance Earring",
+        left_ear = "Sherida Earring",
+        right_ear = "Telos Earring",
         left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring",
         back = {
@@ -246,7 +246,7 @@ function define_sets()
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
-        right_ear = "Ishvara Earring",
+        right_ear = "Sherida Earring",
         left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring",
         back = {
@@ -310,10 +310,7 @@ function define_sets()
         feet = "Mummu Gamash. +2",
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Sherida Earring",
         right_ear = "Brutal Earring",
         left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring",
