@@ -45,10 +45,7 @@ function define_sets()
     -- Engaged Sets
     sets.TP.Att = {
         main = "Naegling",
-        sub = {
-            name = "Colada",
-            augments = {'"Store TP"+5', 'VIT+1', 'Accuracy+12', 'Attack+21', 'DMG:+18'}
-        },
+        sub = "Thibron",
         ammo = "Ginsen",
         head = {
             name = "Adhemar Bonnet +1",
@@ -218,7 +215,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Brutal Earring",
-        left_ring = "Apate Ring",
+        left_ring = "Shukuyu Ring",
         right_ring = "Epona's Ring",
         back = {
             name = "Rosmerta's Cape",
@@ -414,8 +411,8 @@ function define_sets()
         waist = "Wanion Belt",
         left_ear = "Dudgeon Earring",
         right_ear = "Heartseeker Earring",
-        left_ring = "Apate Ring",
-        right_ring = "Petrov Ring",
+        left_ring = "Shukuyu Ring",
+        right_ring = "Epona's Ring",
         back = {
             name = "Rosmerta's Cape",
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10', 'Damage taken-5%'}

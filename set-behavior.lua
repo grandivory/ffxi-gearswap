@@ -404,8 +404,6 @@ function midcast(spell)
             end
         elseif spell.skill == "Geomancy" and sets.midcast.Geomancy ~= nil then
             midcast_set = get_set(sets.midcast.Geomancy)
-        elseif sets.midcast.Generic ~= nil then
-            midcast_set = sets.midcast.Generic
         end
     end
 
@@ -416,6 +414,11 @@ function midcast(spell)
                 midcast_set = get_set(set)
             end
         end
+    end
+
+    -- Look for a generic midcast set if none has been chosen yet
+    if sets.midcast.Generic ~= nil then
+        midcast_set = sets.midcast.Generic
     end
 
     -- If there's still no midcast set, just jump to the tp or idle set, as needed

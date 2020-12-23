@@ -68,7 +68,7 @@ function define_sets()
             name = "Ternion Dagger +1",
             augments = {'Path: A'}
         },
-        ammo = "Yamarang",
+        ammo = "Cath Palug Stone",
         head = {
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
@@ -228,7 +228,7 @@ function define_sets()
     -- WS Sets
     base = {}
     base["Rudra's Storm"] = {
-        ammo = "Seeth. Bomblet +1",
+        ammo = "Cath Palug Stone",
         head = "Pillager's Bonnet +2",
         body = "Meg. Cuirie +2",
         hands = "Meg. Gloves +2",
@@ -296,7 +296,7 @@ function define_sets()
         }
     }
     sets.WS.Exenterator = {
-        ammo = "Seeth. Bomblet +1",
+        ammo = "Cath Palug Stone",
         head = {
             name = "Plun. Bonnet +2",
             augments = {'Enhances "Aura Steal" effect'}
