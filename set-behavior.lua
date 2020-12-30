@@ -409,7 +409,7 @@ function midcast(spell)
 
     if midcast_set == nil then
         for name, set in pairs(sets.midcast) do
-            if string.find(spell.type, name) then
+            if (not S {'BlueMagic', 'mod'}:contains(name)) and string.find(spell.type, name) then
                 -- Spell-type sets
                 midcast_set = get_set(set)
             end
