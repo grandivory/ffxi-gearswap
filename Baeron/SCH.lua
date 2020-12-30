@@ -4,9 +4,13 @@ include('organizer-lib')
 lockstyleset = 20
 
 function define_sets()
+    Idle_Modes = T {'Idle', 'DT'}
+    Magic_Modes = T {'Acc', 'MAB'}
+    fastcast = .8
+
     -- Not Engaged
     sets.Idle.Idle = {
-        main = {
+        main = { -- Refresh +1
             name = "Akademos",
             augments = {'INT+15', '"Mag.Atk.Bns."+15', 'Mag. Acc.+15'}
         },
@@ -44,13 +48,12 @@ function define_sets()
             augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
         }
     }
-    Idle_Mode_Order = T {'Idle', 'DT'}
 
     -- Engaged Sets
     -- sets.TP.Att = {}
 
     -- WS Sets
-    sets.WS["Myrkr"] = { -- MP +680, TP +250
+    sets.WS["Myrkr"] = {
         sub = "Clemency Grip", -- MP +30
         ammo = "Ghastly Tathlum +1", -- MP +35
         head = "Pixie Hairpin +1", -- MP +120
@@ -62,10 +65,13 @@ function define_sets()
             name = "Vanya Cuffs",
             augments = {'MP+50', '"Cure" potency +7%', 'Enmity-6'}
         },
-        legs = "Theurgist's Slacks", -- MP +59
-        feet = { -- MP +44
-            name = "Telchine Pigaches",
-            augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
+        legs = { -- MP +109
+            name = "Psycloth Lappas",
+            augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
+        },
+        feet = { -- MP +124
+            name = "Psycloth Boots",
+            augments = {'MP+50', 'INT+7', '"Conserve MP"+6'}
         },
         neck = "Sanctity Necklace", -- MP +35
         waist = "Eschan Stone", -- MP +20
@@ -86,18 +92,19 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 74%
+    sets.precast.FastCast = { -- 78%
         main = "Oranyan", -- 7%
         sub = "Khonsu",
+        ammo = "Sapience Orb", -- 2%
         head = { -- 10%
             name = "Vanya Hood",
             augments = {'MP+50', '"Fast Cast"+10', 'Haste+2%'}
         },
         body = "Anhur Robe", -- 10%
         hands = "Gendewitha Gages +1", -- 7%
-        legs = { -- 5%
-            name = "Telchine Braconi",
-            augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
+        legs = { -- 7%
+            name = "Psycloth Lappas",
+            augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
         },
         feet = { -- 5%
             name = "Amalric Nails",
@@ -110,6 +117,13 @@ function define_sets()
         left_ring = "Kishar Ring", -- 4%
         back = "Fi Follet Cape +1" -- 10%
     }
+    sets.precast.Impact = set_combine(sets.precast.FastCast, {
+        body = "Twilight Cloak"
+    })
+    sets.precast.Dispelga = set_combine(sets.precast.FastCast, {
+        main = "Daybreak",
+        sub = "Genmei Shield"
+    })
     sets.precast.Cure = set_combine(sets.precast.FastCast, { -- 79%
         body = "Heka's Kalasiris", -- 15% (+5% over FC set)
         feet = { -- 15% (+10% over FC set)
@@ -216,8 +230,8 @@ function define_sets()
 
     sets.midcast.Elemental = {
         main = {
-            name = "Akademos",
-            augments = {'INT+15', '"Mag.Atk.Bns."+15', 'Mag. Acc.+15'}
+            name = "Grioavolr",
+            augments = {'"Conserve MP"+1', 'INT+13', 'Mag. Acc.+12', '"Mag.Atk.Bns."+25', 'Magic Damage +9'}
         },
         sub = "Khonsu",
         ammo = "Ghastly Tathlum +1",
@@ -230,7 +244,7 @@ function define_sets()
         waist = "Eschan Stone",
         left_ear = "Malignance Earring",
         right_ear = "Regal Earring",
-        left_ring = "Shiva Ring +1",
+        left_ring = "Freke Ring",
         right_ring = "Metamorph Ring +1",
         back = {
             name = "Lugh's Cape",
@@ -242,6 +256,8 @@ function define_sets()
         left_ring = "Mujin Band"
     })
     sets.midcast.Helix = set_combine(sets.midcast.Elemental, {
+        main = "Daybreak",
+        sub = "Culminus",
         ammo = "Ghastly Tathlum +1"
     })
     sets.midcast.HelixMB = set_combine(sets.midcast.ElementalMB, {
@@ -250,6 +266,9 @@ function define_sets()
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
         head = "Pixie Hairpin +1",
         right_ring = "Archon Ring"
+    })
+    sets.midcast.Impact = set_combine(sets.midcast.Kaustra, {
+        body = "Twilight Cloak"
     })
 
     sets.midcast.DarkMagic = {
@@ -281,16 +300,19 @@ function define_sets()
     sets.midcast.Aspir = sets.midcast.Drain
 
     enfeeblingSet = {
-        main = { -- MAcc +25
-            name = "Akademos",
-            augments = {'INT+15', '"Mag.Atk.Bns."+15', 'Mag. Acc.+15'}
+        main = { -- MAcc + 26
+            name = "Grioavolr",
+            augments = {'"Conserve MP"+1', 'INT+13', 'Mag. Acc.+12', '"Mag.Atk.Bns."+25', 'Magic Damage +9'}
         },
         sub = "Khonsu", -- MAcc +25
         ammo = "Savant's Treatise", -- Enfeebling +4
         head = "Jhakri Coronal +2", -- MAcc +44
         body = "Jhakri Robe +2", -- MAcc +46
         hands = "Jhakri Cuffs +2", -- MAcc +43
-        legs = "Jhakri Slops +1", -- MAcc +39
+        legs = {
+            name = "Psycloth Lappas",
+            augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
+        }, -- MAcc +45, Enfeebling +18
         feet = "Jhakri Pigaches +1", -- MAcc +36
         neck = "Incanter's Torque", -- Enfeebling +10
         waist = "Luminary Sash", -- MAcc +10
@@ -308,6 +330,10 @@ function define_sets()
     sets.midcast.Enfeebling.withBuffs = {}
     sets.midcast.Enfeebling.withBuffs["Dark Arts"] = set_combine(enfeeblingSet, {
         body = "Acad. Gown +1" -- Enfeebling +20
+    })
+    sets.midcast.Dispelga = set_combine(sets.midcast.Enfeebling, {
+        main = "Daybreak",
+        sub = "Genmei Shield"
     })
 
     -- Pieces to switch out when buffs are active

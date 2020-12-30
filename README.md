@@ -4,11 +4,18 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 
 * In your job-specific lua, you need only create a function `define_sets()`, which will be called once by `set-behavior.lua` to read the sets to use for that job.
 * You can define a `lockstyleset` variable to select which lockstyle to use on that job. This can be done either inside of `define_sets()` or outside of it.
-* TP and Idle modes:
-  * When defining TP and Idle sets (`sets.TP` and `sets.Idle`), you can specify as many as you want, e.g. `sets.TP.Att`, `sets.TP.Acc`, etc.
-  * TP modes can be cycled with `f9`. Idle modes can be cycled with `f10`
-  * If you want your modes to be displayed in a particular order, you can do so by specifying `TP_Mode_Order` or `Idle_Mode_Order` as variables, e.g.:
-      ```TP_Mode_Order = T{'Att', 'TH', 'Crit', 'DT', 'DTTH'}```
+* Modes:
+  * You can define `Melee_Modes`, `Idle_Modes`, and `Magic_Modes` in order to define quick behavior swaps for your sets, e.g. `Melee_Modes =  T{'Att', 'TH', 'Crit', 'DT', 'DTTH'}`
+  * For every set you define, you can create a corresponding set that uses one of your modes. When you are in that mode, the mode-specific set will be used.
+    * For example, suppose you have a set `sets.TP` already defined. You've decided to add a `DT` mode to `Melee_Modes`, so you add the line `Melee_Modes = T{'Normal', 'DT'}` to your lua. Then, you can define `sets.TP.DT`. Whenever you switch to `DT` mode, `sets.TP.DT` will be used. When in `Normal` mode, `sets.TP` will be used.
+  * All spells and abilities that you use have a corresponding mode that is correlated with them:
+    * Melee Modes: TP, Job Abilities, Weapon Skills, and Ranged Attacks
+    * Idle Modes: Idle (not engaged) and Resting
+    * Magic Modes: Everything Else
+  * TP modes can be cycled with `f9`, Idle modes can be cycled with `f10`, and Magic modes can be cycled with `f11`
+  * You can also switch directly to a specific mode with `gs c MeleeMode DT` (for example), or `/console gs c MeleeMode DT` from a macro
+* TP Mods:
+  * If you have `sets.TPMod['Buff name']` defined, then any gear there will be added to your TP set while `Buff name` is active
 * Magic burst mode:
   * If you call `gs c MB` (or `/console gs c MB` from a macro), it will turn on magic-burst mode. This will use a magic-burst-specific set for your NEXT SPELL ONLY if one is defined. No matter what you cast next, magic burst mode will be turned off after you finish casting.
 * `f12` is set to equip whatever the correct gear is for that time. If you are engaged, it will equip the correct TP set. If you are not, it will equip the correct Idle set. It will also turn on the lockstyle for your job
@@ -64,7 +71,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * Additionally, you can define `sets.midcast["SomethingMB"]` or `sets.midcast["SomethingSelf"]` to match "Something" against the full name of the spell when magic burst mode is on or when you're targeting yourself, respectively.
 * For healing magic:
   * The lua will look for a `sets.midcast.NaSpell` for any -na spells.
-  * The lua will look for a `sets.midcast.SelfCure` if you're targeting yourself.
+  * The lua will look for a `sets.midcast.CureSelf` if you're targeting yourself.
   * The lua will look for a `sets.midcast.Healing` for any other case.
 * For Enhancing magic:
   * The lua will look for a `sets.midcast.EnhancingSelf` for any spells where skill matters, if you're targeting yourself.
@@ -89,7 +96,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * `sets.midcast.BlueMagic.MAB` for magic spells
   * `sets.midcast.BlueMagic.Breath` for breath spells
   * `sets.midcast.BlueMagic.Cure` for cures
-  * `sets.midcast.BlueMagic.SelfCure` for cures targeted on yourself
+  * `sets.midcast.BlueMagic.CureSelf` for cures targeted on yourself
   * `sets.midcast.BlueMagic.Debuff` or `sets.midcast.BlueMagic.Skill` for enfeebles
   * `sets.midcast.BlueMagic.Skill` for all other spells
 * For Geomancy:

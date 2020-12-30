@@ -284,10 +284,10 @@ BlueMagic = {
 
 CancelSpells = {
     ['Sneak'] = {
-        ['Sneak'] = 0
+        ['Sneak'] = 1.3
     },
     ['Stoneskin'] = {
-        ['Stoneskin'] = 1.0
+        ['Stoneskin'] = 4.6
     },
     ['Spectral Jig'] = {
         ['Sneak'] = 0
@@ -299,8 +299,8 @@ CancelSpells = {
         ['Sneak'] = 1.0
     },
     ['Utsusemi: Ichi'] = {
-        ['Copy Image'] = 1,
-        ['Copy Image (2)'] = 1
+        ['Copy Image'] = 2.6,
+        ['Copy Image (2)'] = 2.6
     }
 }
 

@@ -8,8 +8,8 @@ include('utils')
 lockstyleset = 1
 text_settings = {
     pos = {
-        x = 2180,
-        y = 1242
+        x = 1775,
+        y = 1290
     },
     text = {
         size = 14
@@ -42,56 +42,56 @@ function get_sets()
     ammo_threshold = 10
     tool_threshold = 10
 
-    define_sets()
-
-    TP_Modes = T {}
-    if TP_Mode_Order ~= nil then
-        for key, mode in pairs(TP_Mode_Order) do
-            if sets.TP[mode] ~= nil then
-                table.insert(TP_Modes, mode)
-            end
-        end
-    end
-    for mode, x in pairs(sets.TP) do
-        if not TP_Modes:contains(mode) then
-            table.insert(TP_Modes, mode)
-        end
-    end
-    TP_Mode = 1
-
+    Melee_Modes = T {}
     Idle_Modes = T {}
-    if Idle_Mode_Order ~= nil then
-        for key, mode in pairs(Idle_Mode_Order) do
-            if sets.Idle[mode] ~= nil then
-                table.insert(Idle_Modes, mode)
-            end
-        end
-    end
-    for mode, x in pairs(sets.Idle) do
-        if not Idle_Modes:contains(mode) then
-            table.insert(Idle_Modes, mode)
-        end
-    end
+    Magic_Modes = T {}
+    Melee_Mode = 1
     Idle_Mode = 1
+    Magic_Mode = 1
+
+    define_sets()
 
     MB_Mode = false
 
-    send_command('bind f9 gs c TP')
-    send_command('bind f10 gs c Idle')
+    send_command('bind f9 gs c MeleeMode')
+    send_command('bind f10 gs c IdleMode')
+    send_command('bind f11 gs c MagicMode')
     send_command('bind f12 gs c EquipGear')
 
-    mode_display = texts.new('TP: ${TP_Mode}    Idle: ${Idle_Mode}', text_settings)
-    mode_display.TP_Mode = TP_Modes[TP_Mode]
-    mode_display.Idle_Mode = Idle_Modes[Idle_Mode]
-    texts.show(mode_display)
+    melee_settings = table.copy(text_settings)
+    idle_settings = table.copy(text_settings)
+    magic_settings = table.copy(text_settings)
+
+    line_height = text_settings.text.size * 1.5 + text_settings.padding * 2 + 3
+    idle_settings.pos.y = idle_settings.pos.y + line_height
+    magic_settings.pos.y = magic_settings.pos.y + line_height * 2
+
+    melee_display = texts.new('Melee: ${mode}', melee_settings)
+    idle_display = texts.new('Idle: ${mode}', idle_settings)
+    magic_display = texts.new('Magic: ${mode}', magic_settings)
+
+    melee_display.mode = Melee_Modes[Melee_Mode]
+    idle_display.mode = Idle_Modes[Idle_Mode]
+    magic_display.mode = Magic_Modes[Magic_Mode]
+
+    texts.show(melee_display)
+    texts.show(idle_display)
+    texts.show(magic_display)
 end
 
 function file_unload(new_file)
     send_command('unbind f9')
     send_command('unbind f10')
+    send_command('unbind f11')
     send_command('unbind f12')
-    if mode_display ~= nil then
-        texts.destroy(mode_display)
+    if melee_display ~= nil then
+        texts.destroy(melee_display)
+    end
+    if idle_display ~= nil then
+        texts.destroy(idle_display)
+    end
+    if magic_display ~= nil then
+        texts.destroy(magic_display)
     end
 end
 
@@ -102,27 +102,34 @@ function precast(spell)
 
     precast_set = nil
 
+    -- Determine which mode to use for this ability
+    if spell.cast_time == nil then
+        mode = Melee_Modes[Melee_Mode]
+    else
+        mode = Magic_Modes[Magic_Mode]
+    end
+
     -- Spell-specific sets
     if sets.precast[spell.name] ~= nil then
-        precast_set = get_set(sets.precast[spell.name])
+        precast_set = get_set(sets.precast[spell.name], mode)
     elseif sets.JA[spell.name] ~= nil then
-        precast_set = get_set(sets.JA[spell.name])
+        precast_set = get_set(sets.JA[spell.name], mode)
     elseif sets.WS[spell.name] ~= nil then
-        precast_set = get_set(sets.WS[spell.name])
+        precast_set = get_set(sets.WS[spell.name], mode)
     end
 
     -- Ranged attack
     if spell.action_type == 'Ranged Attack' and sets.precast.RA ~= nil then
-        precast_set = get_set(sets.precast.RA)
+        precast_set = get_set(sets.precast.RA, mode)
     end
 
     -- Phantom roll
     if precast_set == nil then
         if spell.type == "CorsairRoll" then
             if sets.precast["Phantom Roll"] ~= nil then
-                precast_set = get_set(sets.precast["Phantom Roll"])
+                precast_set = get_set(sets.precast["Phantom Roll"], mode)
             elseif sets.JA["Phantom Roll"] ~= nil then
-                precast_set = get_set(sets.JA["Phantom Roll"])
+                precast_set = get_set(sets.JA["Phantom Roll"], mode)
             end
         end
     end
@@ -131,9 +138,9 @@ function precast(spell)
     if precast_set == nil then
         if spell.type == "CorsairShot" then
             if sets.precast["Quick Draw"] ~= nil then
-                precast_set = get_set(sets.precast["Quick Draw"])
+                precast_set = get_set(sets.precast["Quick Draw"], mode)
             elseif sets.JA["Quick Draw"] ~= nil then
-                precast_set = get_set(sets.JA["Quick Draw"])
+                precast_set = get_set(sets.JA["Quick Draw"], mode)
             end
         end
     end
@@ -143,10 +150,10 @@ function precast(spell)
         for name, set in pairs(sets.precast) do
             if string.find(spell.name, name) then
                 -- Spell-family sets
-                precast_set = get_set(set)
+                precast_set = get_set(set, mode)
             elseif string.find(spell.type, name) then
                 -- Spell-type sets
-                precast_set = get_set(set)
+                precast_set = get_set(set, mode)
             end
         end
     end
@@ -160,14 +167,14 @@ function precast(spell)
             if spell.type == "WeaponSkill" then
                 if ElementalWS:contains(spell.name) then
                     if sets.WS.MAB ~= nil then
-                        precast_set = get_set(sets.WS.MAB)
+                        precast_set = get_set(sets.WS.MAB, mode)
                     elseif sets.WS.Elemental ~= nil then
-                        precast_set = get_set(sets.WS.Elemental)
+                        precast_set = get_set(sets.WS.Elemental, mode)
                     end
                 end
                 if precast_set == nil then
                     if sets.WS.Generic ~= nil then
-                        precast_set = get_set(sets.WS.Generic)
+                        precast_set = get_set(sets.WS.Generic, mode)
                     end
                 end
             end
@@ -177,7 +184,7 @@ function precast(spell)
             ----------------------
             -- Generic Fast Cast
             if sets.precast.FastCast ~= nil then
-                precast_set = get_set(sets.precast.FastCast)
+                precast_set = get_set(sets.precast.FastCast, mode)
             end
         end
     end
@@ -185,7 +192,7 @@ function precast(spell)
     -- Only equip weather gear during precast for instant-cast abilities. Any others will equip it during midcast
     if spell.cast_time == nil and (ElementalWS:contains(spell.name) or WeatherSpells:contains(spell.name)) and
         weather_match(spell) and sets.Weather ~= nil then
-        precast_set = set_combine(precast_set, get_set(sets.Weather))
+        precast_set = set_combine(precast_set, get_set(sets.Weather, mode))
     end
 
     precast_set = mod_precast(spell, precast_set)
@@ -205,10 +212,10 @@ function precast(spell)
             available_ammo = player.inventory[ammo_to_check] or player.wardrobe[ammo_to_check]
 
             if available_ammo == nil then
-                send_command('input /echo No ' .. ammo_to_check .. ' left!')
+                notice('No ' .. ammo_to_check .. ' left!')
             elseif available_ammo.count < ammo_threshold then
-                send_command('input /echo ***** Running low on ' .. ammo_to_check .. '! ' .. available_ammo.count ..
-                                 ' left *****')
+                add_to_chat(158,
+                    '***** Running low on ' .. ammo_to_check .. '! ' .. available_ammo.count .. ' left *****')
             end
 
             -- Check for no-shoot ammo
@@ -216,7 +223,7 @@ function precast(spell)
                 (spell.type ~= 'CorsairShot' or buffactive['Unlimited Shot'] == nil) and
                 (available_ammo == nil or precast_set == nil or
                     (precast_set ~= nil and precast_set.ammo == player.equipment.ammo)) then
-                send_command('input /echo You\'re trying to shoot ' .. player.equipment.ammo .. '! Canceling')
+                notice('You\'re trying to shoot ' .. player.equipment.ammo .. '! Canceling')
                 cancel_spell()
             end
         end
@@ -237,7 +244,7 @@ function precast(spell)
         end
 
         if tool_count < tool_threshold then
-            send_command('input /echo ***** Running low on ' .. tool_to_check .. '! ' .. tool_count .. ' left *****')
+            notice('***** Running low on ' .. tool_to_check .. '! ' .. tool_count .. ' left *****')
         end
     end
 
@@ -247,7 +254,12 @@ function precast(spell)
             for cancelBuff, wait in pairs(config) do
                 if buffactive[cancelBuff] ~= nil then
                     if wait > 0 then
-                        send_command('@wait ' .. wait .. ';cancel ' .. cancelBuff)
+                        if fastcast ~= nil then
+                            wait_time = wait * (1 - fastcast)
+                        else
+                            wait_time = wait
+                        end
+                        send_command('@wait ' .. wait_time .. ';cancel ' .. cancelBuff)
                     else
                         send_command('cancel ' .. cancelBuff)
                     end
@@ -271,20 +283,21 @@ function midcast(spell)
     end
 
     midcast_set = nil
+    mode = Magic_Modes[Magic_Mode]
 
     if MB_Mode and sets.midcast[spell.name .. 'MB'] then
         -- Spell-specific magic burst
-        midcast_set = get_set(sets.midcast[spell.name .. 'MB'])
+        midcast_set = get_set(sets.midcast[spell.name .. 'MB'], mode)
     elseif spell.target.type == 'SELF' and sets.midcast[spell.name .. 'Self'] then
         -- Self-targeted spells
-        midcast_set = get_set(sets.midcast[spell.name .. 'Self'])
+        midcast_set = get_set(sets.midcast[spell.name .. 'Self'], mode)
     elseif sets.midcast[spell.name] then
         -- Spell-specific sets
-        midcast_set = get_set(sets.midcast[spell.name])
+        midcast_set = get_set(sets.midcast[spell.name], mode)
     end
 
     if spell.action_type == 'Ranged Attack' and sets.midcast.RA ~= nil then
-        midcast_set = sets.midcast.RA
+        midcast_set = get_set(sets.midcast.RA, Melee_Modes[Melee_Mode])
     end
 
     ----------------------
@@ -294,14 +307,14 @@ function midcast(spell)
         for name, set in pairs(sets.midcast) do
             if MB_Mode and ends_with(name, 'MB') and string.find(spell.name, name:sub(1, -3)) then
                 -- Partial name magic burst
-                midcast_set = get_set(set)
+                midcast_set = get_set(set, mode)
                 break
             elseif spell.target.type == 'SELF' and ends_with(name, 'Self') and string.find(spell.name, name:sub(1, -5)) then
                 -- Partial name self-targeted
-                midcast_set = get_set(set)
+                midcast_set = get_set(set, mode)
                 break
             elseif string.find(spell.name, name) then
-                midcast_set = get_set(set)
+                midcast_set = get_set(set, mode)
             end
         end
     end
@@ -312,98 +325,86 @@ function midcast(spell)
     if midcast_set == nil then
         if spell.skill == "Healing Magic" then
             if NaSpells:contains(spell.name) and sets.midcast.NaSpell ~= nil then
-                midcast_set = get_set(sets.midcast.NaSpell)
+                midcast_set = get_set(sets.midcast.NaSpell, mode)
             elseif spell.target.type == 'SELF' and sets.midcast.CureSelf ~= nil then
-                midcast_set = get_set(sets.midcast.CureSelf)
+                midcast_set = get_set(sets.midcast.CureSelf, mode)
             elseif sets.midcast.Healing ~= nil then
-                midcast_set = get_set(sets.midcast.Healing)
+                midcast_set = get_set(sets.midcast.Healing, mode)
             end
         elseif spell.skill == "Enhancing Magic" then
             if EnhancingSpells:contains(spell.name) and spell.target.type == 'SELF' and sets.midcast.EnhancingSelf ~=
                 nil then
-                midcast_set = get_set(sets.midcast.EnhancingSelf)
+                midcast_set = get_set(sets.midcast.EnhancingSelf, mode)
             elseif EnhancingSpells:contains(spell.name) and sets.midcast.Enhancing ~= nil then
-                midcast_set = get_set(sets.midcast.Enhancing)
+                midcast_set = get_set(sets.midcast.Enhancing, mode)
             elseif spell.target.type == 'SELF' and sets.midcast.EnhancingDurationSelf ~= nil then
-                midcast_set = get_set(sets.midcast.EnhancingDurationSelf)
+                midcast_set = get_set(sets.midcast.EnhancingDurationSelf, mode)
             elseif sets.midcast.EnhancingDuration ~= nil then
-                midcast_set = get_set(sets.midcast.EnhancingDuration)
+                midcast_set = get_set(sets.midcast.EnhancingDuration, mode)
             elseif spell.target.type == 'SELF' and sets.midcast.EnhancingSelf ~= nil then
-                midcast_set = get_set(sets.midcast.EnhancingSelf)
+                midcast_set = get_set(sets.midcast.EnhancingSelf, mode)
             elseif sets.midcast.Enhancing ~= nil then
-                midcast_set = get_set(sets.midcast.Enhancing)
+                midcast_set = get_set(sets.midcast.Enhancing, mode)
             end
         elseif spell.skill == "Enfeebling Magic" then
             if EnfeeblingMND:contains(spell.name) and sets.midcast.EnfeeblingMND ~= nil then
-                midcast_set = get_set(sets.midcast.EnfeeblingMND)
+                midcast_set = get_set(sets.midcast.EnfeeblingMND, mode)
             elseif EnfeeblingINT:contains(spell.name) and sets.midcast.EnfeeblingINT ~= nil then
-                midcast_set = get_set(sets.midcast.EnfeeblingINT)
+                midcast_set = get_set(sets.midcast.EnfeeblingINT, mode)
             elseif sets.midcast.Enfeebling ~= nil then
-                midcast_set = get_set(sets.midcast.Enfeebling)
+                midcast_set = get_set(sets.midcast.Enfeebling, mode)
             elseif sets.midcast.MAcc ~= nil then
-                midcast_set = get_set(sets.midcast.MAcc)
+                midcast_set = get_set(sets.midcast.MAcc, mode)
             end
         elseif spell.skill == "Divine Magic" then
             if DivineEnfeebles:contains(spell.name) and sets.midcast.DivineEnfeeble ~= nil then
-                midcast_set = get_set(sets.midcast.DivineEnfeeble)
+                midcast_set = get_set(sets.midcast.DivineEnfeeble, mode)
             elseif DivineEnhancing:contains(spell.name) and sets.midcast.DivineEnhancing ~= nil then
-                midcast_set = get_set(sets.midcast.DivineEnhancing)
+                midcast_set = get_set(sets.midcast.DivineEnhancing, mode)
             elseif MB_Mode and sets.midcast.DivineMB ~= nil then
-                midcast_set = get_set(sets.midcast.DivineMB)
+                midcast_set = get_set(sets.midcast.DivineMB, mode)
             elseif sets.midcast.Divine ~= nil then
-                midcast_set = get_set(sets.midcast.Divine)
+                midcast_set = get_set(sets.midcast.Divine, mode)
             end
         elseif spell.skill == "Elemental Magic" then
             if MB_Mode and sets.midcast.ElementalMB ~= nil then
-                send_command('input /echo Magic burst!')
-                midcast_set = get_set(sets.midcast.ElementalMB)
+                midcast_set = get_set(sets.midcast.ElementalMB, mode)
             elseif sets.midcast.Elemental ~= nil then
-                midcast_set = get_set(sets.midcast.Elemental)
+                midcast_set = get_set(sets.midcast.Elemental, mode)
             end
         elseif spell.skill == "Dark Magic" then
             if sets.midcast.DarkMagic ~= nil then
-                midcast_set = get_set(sets.midcast.DarkMagic)
+                midcast_set = get_set(sets.midcast.DarkMagic, mode)
             end
         elseif spell.type == "BlueMagic" then
             magic_type = BlueMagic[spell.english]
-            send_command('input /echo Magic Type: ' .. magic_type)
             if magic_type == 'physical' and sets.midcast.BlueMagic.Physical ~= nil then
-                midcast_set = get_set(sets.midcast.BlueMagic.Physical)
-                send_command('input /echo Equipping Physical Gear')
+                midcast_set = get_set(sets.midcast.BlueMagic.Physical, mode)
             elseif magic_type == 'magical' and sets.midcast.BlueMagic.MAB ~= nil then
-                midcast_set = get_set(sets.midcast.BlueMagic.MAB)
-                send_command('input /echo Equipping Magical Gear')
+                midcast_set = get_set(sets.midcast.BlueMagic.MAB, mode)
             elseif magic_type == 'breath' and sets.midcast.BlueMagic.Breath ~= nil then
-                midcast_set = get_set(sets.midcast.BlueMagic.Breath)
-                send_command('input /echo Equipping Magical Gear')
+                midcast_set = get_set(sets.midcast.BlueMagic.Breath, mode)
             elseif magic_type == 'cure' and spell.target.type == 'SELF' and sets.midcast.BlueMagic.CureSelf ~= nil then
-                send_command('input /echo Equipping Self-Cure Gear')
-                midcast_set = get_set(sets.midcast.BlueMagic.CureSelf)
+                midcast_set = get_set(sets.midcast.BlueMagic.CureSelf, mode)
             elseif magic_type == 'cure' and sets.midcast.BlueMagic.Cure ~= nil then
-                send_command('input /echo Equipping Cure Gear')
-                midcast_set = get_set(sets.midcast.BlueMagic.Cure)
+                midcast_set = get_set(sets.midcast.BlueMagic.Cure, mode)
             elseif magic_type == 'buff' then
                 if sets.midcast.BlueMagic.Buff ~= nil then
-                    midcast_set = get_set(sets.midcast.BlueMagic.Buff)
-                    send_command('input /echo Equipping Blue Magic Buff Gear')
+                    midcast_set = get_set(sets.midcast.BlueMagic.Buff, mode)
                 elseif sets.midcast.BlueMagic.Skill ~= nil then
-                    midcast_set = get_set(sets.midcast.BlueMagic.Skill)
-                    send_command('input /echo Equipping Blue Magic Skill Gear')
+                    midcast_set = get_set(sets.midcast.BlueMagic.Skill, mode)
                 end
             elseif magic_type == 'debuff' then
                 if sets.midcast.BlueMagic.Debuff ~= nil then
-                    midcast_set = get_set(sets.midcast.BlueMagic.Debuff)
-                    send_command('input /echo Equipping Blue Magic Debuff Gear')
+                    midcast_set = get_set(sets.midcast.BlueMagic.Debuff, mode)
                 elseif sets.midcast.BlueMagic.Skill ~= nil then
-                    midcast_set = get_set(sets.midcast.BlueMagic.Skill)
-                    send_command('input /echo Equipping Blue Magic Skill Gear')
+                    midcast_set = get_set(sets.midcast.BlueMagic.Skill, mode)
                 end
             elseif sets.midcast.BlueMagic.Skill ~= nil then
-                midcast_set = get_set(sets.midcast.BlueMagic.Skill)
-                send_command('input /echo Equipping Blue Magic Skill Gear')
+                midcast_set = get_set(sets.midcast.BlueMagic.Skill, mode)
             end
         elseif spell.skill == "Geomancy" and sets.midcast.Geomancy ~= nil then
-            midcast_set = get_set(sets.midcast.Geomancy)
+            midcast_set = get_set(sets.midcast.Geomancy, mode)
         end
     end
 
@@ -411,14 +412,14 @@ function midcast(spell)
         for name, set in pairs(sets.midcast) do
             if (not S {'BlueMagic', 'mod'}:contains(name)) and string.find(spell.type, name) then
                 -- Spell-type sets
-                midcast_set = get_set(set)
+                midcast_set = get_set(set, mode)
             end
         end
     end
 
     -- Look for a generic midcast set if none has been chosen yet
     if midcast_set == nil and sets.midcast.Generic ~= nil then
-        midcast_set = sets.midcast.Generic
+        midcast_set = get_set(sets.midcast.Generic, mode)
     end
 
     -- If there's still no midcast set, just jump to the tp or idle set, as needed
@@ -427,15 +428,13 @@ function midcast(spell)
     end
 
     if WeatherSpells:contains(spell.name) and weather_match(spell) and sets.Weather ~= nil then
-        send_command('input /echo Weather is active! Equipping weather gear')
-        midcast_set = set_combine(midcast_set, sets.Weather)
+        midcast_set = set_combine(midcast_set, get_set(sets.Weather, mode))
     end
 
     -- Go through any buff-specific pieces
     for buff, buffset in pairs(sets.midcast.mod) do
         if buffactive[buff] ~= nil then
-            midcast_set = set_combine(midcast_set, get_set(buffset))
-            send_command('input /echo ' .. buff .. ' is active! Equipping special set')
+            midcast_set = set_combine(midcast_set, get_set(buffset, mode))
         end
     end
 
@@ -443,7 +442,7 @@ function midcast(spell)
 
     if MB_Mode then
         MB_Mode = false
-        send_command('input /echo Magic Burst mode is OFF')
+        notice('Magic Burst mode is OFF')
     end
 
     equip(midcast_set)
@@ -463,34 +462,75 @@ end
 
 function status_change(new, old)
     if new == "Resting" and sets.Resting ~= nil then
-        equip(sets.Resting)
+        equip(get_set(sets.Resting, Idle_Modes[Idle_Mode]))
     else
         equip(steady_state())
     end
 end
 
-function self_command(command)
+function self_command(commandArgs)
+    -- Split the command into separate words
+    if type(commandArgs) == 'string' then
+        commandArgs = T(commandArgs:split(' '))
+        if #commandArgs == 0 then
+            return
+        end
+    end
+
+    command = (table.remove(commandArgs, 1)):lower()
+
     local command_table = {
-        TP = function()
-            TP_Mode = cycle_table(TP_Mode, TP_Modes)
-            mode_display.TP_Mode = TP_Modes[TP_Mode]
+        meleemode = function(modeArgs)
+            if #modeArgs > 0 then
+                mode = table.remove(modeArgs, 1)
+                for key, name in pairs(Melee_Modes) do
+                    if mode == name then
+                        Melee_Mode = key
+                    end
+                end
+            else
+                Melee_Mode = cycle_table(Melee_Mode, Melee_Modes)
+            end
+            melee_display.mode = Melee_Modes[Melee_Mode]
         end,
-        Idle = function()
-            Idle_Mode = cycle_table(Idle_Mode, Idle_Modes)
-            mode_display.Idle_Mode = Idle_Modes[Idle_Mode]
+        idlemode = function(modeArgs)
+            if #modeArgs > 0 then
+                mode = table.remove(modeArgs, 1)
+                for key, name in pairs(Idle_Modes) do
+                    if mode == name then
+                        Idle_Mode = key
+                    end
+                end
+            else
+                Idle_Mode = cycle_table(Idle_Mode, Idle_Modes)
+            end
+            idle_display.mode = Idle_Modes[Idle_Mode]
         end,
-        MB = function()
+        magicmode = function(modeArgs)
+            if #modeArgs > 0 then
+                mode = table.remove(modeArgs, 1)
+                for key, name in pairs(Magic_Modes) do
+                    if mode == name then
+                        Magic_Mode = key
+                    end
+                end
+            else
+                Magic_Mode = cycle_table(Magic_Mode, Magic_Modes)
+            end
+            magic_display.mode = Magic_Modes[Magic_Mode]
+        end,
+        mb = function()
             MB_Mode = true
-            send_command('input /echo Magic Burst mode is ON')
+            notice('Magic Burst mode is ON')
         end,
-        EquipGear = function()
+        equipgear = function()
             equip(steady_state())
             send_command('input /lockstyleset ' .. lockstyleset)
         end
     }
 
     if command_table[command] ~= nil then
-        command_table[command]()
+        command_table[command](commandArgs)
     end
 end
 
@@ -521,14 +561,13 @@ function tp(should_equip, buff_override)
     end
 
     tp_set = {}
+    mode = Melee_Modes[Melee_Mode]
 
-    if sets.TP[TP_Modes[TP_Mode]] ~= nil then
-        tp_set = get_set(sets.TP[TP_Modes[TP_Mode]])
-    end
+    tp_set = get_set(sets.TP, mode)
 
     for buff, buffset in pairs(sets.TPMod) do
         if buffactive[buff] ~= nil or buff == buff_override then
-            tp_set = set_combine(tp_set, get_set(buffset))
+            tp_set = set_combine(tp_set, get_set(buffset, mode))
         end
     end
 
@@ -544,10 +583,9 @@ function idle(should_equip, buff_override)
         should_equip = true
     end
     idle_set = {}
+    mode = Idle_Modes[Idle_Mode]
 
-    if sets.Idle[Idle_Modes[Idle_Mode]] ~= nil then
-        idle_set = get_set(sets.Idle[Idle_Modes[Idle_Mode]])
-    end
+    idle_set = get_set(sets.Idle, mode)
 
     if should_equip then
         equip(idle_set)
@@ -556,16 +594,22 @@ function idle(should_equip, buff_override)
     end
 end
 
-function get_set(set_definition)
-    if set_definition.withBuffs ~= nil then
-        for buff, buffset in pairs(set_definition.withBuffs) do
+function get_set(set_definition, mode_name)
+    set = set_definition
+
+    if set_definition[mode_name] ~= nil then
+        set = set_definition[mode_name]
+    end
+
+    if set.withBuffs ~= nil then
+        for buff, buffset in pairs(set.withBuffs) do
             if buffactive[buff] ~= nil then
                 return buffset
             end
         end
-        return set_definition
+        return set
     else
-        return set_definition
+        return set
     end
 end
 

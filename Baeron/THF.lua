@@ -2,8 +2,11 @@ include('set-behavior')
 include('organizer-lib')
 
 function define_sets()
+    Melee_Modes = T {'Att', 'Acc', 'TH', 'Crit', 'DT', 'DTTH'}
+    fastcast = .34
+
     -- Not Engaged
-    sets.Idle.Idle = { -- 50% DT, 4 MDB
+    sets.Idle = { -- 50% DT, 4 MDB
         ammo = "Vanir Battery", -- MDB +4
         head = "Malignance Chapeau", -- 6% DT
         body = "Malignance Tabard", -- 9% DT
@@ -23,8 +26,6 @@ function define_sets()
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
         }
     }
-
-    Idle_Mode_Order = T {'Idle'}
 
     -- Engaged Sets
     sets.TP.Att = {
@@ -69,10 +70,7 @@ function define_sets()
             augments = {'Path: A'}
         },
         ammo = "Cath Palug Stone",
-        head = {
-            name = "Adhemar Bonnet +1",
-            augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
-        },
+        head = "Pillager's Bonnet +3",
         body = "Pillager's Vest +3",
         hands = {
             name = "Adhemar Wrist. +1",
@@ -160,8 +158,6 @@ function define_sets()
         end
     end
 
-    TP_Mode_Order = T {'Att', 'Acc', 'TH', 'Crit', 'DT', 'DTTH'}
-
     -- JA Sets; equip on use
     sets.JA['Sneak Attack'] = set_combine(set, {
         head = "Adhemar Bonnet +1",
@@ -229,7 +225,7 @@ function define_sets()
     base = {}
     base["Rudra's Storm"] = {
         ammo = "Cath Palug Stone",
-        head = "Pillager's Bonnet +2",
+        head = "Pillager's Bonnet +3",
         body = "Meg. Cuirie +2",
         hands = "Meg. Gloves +2",
         legs = {
@@ -389,7 +385,8 @@ function define_sets()
         waist = "Hachirin-no-obi"
     }
 
-    sets.precast.FastCast = { -- 32%
+    sets.precast.FastCast = { -- 34%
+        ammo = "Sapience Orb", -- 2%
         head = { -- 7%
             name = "Herculean Helm",
             augments = {'Attack+24', 'Weapon skill damage +2%', 'STR+4', 'Accuracy+6'}

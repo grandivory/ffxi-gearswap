@@ -4,9 +4,14 @@ include('organizer-lib')
 lockstyleset = 16
 
 function define_sets()
+    Melee_Modes = T {'Att', 'Acc', 'DT', 'Refresh'}
+    Idle_Modes = T {'Refresh', 'DT'}
+    Magic_Modes = T {'Acc', 'MAB'}
+    fastcast = .8
+
     -- Not Engaged
-    sets.Idle.Refresh = { -- Refresh +9, 44% PDT, 33% MDT, +14 MDB
-        main = {
+    sets.Idle.Refresh = { -- Refresh +11, +4 MDB, -42% PDT, -37% MDT
+        main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
         },
@@ -22,7 +27,10 @@ function define_sets()
             name = "Carmine Cuisses +1",
             augments = {'Accuracy+12', 'DEX+12', 'MND+20'}
         },
-        feet = "Malignance Boots", -- MEva +150, DT -4%
+        feet = { -- PDT -2%
+            name = "Herculean Boots",
+            augments = {'Mag. Acc.+7 "Mag.Atk.Bns."+7', 'CHR+7', '"Refresh"+2'}
+        },
         neck = "Loricate Torque +1", -- DT -6%
         waist = "Flume Belt +1", -- PDT -4%
         left_ring = "Defending Ring", -- DT-10%
@@ -36,11 +44,9 @@ function define_sets()
         }
     }
 
-    sets.Idle.DT = set_combine(sets.Idle.Refresh, { -- 50% PDT, 39% MDT
+    sets.Idle.DT = set_combine(sets.Idle.Refresh, { -- 48% PDT, 43% MDT
         head = "Malignance Chapeau" -- 6% DT
     })
-
-    Idle_Mode_Order = T {'Refresh', 'DT'}
 
     -- Engaged Sets
     sets.TP.Att = {
@@ -76,6 +82,14 @@ function define_sets()
         }
     }
 
+    sets.TP.Acc = set_combine(sets.TP.Att, {
+        sub = {
+            name = "Colada",
+            augments = {'"Store TP"+5', 'VIT+1', 'Accuracy+12', 'Attack+21', 'DMG:+18'}
+        },
+        ammo = "Falcon Eye"
+    })
+
     -- DT Sets
     sets.TP.DT = set_combine(sets.TP.Att, { -- 50% DT
         head = "Malignance Chapeau", -- 6% DT
@@ -91,7 +105,7 @@ function define_sets()
         }
     })
 
-    TP_Mode_Order = T {'Att', 'DT', 'Learn'}
+    sets.TP.Refresh = sets.Idle.Refresh
 
     -- WS Sets
     sets.WS["Chant du Cygne"] = {
@@ -275,7 +289,7 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 67%
+    sets.precast.FastCast = { -- 71%
         main = { -- 4%
             name = "Colada",
             augments = {'"Store TP"+5', 'VIT+1', 'Accuracy+12', 'Attack+21', 'DMG:+18'}
@@ -284,6 +298,7 @@ function define_sets()
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
         },
+        ammo = "Sapience Orb", -- 2%
         head = { -- 7%
             name = "Herculean Helm",
             augments = {'Attack+24', 'Weapon skill damage +2%', 'STR+4', 'Accuracy+6'}
@@ -296,9 +311,9 @@ function define_sets()
             name = "Leyline Gloves",
             augments = {'Accuracy+14', 'Mag. Acc.+13', '"Mag.Atk.Bns."+13', '"Fast Cast"+2'}
         },
-        legs = { -- 5%
-            name = "Telchine Braconi",
-            augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
+        legs = { -- 7%
+            name = "Psycloth Lappas",
+            augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
         },
         feet = "Carmine Greaves +1", -- 8%
         neck = "Orunmila's Torque", -- 5%
@@ -463,10 +478,6 @@ function define_sets()
     sets.midcast.BlueMagic.Debuff = sets.midcast.Enfeebling
 
     TP_Skill_set = set_combine(sets.TP.Att, sets.midcast.BlueMagic.Skill)
-    sets.TP.Learn = set_combine(TP_Skill_set, {
-        hands = "Assimilator's Bazubands +1"
-    })
-    sets.Idle.Learn = sets.TP.Learn
 
     -- Pieces to switch out when buffs are active
     sets.midcast.mod.Diffusion = {
