@@ -100,6 +100,11 @@ function precast(spell)
         return
     end
 
+    -- If a pet is mid-action, then don't swap sets
+    if (pet.isvalid and pet_midaction() and not spell.type == 'SummonerPact') then
+        return
+    end
+
     precast_set = nil
 
     -- Determine which mode to use for this ability
@@ -141,6 +146,17 @@ function precast(spell)
                 precast_set = get_set(sets.precast["Quick Draw"], mode)
             elseif sets.JA["Quick Draw"] ~= nil then
                 precast_set = get_set(sets.JA["Quick Draw"], mode)
+            end
+        end
+    end
+
+    -- Blood Pacts
+    if precast_set == nil then
+        if (spell.type == "BloodPactWard" or spell.type == "BloodPactRage") and not buffactive["Astral Conduit"] then
+            if sets.precast["Blood Pact"] ~= nil then
+                precast_set = get_set(sets.precast["Blood Pact"], mode)
+            elseif sets.JA["Blood Pact"] ~= nil then
+                precast_set = get_set(sets.JA["Blood Pact"], mode)
             end
         end
     end
@@ -275,7 +291,10 @@ function midcast(spell)
         return
     end
 
-    -- send_command('input Spell target type: ' .. spell.target.type)
+    -- If a pet is mid-action, then don't swap sets
+    if (pet.isvalid and pet_midaction()) then
+        return
+    end
 
     -- For spells without a cast time (like job abilities or weapon skills), gear swaps happen in the precast
     if spell.cast_time == nil and spell.action_type ~= 'Ranged Attack' then
@@ -405,6 +424,8 @@ function midcast(spell)
             end
         elseif spell.skill == "Geomancy" and sets.midcast.Geomancy ~= nil then
             midcast_set = get_set(sets.midcast.Geomancy, mode)
+        elseif spell.skill == "Summoning Magic" and sets.midcast.Summon ~= nil then
+            midcast_set = get_set(sets.midcast.Summon, mode)
         end
     end
 
@@ -453,11 +474,86 @@ function aftercast(spell)
         return
     end
 
+    -- If a pet is mid-action, then don't swap sets
+    if (pet.isvalid and (pet_midaction() or string.find(spell.type, 'BloodPact'))) then
+        return
+    end
+
     aftercast_set = steady_state()
 
     aftercast_set = mod_aftercast(spell, aftercast_set)
 
     equip(aftercast_set)
+end
+
+function pet_midcast(spell)
+    pet_set = nil
+
+    notice('Spell Type: ' .. spell.type)
+
+    if S {BloodPactTypes.healing, BloodPactTypes.magic, BloodPactTypes.magicTP, BloodPactTypes.mnd}:contains(spell.name) then
+        mode = Magic_Modes[Magic_Mode]
+    else
+        mod = Melee_Modes[Melee_Mode]
+    end
+
+    -- Spell-specific sets
+    if sets.pet_midcast[spell.name] then
+        pet_set = get_set(sets.pet_midcast[spell.name], mode)
+    end
+
+    ----------------------
+    -- Spell name matching
+    ----------------------
+    if pet_set == nil then
+        for name, set in pairs(sets.pet_midcast) do
+            if string.find(spell.name, name) then
+                pet_set = get_set(set, mode)
+            end
+        end
+    end
+
+    if pet_set == nil then
+        pact_type = BloodPacts[spell.name]
+        if pact_type == BloodPactTypes.buffDuration and sets.pet_midcast.Buff ~= nil then
+            pet_set = get_set(sets.pet_midcast.Buff, mode)
+        elseif pact_type == BloodPactTypes.mnd and sets.pet_midcast.BuffMND ~= nil then
+            pet_set = get_set(sets.pet_midcast.BuffMND, mode)
+        elseif pact_type == BloodPactTypes.debuff and sets.pet_midcast.MAcc ~= nil then
+            pet_set = get_set(sets.pet_midcast.Macc, mode)
+        elseif pact_type == BloodPactTypes.healing and sets.pet_midcast.Healing ~= nil then
+            pet_set = get_set(sets.pet_midcast.Healing, mode)
+        elseif pact_type == BloodPactTypes.magic and sets.pet_midcast.Magic ~= nil then
+            pet_set = get_set(sets.pet_midcast.Magic, mode)
+        elseif pact_type == BloodPactTypes.magicTP then
+            if sets.pet_midcast.MagicTP ~= nil then
+                pet_set = get_set(sets.pet_midcast.MagicTP, mode)
+            elseif sets.pet_midcast.Magic ~= nil then
+                pet_set = get_set(sets.pet_midcast.Magic, mode)
+            end
+        elseif pact_type == BloodPactTypes.phys and sets.pet_midcast.Physical ~= nil then
+            pet_set = get_set(sets.pet_midcast.Physical, mode)
+        elseif pact_type == BloodPactTypes.physTP then
+            if sets.pet_midcast.PhysicalTP ~= nil then
+                pet_set = get_set(sets.pet_midcast.PhysicalTP, mode)
+            elseif sets.pet_midcast.Physical ~= nil then
+                pet_set = get_set(sets.pet_midcast.Physical, mode)
+            end
+        elseif pact_type == BloodPactTypes.skill and sets.pet_midcast["Summoning Skill"] ~= nil then
+            pet_set = get_set(sets.pet_midcast["Summoning Skill"], mode)
+        end
+    end
+
+    if pet_set == nil and sets.pet_midcast.Generic ~= nil then
+        pet_set = get_set(set.pet_midcast.Generic, mode)
+    end
+
+    pet_set = mod_pet_midcast(spell, pet_set)
+
+    equip(pet_set)
+end
+
+function pet_aftercast(spell)
 end
 
 function status_change(new, old)
@@ -552,6 +648,10 @@ function mod_aftercast(spell, set)
     return set
 end
 
+function mod_pet_midcast(spell, set)
+    return set
+end
+
 ---------------------------------------------------------
 ---- Behavior functions                              ----
 ---------------------------------------------------------
@@ -560,10 +660,20 @@ function tp(should_equip, buff_override)
         should_equip = true
     end
 
-    tp_set = {}
+    tp_set = nil
     mode = Melee_Modes[Melee_Mode]
 
-    tp_set = get_set(sets.TP, mode)
+    if pet.isvalid then
+        if Avatars:contains(pet.name) and sets.TP_Avatar ~= nil then
+            tp_set = get_set(sets.TP_Avatar, mode)
+        elseif string.find(pet.name, 'Spirit') and sets.TP_Spirit ~= nil then
+            tp_set = get_set(sets.TP_Spirit, mode)
+        end
+    end
+
+    if tp_set == nil then
+        tp_set = get_set(sets.TP, mode)
+    end
 
     for buff, buffset in pairs(sets.TPMod) do
         if buffactive[buff] ~= nil or buff == buff_override then
@@ -582,10 +692,20 @@ function idle(should_equip, buff_override)
     if should_equip == nil then
         should_equip = true
     end
-    idle_set = {}
+    idle_set = nil
     mode = Idle_Modes[Idle_Mode]
 
-    idle_set = get_set(sets.Idle, mode)
+    if pet.isvalid then
+        if Avatars:contains(pet.name) and sets.Idle_Avatar ~= nil then
+            idle_set = get_set(sets.Idle_Avatar, mode)
+        elseif string.find(pet.name, 'Spirit') and sets.Idle_Spirit ~= nil then
+            idle_set = get_set(sets.Idle_Spirit, mode)
+        end
+    end
+
+    if idle_set == nil then
+        idle_set = get_set(sets.Idle, mode)
+    end
 
     if should_equip then
         equip(idle_set)

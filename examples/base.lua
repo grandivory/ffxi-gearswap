@@ -40,6 +40,8 @@ function define_sets()
     -- Not engaged sets
     sets.Idle = {}
     sets.Idle.DT = {}
+    sets.Idle_Avatar = {} -- Used while an Avatar is out
+    sets.Idle_Spirit = {} -- Used while a spirit is out
     sets.Resting = {}
     sets.Resting.DT = {} -- Modes can be applied to other sets, too
 
@@ -47,6 +49,8 @@ function define_sets()
     sets.TP = {}
     sets.TP.DT = {}
     sets.TP.Refresh = {}
+    sets.TP_Avatar = {} -- Used while an Avatar is out
+    sets.TP_Spirit = {} -- Used while a spirit is out
     sets.TPMod['Sneak Attack'] = {} -- This set will be used if you engage while "Sneak Attack" is active
 
     -- Ranged Attacks
@@ -67,6 +71,7 @@ function define_sets()
     sets.JA.Hide = {}
     sets.JA['Phantom Roll'] = {}
     sets.JA['Quick Draw'] = {}
+    sets.JA['Blood Pact'] = {}
 
     -- Precast sets for spells
     sets.precast.FastCast = {}
@@ -102,11 +107,26 @@ function define_sets()
     sets.midcast.BlueMagic.Debuff = {}
     sets.midcast.BlueMagic.Skill = {}
     sets.midcast.Geomancy = {}
+    sets.midcast.Summon = {}
     sets.midcast.Generic = {} -- If no other set is found, this set is used instead
 
     sets.midcast.mod["Diffusion"] = { -- This will be used for ANY spell while "Diffusion" is active
         feet = "Luhlaza Charuqs +1"
     }
+
+    -- Pet midcast sets
+    sets.pet_midcast["Impact"] = {} -- Used if your pet is casting "Impact"
+    sets.pet_midcast["Crush"] = {} -- Used if your pet is casting anything with "Crush" in the name
+    sets.pet_midcast.Buff = {}
+    sets.pet_midcast.BuffMND = {}
+    sets.pet_midcast.MAcc = {}
+    sets.pet_midcast.Healing = {}
+    sets.pet_midcast.Magic = {}
+    sets.pet_midcast.MagicTP = {}
+    sets.pet_midcast.Physical = {}
+    sets.pet_midcast.PhysicalTP = {}
+    sets.pet_midcast["Summoning Skill"] = {}
+    sets.pet_midcast.Generic = {} -- If no other set is found, this set is used instead
 
     -- Weather gear
     sets.Weather = {

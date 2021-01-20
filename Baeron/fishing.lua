@@ -9,6 +9,7 @@ function define_sets()
         body = "Fsh. Tunica",
         hands = "Fsh. Gloves",
         legs = "Fisherman's Hose",
-        feet = "Fisherman's Boots"
+        feet = "Fisherman's Boots",
+        left_ring = "Pelican Ring"
     }
 end

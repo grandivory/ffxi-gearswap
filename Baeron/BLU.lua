@@ -15,7 +15,10 @@ function define_sets()
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
         },
-        sub = "Bolelabunga", -- Refresh +1
+        sub = { -- Refresh +2
+            name = "Colada",
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
+        },
         ammo = "Vanir Battery", -- +4 MDB
         head = { -- Refresh +2
             name = "Spurrina Coif",
@@ -83,10 +86,7 @@ function define_sets()
     }
 
     sets.TP.Acc = set_combine(sets.TP.Att, {
-        sub = {
-            name = "Colada",
-            augments = {'"Store TP"+5', 'VIT+1', 'Accuracy+12', 'Attack+21', 'DMG:+18'}
-        },
+        sub = "Zantetsuken",
         ammo = "Falcon Eye"
     })
 
@@ -139,12 +139,12 @@ function define_sets()
         }
     }
     sets.WS["Requiescat"] = {
-        ammo = "Vanir Battery",
+        ammo = "Amar Cluster",
         head = "Jhakri Coronal +2",
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +1",
-        feet = "Jhakri Pigaches +1",
+        legs = "Jhakri Slops +2",
+        feet = "Jhakri Pigaches +2",
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = {
@@ -160,12 +160,12 @@ function define_sets()
         }
     }
     sets.WS["Savage Blade"] = {
-        ammo = "Vanir Battery",
+        ammo = "Amar Cluster",
         head = {
             name = "Herculean Helm",
-            augments = {'Accuracy+14 Attack+14', 'Weapon skill damage +4%'}
+            augments = {'Attack+12', 'Weapon skill damage +4%', 'STR+8', 'Accuracy+5'}
         },
-        body = "Assim. Jubbah +2",
+        body = "Assim. Jubbah +3",
         hands = "Jhakri Cuffs +2",
         legs = "Luhlaza Shalwar +3",
         feet = {
@@ -215,7 +215,7 @@ function define_sets()
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
         },
-        body = "Assim. Jubbah +2",
+        body = "Assim. Jubbah +3",
         hands = "Jhakri Cuffs +2",
         legs = {
             name = "Samnuha Tights",
@@ -237,12 +237,12 @@ function define_sets()
         }
     }
     sets.WS.Generic = {
-        ammo = "Vanir Battery",
+        ammo = "Amar Cluster",
         head = {
             name = "Lilitu Headpiece",
             augments = {'STR+9', 'DEX+9', 'Attack+13', 'Weapon skill damage +2%'}
         },
-        body = "Assim. Jubbah +2",
+        body = "Assim. Jubbah +3",
         hands = "Jhakri Cuffs +2",
         legs = {
             name = "Samnuha Tights",
@@ -271,11 +271,8 @@ function define_sets()
         head = "Jhakri Coronal +2",
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +1",
-        feet = {
-            name = "Amalric Nails",
-            augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
-        },
+        legs = "Jhakri Slops +2",
+        feet = "Jhakri Pigaches +2",
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
@@ -292,11 +289,11 @@ function define_sets()
     sets.precast.FastCast = { -- 71%
         main = { -- 4%
             name = "Colada",
-            augments = {'"Store TP"+5', 'VIT+1', 'Accuracy+12', 'Attack+21', 'DMG:+18'}
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
         },
         sub = { -- 4%
             name = "Colada",
-            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
         },
         ammo = "Sapience Orb", -- 2%
         head = { -- 7%
@@ -418,10 +415,10 @@ function define_sets()
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
         },
-        body = "Assim. Jubbah +2",
+        body = "Assim. Jubbah +3",
         hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +1",
-        feet = "Jhakri Pigaches +1",
+        legs = "Jhakri Slops +2",
+        feet = "Jhakri Pigaches +2",
         neck = "Caro Necklace",
         waist = "Wanion Belt",
         left_ear = "Dudgeon Earring",
@@ -457,13 +454,13 @@ function define_sets()
         waist = "Gishdubar Sash",
         left_ring = "Kunaji Ring"
     })
-    sets.midcast.BlueMagic.Skill = { -- +96
+    sets.midcast.BlueMagic.Skill = { -- +98
         ammo = "Mavi Tathlum", -- +5
         head = { -- +13
             name = "Luh. Keffiyeh +1",
             augments = {'Enhances "Convergence" effect'}
         },
-        body = "Assim. Jubbah +2", -- +22
+        body = "Assim. Jubbah +3", -- +24
         hands = "Rawhide Gloves", -- +10
         legs = "Hashishin Tayt +1", -- +23
         feet = { -- +8
@@ -476,6 +473,15 @@ function define_sets()
         }
     }
     sets.midcast.BlueMagic.Debuff = sets.midcast.Enfeebling
+
+    -- Specific spells
+    sets.midcast["Sound Blast"] = set_combine(sets.midcast.BlueMagic.Debuff, {
+        feet = {
+            name = "Herculean Boots",
+            augments = {'Weapon skill damage +4%', 'MND+4', '"Treasure Hunter"+2', 'Accuracy+13 Attack+13',
+                        'Mag. Acc.+17 "Mag.Atk.Bns."+17'}
+        }
+    })
 
     TP_Skill_set = set_combine(sets.TP.Att, sets.midcast.BlueMagic.Skill)
 

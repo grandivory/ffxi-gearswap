@@ -51,6 +51,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * For ranged attacks, if you have a `sets.precast.RA`, that set will be used
 * For phantom roll, you can use `sets.precast["Phantom Roll"]` or `sets.JA["Phantom Roll"]` for a generic roll set. For specific rolls, define a set using the spell names, as above!
 * For quick draw, you can use `sets.precast["Quick Draw"]` or `sets.JA["Quick Draw"]`
+* For summoner blood pacts, you can use `sets.precast["Blood Pact"]` or `sets.JA["Blood Pact"]`
 * If you define a `sets.precast["Something"]`, "Somthing" will be searched against the full spell name of what you're casting, then the type, so you can (for example) define a `sets.precast.Cur` that will match to ANY cure spell, Curaga, or Cura, or you can define `sets.precast.Healing` for any healing magic
 * If you use a weapon skill and don't have a ws-specific set defined, then the lua will look for `sets.WS.MAB` or `sets.WS.Elemental` for elemental-based WS, or `sets.WS.Generic` for physical-based WS
   * Further, for elemental weapon skills, the lua will check against the current weather and day to equip `sets.Weather`, if it's defined
@@ -101,16 +102,39 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * `sets.midcast.BlueMagic.Skill` for all other spells
 * For Geomancy:
   * `sets.midcast.Geomancy`
+* For Summoning Magic:
+  * `sets.midcast.Summon`
 * If `sets.midcast.Generic` is defined, then that set will be used
 * If there is STILL no set chosen, then your steady stat (tp or idle) gear will be chosen
 * If the spell you are casting is affected by the currently active weather or day, then the lua will look for `sets.Weather` to add to your set
 * The lua will look through all sets defined in `sets.midcast.mod` to determine if they should be equipped based on current buffs
   * For example, I have a `sets.midcast.mod["Diffusion"] = { feet: "Luhlaza Charuqs +1" }` defined in my BLU lua. If Diffusion is active, the Luhlaza Charuqs +1 will be equipped for ANY spell I cast.
-* You can define a `mod_midcast(spell, midcast_set)` function to alter anything abou thte gear that's been chosen up to this point.
+* You can define a `mod_midcast(spell, midcast_set)` function to alter anything abou the gear that's been chosen up to this point.
 
 ## Aftercast
 * Aftercast will always choose the steady state gear based on whether you're engaged (TP set) or not (Idle set)
 
+## Pet Midcast
+* For pet classes, you can define sets that will be equipped when your pet is using an ability
+* If you have a `sets.pet_midcast[spell name]` defined, that set will be used.
+* If you define a `sets.pet_midcast["Something"]`, "Something" will be searched against the full name of the ability your pet is using.
+* For blood pacts:
+  * The lua will look for a `sets.pet_midcast.Buff` for buff blood pacts
+  * The lua will look for a `sets.pet_midcast.BuffMND` for buff blood pacts that are affected by MND (Wind's Blessing)
+  * The lua will look for a `sets.pet_midcast.MAcc` for debuff blood pacts
+  * The lua will look for a `sets.pet_midcast.Healing` for healing blood pacts
+  * The lua will look for a `sets.pet_midcast.Magic` for magic blood pacts that are not based on TP or if no `MagicTP` set is defined
+  * The lua will look for a `sets.pet_midcast.MagicTP` for magic blood pacts that can make use of a TP bonus
+  * The lua will look for a `sets.pet_midcast.Physical` for physical blood pacts that are not based on TP or if no `PhysicalTP` set is defined
+  * The lua will look for a `sets.pet_midcast.PhysicalTP` for physical blood pacts that can make use of a TP bonus
+  * The lua will look for a `sets.pet_midcast["Summoning Skill"]` for blood pacts that rely mostly on summoning skill
+* The lua will look for a `sets.pet_midcast.Generic` if no other sets have yet been selected
+* You can define a `mod_pet_midcast(spell, midcast_set)` function to alter anything abou the gear that's been chosen up to this point.
+
 ## Status Change
 * If you define `sets.Resting`, it will be equipped when you start resting
 * Otherwise, your steady state gear will be equipped
+
+## Pet Classes
+* If you have a pet out and that pet is mid-action, then gearswap is temporarily disabled - it will not change gear until your pet finishes their action (which makes sure that your pet gear stays on until they finish)
+* If you have defined a `sets.TP_Avatar`, `sets.TP_Spirit`, `sets.Idle_Avatar`, or `sets.Idle_Spirit`, then those sets will be used in place of your normal TP or Idle sets when you have an avatar or spirit summoned, respectively.

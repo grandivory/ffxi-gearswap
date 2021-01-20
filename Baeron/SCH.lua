@@ -10,9 +10,9 @@ function define_sets()
 
     -- Not Engaged
     sets.Idle.Idle = {
-        main = { -- Refresh +1
-            name = "Akademos",
-            augments = {'INT+15', '"Mag.Atk.Bns."+15', 'Mag. Acc.+15'}
+        main = { -- Refresh +1~2
+            name = "Contemplator +1",
+            augments = {'Path: A'}
         },
         sub = "Oneiros Grip",
         ammo = "Homiliary",
@@ -35,7 +35,7 @@ function define_sets()
             augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', '"Mag.Atk.Bns."+10', 'Spell interruption rate down-10%'}
         }
     }
-    sets.Idle.DT = { -- 50% DT, 4 MDB
+    sets.Idle.DT = set_combine(sets.Idle.Idle, { -- 50% DT, 4 MDB
         main = "Malignance Pole", -- 20%
         sub = "Khonsu", -- 6%
         ammo = "Vanir Battery", -- MDB +4
@@ -47,7 +47,7 @@ function define_sets()
             name = "Dark Ring",
             augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
         }
-    }
+    })
 
     -- Engaged Sets
     -- sets.TP.Att = {}
@@ -152,14 +152,14 @@ function define_sets()
         waist = "Luminary Sash",
         left_ear = "Mendicant's Earring",
         right_ear = "Regal Earring",
-        left_ring = "Ephedra Ring",
+        left_ring = "Lebeche Ring",
         right_ring = "Ephedra Ring"
     }
     sets.midcast.Curaga = sets.midcast.Cure
     sets.midcast.CureSelf = set_combine(sets.midcast.Cure, {
         neck = "Phalaina Locket",
         waist = "Gishdubar Sash",
-        left_ring = "Kunaji Ring"
+        right_ring = "Kunaji Ring"
     })
     sets.midcast.Cursna = set_combine(sets.midcast.Cure, {
         hands = "Hieros Mittens",
@@ -220,7 +220,7 @@ function define_sets()
     })
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
         main = "Bolelabunga", -- 10% +1 Potency
-        sub = "Genmei Shield",
+        sub = "Ammurapi Shield", -- Duration +10
         head = "Arbatel Bonnet +1",
         back = { -- Duration + 15
             name = "Lugh's Cape",
@@ -231,15 +231,15 @@ function define_sets()
     sets.midcast.Elemental = {
         main = {
             name = "Grioavolr",
-            augments = {'"Conserve MP"+1', 'INT+13', 'Mag. Acc.+12', '"Mag.Atk.Bns."+25', 'Magic Damage +9'}
+            augments = {'Enfb.mag. skill +11', 'INT+9', 'Mag. Acc.+28', '"Mag.Atk.Bns."+23'}
         },
         sub = "Khonsu",
         ammo = "Ghastly Tathlum +1",
         head = "Jhakri Coronal +2",
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +1",
-        feet = "Jhakri Pigaches +1",
+        legs = "Jhakri Slops +2",
+        feet = "Jhakri Pigaches +2",
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Malignance Earring",
@@ -252,19 +252,29 @@ function define_sets()
                         'Spell interruption rate down-10%'}
         }
     }
+    sets.midcast.Elemental.Acc = set_combine(sets.midcast.Elemental, {
+        main = {
+            name = "Contemplator +1",
+            augments = {'Path: A'}
+        }
+    })
     sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
         left_ring = "Mujin Band"
+    })
+    sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
+        main = {
+            name = "Contemplator +1",
+            augments = {'Path: A'}
+        }
     })
     sets.midcast.Helix = set_combine(sets.midcast.Elemental, {
         main = "Daybreak",
         sub = "Culminus",
         ammo = "Ghastly Tathlum +1"
     })
-    sets.midcast.HelixMB = set_combine(sets.midcast.ElementalMB, {
-        ammo = "Ghastly Tathlum +1"
-    })
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
         head = "Pixie Hairpin +1",
+        feet = "Jhakri Pigaches +2",
         right_ring = "Archon Ring"
     })
     sets.midcast.Impact = set_combine(sets.midcast.Kaustra, {
@@ -300,11 +310,11 @@ function define_sets()
     sets.midcast.Aspir = sets.midcast.Drain
 
     enfeeblingSet = {
-        main = { -- MAcc + 26
-            name = "Grioavolr",
-            augments = {'"Conserve MP"+1', 'INT+13', 'Mag. Acc.+12', '"Mag.Atk.Bns."+25', 'Magic Damage +9'}
+        main = { -- MAcc +70
+            name = "Contemplator +1",
+            augments = {'Path: A'}
         },
-        sub = "Khonsu", -- MAcc +25
+        sub = "Khonsu", -- MAcc +30
         ammo = "Savant's Treatise", -- Enfeebling +4
         head = "Jhakri Coronal +2", -- MAcc +44
         body = "Jhakri Robe +2", -- MAcc +46
@@ -333,7 +343,7 @@ function define_sets()
     })
     sets.midcast.Dispelga = set_combine(sets.midcast.Enfeebling, {
         main = "Daybreak",
-        sub = "Genmei Shield"
+        sub = "Ammurapi Shield"
     })
 
     -- Pieces to switch out when buffs are active

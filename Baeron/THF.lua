@@ -48,7 +48,7 @@ function define_sets()
             name = "Samnuha Tights",
             augments = {'STR+8', 'DEX+9', '"Dbl.Atk."+3', '"Triple Atk."+2'}
         },
-        feet = "Malignance Boots",
+        feet = "Plunderer's Poulaines +3",
         neck = {
             name = "Asn. Gorget +2",
             augments = {'Path: A'}
@@ -186,10 +186,16 @@ function define_sets()
         right_ring = "Regal Ring"
     })
     sets.JA.Steal = {
-        head = "Plunderer's Bonnet +2"
+        head = {
+            name = "Plun. Bonnet +3",
+            augments = {'Enhances "Aura Steal" effect'}
+        }
     }
     sets.JA.Mug = {
-        head = "Plunderer's Bonnet +2"
+        head = {
+            name = "Plun. Bonnet +3",
+            augments = {'Enhances "Aura Steal" effect'}
+        }
     }
     sets.JA.Hide = {
         body = "Pillager's Vest +3"
@@ -224,25 +230,28 @@ function define_sets()
     -- WS Sets
     base = {}
     base["Rudra's Storm"] = {
-        ammo = "Cath Palug Stone",
-        head = "Pillager's Bonnet +3",
+        ammo = {
+            name = "Seeth. Bomblet +1",
+            augments = {'Path: A'}
+        },
+        head = {
+            name = "Plun. Bonnet +3",
+            augments = {'Enhances "Aura Steal" effect'}
+        },
         body = "Meg. Cuirie +2",
         hands = "Meg. Gloves +2",
         legs = {
             name = "Lustr. Subligar +1",
             augments = {'Accuracy+20', 'DEX+8', 'Crit. hit rate+3%'}
         },
-        feet = {
-            name = "Lustra. Leggings +1",
-            augments = {'HP+65', 'STR+15', 'DEX+15'}
-        },
+        feet = "Plunderer's Poulaines +3",
         neck = "Assassin's Gorget +2",
         waist = "Grunfeld Rope",
-        left_ear = {
+        left_ear = "Sherida Earring",
+        right_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
-        right_ear = "Sherida Earring",
         left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring",
         back = {
@@ -253,6 +262,11 @@ function define_sets()
     sets.WS["Rudra's Storm"] = base["Rudra's Storm"]
     sets.WS["Rudra's Storm"].withBuffs = {}
     sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = set_combine(base["Rudra's Storm"], {
+        head = "Pillager's Bonnet +3",
+        feet = {
+            name = "Lustra. Leggings +1",
+            augments = {'HP+65', 'STR+15', 'DEX+15'}
+        },
         right_ear = "Odr Earring"
     })
     sets.WS["Mandalic Stab"] = base["Rudra's Storm"]
@@ -292,9 +306,12 @@ function define_sets()
         }
     }
     sets.WS.Exenterator = {
-        ammo = "Cath Palug Stone",
+        ammo = {
+            name = "Seeth. Bomblet +1",
+            augments = {'Path: A'}
+        },
         head = {
-            name = "Plun. Bonnet +2",
+            name = "Plun. Bonnet +3",
             augments = {'Enhances "Aura Steal" effect'}
         },
         body = "Meg. Cuirie +2",
@@ -303,7 +320,7 @@ function define_sets()
             augments = {'Accuracy+27', 'Weapon skill damage +2%', 'AGI+10', 'Attack+14'}
         },
         legs = "Meg. Chausses +1",
-        feet = "Mummu Gamash. +2",
+        feet = "Plunderer's Poulaines +3",
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Sherida Earring",
@@ -318,8 +335,8 @@ function define_sets()
     sets.WS["Savage Blade"] = {
         ammo = "Seeth. Bomblet +1",
         head = {
-            name = "Plun. Bonnet +2",
-            augments = {'Enhances "Aura Steal" effect'}
+            name = "Herculean Helm",
+            augments = {'Attack+12', 'Weapon skill damage +4%', 'STR+8', 'Accuracy+5'}
         },
         body = "Meg. Cuirie +2",
         hands = "Meg. Gloves +2",
@@ -344,7 +361,7 @@ function define_sets()
     }
     sets.WS.Generic = base["Rudra's Storm"]
     sets.WS.MAB = {
-        ammo = "Seeth. Bomblet +1",
+        ammo = "Ghastly Tathlum +1",
         head = "Lilitu Headpiece",
         body = {
             name = "Rawhide Vest",
