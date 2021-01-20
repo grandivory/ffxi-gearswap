@@ -230,8 +230,7 @@ function precast(spell)
             if available_ammo == nil then
                 notice('No ' .. ammo_to_check .. ' left!')
             elseif available_ammo.count < ammo_threshold then
-                add_to_chat(158,
-                    '***** Running low on ' .. ammo_to_check .. '! ' .. available_ammo.count .. ' left *****')
+                notice('***** Running low on ' .. ammo_to_check .. '! ' .. available_ammo.count .. ' left *****')
             end
 
             -- Check for no-shoot ammo
