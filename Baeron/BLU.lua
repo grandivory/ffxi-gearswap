@@ -286,7 +286,7 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 71%
+    sets.precast.FastCast = { -- 73%
         main = { -- 4%
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -317,6 +317,7 @@ function define_sets()
         left_ear = "Loquac. Earring", -- 2%
         right_ear = "Enchntr. Earring +1", -- 2%
         left_ring = "Kishar Ring", -- 4%
+        right_ring = "Rahab Ring", -- 2%
         back = "Fi Follet Cape +1" -- 10%
     }
     sets.precast.Utsusemi = set_combine(sets.precast.FastCast, {

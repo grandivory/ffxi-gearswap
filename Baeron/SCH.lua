@@ -92,7 +92,7 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 78%
+    sets.precast.FastCast = { -- 80%
         main = "Oranyan", -- 7%
         sub = "Khonsu",
         ammo = "Sapience Orb", -- 2%
@@ -115,6 +115,7 @@ function define_sets()
         left_ear = "Loquac. Earring", -- 2%
         right_ear = "Malignance Earring", -- 4%
         left_ring = "Kishar Ring", -- 4%
+        right_ring = "Rahab Ring", -- 2%
         back = "Fi Follet Cape +1" -- 10%
     }
     sets.precast.Impact = set_combine(sets.precast.FastCast, {
@@ -174,7 +175,7 @@ function define_sets()
         right_ring = "Ephedra Ring"
     })
 
-    sets.midcast.Enhancing = { -- +87
+    sets.midcast.Enhancing = { -- +92
         main = { -- +11
             name = "Kirin's Pole",
             augments = {'DMG:+25', 'Enha.mag. skill +11'}
@@ -190,6 +191,7 @@ function define_sets()
             augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
         },
         neck = "Incanter's Torque", -- +10
+        left_ear = "Andoaa Earring", -- +5
         waist = "Embla Sash", -- Duration +10%
         back = "Fi Follet Cape +1" -- +9
     }
@@ -323,11 +325,11 @@ function define_sets()
             name = "Psycloth Lappas",
             augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
         }, -- MAcc +45, Enfeebling +18
-        feet = "Jhakri Pigaches +1", -- MAcc +36
+        feet = "Jhakri Pigaches +2", -- MAcc +36
         neck = "Incanter's Torque", -- Enfeebling +10
         waist = "Luminary Sash", -- MAcc +10
         left_ear = "Malignance Earring", -- MAcc +10
-        right_ear = "Regal Earring",
+        right_ear = "Dignitary's Earring",
         left_ring = "Kishar Ring",
         right_ring = "Metamorph Ring +1",
         back = { -- MAcc +20

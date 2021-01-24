@@ -418,7 +418,8 @@ function define_sets()
         },
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Loquac. Earring", -- 2%
-        right_ear = "Enchntr. Earring +1" -- 2%
+        right_ear = "Enchntr. Earring +1", -- 2%
+        left_ring = "Rahab Ring"
     }
 
     sets.precast.Utsusemi = set_combine(sets.precast.FastCast, {

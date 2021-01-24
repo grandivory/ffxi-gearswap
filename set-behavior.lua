@@ -264,24 +264,27 @@ function precast(spell)
     end
 
     -- If a spell is being cast that will fail with a buff up, cancel the buff
-    for checkSpell, config in pairs(CancelSpells) do
-        if spell.name == checkSpell then
-            for cancelBuff, wait in pairs(config) do
-                if buffactive[cancelBuff] ~= nil then
-                    if wait > 0 then
-                        if fastcast ~= nil then
-                            wait_time = wait * (1 - fastcast)
+    if spell.target.type == 'SELF' then
+        for checkSpell, config in pairs(CancelSpells) do
+            if spell.name == checkSpell then
+                for cancelBuff, wait in pairs(config) do
+                    if buffactive[cancelBuff] ~= nil then
+                        if wait > 0 then
+                            if fastcast ~= nil then
+                                wait_time = wait * (1 - fastcast)
+                            else
+                                wait_time = wait
+                            end
+                            send_command('@wait ' .. wait_time .. ';cancel ' .. cancelBuff)
                         else
-                            wait_time = wait
+                            send_command('cancel ' .. cancelBuff)
                         end
-                        send_command('@wait ' .. wait_time .. ';cancel ' .. cancelBuff)
-                    else
-                        send_command('cancel ' .. cancelBuff)
                     end
                 end
             end
         end
     end
+
     equip(precast_set)
 end
 
