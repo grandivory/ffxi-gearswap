@@ -2,7 +2,7 @@ include('set-behavior')
 include('organizer-lib')
 
 function define_sets()
-    Melee_Modes = T {'Att', 'Acc', 'TH', 'Crit', 'DT', 'DTTH'}
+    Melee_Modes = T {'DT', 'DTTH', 'TH', 'Crit', 'Att', 'Acc'}
     fastcast = .34
 
     -- Not Engaged
@@ -238,14 +238,23 @@ function define_sets()
             name = "Plun. Bonnet +3",
             augments = {'Enhances "Aura Steal" effect'}
         },
-        body = "Meg. Cuirie +2",
+        body = {
+            name = "Plunderer's Vest +3",
+            augments = {'Enhances "Ambush" effect'}
+        },
         hands = "Meg. Gloves +2",
         legs = {
-            name = "Lustr. Subligar +1",
-            augments = {'Accuracy+20', 'DEX+8', 'Crit. hit rate+3%'}
+            name = "Plun. Culottes +3",
+            augments = {'Enhances "Feint" effect'}
         },
-        feet = "Plunderer's Poulaines +3",
-        neck = "Assassin's Gorget +2",
+        feet = {
+            name = "Plun. Poulaines +3",
+            augments = {'Enhances "Assassin\'s Charge" effect'}
+        },
+        neck = {
+            name = "Asn. Gorget +2",
+            augments = {'Path: A'}
+        },
         waist = "Grunfeld Rope",
         left_ear = "Sherida Earring",
         right_ear = {
@@ -267,7 +276,7 @@ function define_sets()
             name = "Lustra. Leggings +1",
             augments = {'HP+65', 'STR+15', 'DEX+15'}
         },
-        right_ear = "Odr Earring"
+        left_ear = "Odr Earring"
     })
     sets.WS["Mandalic Stab"] = base["Rudra's Storm"]
     sets.WS["Mandalic Stab"].withBuffs = {}
@@ -281,7 +290,10 @@ function define_sets()
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
         },
-        body = "Meg. Cuirie +2",
+        body = {
+            name = "Plunderer's Vest +3",
+            augments = {'Enhances "Ambush" effect'}
+        },
         hands = "Mummu Wrists +2",
         legs = {
             name = "Lustr. Subligar +1",
@@ -314,13 +326,19 @@ function define_sets()
             name = "Plun. Bonnet +3",
             augments = {'Enhances "Aura Steal" effect'}
         },
-        body = "Meg. Cuirie +2",
+        body = {
+            name = "Plunderer's Vest +3",
+            augments = {'Enhances "Ambush" effect'}
+        },
         hands = {
             name = "Herculean Gloves",
             augments = {'Accuracy+27', 'Weapon skill damage +2%', 'AGI+10', 'Attack+14'}
         },
         legs = "Meg. Chausses +1",
-        feet = "Plunderer's Poulaines +3",
+        feet = {
+            name = "Plun. Poulaines +3",
+            augments = {'Enhances "Assassin\'s Charge" effect'}
+        },
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Sherida Earring",

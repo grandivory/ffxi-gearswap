@@ -4,7 +4,7 @@ include('organizer-lib')
 lockstyleset = 16
 
 function define_sets()
-    Melee_Modes = T {'Att', 'Acc', 'DT', 'Refresh'}
+    Melee_Modes = T {'DT', 'Att', 'Acc', 'Refresh'}
     Idle_Modes = T {'Refresh', 'DT'}
     Magic_Modes = T {'Acc', 'MAB'}
     fastcast = .8

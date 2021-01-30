@@ -258,7 +258,10 @@ function define_sets()
         main = {
             name = "Contemplator +1",
             augments = {'Path: A'}
-        }
+        },
+        neck = "Sanctity Necklace",
+        right_ear = "Dignitary's Earring",
+        left_ring = "Kishar Ring"
     })
     sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
         left_ring = "Mujin Band"
@@ -280,6 +283,7 @@ function define_sets()
         right_ring = "Archon Ring"
     })
     sets.midcast.Impact = set_combine(sets.midcast.Kaustra, {
+        head = empty,
         body = "Twilight Cloak"
     })
 

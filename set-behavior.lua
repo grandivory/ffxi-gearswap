@@ -30,11 +30,13 @@ function get_sets()
     sets.DT = {}
     sets.TH = {}
     sets.Idle = {}
+    sets.Idle_Avatar = {}
     sets.precast = {}
     sets.midcast = {}
     sets.midcast.BlueMagic = {}
     sets.midcast.mod = {}
     sets.aftercast = {}
+    sets.pet_midcast = {}
     sets.WS = {}
     sets.JA = {}
 
