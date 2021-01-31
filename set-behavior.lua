@@ -558,6 +558,7 @@ function pet_midcast(spell)
 end
 
 function pet_aftercast(spell)
+    idle()
 end
 
 function status_change(new, old)
@@ -706,21 +707,16 @@ function idle(should_equip, buff_override)
     idle_set = nil
     mode = Idle_Modes[Idle_Mode]
 
-    notice('Mode: ' .. mode)
-
     if pet.isvalid then
         notice('You have a pet out!')
         if Avatars:contains(pet.name) and sets.Idle_Avatar ~= nil then
-            notice('That pet is an avatar!')
             idle_set = get_set(sets.Idle_Avatar, mode)
         elseif string.find(pet.name, 'Spirit') and sets.Idle_Spirit ~= nil then
-            notice('The pet is a spirit!')
             idle_set = get_set(sets.Idle_Spirit, mode)
         end
     end
 
     if idle_set == nil then
-        notice('No idle set yet - using sets.Idle')
         idle_set = get_set(sets.Idle, mode)
     end
 
