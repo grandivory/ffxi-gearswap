@@ -568,6 +568,13 @@ function status_change(new, old)
     end
 end
 
+-- Make sure that the correct idle set gets equipped after gaining or losing a pet
+function pet_change(pet, gain)
+    if (not (gain and pet_midaction())) then
+        idle()
+    end
+end
+
 function self_command(commandArgs)
     -- Split the command into separate words
     if type(commandArgs) == 'string' then
