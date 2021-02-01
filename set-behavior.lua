@@ -31,6 +31,7 @@ function get_sets()
     sets.TH = {}
     sets.Idle = {}
     sets.Idle_Avatar = {}
+    sets.Idle_Spirit = {}
     sets.precast = {}
     sets.midcast = {}
     sets.midcast.BlueMagic = {}
@@ -708,9 +709,9 @@ function idle(should_equip, buff_override)
     mode = Idle_Modes[Idle_Mode]
 
     if pet.isvalid then
-        if Avatars:contains(pet.name) and sets.Idle_Avatar ~= nil then
+        if Avatars:contains(pet.name) and next(sets.Idle_Avatar) ~= nil then
             idle_set = get_set(sets.Idle_Avatar, mode)
-        elseif string.find(pet.name, 'Spirit') and sets.Idle_Spirit ~= nil then
+        elseif string.find(pet.name, 'Spirit') and next(sets.Idle_Spirit) ~= nil then
             idle_set = get_set(sets.Idle_Spirit, mode)
         end
     end
