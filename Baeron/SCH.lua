@@ -92,7 +92,7 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 80%
+    sets.precast.FastCast = {
         main = "Oranyan", -- 7%
         sub = "Khonsu",
         ammo = "Sapience Orb", -- 2%
@@ -106,10 +106,7 @@ function define_sets()
             name = "Psycloth Lappas",
             augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
         },
-        feet = { -- 5%
-            name = "Amalric Nails",
-            augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
-        },
+        feet = "Acad. Loafers +3", -- 12%
         neck = "Orunmila's Torque", -- 5%
         waist = "Embla Sash", -- 5%
         left_ear = "Loquac. Earring", -- 2%
@@ -163,6 +160,11 @@ function define_sets()
         right_ring = "Kunaji Ring"
     })
     sets.midcast.Cursna = set_combine(sets.midcast.Cure, {
+        main = {
+            name = "Gada",
+            augments = {'Enh. Mag. eff. dur. +5', 'VIT+1', '"Mag.Atk.Bns."+3', 'DMG:+7'}
+        },
+        sub = "Genmei Shield",
         hands = "Hieros Mittens",
         feet = {
             name = "Vanya Clogs",
@@ -175,12 +177,12 @@ function define_sets()
         right_ring = "Ephedra Ring"
     })
 
-    sets.midcast.Enhancing = { -- +92
-        main = { -- +11
-            name = "Kirin's Pole",
-            augments = {'DMG:+25', 'Enha.mag. skill +11'}
+    sets.midcast.Enhancing = { -- +99
+        main = { -- +18, Duration +5%
+            name = "Gada",
+            augments = {'Enh. Mag. eff. dur. +5', 'VIT+1', '"Mag.Atk.Bns."+3', 'DMG:+7'}
         },
-        sub = "Khonsu",
+        sub = "Ammurapi Shield", -- Duration +10%
         ammo = "Savant's Treatise", -- +4
         head = "Befouled Crown", -- +16
         body = "Anhur Robe", -- +12
@@ -254,13 +256,18 @@ function define_sets()
                         'Spell interruption rate down-10%'}
         }
     }
+    sets.midcast.Elemental.withBuffs = {}
+    sets.midcast.Elemental.withBuffs['Klimaform'] = set_combine(sets.midcast.Elemental, {
+        feet = "Arbatel Loafers +1"
+    })
     sets.midcast.Elemental.Acc = set_combine(sets.midcast.Elemental, {
         main = {
             name = "Contemplator +1",
             augments = {'Path: A'}
         },
+        ammo = "Pemphredo Tathlum",
+        feet = "Acad. Loafers +3",
         neck = "Sanctity Necklace",
-        right_ear = "Dignitary's Earring",
         left_ring = "Kishar Ring"
     })
     sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
@@ -277,10 +284,18 @@ function define_sets()
         sub = "Culminus",
         ammo = "Ghastly Tathlum +1"
     })
+    sets.midcast.Helix.withBuffs = {}
+    sets.midcast.Helix.withBuffs['Klimaform'] = set_combine(sets.midcast.Helix, {
+        feet = "Arbatel Loafers +1"
+    })
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
         head = "Pixie Hairpin +1",
         feet = "Jhakri Pigaches +2",
         right_ring = "Archon Ring"
+    })
+    sets.midcast.Kaustra.withBuffs = {}
+    sets.midcast.Kaustra.withBuffs['Klimaform'] = set_combine(sets.midcast.Kaustra, {
+        feet = "Arbatel Loafers +1"
     })
     sets.midcast.Impact = set_combine(sets.midcast.Kaustra, {
         head = empty,
@@ -310,6 +325,7 @@ function define_sets()
         back = "Bookworm's Cape"
     }
     sets.midcast.Drain = set_combine(sets.midcast.DarkMagic, {
+        ammo = "Pemphredo Tathlum",
         feet = "Merlinic Crackows",
         right_ring = "Evanescence Ring"
     })
@@ -321,7 +337,7 @@ function define_sets()
             augments = {'Path: A'}
         },
         sub = "Khonsu", -- MAcc +30
-        ammo = "Savant's Treatise", -- Enfeebling +4
+        ammo = "Pemphredo Tathlum", -- MAcc +8
         head = "Jhakri Coronal +2", -- MAcc +44
         body = "Jhakri Robe +2", -- MAcc +46
         hands = "Jhakri Cuffs +2", -- MAcc +43
@@ -329,13 +345,13 @@ function define_sets()
             name = "Psycloth Lappas",
             augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
         }, -- MAcc +45, Enfeebling +18
-        feet = "Jhakri Pigaches +2", -- MAcc +36
+        feet = "Acad. Loafers +3", -- MAcc +66
         neck = "Incanter's Torque", -- Enfeebling +10
         waist = "Luminary Sash", -- MAcc +10
         left_ear = "Malignance Earring", -- MAcc +10
-        right_ear = "Dignitary's Earring",
+        right_ear = "Regal Earring", -- MAcc +15
         left_ring = "Kishar Ring",
-        right_ring = "Metamorph Ring +1",
+        right_ring = "Metamorph Ring +1", -- MAcc +11~15
         back = { -- MAcc +20
             name = "Lugh's Cape",
             augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Mag.Atk.Bns."+10',
@@ -386,14 +402,4 @@ function define_sets()
         facility_ring = "Facility Ring",
         aptitude_mantle = "Aptitude Mantle"
     }
-end
-
-function mod_midcast(spell, set)
-    if spell.skill == "Elemental Magic" and buffactive["Klimaform"] ~= nil and weather_match(spell) then
-        return set_combine(set, {
-            feet = "Arbatel Loafers +1"
-        })
-    else
-        return set
-    end
 end

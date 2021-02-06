@@ -7,3 +7,13 @@ function notice(message)
         windower.add_to_chat(158, windower.to_shift_jis(line) .. _libs.chat.controls.reset)
     end
 end
+
+function copy(table)
+    result = {}
+
+    for k, v in pairs(table) do
+        result[k] = v
+    end
+
+    return result
+end

@@ -131,7 +131,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Odr Earring",
-        left_ring = "Ilabrat Ring",
+        left_ring = "Begrudging Ring",
         right_ring = "Epona's Ring",
         back = {
             name = "Rosmerta's Cape",
@@ -170,7 +170,7 @@ function define_sets()
         legs = "Luhlaza Shalwar +3",
         feet = {
             name = "Herculean Boots",
-            augments = {'Weapon skill damage +2%', 'Weapon Skill Acc.+7', 'Accuracy+18 Attack+18'}
+            augments = {'Attack+11', 'Weapon skill damage +5%', 'STR+10', 'Accuracy+15'}
         },
         neck = "Caro Necklace",
         waist = "Sailfi Belt +1",
@@ -229,7 +229,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Brutal Earring",
-        left_ring = "Shukuyu Ring",
+        left_ring = "Begrudging Ring",
         right_ring = "Epona's Ring",
         back = {
             name = "Rosmerta's Cape",
@@ -393,7 +393,7 @@ function define_sets()
     sets.midcast.Enfeebling = {
         main = "Naegling",
         sub = "Kaja Rod",
-        ammo = "Vanir Battery",
+        ammo = "Pemphredo Tathlum",
         head = "Jhakri Coronal +2",
         body = "Jhakri Robe +2",
         hands = "Malignance Gloves",

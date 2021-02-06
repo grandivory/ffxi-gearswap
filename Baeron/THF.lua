@@ -1,5 +1,6 @@
 include('set-behavior')
 include('organizer-lib')
+include('utils')
 
 function define_sets()
     Melee_Modes = T {'DT', 'DTTH', 'TH', 'Crit', 'Att', 'Acc'}
@@ -228,8 +229,7 @@ function define_sets()
     }
 
     -- WS Sets
-    base = {}
-    base["Rudra's Storm"] = {
+    rudras = {
         ammo = {
             name = "Seeth. Bomblet +1",
             augments = {'Path: A'}
@@ -268,9 +268,9 @@ function define_sets()
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
         }
     }
-    sets.WS["Rudra's Storm"] = base["Rudra's Storm"]
+    sets.WS["Rudra's Storm"] = copy(rudras)
     sets.WS["Rudra's Storm"].withBuffs = {}
-    sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = set_combine(base["Rudra's Storm"], {
+    sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = set_combine(rudras, {
         head = "Pillager's Bonnet +3",
         feet = {
             name = "Lustra. Leggings +1",
@@ -278,9 +278,9 @@ function define_sets()
         },
         left_ear = "Odr Earring"
     })
-    sets.WS["Mandalic Stab"] = base["Rudra's Storm"]
+    sets.WS["Mandalic Stab"] = copy(rudras)
     sets.WS["Mandalic Stab"].withBuffs = {}
-    sets.WS["Mandalic Stab"].withBuffs["Sneak Attack"] = set_combine(base["Rudra's Storm"], {
+    sets.WS["Mandalic Stab"].withBuffs["Sneak Attack"] = set_combine(rudras, {
         right_ear = "Odr Earring"
     })
 
@@ -310,7 +310,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Odr Earring",
-        left_ring = "Mummu Ring",
+        left_ring = "Begrudging Ring",
         right_ring = "Regal Ring",
         back = {
             name = "Toutatis's Cape",
@@ -361,7 +361,7 @@ function define_sets()
         legs = "Meg. Chausses +1",
         feet = {
             name = "Herculean Boots",
-            augments = {'Weapon skill damage +2%', 'Weapon Skill Acc.+7', 'Accuracy+18 Attack+18'}
+            augments = {'Attack+11', 'Weapon skill damage +5%', 'STR+10', 'Accuracy+15'}
         },
         neck = "Caro Necklace",
         waist = "Sailfi Belt +1",
@@ -377,7 +377,7 @@ function define_sets()
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
         }
     }
-    sets.WS.Generic = base["Rudra's Storm"]
+    sets.WS.Generic = rudras
     sets.WS.MAB = {
         ammo = "Ghastly Tathlum +1",
         head = "Lilitu Headpiece",
