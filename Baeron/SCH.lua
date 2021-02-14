@@ -198,8 +198,11 @@ function define_sets()
         back = "Fi Follet Cape +1" -- +9
     }
     sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {
-        main = "Oranyan",
-        sub = "Khonsu",
+        main = { -- +18, Duration +5%
+            name = "Gada",
+            augments = {'Enh. Mag. eff. dur. +5', 'VIT+1', '"Mag.Atk.Bns."+3', 'DMG:+7'}
+        },
+        sub = "Ammurapi Shield", -- Duration +10%
         head = {
             name = "Telchine Cap",
             augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +9'}

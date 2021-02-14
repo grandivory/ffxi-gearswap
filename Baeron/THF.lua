@@ -332,7 +332,7 @@ function define_sets()
         },
         hands = {
             name = "Herculean Gloves",
-            augments = {'Accuracy+27', 'Weapon skill damage +2%', 'AGI+10', 'Attack+14'}
+            augments = {'AGI+15', 'Weapon skill damage +5%', 'Magic Damage +14', 'Accuracy+13 Attack+13'}
         },
         legs = "Meg. Chausses +1",
         feet = {
@@ -377,18 +377,17 @@ function define_sets()
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
         }
     }
-    sets.WS.Generic = rudras
+    sets.WS.Generic = copy(rudras)
     sets.WS.MAB = {
         ammo = "Ghastly Tathlum +1",
         head = "Lilitu Headpiece",
         body = {
-            name = "Rawhide Vest",
-            augments = {'HP+50', '"Subtle Blow"+7', '"Triple Atk."+2'}
+            name = "Herculean Vest",
+            augments = {'"Mag.Atk.Bns."+24', 'Weapon skill damage +4%', 'Mag. Acc.+2'}
         },
         hands = {
             name = "Herculean Gloves",
-            augments = {'Pet: Phys. dmg. taken -1%', 'Accuracy+4', 'Accuracy+15 Attack+15',
-                        'Mag. Acc.+18 "Mag.Atk.Bns."+18'}
+            augments = {'AGI+15', 'Weapon skill damage +5%', 'Magic Damage +14', 'Accuracy+13 Attack+13'}
         },
         legs = {
             name = "Herculean Trousers",

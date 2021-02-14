@@ -10,7 +10,7 @@ function define_sets()
     fastcast = .8
 
     -- Not Engaged
-    sets.Idle.Refresh = { -- Refresh +11, +4 MDB, -42% PDT, -37% MDT
+    sets.Idle.Refresh = { -- Refresh +14, +4 MDB, -37% PDT, -32% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -25,12 +25,15 @@ function define_sets()
             augments = {'"Refresh"+2'}
         },
         body = "Jhakri Robe +2", -- Refresh +4
-        hands = "Malignance Gloves", -- 5% DT
+        hands = { -- Refresh +2
+            name = "Herculean Gloves",
+            augments = {'Accuracy+3', 'CHR+6', '"Refresh"+2', 'Accuracy+12 Attack+12', 'Mag. Acc.+8 "Mag.Atk.Bns."+8'}
+        },
         legs = { -- MEva +80, MDB +4
             name = "Carmine Cuisses +1",
             augments = {'Accuracy+12', 'DEX+12', 'MND+20'}
         },
-        feet = { -- PDT -2%
+        feet = { -- Refresh +2, PDT -2%
             name = "Herculean Boots",
             augments = {'Mag. Acc.+7 "Mag.Atk.Bns."+7', 'CHR+7', '"Refresh"+2'}
         },

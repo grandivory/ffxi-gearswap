@@ -494,8 +494,6 @@ end
 function pet_midcast(spell)
     pet_set = nil
 
-    notice('Spell Type: ' .. spell.type)
-
     if S {BloodPactTypes.healing, BloodPactTypes.magic, BloodPactTypes.magicTP, BloodPactTypes.mnd}:contains(spell.name) then
         mode = Magic_Modes[Magic_Mode]
     else
