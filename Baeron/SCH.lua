@@ -287,20 +287,53 @@ function define_sets()
         sub = "Culminus",
         ammo = "Ghastly Tathlum +1"
     })
+    sets.midcast.Helix.Acc = set_combine(sets.midcast.Helix, {
+        main = {
+            name = "Contemplator +1",
+            augments = {'Path: A'}
+        },
+        sub = "Khonsu"
+    })
     sets.midcast.Helix.withBuffs = {}
     sets.midcast.Helix.withBuffs['Klimaform'] = set_combine(sets.midcast.Helix, {
         feet = "Arbatel Loafers +1"
+    })
+    sets.midcast.Helix.withBuffs['Klimaform'].Acc = set_combine(sets.midcast.Helix.withBuffs['Klimaform'], {
+        main = {
+            name = "Contemplator +1",
+            augments = {'Path: A'}
+        },
+        sub = "Khonsu"
     })
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
         head = "Pixie Hairpin +1",
         feet = "Jhakri Pigaches +2",
         right_ring = "Archon Ring"
     })
+    sets.midcast.Kaustra.Acc = set_combine(sets.midcast.Kaustra, {
+        main = {
+            name = "Contemplator +1",
+            augments = {'Path: A'}
+        },
+        sub = "Khonsu"
+    })
     sets.midcast.Kaustra.withBuffs = {}
     sets.midcast.Kaustra.withBuffs['Klimaform'] = set_combine(sets.midcast.Kaustra, {
         feet = "Arbatel Loafers +1"
     })
+    sets.midcast.Kaustra.withBuffs['Klimaform'].acc = set_combine(sets.midcast.Kaustra.withBuffs['Klimaform'], {
+        main = {
+            name = "Contemplator +1",
+            augments = {'Path: A'}
+        },
+        sub = "Khonsu"
+    })
     sets.midcast.Impact = set_combine(sets.midcast.Kaustra, {
+        main = {
+            name = "Contemplator +1",
+            augments = {'Path: A'}
+        },
+        sub = "Khonsu",
         head = empty,
         body = "Twilight Cloak"
     })
@@ -387,8 +420,8 @@ function define_sets()
 
     -- Pieces to switch out when the day/weather matches
     sets.Weather = {
-        main = "Chatoyant Staff",
-        sub = "Khonsu",
+        -- main = "Chatoyant Staff",
+        -- sub = "Khonsu",
         waist = "Hachirin-no-obi",
         back = "Twilight Cape"
     }

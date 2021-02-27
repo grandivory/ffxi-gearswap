@@ -271,6 +271,7 @@ function define_sets()
     sets.WS["Rudra's Storm"] = copy(rudras)
     sets.WS["Rudra's Storm"].withBuffs = {}
     sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = set_combine(rudras, {
+        ammo = "Yetshila +1",
         head = "Pillager's Bonnet +3",
         feet = {
             name = "Lustra. Leggings +1",
@@ -285,7 +286,7 @@ function define_sets()
     })
 
     sets.WS.Evisceration = {
-        ammo = "Seeth. Bomblet +1",
+        ammo = "Yetshila +1",
         head = {
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}

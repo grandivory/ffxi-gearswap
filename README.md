@@ -16,6 +16,8 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * You can also switch directly to a specific mode with `gs c MeleeMode DT` (for example), or `/console gs c MeleeMode DT` from a macro
 * TP Mods:
   * If you have `sets.TPMod['Buff name']` defined, then any gear there will be added to your TP set while `Buff name` is active
+* Distance Threshold:
+  * You can set `distance_threshold` to some value, and put gear into `sets.Distance`. Then, if you are closer than `distance_threshold` while using an elemental ability, the `sets.Distance` gear will be added to your set.
 * Magic burst mode:
   * If you call `gs c MB` (or `/console gs c MB` from a macro), it will turn on magic-burst mode. This will use a magic-burst-specific set for your NEXT SPELL ONLY if one is defined. No matter what you cast next, magic burst mode will be turned off after you finish casting.
 * `f12` is set to equip whatever the correct gear is for that time. If you are engaged, it will equip the correct TP set. If you are not, it will equip the correct Idle set. It will also turn on the lockstyle for your job

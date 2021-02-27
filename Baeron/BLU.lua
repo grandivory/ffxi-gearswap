@@ -5,12 +5,12 @@ lockstyleset = 16
 
 function define_sets()
     Melee_Modes = T {'DT', 'Att', 'Acc', 'Refresh'}
-    Idle_Modes = T {'Refresh', 'DT'}
+    Idle_Modes = T {'Speed', 'Refresh', 'DT'}
     Magic_Modes = T {'Acc', 'MAB'}
     fastcast = .8
 
     -- Not Engaged
-    sets.Idle.Refresh = { -- Refresh +14, +4 MDB, -37% PDT, -32% MDT
+    sets.Idle.Refresh = { -- Refresh +16, +4 MDB, -37% PDT, -32% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -21,17 +21,17 @@ function define_sets()
         },
         ammo = "Vanir Battery", -- +4 MDB
         head = { -- Refresh +2
-            name = "Spurrina Coif",
-            augments = {'"Refresh"+2'}
+            name = "Herculean Helm",
+            augments = {'VIT+9', 'Rng.Acc.+26', '"Refresh"+2', 'Accuracy+11 Attack+11'}
         },
         body = "Jhakri Robe +2", -- Refresh +4
         hands = { -- Refresh +2
             name = "Herculean Gloves",
             augments = {'Accuracy+3', 'CHR+6', '"Refresh"+2', 'Accuracy+12 Attack+12', 'Mag. Acc.+8 "Mag.Atk.Bns."+8'}
         },
-        legs = { -- MEva +80, MDB +4
-            name = "Carmine Cuisses +1",
-            augments = {'Accuracy+12', 'DEX+12', 'MND+20'}
+        legs = { -- Refresh +2
+            name = "Herculean Trousers",
+            augments = {'"Mag.Atk.Bns."+5', '"Rapid Shot"+3', '"Refresh"+2'}
         },
         feet = { -- Refresh +2, PDT -2%
             name = "Herculean Boots",
@@ -49,6 +49,13 @@ function define_sets()
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
         }
     }
+
+    sets.Idle.Speed = set_combine(sets.Idle.Refresh, {
+        legs = { -- MEva +80, MDB +4
+            name = "Carmine Cuisses +1",
+            augments = {'Accuracy+12', 'DEX+12', 'MND+20'}
+        }
+    })
 
     sets.Idle.DT = set_combine(sets.Idle.Refresh, { -- 48% PDT, 43% MDT
         head = "Malignance Chapeau" -- 6% DT

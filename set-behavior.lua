@@ -44,6 +44,7 @@ function get_sets()
     no_shoot_ammo = S {}
     ammo_threshold = 10
     tool_threshold = 10
+    distance_threshold = 7
 
     Melee_Modes = T {}
     Idle_Modes = T {}
@@ -209,9 +210,13 @@ function precast(spell)
     end
 
     -- Only equip weather gear during precast for instant-cast abilities. Any others will equip it during midcast
-    if spell.cast_time == nil and (ElementalWS:contains(spell.name) or WeatherSpells:contains(spell.name)) and
-        weather_match(spell) and sets.Weather ~= nil then
+    if spell.cast_time == nil and ElementalWS:contains(spell.name) and weather_match(spell) and sets.Weather ~= nil then
         precast_set = set_combine(precast_set, get_set(sets.Weather, mode))
+    end
+
+    -- If distance_threshold is set and the player is closer than the threshold, equip distance gear
+    if distance_threshold ~= nil and spell.target.distance < distance_threshold and (ElementalWS:contains(spell.name)) then
+        precast_set = set_combine(precast_set, get_set(sets.Distance, mode))
     end
 
     precast_set = mod_precast(spell, precast_set)
@@ -455,6 +460,12 @@ function midcast(spell)
 
     if WeatherSpells:contains(spell.name) and weather_match(spell) and sets.Weather ~= nil then
         midcast_set = set_combine(midcast_set, get_set(sets.Weather, mode))
+    end
+
+    -- If distance_threshold is set and the player is closer than the threshold, equip distance gear
+    if distance_threshold ~= nil and spell.target.distance < distance_threshold and WeatherSpells:contains(spell.name) and
+        spell.skill ~= "Healing Magic" then
+        midcast_set = set_combine(midcast_set, get_set(sets.Distance, mode))
     end
 
     -- Go through any buff-specific pieces
