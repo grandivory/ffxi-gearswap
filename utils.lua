@@ -8,6 +8,25 @@ function notice(message)
     end
 end
 
+function error(message)
+    for _, line in ipairs(message:split('\n')) do
+        windower.add_to_chat(4, windower.to_shift_jis(line) .. _libs.chat.controls.reset)
+    end
+end
+
+function objectPath(object, ...)
+    local result = object
+    for i, v in ipairs(arg) do
+        if result[v] ~= nil then
+            result = result[v]
+        else
+            return nil
+        end
+    end
+
+    return result
+end
+
 function copy(table)
     result = {}
 

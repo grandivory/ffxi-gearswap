@@ -642,6 +642,26 @@ function self_command(commandArgs)
             MB_Mode = true
             notice('Magic Burst mode is ON')
         end,
+        meleeset = function(setArgs)
+            local setname = table.remove(setArgs, 1)
+            local mode = Melee_Modes[Melee_Mode]
+            local set = objectPath(sets, unpack(setname:split('.')))
+            if set ~= nil then
+                equip(get_set(set, mode))
+            else
+                error('No set was found by the name of ' .. setname)
+            end
+        end,
+        magicset = function(setArgs)
+            local setname = table.remove(setArgs, 1)
+            local mode = Magic_Modes[Magic_Mode]
+            local set = objectPath(sets, unpack(setname:split('.')))
+            if set ~= nil then
+                equip(get_set(set, mode))
+            else
+                error('No set was found by the name of ' .. setname)
+            end
+        end,
         equipgear = function()
             equip(steady_state())
             send_command('input /lockstyleset ' .. lockstyleset)

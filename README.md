@@ -46,6 +46,17 @@ These luas are meant to be a generic way to set up gearsets for any job and have
       ```
 * If you use an item or summon a trust, gearswap will do nothing.
 
+## Special Commands
+|Command|Effect|
+|--|--|
+|gs c meleemode|Cycle through melee modes. If a mode is provided, the melee mode is set to that|
+|gs c idlemode|Cycle through idle modes. If a mode is provided, the idle mode is set to that|
+|gs c magicmode|Cycle through magic modes. If a mode is provided, the magic mode is set to that|
+|gs c MB|Set magic burst mode to ON for the next spell cast|
+|gs c meleeset|Equip a particular set while enforcing the current melee mode|
+|gs c magicset|Equip a particular set while enforcing the current magic mode|
+|gs c equipgear|Equip the current "correct" gear based on the character's state - TP for engaged, Idle for not engaged|
+
 ## Precast
 * If you have a `sets.precast[spell name]`, that set will be used
 * If you have a `sets.JA[spell name]`, that set will be used
