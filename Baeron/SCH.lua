@@ -23,7 +23,7 @@ function define_sets()
         feet = "Herald's Gaiters",
         neck = "Loricate Torque +1",
         waist = "Slipor Sash",
-        left_ear = "Meili Earring",
+        left_ear = "Etiolation Earring",
         right_ear = "Regal Earring",
         left_ring = "Defending Ring",
         right_ring = {
@@ -102,10 +102,7 @@ function define_sets()
         },
         body = "Anhur Robe", -- 10%
         hands = "Gendewitha Gages +1", -- 7%
-        legs = { -- 7%
-            name = "Psycloth Lappas",
-            augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
-        },
+        legs = "Agwu's Slops", -- 7%
         feet = "Acad. Loafers +3", -- 12%
         neck = "Orunmila's Torque", -- 5%
         waist = "Embla Sash", -- 5%
@@ -274,6 +271,10 @@ function define_sets()
         left_ring = "Kishar Ring"
     })
     sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
+        head = "Agwu's Cap",
+        body = "Agwu's Robe",
+        hands = "Agwu's Gages",
+        legs = "Agwu's Slops",
         left_ring = "Mujin Band"
     })
     sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
@@ -283,9 +284,14 @@ function define_sets()
         }
     })
     sets.midcast.Helix = set_combine(sets.midcast.Elemental, {
-        main = "Daybreak",
+        main = "Bunzi's Rod",
         sub = "Culminus",
-        ammo = "Ghastly Tathlum +1"
+        ammo = "Ghastly Tathlum +1",
+        head = "Agwu's Cap",
+        body = "Agwu's Robe",
+        hands = "Agwu's Gages",
+        legs = "Agwu's Slops",
+        feet = "Agwu's Pigaches"
     })
     sets.midcast.Helix.Acc = set_combine(sets.midcast.Helix, {
         main = {
@@ -305,6 +311,14 @@ function define_sets()
         },
         sub = "Khonsu"
     })
+    sets.midcast.Luminohelix = set_combine(sets.midcast.Helix, {
+        main = "Daybreak"
+    })
+    sets.midcast.Luminohelix.withBuffs = {}
+    sets.midcast.Luminohelix.withBuffs['Klimaform'] = set_combine(sets.midcast.Luminohelix, {
+        feet = "Arbatel Loafers +1"
+    })
+    sets.midcast["Luminohelix II"] = sets.midcast.Luminohelix
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
         head = "Pixie Hairpin +1",
         feet = "Jhakri Pigaches +2",
@@ -362,7 +376,7 @@ function define_sets()
     }
     sets.midcast.Drain = set_combine(sets.midcast.DarkMagic, {
         ammo = "Pemphredo Tathlum",
-        feet = "Merlinic Crackows",
+        feet = "Agwu's Pigaches",
         right_ring = "Evanescence Ring"
     })
     sets.midcast.Aspir = sets.midcast.Drain

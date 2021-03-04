@@ -31,10 +31,7 @@ function define_sets()
     -- Engaged Sets
     sets.TP.Att = {
         main = "Aeneas",
-        sub = {
-            name = "Ternion Dagger +1",
-            augments = {'Path: A'}
-        },
+        sub = "Gleti's Knife",
         ammo = "Ginsen",
         head = {
             name = "Adhemar Bonnet +1",
@@ -66,10 +63,7 @@ function define_sets()
     }
     sets.TP.Acc = {
         main = "Aeneas",
-        sub = {
-            name = "Ternion Dagger +1",
-            augments = {'Path: A'}
-        },
+        sub = "Gleti's Knife",
         ammo = "Cath Palug Stone",
         head = "Pillager's Bonnet +3",
         body = "Pillager's Vest +3",

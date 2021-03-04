@@ -225,8 +225,8 @@ function precast(spell)
     -- Get ammo counts
     -- Ammo count for: Ranged Attack, Ranged Weaponskill, Quick Draw, Ranged JAs
     if spell.action_type == 'Ranged Attack' or
-        (spell.type == 'WeaponSkill' and (spell.skill == 'Marksmanship' or spell.skill == 'Archery')) or spell.type ==
-        'CorsairShot' or RangedJAs:contains(spell.name) then
+        (spell.type == 'WeaponSkill' and (spell.skill == 'Marksmanship' or spell.skill == 'Archery')) or
+        RangedJAs:contains(spell.name) then
         -- find the ammo that we're using
         if precast_set ~= nil then
             ammo_to_check = precast_set.ammo or player.equipment.ammo
@@ -257,7 +257,7 @@ function precast(spell)
     if spell.type == 'Ninjutsu' then
         tool_to_check = NinjutsuTools[spell.name]
         tool_available = player.inventory[tool_to_check]
-        if tool_available == nil and player.mainjob == 'NIN' then
+        if (tool_available == nil or tool_available.count < tool_threshold) and player.mainjob == 'NIN' then
             tool_to_check = NinjutsuUniversalTools[spell.name]
             tool_available = player.inventory[tool_to_check]
         end

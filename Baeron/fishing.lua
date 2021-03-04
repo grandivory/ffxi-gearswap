@@ -5,8 +5,6 @@ function define_sets()
     Idle_Modes = T {'Salmon'}
 
     sets.Idle = {
-        ranged = "Halcyon Rod",
-        ammo = "Fly Lure",
         body = "Fsh. Tunica",
         hands = "Fsh. Gloves",
         legs = "Fisherman's Hose",
@@ -16,5 +14,8 @@ function define_sets()
         right_ring = "Pelican Ring"
     }
 
-    sets.Idle.Salmon = set_combine(sets.Idle, {})
+    sets.Idle.Salmon = set_combine(sets.Idle, {
+        ranged = "Halcyon Rod",
+        ammo = "Fly Lure"
+    })
 end

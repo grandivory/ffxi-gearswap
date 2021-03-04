@@ -38,6 +38,7 @@ function define_sets()
             augments = {'Mag. Acc.+7 "Mag.Atk.Bns."+7', 'CHR+7', '"Refresh"+2'}
         },
         neck = "Loricate Torque +1", -- DT -6%
+        left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
         waist = "Flume Belt +1", -- PDT -4%
         left_ring = "Defending Ring", -- DT-10%
         right_ring = { -- PDT -5%, MDT -6%
@@ -339,7 +340,7 @@ function define_sets()
 
     -- Midcast sets for spells
     sets.midcast.Cur = {
-        main = "Nibiru Cudgel",
+        main = "Bunzi's Rod",
         sub = "Nibiru Cudgel",
         head = {
             name = "Telchine Cap",
@@ -376,7 +377,7 @@ function define_sets()
     })
     sets.midcast.Elemental = {
         main = "Maxentius",
-        sub = "Kaja Rod",
+        sub = "Bunzi's Rod",
         ammo = "Ghastly Tathlum +1",
         head = "Jhakri Coronal +2",
         body = {
@@ -389,7 +390,7 @@ function define_sets()
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
         },
-        neck = "Baetyl Pendant",
+        neck = "Mirage Stole +2",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
@@ -402,14 +403,14 @@ function define_sets()
     }
     sets.midcast.Enfeebling = {
         main = "Naegling",
-        sub = "Kaja Rod",
+        sub = "Bunzi's Rod",
         ammo = "Pemphredo Tathlum",
         head = "Jhakri Coronal +2",
         body = "Jhakri Robe +2",
         hands = "Malignance Gloves",
         legs = "Malignance Tights",
         feet = "Malignance Boots",
-        neck = "Sanctity Necklace",
+        neck = "Mirage Stole +2",
         waist = "Luminary Sash",
         left_ear = "Regal Earring",
         right_ear = "Enchntr. Earring +1",
@@ -442,9 +443,9 @@ function define_sets()
         }
     }
     sets.midcast.BlueMagic.MAB = set_combine(sets.midcast.Elemental, {})
-    sets.midcast["Spectral Floe"] = set_combine(sets.midcast.BlueMagic.MAB, {
-        sub = "Nibiru Cudgel"
-    })
+    -- sets.midcast["Spectral Floe"] = set_combine(sets.midcast.BlueMagic.MAB, {
+    --     sub = "Nibiru Cudgel"
+    -- })
     sets.midcast["Tenebral Crush"] = set_combine(sets.midcast.BlueMagic.MAB, {
         head = "Pixie Hairpin +1"
     })
@@ -478,6 +479,7 @@ function define_sets()
             name = "Luhlaza Charuqs +1",
             augments = {'Enhances "Diffusion" effect'}
         },
+        neck = "Mirage Stole +2", -- +20
         back = { -- +15
             name = "Cornflower Cape",
             augments = {'MP+20', 'Accuracy+1', 'Blue Magic skill +10'}
@@ -487,6 +489,7 @@ function define_sets()
 
     -- Specific spells
     sets.midcast["Sound Blast"] = set_combine(sets.midcast.BlueMagic.Debuff, {
+        legs = "Volte Hose",
         feet = {
             name = "Herculean Boots",
             augments = {'Weapon skill damage +4%', 'MND+4', '"Treasure Hunter"+2', 'Accuracy+13 Attack+13',
