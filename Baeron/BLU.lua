@@ -82,9 +82,9 @@ function define_sets()
         },
         feet = {
             name = "Herculean Boots",
-            augments = {'Accuracy+9', '"Triple Atk."+4', 'DEX+5'}
+            augments = {'"Triple Atk."+4', 'DEX+10', 'Accuracy+8'}
         },
-        neck = "Portus Collar",
+        neck = "Mirage Stole +2",
         waist = "Windbuffet Belt +1",
         left_ear = "Telos Earring",
         right_ear = "Cessance Earring",
@@ -108,7 +108,7 @@ function define_sets()
         hands = "Malignance Gloves", -- 5% DT
         legs = "Malignance Tights", -- 7% DT
         feet = "Malignance Boots", -- 4%
-        neck = "Loricate Torque +1", -- 6%
+        neck = "Mirage Stole +2",
         left_ring = "Defending Ring", -- 10%
         back = {
             name = "Rosmerta's Cape",
@@ -183,7 +183,7 @@ function define_sets()
             name = "Herculean Boots",
             augments = {'Attack+11', 'Weapon skill damage +5%', 'STR+10', 'Accuracy+15'}
         },
-        neck = "Caro Necklace",
+        neck = "Mirage Stole +2",
         waist = "Sailfi Belt +1",
         left_ear = {
             name = "Moonshade Earring",
@@ -221,7 +221,7 @@ function define_sets()
         }
     }
     sets.WS["Vorpal Blade"] = {
-        ammo = "Amar Cluster",
+        ammo = "Floestone",
         head = {
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
@@ -263,14 +263,14 @@ function define_sets()
             name = "Herculean Boots",
             augments = {'Weapon skill damage +2%', 'Weapon Skill Acc.+7', 'Accuracy+18 Attack+18'}
         },
-        neck = "Caro Necklace",
+        neck = "Mirage Stole +2",
         waist = "Sailfi Belt +1",
         left_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Ishvara Earring",
-        left_ring = "Apate Ring",
+        left_ring = "Shukuyu Ring",
         right_ring = "Karieyh Ring",
         back = {
             name = "Rosmerta's Cape",
@@ -354,7 +354,7 @@ function define_sets()
         legs = "Gyve Trousers",
         feet = {
             name = "Medium's Sabots",
-            augments = {'MP+10', 'MND+1'}
+            augments = {'MP+40', 'MND+6', '"Conserve MP"+5', '"Cure" potency +3%'}
         },
         neck = "Phalaina Locket",
         waist = "Luminary Sash",
@@ -390,7 +390,7 @@ function define_sets()
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
         },
-        neck = "Mirage Stole +2",
+        neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
@@ -423,6 +423,7 @@ function define_sets()
     }
 
     sets.midcast.BlueMagic.Physical = {
+        ammo = "Floestone",
         head = {
             name = "Adhemar Bonnet +1",
             augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
@@ -443,9 +444,6 @@ function define_sets()
         }
     }
     sets.midcast.BlueMagic.MAB = set_combine(sets.midcast.Elemental, {})
-    -- sets.midcast["Spectral Floe"] = set_combine(sets.midcast.BlueMagic.MAB, {
-    --     sub = "Nibiru Cudgel"
-    -- })
     sets.midcast["Tenebral Crush"] = set_combine(sets.midcast.BlueMagic.MAB, {
         head = "Pixie Hairpin +1"
     })
@@ -528,4 +526,6 @@ function define_sets()
         facility_ring = "Facility Ring",
         aptitude_mantle = "Aptitude Mantle"
     }
+
+    windower.send_command('lua reload equipviewerv2')
 end

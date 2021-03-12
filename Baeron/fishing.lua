@@ -18,4 +18,6 @@ function define_sets()
         ranged = "Halcyon Rod",
         ammo = "Fly Lure"
     })
+
+    windower.send_command('lua reload equipviewerv2')
 end

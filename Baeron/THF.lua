@@ -88,9 +88,9 @@ function define_sets()
         }
     }
     TH_Gear = {
-        sub = "Sandung",
-        hands = "Plunderer's Armlets +3",
-        feet = "Skulker's Poulaines +1"
+        -- sub = "Sandung",
+        hands = "Plunderer's Armlets +3"
+        -- feet = "Skulker's Poulaines +1"
     }
     sets.TP.TH = set_combine(sets.TP.Att, TH_Gear)
     sets.TP.DT = set_combine(sets.TP.Att, { -- 50% DT
@@ -125,15 +125,18 @@ function define_sets()
             set.withBuffs = {}
             set.withBuffs['Sneak Attack'] = set_combine(set, {
                 head = "Adhemar Bonnet +1",
-                body = "Meghanada Cuirie +2",
-                hands = "Meghanada Gloves +2",
+                body = "Malignance Tabard",
+                hands = {
+                    name = "Adhemar Wrist. +1",
+                    augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
+                },
                 feet = "Malignance Boots",
                 neck = "Assassin's Gorget +2",
                 waist = "Wanion Belt",
                 left_ear = "Brutal Earring",
                 right_ear = "Odr Earring",
-                left_ring = "Apate Ring",
-                right_ring = "Thundersoul Ring",
+                left_ring = "Ilabrat Ring",
+                right_ring = "Regal Ring",
                 back = {
                     name = "Toutatis's Cape",
                     augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10',
@@ -142,13 +145,16 @@ function define_sets()
             })
             set.withBuffs['Trick Attack'] = set_combine(set, {
                 head = "Adhemar Bonnet +1",
-                body = "Meghanada Cuirie +2",
-                hands = "Meghanada Gloves +2",
-                legs = "Meghanada Chausses +1",
+                body = {
+                    name = "Plunderer's Vest +3",
+                    augments = {'Enhances "Ambush" effect'}
+                },
+                hands = "Malignance Gloves",
+                legs = "Mummu Kecks +2",
                 feet = "Mummu Gamash. +2",
                 neck = "Assassin's Gorget +2",
-                left_ring = "Apate Ring",
-                right_ring = "Stormsoul Ring"
+                left_ring = "Ilabrat Ring",
+                right_ring = "Regal Ring"
             })
         end
     end
@@ -156,14 +162,17 @@ function define_sets()
     -- JA Sets; equip on use
     sets.JA['Sneak Attack'] = set_combine(set, {
         head = "Adhemar Bonnet +1",
-        body = "Meghanada Cuirie +2",
-        hands = "Meghanada Gloves +2",
+        body = "Malignance Tabard",
+        hands = {
+            name = "Adhemar Wrist. +1",
+            augments = {'DEX+12', 'AGI+12', 'Accuracy+20'}
+        },
         feet = "Malignance Boots",
         neck = "Assassin's Gorget +2",
         waist = "Wanion Belt",
         left_ear = "Brutal Earring",
         right_ear = "Odr Earring",
-        left_ring = "Apate Ring",
+        left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring",
         back = {
             name = "Toutatis's Cape",
@@ -172,15 +181,19 @@ function define_sets()
     })
     sets.JA['Trick Attack'] = set_combine(set, {
         head = "Adhemar Bonnet +1",
-        body = "Meghanada Cuirie +2",
-        hands = "Meghanada Gloves +2",
-        legs = "Meghanada Chausses +1",
+        body = {
+            name = "Plunderer's Vest +3",
+            augments = {'Enhances "Ambush" effect'}
+        },
+        hands = "Malignance Gloves",
+        legs = "Mummu Kecks +2",
         feet = "Mummu Gamash. +1",
         neck = "Assassin's Gorget +2",
-        left_ring = "Apate Ring",
+        left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring"
     })
     sets.JA.Steal = {
+        ammo = "Barathrum",
         head = {
             name = "Plun. Bonnet +3",
             augments = {'Enhances "Aura Steal" effect'}
@@ -218,8 +231,7 @@ function define_sets()
         legs = "Meg. Chausses +1",
         waist = "Gishdubar Sash",
         left_ear = "Odnowa Earring +1",
-        left_ring = "Petrov Ring",
-        back = "Laic Mantle"
+        left_ring = "Petrov Ring"
     }
 
     -- WS Sets
@@ -416,10 +428,7 @@ function define_sets()
 
     sets.precast.FastCast = { -- 34%
         ammo = "Sapience Orb", -- 2%
-        head = { -- 7%
-            name = "Herculean Helm",
-            augments = {'Attack+24', 'Weapon skill damage +2%', 'STR+4', 'Accuracy+6'}
-        },
+        head = "Herculean Helm",
         body = { -- 9%
             name = "Taeon Tabard",
             augments = {'"Fast Cast"+5'}
@@ -438,11 +447,7 @@ function define_sets()
         body = "Passion Jacket"
     })
 
-    sets.midcast.Poisonga = {
-        sub = "Sandung",
-        hands = "Plunderer's Armlets +3",
-        feet = "Skulker's Poulaines +1"
-    }
+    sets.midcast.Poisonga = TH_Gear
 
     organizer_items = {
         attfood = "Red Curry Bun",
@@ -461,6 +466,8 @@ function define_sets()
         tonko = "Shinobi-tabi"
 
     }
+
+    windower.send_command('lua reload equipviewerv2')
 end
 
 function buff_change(name, is_gained)

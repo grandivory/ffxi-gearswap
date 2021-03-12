@@ -10,6 +10,29 @@ ElementalWS = S {"Gust Slash", "Cyclone", "Energy Steal", "Energy Drain", "Aeoli
                  "Wildfire", "Trueflight", "Leaden Salute"}
 
 RangedJAs = S {'Eagle Eye Shot', 'Shadowbind', 'Bounty Shot'}
+BuffJAs = S {'Accession', 'Accomplice', 'Addendum: Black', 'Addendum: White', 'Afflatus Misery', 'Afflatus Solace',
+             'Aggressor', 'Alacrity', 'Altruism', 'Ancient Circle', 'Apogee', 'Arcane Circle', 'Aspir Samba',
+             'Aspir Samba II', 'Assassin\'s Charge', 'Astral Conduit', 'Astral Flow', 'Asylum', 'Avatar\'s Favor',
+             'Azure Lore', 'Barrage', 'Battuta', 'Berserk', 'Blaze of Glory', 'Blood Weapon', 'Bolster', 'Boost',
+             'Brazen Rush', 'Burst Affinity', 'Camouflage', 'Cascade', 'Celerity', 'Chain Affinity', 'Chainspell',
+             'Clarion Call', 'Composure', 'Conspirator', 'Consume Mana', 'Contradance', 'Convergence', 'Counterstance',
+             'Cover', 'Dark Arts', 'Dark Seal', 'Decoy Shot', 'Deep Breathing', 'Defender', 'Dematerialize',
+             'Diabolic Eye', 'Diffusion', 'Divine Caress', 'Divine Emblem', 'Divine Seal', 'Dodge', 'Double Shot',
+             'Ebullience', 'Efflux', 'Elemental Seal', 'Elemental Sforzo', 'Embolden', 'Enlightenment', 'Entrust',
+             'Equanimity', 'Familiar', 'Fan Dance', 'Fealty', 'Feint', 'Flashy Shot', 'Flee', 'Fly High',
+             'Focalization', 'Focus', 'Footwork', 'Formless Strikes', 'Futae', 'Grand Pas', 'Hagakure', 'Hasso', 'Hide',
+             'Holy Circle', 'Hundred Fists', 'Immanence', 'Impetus', 'Inner Strength', 'Innin', 'Invincible',
+             'Issekigan', 'Killer Instinct', 'Last Resort', 'Light Arts', 'Majesty', 'Mana Wall', 'Manafont',
+             'Manawell', 'Manifestation', 'Mantra', 'Marcato', 'Meditate', 'Meikyo Shisui', 'Mighty Strikes', 'Mikage',
+             'Nether Void', 'Nightingale', 'One for All', 'Overdrive', 'Overkill', 'Palisade', 'Parsimony', 'Penury',
+             'Perfect Counter', 'Perfect Dodge', 'Perpetuance', 'Pflug', 'Pianissimo', 'Presto', 'Rampart', 'Rapture',
+             'Restraint', 'Retaliation', 'Run Wild', 'Saboteur', 'Sacrosanctity', 'Sange', 'Scarlet Delirium', 'Seigan',
+             'Sekkanoki', 'Sengikori', 'Sentinel', 'Sharpshot', 'Snake Eye', 'Sneak Attack', 'Soul Enslavement',
+             'Soul Voice', 'Souleater', 'Spirit Bond', 'Spirit Surge', 'Spontaneity', 'Spur', 'Stealth Shot', 'Stymie',
+             'Sublimation', 'Subtle Sorcery', 'Swordplay', 'Tabula Rasa', 'Tenuto', 'Theurgic Focus', 'Third Eye',
+             'Trance', 'Tranquility', 'Trick Attack', 'Triple Shot', 'Troubadour', 'Unbridled Learning',
+             'Unbridled Wisdom', 'Unleash', 'Unlimited Shot', 'Valiance', 'Vallation', 'Velocity Shot', 'Warcry',
+             'Warding Circle', 'Warrior\'s Charge', 'Widened Compass', 'Yaegasumi', 'Yonin'}
 
 NaSpells = S {"Blindna", "Erase", "Paralyna", "Poisona", "Silena", "Stona", "Viruna"}
 EnhancingSpells = S {"Aquaveil", "Barfire", "Barfira", "Barblizzard", "Barblizzara", "Baraero", "Baraera", "Barstone",

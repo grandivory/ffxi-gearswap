@@ -22,6 +22,11 @@ text_settings = {
 }
 
 ---------------------------------------------------------
+---- State                                           ----
+---------------------------------------------------------
+local buffs = S {}
+
+---------------------------------------------------------
 ---- Gearswap functions                              ----
 ---------------------------------------------------------
 function get_sets()
@@ -294,6 +299,11 @@ function precast(spell)
         end
     end
 
+    -- If the spell is a job ability, then add it to the list of buffs
+    if BuffJAs:contains(spell.name) and spell.target.type == 'SELF' then
+        buffs:add(spell.name)
+    end
+
     equip(precast_set)
 end
 
@@ -471,7 +481,7 @@ function midcast(spell)
 
     -- Go through any buff-specific pieces
     for buff, buffset in pairs(sets.midcast.mod) do
-        if buffactive[buff] ~= nil then
+        if buffactive[buff] ~= nil or buffs:contains(buff) then
             midcast_set = set_combine(midcast_set, get_set(buffset, mode))
         end
     end
@@ -576,6 +586,24 @@ function status_change(new, old)
     if new == "Resting" and sets.Resting ~= nil then
         equip(get_set(sets.Resting, Idle_Modes[Idle_Mode]))
     else
+        equip(steady_state())
+    end
+end
+
+function buff_change(name, is_gained)
+    if is_gained then
+        buffs:add(name)
+    else
+        if buffs:contains(name) then
+            buffs:remove(name)
+        end
+        -- To be as clean as possible, clear out any buffs that don't currently exist on the player
+        for i, buff in pairs(buffs) do
+            if buffactive[buff] == nil then
+                buffs:remove(buff)
+            end
+        end
+
         equip(steady_state())
     end
 end
@@ -766,7 +794,7 @@ function get_set(set_definition, mode_name)
 
     if set.withBuffs ~= nil then
         for buff, buffset in pairs(set.withBuffs) do
-            if buffactive[buff] ~= nil then
+            if buffactive[buff] ~= nil or buffs:contains(buff) then
                 return buffset
             end
         end

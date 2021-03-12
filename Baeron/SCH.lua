@@ -42,6 +42,7 @@ function define_sets()
         hands = "Gendewitha Gages +1", -- 3% PDT
         neck = "Loricate Torque +1", -- 6%
         waist = "Slipor Sash", -- 3% MDT
+        right_ear = "Tuisto Earring",
         left_ring = "Defending Ring", -- 10% DT
         right_ring = {
             name = "Dark Ring",
@@ -54,8 +55,10 @@ function define_sets()
 
     -- WS Sets
     sets.WS["Myrkr"] = {
-        sub = "Clemency Grip", -- MP +30
-        ammo = "Ghastly Tathlum +1", -- MP +35
+        ammo = { -- MP +35
+            name = "Ghastly Tathlum +1",
+            augments = {'Path: A'}
+        },
         head = "Pixie Hairpin +1", -- MP +120
         body = { -- MP +133
             name = "Amalric Doublet",
@@ -80,27 +83,22 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Halasz Earring", -- MP +45
-        left_ring = { -- MP +20
-            name = "Dark Ring",
-            augments = {'Enemy crit. hit rate -3', 'Magic dmg. taken -4%', 'Phys. dmg. taken -6%'}
-        },
+        left_ring = "Lebeche Ring", -- MP +40
         right_ring = { -- MP +20
             name = "Dark Ring",
             augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
         },
-        back = "Twilight Cape" -- MP +25
+        back = "Aurist's Cape" -- MP +40
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = {
-        main = "Oranyan", -- 7%
-        sub = "Khonsu",
+    sets.precast.FastCast = { -- 83%
         ammo = "Sapience Orb", -- 2%
         head = { -- 10%
             name = "Vanya Hood",
             augments = {'MP+50', '"Fast Cast"+10', 'Haste+2%'}
         },
-        body = "Anhur Robe", -- 10%
+        body = "Zendik Robe", -- 13%
         hands = "Gendewitha Gages +1", -- 7%
         legs = "Agwu's Slops", -- 7%
         feet = "Acad. Loafers +3", -- 12%
@@ -118,13 +116,6 @@ function define_sets()
     sets.precast.Dispelga = set_combine(sets.precast.FastCast, {
         main = "Daybreak",
         sub = "Genmei Shield"
-    })
-    sets.precast.Cure = set_combine(sets.precast.FastCast, { -- 79%
-        body = "Heka's Kalasiris", -- 15% (+5% over FC set)
-        feet = { -- 15% (+10% over FC set)
-            name = "Vanya Clogs",
-            augments = {'"Cure" potency +5%', '"Cure" spellcasting time -15%', '"Conserve MP"+6'}
-        }
     })
 
     -- Midcast sets for spells
@@ -145,9 +136,9 @@ function define_sets()
         },
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
-        left_ear = "Mendicant's Earring",
+        left_ear = "Mendicant's Earring", -- 5%
         right_ear = "Regal Earring",
-        left_ring = "Lebeche Ring",
+        left_ring = "Lebeche Ring", -- 3%
         right_ring = "Ephedra Ring"
     }
     sets.midcast.Curaga = sets.midcast.Cure
@@ -174,16 +165,21 @@ function define_sets()
         right_ring = "Ephedra Ring"
     })
 
-    sets.midcast.Enhancing = { -- +99
+    sets.midcast.Enhancing = { -- +105
         main = { -- +18, Duration +5%
             name = "Gada",
             augments = {'Enh. Mag. eff. dur. +5', 'VIT+1', '"Mag.Atk.Bns."+3', 'DMG:+7'}
         },
         sub = "Ammurapi Shield", -- Duration +10%
-        ammo = "Savant's Treatise", -- +4
         head = "Befouled Crown", -- +16
-        body = "Anhur Robe", -- +12
-        hands = "Augur's Gloves", -- +5
+        body = { -- +12
+            name = "Telchine Chasuble",
+            augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +9'}
+        },
+        hands = { -- +15
+            name = "Chironic Gloves",
+            augments = {'INT+7', 'Damage taken-1%', 'Mag. Acc.+18 "Mag.Atk.Bns."+18'}
+        },
         legs = "Acad. Pants +1", -- +20
         feet = {
             name = "Telchine Pigaches",
@@ -231,6 +227,9 @@ function define_sets()
             augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', '"Mag.Atk.Bns."+10', 'Spell interruption rate down-10%'}
         }
     })
+    sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {
+        waist = "Siegel Sash"
+    })
 
     sets.midcast.Elemental = {
         main = {
@@ -275,6 +274,8 @@ function define_sets()
         body = "Agwu's Robe",
         hands = "Agwu's Gages",
         legs = "Agwu's Slops",
+        feet = "Agwu's Pigaches",
+        neck = "Mizu. Kubikazari",
         left_ring = "Mujin Band"
     })
     sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
@@ -362,7 +363,7 @@ function define_sets()
         head = "Pixie Hairpin +1",
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
-        legs = "Portent Pants",
+        legs = "Peda. Pants +1",
         feet = {
             name = "Amalric Nails",
             augments = {'Mag. Acc.+15', '"Mag.Atk.Bns."+15', '"Conserve MP"+6'}
@@ -377,6 +378,7 @@ function define_sets()
     sets.midcast.Drain = set_combine(sets.midcast.DarkMagic, {
         ammo = "Pemphredo Tathlum",
         feet = "Agwu's Pigaches",
+        neck = "Erra Pendant",
         right_ring = "Evanescence Ring"
     })
     sets.midcast.Aspir = sets.midcast.Drain
@@ -452,4 +454,6 @@ function define_sets()
         facility_ring = "Facility Ring",
         aptitude_mantle = "Aptitude Mantle"
     }
+
+    windower.send_command('lua reload equipviewerv2')
 end
