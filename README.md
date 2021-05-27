@@ -16,6 +16,8 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * You can also switch directly to a specific mode with `gs c MeleeMode DT` (for example), or `/console gs c MeleeMode DT` from a macro
 * TP Mods:
   * If you have `sets.TPMod['Buff name']` defined, then any gear there will be added to your TP set while `Buff name` is active
+  * You can also define a `mod_tp(set, mode)` function that will receive the current set that the lua thinks you should equip along with the current melee mode, and should return the actual set to equip (by default this just returns the same set)
+  * Similarly, you can also define a `mod_idle(set, mode)` function
 * Distance Threshold:
   * You can set `distance_threshold` to some value, and put gear into `sets.Distance`. Then, if you are closer than `distance_threshold` while using an elemental ability, the `sets.Distance` gear will be added to your set.
 * Magic burst mode:
@@ -45,6 +47,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
         sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = {... my sneak attack Rudra's set}
       ```
 * If you use an item or summon a trust, gearswap will do nothing.
+* If you equip certain gear (by default, warp rings, dim. rings, or reraise items), then gearswap will not equip any other gear in those slots. The gear pieces that fall into this category can be changed by specifying `lock_gear = S{"Something", "..."}` in your `define_sets()` function.
 
 ## Special Commands
 |Command|Effect|
@@ -147,6 +150,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 ## Status Change
 * If you define `sets.Resting`, it will be equipped when you start resting
 * Otherwise, your steady state gear will be equipped
+* To change the gear that is equipped when a buff is gained or lost, you can define a `mod_buff_change(buff, is_gained, set)` function
 
 ## Pet Classes
 * If you have a pet out and that pet is mid-action, then gearswap is temporarily disabled - it will not change gear until your pet finishes their action (which makes sure that your pet gear stays on until they finish)

@@ -58,6 +58,9 @@ function get_sets()
     Idle_Mode = 1
     Magic_Mode = 1
 
+    lock_gear = S {"Warp Ring", "Dim. Ring (Holla)", "Dim. Ring (Dem)", "Dim. Ring (Mea)", "Reraise Hairpin",
+                   "Reraise Earring", "Echad Ring", "Endorsement Ring", "Trizek Ring", "Capacity Ring", "Facility Ring"}
+
     define_sets()
 
     MB_Mode = false
@@ -66,6 +69,7 @@ function get_sets()
     send_command('bind f10 gs c IdleMode')
     send_command('bind f11 gs c MagicMode')
     send_command('bind f12 gs c EquipGear')
+    send_command('bind ^f12 gs c EquipGear override')
 
     melee_settings = table.copy(text_settings)
     idle_settings = table.copy(text_settings)
@@ -93,6 +97,7 @@ function file_unload(new_file)
     send_command('unbind f10')
     send_command('unbind f11')
     send_command('unbind f12')
+    send_command('unbind ^f12')
     if melee_display ~= nil then
         texts.destroy(melee_display)
     end
@@ -178,6 +183,18 @@ function precast(spell)
                 precast_set = get_set(set, mode)
             elseif string.find(spell.type, name) then
                 -- Spell-type sets
+                precast_set = get_set(set, mode)
+            elseif spell.skill ~= nil and string.find(spell.skill, name) then
+                -- Spell skill sets
+                precast_set = get_set(set, mode)
+            end
+        end
+    end
+
+    -- Partial JA matches
+    if precast_set == nil then
+        for name, set in pairs(sets.JA) do
+            if string.find(spell.name, name) then
                 precast_set = get_set(set, mode)
             end
         end
@@ -579,7 +596,7 @@ function pet_midcast(spell)
 end
 
 function pet_aftercast(spell)
-    idle()
+    equip(steady_state())
 end
 
 function status_change(new, old)
@@ -591,6 +608,8 @@ function status_change(new, old)
 end
 
 function buff_change(name, is_gained)
+    set = nil
+
     if is_gained then
         buffs:add(name)
     else
@@ -604,8 +623,16 @@ function buff_change(name, is_gained)
             end
         end
 
-        equip(steady_state())
+        if not midaction() then
+            set = steady_state()
+        else
+            set = {}
+        end
     end
+
+    set = mod_buff_change(name, is_gained, set)
+
+    equip(set)
 end
 
 -- Make sure that the correct idle set gets equipped after gaining or losing a pet
@@ -690,9 +717,19 @@ function self_command(commandArgs)
                 error('No set was found by the name of ' .. setname)
             end
         end,
-        equipgear = function()
-            equip(steady_state())
-            send_command('input /lockstyleset ' .. lockstyleset)
+        equipgear = function(equipArgs)
+            local override_flag
+            if #equipArgs > 0 then
+                override_flag = table.remove(equipArgs, 1)
+            end
+            if override_flag == "override" then
+                equip(steady_state(nil, true, true))
+            else
+                equip(steady_state(nil, nil, true))
+            end
+            if lockstyleset ~= nil then
+                send_command('input /lockstyleset ' .. lockstyleset)
+            end
         end
     }
 
@@ -723,10 +760,22 @@ function mod_pet_midcast(spell, set)
     return set
 end
 
+function mod_buff_change(buff, is_gained, set)
+    return set
+end
+
+function mod_tp(set, mode)
+    return set
+end
+
+function mod_idle(set, mode)
+    return set
+end
+
 ---------------------------------------------------------
 ---- Behavior functions                              ----
 ---------------------------------------------------------
-function tp(should_equip, buff_override)
+function tp(should_equip, buff_override, override_lock, is_user_command)
     if should_equip == nil then
         should_equip = true
     end
@@ -736,21 +785,23 @@ function tp(should_equip, buff_override)
 
     if pet.isvalid then
         if Avatars:contains(pet.name) and sets.TP_Avatar ~= nil then
-            tp_set = get_set(sets.TP_Avatar, mode)
+            tp_set = get_set(sets.TP_Avatar, mode, override_lock, is_user_command)
         elseif string.find(pet.name, 'Spirit') and sets.TP_Spirit ~= nil then
-            tp_set = get_set(sets.TP_Spirit, mode)
+            tp_set = get_set(sets.TP_Spirit, mode, override_lock, is_user_command)
         end
     end
 
     if tp_set == nil then
-        tp_set = get_set(sets.TP, mode)
+        tp_set = get_set(sets.TP, mode, override_lock)
     end
 
     for buff, buffset in pairs(sets.TPMod) do
         if buffactive[buff] ~= nil or buff == buff_override then
-            tp_set = set_combine(tp_set, get_set(buffset, mode))
+            tp_set = set_combine(tp_set, get_set(buffset, mode, override_lock, is_user_command))
         end
     end
+
+    tp_set = mod_tp(tp_set, mode)
 
     if should_equip then
         equip(tp_set)
@@ -759,7 +810,7 @@ function tp(should_equip, buff_override)
     end
 end
 
-function idle(should_equip, buff_override)
+function idle(should_equip, buff_override, override_lock, is_user_command)
     if should_equip == nil then
         should_equip = true
     end
@@ -768,15 +819,17 @@ function idle(should_equip, buff_override)
 
     if pet.isvalid then
         if Avatars:contains(pet.name) and next(sets.Idle_Avatar) ~= nil then
-            idle_set = get_set(sets.Idle_Avatar, mode)
+            idle_set = get_set(sets.Idle_Avatar, mode, override_lock, is_user_command)
         elseif string.find(pet.name, 'Spirit') and next(sets.Idle_Spirit) ~= nil then
-            idle_set = get_set(sets.Idle_Spirit, mode)
+            idle_set = get_set(sets.Idle_Spirit, mode, override_lock, is_user_command)
         end
     end
 
     if idle_set == nil then
-        idle_set = get_set(sets.Idle, mode)
+        idle_set = get_set(sets.Idle, mode, override_lock, is_user_command)
     end
+
+    idle_set = mod_idle(idle_set, mode)
 
     if should_equip then
         equip(idle_set)
@@ -785,35 +838,46 @@ function idle(should_equip, buff_override)
     end
 end
 
-function get_set(set_definition, mode_name)
-    set = set_definition
+function get_set(set_definition, mode_name, override_lock, is_user_command)
+    set = copy(set_definition)
 
     if set_definition[mode_name] ~= nil then
-        set = set_definition[mode_name]
+        set = copy(set_definition[mode_name])
     end
 
     if set.withBuffs ~= nil then
         for buff, buffset in pairs(set.withBuffs) do
             if buffactive[buff] ~= nil or buffs:contains(buff) then
-                return buffset
+                set = copy(buffset)
             end
         end
-        return set
-    else
-        return set
     end
+
+    -- If any of the lock_gear is currently equipped, then don't change it
+    if not override_lock then
+        for slot, _ in pairs(set) do
+            if lock_gear:contains(player.equipment[slot]) then
+                if is_user_command then
+                    notice('Leaving ' .. player.equipment[slot] .. ' equipped. Use ctrl+f12 to override.')
+                end
+                set[slot] = player.equipment[slot]
+            end
+        end
+    end
+
+    return set
 end
 
 function weather_match(spell)
     return spell.element == world.weather_element or spell.element == world.day_element
 end
 
-function steady_state(buff_override)
+function steady_state(buff_override, override_lock, is_user_command)
     steady_set = {}
     if player.status == 'Engaged' then
-        steady_set = tp(false, buff_override)
+        steady_set = tp(false, buff_override, override_lock, is_user_command)
     else
-        steady_set = idle(false, buff_override)
+        steady_set = idle(false, buff_override, override_lock, is_user_command)
     end
 
     return steady_set

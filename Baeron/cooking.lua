@@ -1,6 +1,8 @@
 include('set-behavior')
 include('organizer-lib')
 
+lockstyleset = nil
+
 function define_sets()
     Idle_Modes = T {'HQ', 'Success'}
     sets.Idle.HQ = {
@@ -14,6 +16,4 @@ function define_sets()
     sets.Idle.Success = set_combine(sets.Idle.HQ, {
         left_ring = "Craftkeeper's Ring"
     })
-
-    windower.send_command('lua reload equipviewerv2')
 end

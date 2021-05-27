@@ -37,7 +37,9 @@ function define_sets()
     -- Ninja tool counting
     tool_threshold = 10 -- Below this, the lua will warn you that you're low on tools
 
-    -- Not engaged sets
+    -- =========================================================================================================
+    -- ***Not Engaged Sets***
+    -- =========================================================================================================
     sets.Idle = {}
     sets.Idle.DT = {}
     sets.Idle_Avatar = {} -- Used while an Avatar is out
@@ -45,7 +47,9 @@ function define_sets()
     sets.Resting = {}
     sets.Resting.DT = {} -- Modes can be applied to other sets, too
 
-    -- Engaged sets
+    -- =========================================================================================================
+    -- ***Engaged Sets***
+    -- =========================================================================================================
     sets.TP = {}
     sets.TP.DT = {}
     sets.TP.Refresh = {}
@@ -53,13 +57,17 @@ function define_sets()
     sets.TP_Spirit = {} -- Used while a spirit is out
     sets.TPMod['Sneak Attack'] = {} -- This set will be used if you engage while "Sneak Attack" is active
 
-    -- Ranged Attacks
+    -- =========================================================================================================
+    -- ***Ranged Attacks***
+    -- =========================================================================================================
     ammo_threshold = 20 -- Below this, the lua will warn you that you're low on ammo
     no_shoot_ammo = S {'Hauksbok Bullet'}
     sets.precast.RA = {} -- Snapshot gear, etc.
     sets.midcast.RA = {} -- What gear you want to have equipped when the ranged attack hits
 
-    -- Weapon Skill Sets
+    -- =========================================================================================================
+    -- ***Weapon Skill Sets***
+    -- =========================================================================================================
     sets.WS.Generic = {} -- Any physical weapon skill that isn't otherwise specified
     sets.WS.MAB = {} -- Any magical weapon skill that isn't otherwise specified
     sets.WS["Savage Blade"] = {}
@@ -67,18 +75,24 @@ function define_sets()
     sets.WS["Rudra's Storm"].withBuffs = {} -- Leave this empty
     sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = {} -- This is used when you have "Sneak Attack" up
 
-    -- Job Ability Sets
+    -- =========================================================================================================
+    -- ***Job Ability Sets***
+    -- =========================================================================================================
     sets.JA.Hide = {}
     sets.JA['Phantom Roll'] = {}
     sets.JA['Quick Draw'] = {}
     sets.JA['Blood Pact'] = {}
 
-    -- Precast sets for spells
+    -- =========================================================================================================
+    -- ***Precast Sets for Spells***
+    -- =========================================================================================================
     sets.precast.FastCast = {}
     sets.precast.Utsusemi = {}
     sets.precast.BlueMagic = {}
 
-    -- Midcast sets for spells
+    -- =========================================================================================================
+    -- ***Midcast Sets for Spells***
+    -- =========================================================================================================
     sets.midcast.Cur = {} -- This will match any spell containing "Cur" in the name, so Cure, Curaga, etc.
     sets.midcast.CureSelf = {} -- This will be used when casting any healing magic on yourself
     sets.midcast.Healing = {} -- Any Healing Magic
@@ -114,7 +128,9 @@ function define_sets()
         feet = "Luhlaza Charuqs +1"
     }
 
-    -- Pet midcast sets
+    -- =========================================================================================================
+    -- ***Pet Midcast Sets***
+    -- =========================================================================================================
     sets.pet_midcast["Impact"] = {} -- Used if your pet is casting "Impact"
     sets.pet_midcast["Crush"] = {} -- Used if your pet is casting anything with "Crush" in the name
     sets.pet_midcast.Buff = {}
@@ -128,7 +144,9 @@ function define_sets()
     sets.pet_midcast["Summoning Skill"] = {}
     sets.pet_midcast.Generic = {} -- If no other set is found, this set is used instead
 
-    -- Weather gear
+    -- =========================================================================================================
+    -- ***Weather Gear***
+    -- =========================================================================================================
     sets.Weather = {
         waist = "Hachirin-no-obi",
         back = "Twilight Cape"

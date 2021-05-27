@@ -1,23 +1,27 @@
 include('set-behavior')
 include('organizer-lib')
 
+lockstyleset = nil
+
 function define_sets()
-    Idle_Modes = T {'Salmon'}
+    Idle_Modes = T {'Fish', 'Speed'}
 
     sets.Idle = {
-        body = "Fsh. Tunica",
+        ranged = "Lu Shang's F. Rod",
+        ammo = "Meatball",
+        head = "Tlahtlamah Glasses",
+        body = "Fisherman's Smock",
         hands = "Fsh. Gloves",
         legs = "Fisherman's Hose",
-        feet = "Fisherman's Boots",
+        feet = "Waders",
         neck = "Fisher's Torque",
         left_ring = "Pelican Ring",
-        right_ring = "Pelican Ring"
+        right_ring = "Pelican Ring",
+        waist = "Fisherman's Belt"
     }
 
-    sets.Idle.Salmon = set_combine(sets.Idle, {
-        ranged = "Halcyon Rod",
-        ammo = "Fly Lure"
+    sets.Idle.Speed = set_combine(sets.Idle, {
+        legs = "Carmine Cuisses +1",
+        feet = "Jute Boots +1"
     })
-
-    windower.send_command('lua reload equipviewerv2')
 end
