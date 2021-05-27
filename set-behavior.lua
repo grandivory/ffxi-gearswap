@@ -858,7 +858,7 @@ function get_set(set_definition, mode_name, override_lock, is_user_command)
         for slot, _ in pairs(set) do
             if lock_gear:contains(player.equipment[slot]) then
                 if is_user_command then
-                    notice('Leaving ' .. player.equipment[slot] .. ' equipped. Use ctrl+f12 to override.')
+                    notice('Leaving ' .. player.equipment[slot] .. ' equipped. Use Ctrl+F12 to override.')
                 end
                 set[slot] = player.equipment[slot]
             end
