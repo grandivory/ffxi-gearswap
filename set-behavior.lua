@@ -623,7 +623,7 @@ function buff_change(name, is_gained)
             end
         end
 
-        if not midaction() then
+        if not (midaction() or pet_midaction()) then
             set = steady_state()
         else
             set = {}
