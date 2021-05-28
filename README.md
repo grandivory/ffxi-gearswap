@@ -120,6 +120,9 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * `sets.midcast.Geomancy`
 * For Summoning Magic:
   * `sets.midcast.Summon`
+* For Bard Songs:
+  * `sets.midcast.Songs.Debuff` for debuffs
+  * `sets.midcast.Songs.Buff` for buffs
 * If `sets.midcast.Generic` is defined, then that set will be used
 * If there is STILL no set chosen, then your steady stat (tp or idle) gear will be chosen
 * If the spell you are casting is affected by the currently active weather or day, then the lua will look for `sets.Weather` to add to your set

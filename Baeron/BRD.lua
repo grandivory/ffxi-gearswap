@@ -289,11 +289,11 @@ function define_sets()
     sets.midcast.Enfeebling = {
         main = "Daybreak",
         sub = "Ammurapi Shield",
-        head = "Aya. Zucchetto +2",
+        head = "Brioso Roundlet +2",
         body = "Brioso Justau. +2",
         hands = "Inyan. Dastanas +2",
-        legs = "Inyanga Shalwar +2",
-        feet = "Bunzi's Sabots",
+        legs = "Brioso Cannions +2",
+        feet = "Brioso Slippers +2",
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Enchntr. Earring +1",
@@ -303,7 +303,7 @@ function define_sets()
         back = back.maccfc
     }
 
-    sets.midcast.BardSong = {
+    sets.midcast.Songs.Buff = {
         main = "Kali",
         sub = "Genmei Shield",
         head = "Fili Calot +1",
@@ -313,55 +313,39 @@ function define_sets()
         feet = "Brioso Slippers +2",
         neck = "Mnbw. Whistle +1"
     }
-    sets.midcast.Paeon = set_combine(sets.midcast.BardSong, {
+    sets.midcast.Paeon = set_combine(sets.midcast.Songs.Buff, {
         head = "Brioso Roundlet +2"
     })
-    sets.midcast.Madrigal = set_combine(sets.midcast.BardSong, {
+    sets.midcast.Madrigal = set_combine(sets.midcast.Songs.Buff, {
         head = "Fili Calot +1"
     })
-    sets.midcast.Minuet = set_combine(sets.midcast.BardSong, {
+    sets.midcast.Minuet = set_combine(sets.midcast.Songs.Buff, {
         body = "Fili Hongreline +1"
     })
-    sets.midcast.March = set_combine(sets.midcast.BardSong, {
+    sets.midcast.March = set_combine(sets.midcast.Songs.Buff, {
         head = "Fili Manchettes +1"
     })
-    sets.midcast.Ballad = set_combine(sets.midcast.BardSong, {
+    sets.midcast.Ballad = set_combine(sets.midcast.Songs.Buff, {
         legs = "Fili Rhingrave +1"
     })
-    sets.midcast.Scherzo = set_combine(sets.midcast.BardSong, {
+    sets.midcast.Scherzo = set_combine(sets.midcast.Songs.Buff, {
         feet = "Fili Cothurnes +1"
     })
 
-    sets.midcast.Lullaby = set_combine(sets.midcast.Enfeebling, {
+    sets.midcast.Songs.Debuff = set_combine(sets.midcast.Enfeebling, {
         main = "Kali",
         sub = "Ammurapi Shield",
         range = "Gjallarhorn",
-        head = "Brioso Roundlet +2",
+        neck = "Mnbw. Whistle +1"
+    })
+    sets.midcast.Lullaby = set_combine(sets.midcast.Songs.Debuff, {
         body = "Fili Hongreline +1",
         hands = "Brioso Cuffs +2",
-        legs = "Inyanga Shalwar +2",
-        feet = "Brioso Slippers +2",
-        neck = "Mnbw. Whistle +1"
+        legs = "Inyanga Shalwar +2"
     })
     sets.midcast['Horde Lullaby'] = set_combine(sets.midcast.Lullaby, {
         range = "Blurred Harp +1"
     })
-
-    brdDebuff = set_combine(sets.midcast.Enfeebling, {
-        main = "Kali",
-        sub = "Ammurapi Shield",
-        range = "Gjallarhorn",
-        head = "Brioso Roundlet +2",
-        body = "Brioso Justau. +2",
-        hands = "Inyan. Dastanas +2",
-        legs = "Inyanga Shalwar +2",
-        feet = "Brioso Slippers +2",
-        neck = "Mnbw. Whistle +1"
-    })
-
-    sets.midcast.Elegy = brdDebuff
-    sets.midcast.Finale = brdDebuff
-    sets.midcast.Threnody = brdDebuff
 
     -- =========================================================================================================
     -- ***Weather Gear***

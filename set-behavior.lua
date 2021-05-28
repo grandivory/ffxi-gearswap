@@ -40,6 +40,7 @@ function get_sets()
     sets.precast = {}
     sets.midcast = {}
     sets.midcast.BlueMagic = {}
+    sets.midcast.Songs = {}
     sets.midcast.mod = {}
     sets.aftercast = {}
     sets.pet_midcast = {}
@@ -464,6 +465,12 @@ function midcast(spell)
             midcast_set = get_set(sets.midcast.Geomancy, mode)
         elseif spell.skill == "Summoning Magic" and sets.midcast.Summon ~= nil then
             midcast_set = get_set(sets.midcast.Summon, mode)
+        elseif spell.skill == "Singing" then
+            if spell.targets['Enemy'] and sets.midcast.Songs.Debuff ~= nil then
+                midcast_set = get_set(sets.midcast.Songs.Debuff, mode)
+            elseif sets.midcast.Songs.Buff ~= nil then
+                midcast_set = get_set(sets.midcast.Songs.Buff, mode)
+            end
         end
     end
 
