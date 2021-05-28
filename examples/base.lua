@@ -122,6 +122,8 @@ function define_sets()
     sets.midcast.BlueMagic.Skill = {}
     sets.midcast.Geomancy = {}
     sets.midcast.Summon = {}
+    sets.midcast.Songs.Buff = {}
+    sets.midcast.Songs.Debuff = {}
     sets.midcast.Generic = {} -- If no other set is found, this set is used instead
 
     sets.midcast.mod["Diffusion"] = { -- This will be used for ANY spell while "Diffusion" is active
