@@ -6,11 +6,12 @@ lockstyleset = 16
 
 function define_sets()
     Melee_Modes = T {'DT', 'Att', 'Acc', 'Refresh'}
-    Idle_Modes = T {'Speed', 'Refresh', 'DT'}
+    Idle_Modes = T {'Speed', 'Refresh', 'Hybrid', 'DT'}
     Magic_Modes = T {'Acc', 'MAB', 'TH'}
     fastcast = .8
 
     th_gear = {
+        ammo = "Per. Lucky Egg",
         legs = "Volte Hose",
         feet = herc.feet.thmab
     }
@@ -39,7 +40,7 @@ function define_sets()
     }
 
     -- Not Engaged
-    sets.Idle.Refresh = { -- Refresh +16, +4 MDB, -37% PDT, -32% MDT
+    sets.Idle.Refresh = { -- Refresh +18, +4 MDB, -24% PDT, -9% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -51,28 +52,95 @@ function define_sets()
         ammo = "Vanir Battery", -- +4 MDB
         head = herc.head.refresh, -- Refresh +2
         body = "Jhakri Robe +2", -- Refresh +4
-        hands = herc.hands.refresh, -- Refresh +2
+        hands = herc.hands.refresh, -- Refresh +2, PDT -2%
         legs = herc.legs.refresh, -- Refresh +2
         feet = herc.feet.refresh, -- Refresh +2, PDT -2%
         neck = "Loricate Torque +1", -- DT -6%
         left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
         waist = "Flume Belt +1", -- PDT -4%
-        left_ring = "Defending Ring", -- DT-10%
-        right_ring = { -- PDT -5%, MDT -6%
+        left_ring = "Stikini Ring +1", -- Refresh +1
+        right_ring = "Stikini Ring +1", -- Refresh +1
+        back = back.tp -- PDT -10%
+    }
+
+    sets.Idle.Hybrid = { -- Refresh +16, +4 MDB, -39% PDT, -25% MDT
+        main = { -- Refresh +2
+            name = "Colada",
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
+        },
+        sub = { -- Refresh +2
+            name = "Colada",
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
+        },
+        ammo = "Vanir Battery", -- +4 MDB
+        head = herc.head.refresh, -- Refresh +2
+        body = "Jhakri Robe +2", -- Refresh +4
+        hands = herc.hands.refresh, -- Refresh +2, PDT -2%
+        legs = herc.legs.refresh, -- Refresh +2
+        feet = herc.feet.refresh, -- Refresh +2, PDT -2%
+        neck = "Loricate Torque +1", -- DT -6%
+        left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
+        waist = "Flume Belt +1", -- PDT -4%
+        left_ring = "Defending Ring", -- DT -10%
+        right_ring = {
             name = "Dark Ring",
             augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
         },
         back = back.tp -- PDT -10%
-
     }
 
-    sets.Idle.Speed = set_combine(sets.Idle.Refresh, {
-        legs = "Carmine Cuisses +1" -- MEva +80, MDB +4
-    })
+    -- TODO: Replace a Colada with Sakpata's Sword, and use more Herculean refresh pieces
+    sets.Idle.DT = { -- Refresh +12, +4 MDB, -52% PDT, -38% MDT
+        main = { -- Refresh +2
+            name = "Colada",
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
+        },
+        sub = { -- Refresh +2
+            name = "Colada",
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
+        },
+        ammo = "Vanir Battery", -- +4 MDB
+        head = "Malignance Chapeau", -- DT - 6%
+        body = "Jhakri Robe +2", -- Refresh +4
+        hands = herc.hands.refresh, -- Refresh +2, PDT -2%
+        legs = "Malignance Tights", -- DT -7%
+        feet = herc.feet.refresh, -- Refresh +2, PDT -2%
+        neck = "Loricate Torque +1", -- DT -6%
+        left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
+        waist = "Flume Belt +1", -- PDT -4%
+        left_ring = "Defending Ring", -- DT -10%
+        right_ring = {
+            name = "Dark Ring",
+            augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
+        },
+        back = back.tp -- PDT -10%
+    }
 
-    sets.Idle.DT = set_combine(sets.Idle.Refresh, { -- 48% PDT, 43% MDT
-        head = "Malignance Chapeau" -- 6% DT
-    })
+    sets.Idle.Speed = { -- Refresh +8, +4 MDB, -50% PDT, -40% MDT
+        main = { -- Refresh +2
+            name = "Colada",
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
+        },
+        sub = { -- Refresh +2
+            name = "Colada",
+            augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
+        },
+        ammo = "Vanir Battery", -- +4 MDB
+        head = "Malignance Chapeau", -- DT - 6%
+        body = "Jhakri Robe +2", -- Refresh +4
+        hands = "Malignance Gloves", -- DT -5%
+        legs = "Carmine Cuisses +1",
+        feet = "Malignance Boots", -- DT -4%
+        neck = "Loricate Torque +1", -- DT -6%
+        left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
+        waist = "Flume Belt +1", -- PDT -4%
+        left_ring = "Defending Ring", -- DT -10%
+        right_ring = {
+            name = "Dark Ring",
+            augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
+        },
+        back = back.tp -- PDT -10%
+    }
 
     -- Engaged Sets
 
@@ -83,7 +151,7 @@ function define_sets()
         hands = "Malignance Gloves",
         legs = "Malignance Tights",
         feet = "Malignance Boots",
-        neck = "Loricate Torque +1",
+        neck = "Mirage Stole +2",
         waist = "Reiki Yotai",
         left_ear = "Telos Earring",
         right_ear = "Digni. Earring",
@@ -170,11 +238,11 @@ function define_sets()
     }
     sets.WS["Savage Blade"] = {
         ammo = "Amar Cluster",
-        head = herc.head.strws,
+        head = "Nyame Helm",
         body = "Assim. Jubbah +3",
-        hands = "Jhakri Cuffs +2",
-        legs = "Luhlaza Shalwar +3",
-        feet = herc.feet.strws,
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
+        feet = "Nyame Sollerets",
         neck = "Mirage Stole +2",
         waist = "Sailfi Belt +1",
         left_ear = {
@@ -191,10 +259,10 @@ function define_sets()
     sets.WS["Sanguine Blade"] = {
         ammo = "Ghastly Tathlum +1",
         head = "Pixie Hairpin +1",
-        body = "Jhakri Robe +2",
+        body = "Amalric Doublet +1",
         hands = "Jhakri Cuffs +2",
         legs = "Luhlaza Shalwar +3",
-        feet = "Amalric Nails",
+        feet = "Amalric Nails +1",
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
@@ -203,31 +271,13 @@ function define_sets()
         right_ring = "Shiva Ring +1",
         back = back.nuke
     }
-    sets.WS["Vorpal Blade"] = {
-        ammo = "Coiste Bodhar",
-        head = "Adhemar Bonnet +1",
-        body = "Assim. Jubbah +3",
-        hands = "Jhakri Cuffs +2",
-        legs = "Samnuha Tights",
-        feet = herc.feet.strcrit,
-        neck = "Mirage Stole +2",
-        waist = "Fotia Belt",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
-        right_ear = "Brutal Earring",
-        left_ring = "Begrudging Ring",
-        right_ring = "Epona's Ring",
-        back = back.strws
-    }
     sets.WS.Generic = {
         ammo = "Amar Cluster",
-        head = herc.head.strws,
+        head = "Nyame Helm",
         body = "Assim. Jubbah +3",
-        hands = "Jhakri Cuffs +2",
-        legs = "Samnuha Tights",
-        feet = herc.feet.strws,
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
+        feet = "Nyame Sollerets",
         neck = "Mirage Stole +2",
         waist = "Sailfi Belt +1",
         left_ear = {
@@ -241,11 +291,11 @@ function define_sets()
     }
     sets.WS.MAB = {
         ammo = "Ghastly Tathlum +1",
-        head = "Jhakri Coronal +2",
+        head = "Nyame Helm",
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +2",
-        feet = "Jhakri Pigaches +2",
+        legs = "Nyame Flanchard",
+        feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
@@ -278,9 +328,6 @@ function define_sets()
         right_ring = "Rahab Ring", -- 2%
         back = "Fi Follet Cape +1" -- 10%
     }
-    sets.precast.Utsusemi = set_combine(sets.precast.FastCast, {
-        body = "Passion Jacket"
-    })
     sets.precast.BlueMagic = set_combine(sets.precast.FastCast, {
         body = "Hashishin Mintan +1"
     })
@@ -290,7 +337,7 @@ function define_sets()
         main = "Bunzi's Rod",
         sub = "Nibiru Cudgel",
         head = telchine.head.enhfc,
-        body = "Amalric Doublet",
+        body = "Amalric Doublet +1",
         hands = "Jhakri Cuffs +2",
         legs = "Gyve Trousers",
         feet = "Medium's Sabots",
@@ -302,9 +349,6 @@ function define_sets()
         right_ring = "Haoma's Ring",
         back = back.bluskill
     }
-    sets.precast.Waltz = set_combine(sets.midcast.Cur, {
-        body = "Passion Jacket"
-    })
     sets.midcast.CureSelf = set_combine(sets.midcast.Cur, {
         neck = "Phalaina Locket",
         waist = "Gishdubar Sash",
@@ -315,10 +359,10 @@ function define_sets()
         sub = "Bunzi's Rod",
         ammo = "Ghastly Tathlum +1",
         head = "Jhakri Coronal +2",
-        body = "Amalric Doublet",
-        hands = "Jhakri Cuffs +2",
+        body = "Amalric Doublet +1",
+        hands = "Amalric Gages +1",
         legs = "Luhlaza Shalwar +3",
-        feet = "Amalric Nails",
+        feet = "Amalric Nails +1",
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
@@ -334,13 +378,13 @@ function define_sets()
         head = "Assim. Keffiyeh +3",
         body = "Jhakri Robe +2",
         hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        legs = "Assim. Shalwar +3",
+        feet = "Jhakri Pigaches +2",
         neck = "Mirage Stole +2",
-        waist = "Luminary Sash",
+        waist = "Acuity Belt +1",
         left_ear = "Regal Earring",
-        right_ear = "Enchntr. Earring +1",
-        left_ring = "Kishar Ring",
+        right_ear = "Digni. Earring",
+        left_ring = "Stikini Ring +1",
         right_ring = "Metamorph Ring +1",
         back = "Aurist's Cape +1"
     }
@@ -367,8 +411,8 @@ function define_sets()
     sets.midcast["Palling Salvo"] = sets.midcast["Tenebral Crush"]
     sets.midcast["Atra. Libations"] = sets.midcast["Tenebral Crush"]
     sets.midcast.BlueMagic.Breath = set_combine(sets.midcast.Elemental, {
-        ammo = "Mavi Tathlum",
-        head = "Luhlaza Keffiyeh +1"
+        -- ammo = "Mavi Tathlum",
+        head = "Luh. Keffiyeh +1"
     })
     sets.midcast.BlueMagic.Breath.TH = set_combine(sets.midcast.BlueMagic.Breath, th_gear)
     sets.midcast.BlueMagic.Cure = set_combine(sets.midcast.Cur, {
@@ -379,14 +423,33 @@ function define_sets()
         waist = "Gishdubar Sash",
         left_ring = "Kunaji Ring"
     })
-    sets.midcast.BlueMagic.Skill = { -- +98
-        ammo = "Mavi Tathlum", -- +5
+    sets.midcast["White Wind"] = {
+        ammo = "Falcon Eye",
+        head = "Nyame Helm",
+        body = "Nyame Mail",
+        hands = "Hieros Mittens",
+        legs = "Gyve Trousers",
+        feet = {
+            name = "Medium's Sabots",
+            augments = {'MP+40', 'MND+6', '"Conserve MP"+5', '"Cure" potency +3%'}
+        },
+        neck = "Phalaina Locket",
+        waist = "Eschan Stone",
+        left_ear = "Tuisto Earring",
+        right_ear = "Odnowa Earring +1",
+        left_ring = "Ilabrat Ring",
+        right_ring = "Lebeche Ring"
+    }
+    sets.midcast.BlueMagic.Skill = { -- +129
+        -- ammo = "Mavi Tathlum", -- +5
         head = "Luh. Keffiyeh +1", -- +13
         body = "Assim. Jubbah +3", -- +24
         hands = "Rawhide Gloves", -- +10
         legs = "Hashishin Tayt +1", -- +23
         feet = "Luhlaza Charuqs +1", -- +8
         neck = "Mirage Stole +2", -- +20
+        left_ring = "Stikini Ring +1", -- +8
+        right_ring = "Stikini Ring +1", -- +8
         back = back.bluskill -- +15
 
     }

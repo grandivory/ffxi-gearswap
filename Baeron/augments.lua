@@ -10,20 +10,9 @@ herc.head = {
         name = "Herculean Helm",
         augments = {'VIT+9', 'Rng.Acc.+26', '"Refresh"+2', 'Accuracy+11 Attack+11'}
     },
-    strws = {
-        name = "Herculean Helm",
-        augments = {'Attack+12', 'Weapon skill damage +4%', 'STR+8', 'Accuracy+5'}
-    },
     dexta = {
         name = "Herculean Helm",
         augments = {'Accuracy+24', '"Triple Atk."+3', 'DEX+10'}
-    }
-}
-
-herc.body = {
-    wsdmab = {
-        name = "Herculean Vest",
-        augments = {'"Mag.Atk.Bns."+24', 'Weapon skill damage +4%', 'Mag. Acc.+2'}
     }
 }
 
@@ -39,10 +28,6 @@ herc.hands = {
     dexta = {
         name = "Herculean Gloves",
         augments = {'Accuracy+20', '"Triple Atk."+3', 'DEX+10', 'Attack+10'}
-    },
-    agiws = {
-        name = "Herculean Gloves",
-        augments = {'AGI+15', 'Weapon skill damage +5%', 'Magic Damage +14', 'Accuracy+13 Attack+13'}
     }
 }
 
@@ -50,11 +35,6 @@ herc.legs = {
     refresh = {
         name = "Herculean Trousers",
         augments = {'"Mag.Atk.Bns."+5', '"Rapid Shot"+3', '"Refresh"+2'}
-    },
-    mab = {
-        name = "Herculean Trousers",
-        augments = {'Mag. Acc.+17', '"Mag.Atk.Bns."+19', 'Chance of successful block +1',
-                    'Mag. Acc.+13 "Mag.Atk.Bns."+13'}
     }
 }
 
@@ -75,10 +55,6 @@ herc.feet = {
     dexta = {
         name = "Herculean Boots",
         augments = {'"Triple Atk."+4', 'DEX+10', 'Accuracy+8'}
-    },
-    strws = {
-        name = "Herculean Boots",
-        augments = {'Attack+11', 'Weapon skill damage +5%', 'STR+10', 'Accuracy+15'}
     },
     strcrit = {
         name = "Herculean Boots",

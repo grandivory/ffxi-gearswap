@@ -8,15 +8,15 @@ function define_sets()
 
     sets.Idle = {
         ranged = "Lu Shang's F. Rod",
-        ammo = "Meatball",
+        ammo = "Dwarf Pugil",
         head = "Tlahtlamah Glasses",
         body = "Fisherman's Smock",
-        hands = "Fsh. Gloves",
+        hands = "Kachina Gloves",
         legs = "Fisherman's Hose",
         feet = "Waders",
         neck = "Fisher's Torque",
-        left_ring = "Pelican Ring",
-        right_ring = "Pelican Ring",
+        left_ring = "Noddy Ring",
+        right_ring = "Puffin Ring",
         waist = "Fisherman's Belt"
     }
 

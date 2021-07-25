@@ -4,7 +4,7 @@ include('utils')
 include('augments')
 
 function define_sets()
-    Melee_Modes = T {'DT', 'DTTH', 'TH', 'Crit', 'Att', 'Acc'}
+    Melee_Modes = T {'DTTH', 'DT', 'TH', 'Crit', 'Att', 'Acc'}
     fastcast = .34
 
     -- Ambu capes
@@ -77,9 +77,8 @@ function define_sets()
         back = back.tp
     }
     TH_Gear = {
-        -- sub = "Sandung",
+        ammo = "Per. Lucky Egg",
         hands = "Plunderer's Armlets +3"
-        -- feet = "Skulker's Poulaines +1"
     }
     sets.TP.TH = set_combine(sets.TP.Att, TH_Gear)
     sets.TP.DT = set_combine(sets.TP.Att, { -- 50% DT
@@ -90,20 +89,15 @@ function define_sets()
         feet = "Malignance Boots", -- 4% DT
         left_ring = "Defending Ring", -- 10% DT
         back = back.tp -- 10% PDT
-        
+
     })
-    sets.TP.DTTH = set_combine(sets.TP.DT, TH_Gear, {
-        sub = "Sandung"
-    })
+    sets.TP.DTTH = set_combine(sets.TP.DT, TH_Gear)
     sets.TP.Crit = set_combine(sets.TP.Att, {
-        head = "Mummu Bonnet +2",
-        body = "Mummu Jacket +2",
-        hands = "Mummu Wrists +2",
-        legs = "Mummu Kecks +2",
-        feet = "Mummu Gamash. +2",
-        left_ring = "Mummu Ring",
-        right_ring = "Epona's Ring",
-        back = back.tp
+        head = "Gleti's Mask",
+        body = "Gleti's Cuirass",
+        hands = "Gleti's Gauntlets",
+        legs = "Gleti's Breeches",
+        feet = "Gleti's Boots"
     })
     for mode, set in pairs(sets.TP) do
         -- Add in special gear for Sneak/Trick attack
@@ -126,8 +120,8 @@ function define_sets()
                 head = "Adhemar Bonnet +1",
                 body = "Plunderer's Vest +3",
                 hands = "Malignance Gloves",
-                legs = "Mummu Kecks +2",
-                feet = "Mummu Gamash. +2",
+                legs = "Malignance Tights",
+                feet = "Malignance Boots",
                 neck = "Assassin's Gorget +2",
                 left_ring = "Ilabrat Ring",
                 right_ring = "Regal Ring"
@@ -153,16 +147,16 @@ function define_sets()
         head = "Adhemar Bonnet +1",
         body = "Plunderer's Vest +3",
         hands = "Malignance Gloves",
-        legs = "Mummu Kecks +2",
-        feet = "Mummu Gamash. +1",
+        legs = "Malignance Tights",
+        feet = "Malignance Boots",
         neck = "Assassin's Gorget +2",
         left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring"
     })
     sets.JA.Steal = {
-        ammo = "Barathrum",
         head = "Plun. Bonnet +3"
     }
+    -- TODO: Redo this set to max out DEX+AGI
     sets.JA.Mug = {
         head = "Plun. Bonnet +3"
     }
@@ -178,16 +172,11 @@ function define_sets()
     sets.JA.Despoil = {
         feet = "Skulker's Poulaines +1"
     }
-    sets.JA.Bully = {
-        hands = "Plunderer's Armlets +3",
-        feet = "Skulker's Poulaines +1"
-    }
+    sets.JA.Bully = TH_Gear
 
     -- Non-THF JAs
     sets.JA['Waltz'] = {
         ammo = "Yamarang",
-        head = "Mummu Bonnet +2",
-        body = "Passion Jacket",
         hands = "Meg. Gloves +2",
         legs = "Meg. Chausses +1",
         waist = "Gishdubar Sash",
@@ -202,7 +191,7 @@ function define_sets()
         body = "Plunderer's Vest +3",
         hands = "Meg. Gloves +2",
         legs = "Plun. Culottes +3",
-        feet = "Plun. Poulaines +3",
+        feet = "Nyame Sollerets",
         neck = "Asn. Gorget +2",
         waist = "Grunfeld Rope",
         left_ear = "Sherida Earring",
@@ -232,7 +221,7 @@ function define_sets()
         ammo = "Yetshila +1",
         head = "Pill. Bonnet +3",
         body = "Plunderer's Vest +3",
-        hands = "Mummu Wrists +2",
+        hands = "Gleti's Gauntlets",
         legs = "Gleti's Breeches",
         feet = "Gleti's Boots",
         neck = "Fotia Gorget",
@@ -248,11 +237,11 @@ function define_sets()
     }
     sets.WS.Exenterator = {
         ammo = "Seeth. Bomblet +1",
-        head = "Plun. Bonnet +3",
+        head = "Nyame Helm",
         body = "Plunderer's Vest +3",
-        hands = herc.hands.agiws,
-        legs = "Meg. Chausses +1",
-        feet = "Plun. Poulaines +3",
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
+        feet = "Nyame Sollerets",
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Sherida Earring",
@@ -263,11 +252,11 @@ function define_sets()
     }
     sets.WS["Savage Blade"] = {
         ammo = "Seeth. Bomblet +1",
-        head = "Pillager's Bonnet +3",
-        body = "Meg. Cuirie +2",
-        hands = "Meg. Gloves +2",
-        legs = "Meg. Chausses +1",
-        feet = herc.feet.strws,
+        head = "Nyame Helm",
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
+        feet = "Nyame Sollerets",
         neck = "Caro Necklace",
         waist = "Sailfi Belt +1",
         left_ear = {
@@ -279,13 +268,30 @@ function define_sets()
         right_ring = "Rufescent Ring",
         back = back.dexws
     }
-    sets.WS.Generic = copy(rudras)
+    sets.WS.Generic = {
+        ammo = "Seeth. Bomblet +1",
+        head = "Nyame Helm",
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
+        legs = "Plun. Culottes +3",
+        feet = "Nyame Sollerets",
+        neck = "Asn. Gorget +2",
+        waist = "Grunfeld Rope",
+        left_ear = "Sherida Earring",
+        right_ear = {
+            name = "Moonshade Earring",
+            augments = {'Accuracy+4', 'TP Bonus +250'}
+        },
+        left_ring = "Ilabrat Ring",
+        right_ring = "Regal Ring",
+        back = back.dexws
+    }
     sets.WS.MAB = {
         ammo = "Ghastly Tathlum +1",
-        head = "Pillager's Bonnet +3",
-        body = herc.body.wsdmab,
-        hands = "Leyline Gloves",
-        legs = herc.legs.mab,
+        head = "Nyame Helm",
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
@@ -295,7 +301,7 @@ function define_sets()
         },
         right_ear = "Friomisi Earring",
         left_ring = "Metamorph Ring +1",
-        right_ring = "Shiva Ring +1",
+        right_ring = "Dingir Ring",
         back = back.dexws
     }
 
@@ -314,10 +320,6 @@ function define_sets()
         right_ear = "Enchntr. Earring +1", -- 2%
         left_ring = "Rahab Ring"
     }
-
-    sets.precast.Utsusemi = set_combine(sets.precast.FastCast, {
-        body = "Passion Jacket"
-    })
 
     sets.midcast.Poisonga = TH_Gear
 

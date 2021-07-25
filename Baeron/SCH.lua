@@ -5,7 +5,7 @@ include('augments')
 lockstyleset = 20
 
 function define_sets()
-    Idle_Modes = T {'Idle', 'DT'}
+    Idle_Modes = T {'Refresh', 'Hybrid', 'DT'}
     Magic_Modes = T {'Acc', 'MAB', 'Vagary'}
     fastcast = .8
 
@@ -17,37 +17,51 @@ function define_sets()
     }
 
     -- Not Engaged
-    sets.Idle.Idle = {
+    sets.Idle.Refresh = { -- Refresh +11~13, PDT -6% , MDT -12% , MDB +3
         main = "Contemplator +1", -- Refresh +1~2
-        sub = "Oneiros Grip",
-        ammo = "Homiliary",
-        head = "Befouled Crown",
-        body = "Jhakri Robe +2",
-        hands = "Agwu's Gages",
-        legs = "Assiduity Pants +1",
+        sub = "Oneiros Grip", -- Refresh +1
+        ammo = "Homiliary", -- Refresh +1
+        head = "Befouled Crown", -- Refresh +1
+        body = "Jhakri Robe +2", -- Refresh +4
+        hands = "Agwu's Gages", -- Resist Silence +10
+        legs = "Assiduity Pants +1", -- Refresh +1~2
         feet = "Herald's Gaiters",
-        neck = "Loricate Torque +1",
-        waist = "Slipor Sash",
-        left_ear = "Etiolation Earring",
+        neck = "Loricate Torque +1", -- DT -6%
+        waist = "Slipor Sash", -- MDT -3%, MDB +3
+        left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
         right_ear = "Regal Earring",
-        left_ring = "Defending Ring",
-        right_ring = {
-            name = "Dark Ring",
-            augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
-        },
+        left_ring = "Stikini Ring +1", -- Refresh +1
+        right_ring = "Stikini Ring +1", -- Refresh +1
         back = back.nuke
     }
-    sets.Idle.Idle.withBuffs = {}
-    sets.Idle.Idle.withBuffs["Sublimation: Activated"] = set_combine(sets.Idle.Idle, {
+    sets.Idle.Refresh.withBuffs = {}
+    sets.Idle.Refresh.withBuffs["Sublimation: Activated"] = set_combine(sets.Idle.Refresh, {
         waist = "Embla Sash"
     })
-    sets.Idle.DT = set_combine(sets.Idle.Idle, { -- 47% PDT, 50% MDT, 4 MDB
+    sets.Idle.Hybrid = { -- Refresh +8~9, PDT -42% , MDT -48% , MDB +3
+        main = "Malignance Pole", -- DT -20%
+        sub = "Khonsu", -- DT -6%
+        ammo = "Homiliary", -- Refresh +1
+        head = "Befouled Crown", -- Refresh +1
+        body = "Jhakri Robe +2", -- Refresh +4
+        hands = "Agwu's Gages", -- Resist Silence +10
+        legs = "Assiduity Pants +1", -- Refresh +1~2
+        feet = "Herald's Gaiters",
+        neck = "Loricate Torque +1", -- DT -6%
+        waist = "Slipor Sash", -- MDT -3%, MDB +3
+        left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
+        right_ear = "Regal Earring",
+        left_ring = "Defending Ring", -- DT -10%
+        right_ring = "Stikini Ring +1", -- Refresh +1
+        back = back.nuke
+    }
+    sets.Idle.DT = set_combine(sets.Idle.Refresh, { -- Refresh +6~7 , PDT -47%, MDT -51%, MDB +4
         main = "Malignance Pole", -- 20%
         sub = "Khonsu", -- 6%
         ammo = "Vanir Battery", -- MDB +4
         neck = "Loricate Torque +1", -- 6%
         left_ear = "Etiolation Earring", -- 3% MDT
-        right_ear = "Tuisto Earring",
+        right_ear = "Regal Earring",
         left_ring = "Defending Ring", -- 10% DT
         right_ring = {
             name = "Dark Ring",
@@ -66,7 +80,7 @@ function define_sets()
     sets.WS["Myrkr"] = {
         ammo = "Ghastly Tathlum +1", -- MP +35
         head = "Pixie Hairpin +1", -- MP +120
-        body = "Amalric Doublet", -- MP +133
+        body = "Amalric Doublet +1", -- MP +153
         hands = "Vanya Cuffs", -- MP +94
         legs = "Psycloth Lappas", -- MP +109
         feet = "Psycloth Boots", -- MP +124
@@ -116,7 +130,7 @@ function define_sets()
     -- Midcast sets for spells
     sets.midcast.Cure = {
         head = "Vanya Hood", -- 10% Potency
-        body = "Heka's Kalasiris", -- 15% Potency
+        body = "Annointed Kalasiris", -- 10% Potency
         hands = "Vanya Cuffs", -- 7% Potency
         legs = "Gyve Trousers", -- 10% Potency
         feet = "Vanya Clogs", -- 10% potency
@@ -145,7 +159,7 @@ function define_sets()
         right_ring = "Haoma's Ring"
     })
 
-    sets.midcast.Enhancing = { -- +105
+    sets.midcast.Enhancing = { -- +121
         main = "Gada", -- +18, Duration +5%
         sub = "Ammurapi Shield", -- Duration +10%
         head = "Befouled Crown", -- +16
@@ -154,8 +168,10 @@ function define_sets()
         legs = "Acad. Pants +1", -- +20
         feet = telchine.feet.enhfc,
         neck = "Incanter's Torque", -- +10
-        left_ear = "Andoaa Earring", -- +5
         waist = "Embla Sash", -- Duration +10%
+        left_ear = "Andoaa Earring", -- +5
+        left_ring = "Stikini Ring +1", -- +8
+        right_ring = "Stikini Ring +1", -- +8
         back = "Fi Follet Cape +1" -- +9
     }
     sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {
@@ -173,25 +189,22 @@ function define_sets()
         sub = "Ammurapi Shield", -- Duration +10
         head = "Arbatel Bonnet +1",
         back = back.nuke -- Duration + 15
-        
+
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {
         waist = "Siegel Sash"
     })
 
     sets.midcast.Elemental = {
-        main = {
-            name = "Grioavolr",
-            augments = {'Enfb.mag. skill +11', 'INT+9', 'Mag. Acc.+28', '"Mag.Atk.Bns."+23'}
-        },
+        main = "Marin Staff +1",
         sub = "Khonsu",
         ammo = "Ghastly Tathlum +1",
-        head = "Jhakri Coronal +2",
-        body = "Jhakri Robe +2",
-        hands = "Jhakri Cuffs +2",
+        head = "Peda. M.board +3",
+        body = "Amalric Doublet +1",
+        hands = "Amalric Gages +1",
         legs = "Jhakri Slops +2",
-        feet = "Jhakri Pigaches +2",
-        neck = "Baetyl Pendant",
+        feet = "Agwu's Pigaches",
+        neck = "Argute Stole +2",
         waist = "Eschan Stone",
         left_ear = "Malignance Earring",
         right_ear = "Regal Earring",
@@ -205,9 +218,10 @@ function define_sets()
     })
     sets.midcast.Elemental.Acc = set_combine(sets.midcast.Elemental, {
         main = "Contemplator +1",
+        sub = "Khonsu",
         ammo = "Pemphredo Tathlum",
+        hands = "Jhakri Cuffs +2",
         feet = "Acad. Loafers +3",
-        neck = "Sanctity Necklace",
         left_ring = "Kishar Ring"
     })
     sets.midcast.Elemental.Vagary = {
@@ -228,12 +242,11 @@ function define_sets()
         back = back.nuke
     }
     sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
-        head = "Agwu's Cap",
-        body = "Agwu's Robe",
-        hands = "Agwu's Gages",
+        head = "Pedagogy Mortarboard +3",
+        body = "Amalric Doublet +1",
+        hands = "Amalric Gages +1",
         legs = "Agwu's Slops",
         feet = "Agwu's Pigaches",
-        neck = "Mizu. Kubikazari",
         left_ring = "Mujin Band"
     })
     sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
@@ -271,7 +284,6 @@ function define_sets()
     sets.midcast["Luminohelix II"] = sets.midcast.Luminohelix
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
         head = "Pixie Hairpin +1",
-        feet = "Jhakri Pigaches +2",
         right_ring = "Archon Ring"
     })
     sets.midcast.Kaustra.Acc = set_combine(sets.midcast.Kaustra, {
@@ -301,7 +313,7 @@ function define_sets()
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
         legs = "Peda. Pants +1",
-        feet = "Amalric Nails",
+        feet = "Amalric Nails +1",
         neck = "Erra Pendant",
         left_ear = "Malignance Earring",
         right_ear = "Mani Earring",
@@ -326,14 +338,14 @@ function define_sets()
         hands = "Jhakri Cuffs +2", -- MAcc +43
         legs = "Psycloth Lappas", -- MAcc +45, Enfeebling +18
         feet = "Acad. Loafers +3", -- MAcc +66
-        neck = "Incanter's Torque", -- Enfeebling +10
+        neck = "Argute Stole +2", -- Macc +30
         waist = "Luminary Sash", -- MAcc +10
         left_ear = "Malignance Earring", -- MAcc +10
         right_ear = "Regal Earring", -- MAcc +15
-        left_ring = "Kishar Ring",
+        left_ring = "Stikini Ring +1", -- MAcc +11
         right_ring = "Metamorph Ring +1", -- MAcc +11~15
         back = back.nuke -- MAcc +20
-        
+
     }
     sets.midcast.Enfeebling = enfeeblingSet
     sets.midcast.Enfeebling.withBuffs = {}

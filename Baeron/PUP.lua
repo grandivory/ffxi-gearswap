@@ -4,6 +4,7 @@ include('augments')
 require('queues')
 require('strings')
 
+texts = require('texts')
 res = require('resources')
 
 lockstyleset = 18
@@ -27,9 +28,53 @@ function define_sets()
     }
 
     th_gear = {
+        ammo = "Per. Lucky Egg",
         legs = "Volte Hose",
         feet = herc.feet.thmab
     }
+
+    -- =========================================================================================================
+    -- ***Overdrive Definitions***
+    -- =========================================================================================================
+
+    ve_overdrive = {
+        main = "Ohtas",
+        range = "Animator P +1",
+        ammo = "Automat. Oil +3",
+        head = taeon.head.pet,
+        body = taeon.body.pet,
+        hands = taeon.hands.pet,
+        legs = taeon.legs.pet,
+        feet = taeon.feet.pet,
+        neck = "Shulmanu Collar",
+        waist = "Klouskap Sash +1",
+        left_ear = "Rimeice Earring",
+        right_ear = "Enmerkar Earring",
+        left_ring = "Thur. Ring +1",
+        right_ring = "C. Palug Ring",
+        back = back.pet
+    }
+    sharpshot_overdrive = {
+        main = "Gnafron's Adargas",
+        range = "Animator P +1",
+        ammo = "Automat. Oil +3",
+        head = "Karagoz Capello +1",
+        body = "Mpaca's Doublet",
+        hands = "Karagoz Guanti +1",
+        legs = "Heyoka Subligar +1",
+        feet = "Naga Kyahan",
+        neck = "Shulmanu Collar",
+        waist = "Klouskap Sash +1",
+        left_ear = "Rimeice Earring",
+        right_ear = "Enmerkar Earring",
+        left_ring = "Thurandaut Ring +1",
+        right_ring = "Cath Palug Ring",
+        back = "Dispersal Mantle"
+    }
+
+    -- =========================================================================================================
+    -- ***Not Engaged Sets***
+    -- =========================================================================================================
 
     sets.Idle.Speed = {
         range = "Animator P +1",
@@ -44,7 +89,7 @@ function define_sets()
         left_ear = "Tuisto Earring",
         right_ear = "Odnowa Earring +1",
         left_ring = "Defending Ring",
-        right_ring = "Kunaji Ring",
+        right_ring = "C. Palug Ring",
         back = back.strda
     }
 
@@ -69,7 +114,23 @@ function define_sets()
         back = back.pet
     }
 
-    sets.Idle.Turtle = sets.Idle.Bruiser
+    sets.Idle.Turtle = {
+        main = "Gnafron's Adargas",
+        range = "Animator P +1",
+        ammo = "Automat. Oil +3",
+        head = "Anwig Salade",
+        body = taeon.body.pet,
+        hands = taeon.hands.pet,
+        legs = taeon.legs.pet,
+        feet = taeon.feet.pet,
+        neck = "Shepherd's Chain",
+        waist = "Isa Belt",
+        left_ear = "Enmerkar Earring",
+        right_ear = "Rimeice Earring",
+        left_ring = "Thurandaut Ring +1",
+        right_ring = "Overbearing Ring",
+        back = back.pet
+    }
 
     sets.Idle.PUPDD = {
         main = {
@@ -91,6 +152,9 @@ function define_sets()
         right_ring = "C. Palug Ring",
         back = back.pet
     }
+
+    sets.Idle.PUPDD.withBuffs = {}
+    sets.Idle.PUPDD.withBuffs.Overdrive = sharpshot_overdrive
 
     sets.Idle.Ranger = {
         main = "Denouements",
@@ -119,28 +183,12 @@ function define_sets()
         left_ring = "Tali'ah Ring"
     })
 
-    ve_overdrive = {
-        main = "Ohtas",
-        range = "Animator P +1",
-        ammo = "Automat. Oil +3",
-        head = taeon.head.pet,
-        body = taeon.body.pet,
-        hands = taeon.hands.pet,
-        legs = taeon.legs.pet,
-        feet = taeon.feet.pet,
-        neck = "Shulmanu Collar",
-        waist = "Klouskap Sash +1",
-        left_ear = "Rimeice Earring",
-        right_ear = "Enmerkar Earring",
-        left_ring = "Thur. Ring +1",
-        right_ring = "C. Palug Ring",
-        back = back.pet
-    }
-    sharpshot_overdrive = {}
-
     sets.Idle.Bruiser.withBuffs = {}
     sets.Idle.Bruiser.withBuffs['Overdrive'] = ve_overdrive
 
+    -- =========================================================================================================
+    -- ***Engaged Sets***
+    -- =========================================================================================================
     sets.TP.DT = {
         main = "Verethragna",
         range = "Animator P +1",
@@ -197,6 +245,9 @@ function define_sets()
     sets.TP.Bruiser = sets.Idle.Bruiser
     sets.TP.TH = set_combine(sets.TP.DT, th_gear)
 
+    -- =========================================================================================================
+    -- ***Weapon Skill Sets***
+    -- =========================================================================================================
     sets.WS["Victory Smite"] = {
         head = "Mpaca's Cap",
         body = "Mpaca's Doublet",
@@ -234,10 +285,10 @@ function define_sets()
     }
 
     sets.WS["Shijin Spiral"] = {
-        head = herc.head.dexta,
-        body = "Mpaca's Doublet",
+        head = "Nyame Helm",
+        body = "Tali'ah Manteel +2",
         hands = herc.hands.dexta,
-        legs = "Samnuha Tights",
+        legs = "Nyame Flanchard",
         feet = herc.feet.dexta,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
@@ -250,10 +301,10 @@ function define_sets()
 
     sets.WS["Howling Fist"] = {
         head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = herc.hands.strta,
+        body = "Tali'ah Manteel +2",
+        hands = "Nyame Gauntlets",
         legs = "Mpaca's Hose",
-        feet = herc.feet.strta,
+        feet = "Nyame Sollerets",
         neck = "Caro Necklace",
         waist = "Moonbow Belt +1",
         left_ear = {
@@ -269,10 +320,10 @@ function define_sets()
     sets.WS["Raging Fists"] = {
         head = "Mpaca's Cap",
         body = "Mpaca's Doublet",
-        hands = herc.hands.strta,
+        hands = "Nyame Gauntlets",
         legs = "Mpaca's Hose",
-        feet = herc.feet.strta,
-        neck = "Caro Necklace",
+        feet = "Mpaca's Boots",
+        neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
         left_ear = {
             name = "Moonshade Earring",
@@ -286,10 +337,10 @@ function define_sets()
 
     sets.WS.Generic = {
         head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = herc.hands.strta,
-        legs = "Mpaca's Hose",
-        feet = herc.feet.strta,
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
+        feet = "Nyame Sollerets",
         neck = "Caro Necklace",
         waist = "Moonbow Belt +1",
         left_ear = {
@@ -302,10 +353,10 @@ function define_sets()
         back = back.strda
     }
     sets.WS.MAB = {
-        head = herc.head.strws,
-        body = "Gyve Doublet",
-        hands = herc.hands.agiws,
-        legs = "Gyve Trousers",
+        head = "Nyame Helm",
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
@@ -319,6 +370,9 @@ function define_sets()
         back = "Aurist's Cape"
     }
 
+    -- =========================================================================================================
+    -- ***Pet Weapon Skill Sets***
+    -- =========================================================================================================
     meleeWS = {
         head = taeon.head.pet,
         body = "Mpaca's Doublet",
@@ -357,20 +411,34 @@ function define_sets()
     sets.petWS.BoneSlayer = set_combine(sets.Idle.BoneSlayer, meleeWS)
     sets.petWS.PUPMagic = sets.Idle.PUPMagic
 
+    enmity = {
+        legs = "Heyoka Subligar +1"
+    }
+    sets.petEnmity = {}
+    sets.petEnmity.Bruiser = set_combine(sets.Idle.Bruiser, enmity)
+    sets.petEnmity.Turtle = set_combine(sets.Idle.Turtle, enmity)
+
+    sets.JA.Overdrive = {
+        body = "Pitre Tobe +1"
+    }
+
     sets.JA.Repair = {
-        feet = "Pup. Babouches",
+        feet = "Foire Bab. +2",
         left_ear = "Guignol Earring",
         back = "Visucius's Mantle"
     }
 
     sets.JA.Maneuver = {
         body = "Kara. Farsetto +1",
-        hands = "Foire Dastanas +1",
+        hands = "Foire Dastanas +2",
         neck = "Buffoon's Collar +1",
         left_ear = "Burana Earring",
         back = "Visucius's Mantle"
     }
 
+    -- =========================================================================================================
+    -- ***Precast Sets***
+    -- =========================================================================================================
     sets.precast.FastCast = {
         head = "Herculean Helm",
         body = "Zendik Robe",
@@ -386,6 +454,9 @@ function define_sets()
         waist = "Siegel Sash"
     })
 
+    -- =========================================================================================================
+    -- ***Midcast Sets***
+    -- =========================================================================================================
     sets.midcast.Cur = {
         body = "Heka's Kalasiris",
         legs = "Gyve Trousers",
@@ -436,7 +507,162 @@ function define_sets()
         facility_ring = "Facility Ring",
         aptitude_mantle = "Aptitude Mantle"
     }
+
+    hud = texts.new('', hud_defaults)
+    texts.append(hud, hud_text)
+
+    hud:show()
+
+    send_command('bind ^f10 gs c autodeploy')
 end
+
+function cleanup()
+    send_command('unbind ^f10')
+end
+
+function define_commands()
+    return {
+        autodeploy = function()
+            autodeploy = not autodeploy
+        end
+    }
+end
+
+-- =========================================================================================================
+-- *** HUD ***
+-- =========================================================================================================
+hud_defaults = {
+    pos = {
+        x = 997,
+        y = 1213
+    },
+    bg = {
+        red = 0,
+        green = 0,
+        blue = 0,
+        alpha = 255
+    },
+    text = {
+        size = 12,
+        font = 'Courier New',
+        red = 255,
+        green = 255,
+        blue = 255,
+        alpha = 255
+    }
+}
+
+hud_text = [[| Kenbishi:      | Maneuvers:                | Config:            |
+|  HP: ${pet_hp|0/0|%9s} |  Current: ${maneuvers||%14s}  |  Autodeploy: ${autodeploy||%5s} |
+|  MP: ${pet_mp|0/0|%9s} |  Upcoming: ${upcoming_maneuvers||%14s} |  Pet Mode: ${pet_mode||%5s}   |
+|  TP: [${pet_current_tp|0|%4s}]    |                           |                    |
+]]
+
+function update_hud()
+    if pet.isvalid and player.hpp > 0 then
+        -- Pet stats
+        current_hp = pet.hp
+        max_hp = pet.max_hp
+        current_mp = pet.mp
+        max_mp = pet.max_mp
+        current_tp = pet.tp
+
+        hud.pet_hp = colorize_percent(current_hp, max_hp)
+        hud.pet_mp = colorize_percent(current_mp, max_mp)
+        hud.pet_current_tp = colorize_tp(current_tp)
+
+        -- Maneuvers
+        maneuvers = {}
+        index = 1
+        for maneuver in current_maneuvers:it() do
+            maneuvers[index] = maneuver_shorthand(maneuver)
+            index = index + 1
+        end
+        maneuvers_string = table.concat(maneuvers, ',')
+        while index < 4 do
+            if index == 1 then
+                maneuvers_string = maneuvers_string .. '    '
+            else
+                maneuvers_string = maneuvers_string .. '     '
+            end
+            index = index + 1
+        end
+        hud.maneuvers = maneuvers_string
+
+        upcoming = {}
+        index = 1
+        for maneuver in maneuver_queue:it() do
+            upcoming[index] = maneuver_shorthand(maneuver.name)
+            index = index + 1
+        end
+        upcoming_string = table.concat(upcoming, ',')
+        while index < 4 do
+            if index == 1 then
+                upcoming_string = upcoming_string .. '    '
+            else
+                upcoming_string = upcoming_string .. '     '
+            end
+            index = index + 1
+        end
+
+        hud.upcoming_maneuvers = upcoming_string
+
+        -- Pet mode
+        hud.pet_mode = pet_mode
+    end
+
+    hud.autodeploy = tostring(autodeploy)
+end
+
+function colorize_percent(value, max)
+    percent = value / max
+
+    if (percent > .75) then
+        return '\\cs(128,255,128)' .. string.format('%9s', value .. '/' .. max) .. '\\cr'
+    elseif (percent > .5) then
+        return '\\cs(255,255,0)' .. string.format('%9s', value .. '/' .. max) .. '\\cr'
+    elseif (percent > .25) then
+        return '\\cs(128,160,0)' .. string.format('%9s', value .. '/' .. max) .. '\\cr'
+    else
+        return '\\cs(255,0,0)' .. string.format('%9s', value .. '/' .. max) .. '\\cr'
+    end
+end
+
+function colorize_tp(value)
+    if value > 750 then
+        return '\\cs(128,255,128)' .. string.format('%4d', value) .. '\\cr'
+    elseif value > 750 then
+        return '\\cs(255,255,0)' .. string.format('%4d', value) .. '\\cr'
+    elseif value > 750 then
+        return '\\cs(128,160,0)' .. string.format('%4d', value) .. '\\cr'
+    else
+        return '\\cs(255,0,0)' .. string.format('%4d', value) .. '\\cr'
+    end
+end
+
+function maneuver_shorthand(maneuver)
+    if maneuver == 'Fire Maneuver' then
+        return '\\cs(255, 128, 128)Fire\\cr'
+    elseif maneuver == 'Ice Maneuver' then
+        return '\\cs(0, 0, 255)Ice \\cr'
+    elseif maneuver == 'Wind Maneuver' then
+        return '\\cs(0, 255, 0)Wind\\cr'
+    elseif maneuver == 'Earth Maneuver' then
+        return '\\cs(128, 128, 0)Erth\\cr'
+    elseif maneuver == 'Lightning Maneuver' then
+        return '\\cs(128, 0, 128)Ltng\\cr'
+    elseif maneuver == 'Water Maneuver' then
+        return '\\cs(0, 0, 128)Watr\\cr'
+    elseif maneuver == 'Dark Maneuver' then
+        return '\\cs(128, 128, 128)Dark\\cr'
+    else
+        return '\\cs(255, 255, 255)Lght\\cr'
+    end
+end
+
+-- =========================================================================================================
+-- *** Custom Behavior ***
+-- =========================================================================================================
 
 previousTarget = nil
 currentTarget = nil
@@ -448,7 +674,7 @@ function job_status_change(new, old)
                 currentTarget = windower.ffxi.get_mob_by_target('t').id
             end
 
-            send_command('@wait 1; input /pet "Deploy" <t>')
+            send_command('@wait 2; input /pet "Deploy" <t>')
         end
     end
 end
@@ -480,8 +706,13 @@ end
 function mod_aftercast(spell, set)
     if spell.name:endswith('Maneuver') and spell.interrupted == true and maneuver_queue:length() < 3 then
         maneuver_queue:push(spell)
-        notice('Upcoming Maneuvers: ' .. maneuver_queue:length())
     end
+
+    return set
+end
+
+function mod_pet_aftercast(spell, set)
+    pet_mode = "TP"
 
     return set
 end
@@ -492,19 +723,19 @@ function mod_buff_change(buff, is_gained, set)
         if is_gained then
             current_maneuvers:push(buff)
         else
-            -- local maneuver_iterator = current_maneuvers:it()
-            -- local maneuver = maneuver_iterator()
+            local maneuver_iterator = current_maneuvers:it()
+            local maneuver = maneuver_iterator()
 
-            -- -- Only pop a maneuver from the current maneuvers list if the one we just lost is the next one in the list
-            -- -- This should help to let the lua catch up when it's loaded while maneuvers are already active
-            -- if maneuver == buff then
-            current_maneuvers:pop()
+            -- Only pop a maneuver from the current maneuvers list if the one we just lost is the next one in the list
+            -- This should help to let the lua catch up when it's loaded while maneuvers are already active
+            if maneuver == buff then
+                current_maneuvers:pop()
 
-            -- If we lose a maneuver and we have less than 3, then recast it
-            if player.hp > 0 and pet.isvalid then
-                send_command('input /ja "' .. buff .. '" <me>')
+                -- If we lose a maneuver and we have less than 3, then recast it
+                if player.hp > 0 and pet.isvalid and current_maneuvers:length() < 3 then
+                    send_command('input /ja "' .. buff .. '" <me>')
+                end
             end
-            -- end
         end
     end
 
@@ -516,16 +747,39 @@ pet_mode = "TP"
 function mod_idle(set, mode)
     if pet_mode == "WS" and sets.petWS[mode] ~= nil and buffactive["Overdrive"] == nil then
         return sets.petWS[mode]
+    elseif pet_mode == "ENM" and sets.petEnmity[mode] ~= nil and buffactive["Overdrive"] == nil then
+        return sets.petEnmity[mode]
     else
         return set
     end
 end
 
 tick = os.time()
+last_voke = nil
+last_flash = nil
+
+windower.register_event("incoming text", function(original, modified, mode)
+    if buffactive["Fire Maneuver"] and original:contains(pet.name) and original:contains("Provoke") then
+        last_voke = os.time()
+        pet_mode = "TP"
+    elseif buffactive["Light Maneuver"] and original:contains(pet.name) and original:contains("Flashbulb") then
+        last_flash = os.time()
+        pet_mode = "TP"
+    end
+
+    return modified, mode
+end)
 
 windower.register_event("prerender", function()
+    update_hud()
     if os.time() > tick then
         tick = os.time()
+
+        -- Make sure we still have a pet
+        if not pet.isvalid then
+            current_maneuvers:clear()
+            maneuver_queue:clear()
+        end
 
         -- Try to cast any maneuvers in the queue
         if not midaction() and maneuver_queue:length() > 0 then
@@ -537,16 +791,25 @@ windower.register_event("prerender", function()
                 send_command('@wait 0.5;input /ja "' .. maneuver.name .. '" <me>')
                 -- Remove the maneuver from the queue
                 maneuver_queue:pop()
-                notice('Upcoming Maneuvers: ' .. maneuver_queue:length())
             end
         end
 
         -- Update the pet mode
-        if pet.isvalid and pet.tp ~= nil then
-            if pet.tp >= 900 and pet_mode == "TP" then
+        if pet.isvalid then
+            if last_voke ~= nil and tick > last_voke + 28 and tick < last_voke + 33 then
+                if pet_mode ~= "ENM" then
+                    pet_mode = "ENM"
+                    equip(steady_state())
+                end
+            elseif last_flash ~= nil and tick > last_flash + 43 and tick < last_flash + 48 then
+                if pet_mode ~= "ENM" then
+                    pet_mode = "ENM"
+                    equip(steady_state())
+                end
+            elseif pet.tp ~= nil and pet.tp >= 900 and pet_mode ~= "WS" then
                 pet_mode = "WS"
                 equip(steady_state())
-            elseif pet.tp < 900 and pet_mode == "WS" then
+            elseif pet.tp ~= nil and pet.tp < 900 and pet_mode ~= "TP" then
                 pet_mode = "TP"
                 equip(steady_state())
             end
@@ -556,7 +819,7 @@ windower.register_event("prerender", function()
         if autodeploy == true and player.status == "Engaged" then
             previousTarget = currentTarget
 
-            if windower.ffxi.get_mob_by_target('t').id then
+            if windower.ffxi.get_mob_by_target('t') then
                 currentTarget = windower.ffxi.get_mob_by_target('t').id
             end
 

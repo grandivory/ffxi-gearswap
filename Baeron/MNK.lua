@@ -8,12 +8,9 @@ function define_sets()
     Melee_Modes = T {'DT', 'Counter', 'Att', 'Acc'}
 
     th_gear = {
+        ammo = "Per. Lucky Egg",
         legs = "Volte Hose",
-        feet = {
-            name = "Herculean Boots",
-            augments = {'Weapon skill damage +4%', 'MND+4', '"Treasure Hunter"+2', 'Accuracy+13 Attack+13',
-                        'Mag. Acc.+17 "Mag.Atk.Bns."+17'}
-        }
+        feet = herc.feet.thmab
     }
 
     back = {
@@ -136,6 +133,22 @@ function define_sets()
     sets.WS["Victory Smite"] = {
         ammo = "Knobkierrie",
         head = "Adhemar Bonnet +1",
+        body = "Mpaca's Doublet",
+        hands = "Ryuo Tekko +1",
+        legs = "Mpaca's Hose",
+        feet = herc.feet.strcrit,
+        neck = "Monk's Nodowa +2",
+        waist = "Moonbow Belt +1",
+        left_ear = "Sherida Earring",
+        right_ear = "Odr Earring",
+        left_ring = "Regal Ring",
+        right_ring = "Niqmaddu Ring",
+        back = back.strda
+    }
+    sets.WS["Victory Smite"].withBuffs = {}
+    sets.WS["Victory Smite"].withBuffs.Impetus = {
+        ammo = "Knobkierrie",
+        head = "Adhemar Bonnet +1",
         body = "Bhikku Cyclas +1",
         hands = "Ryuo Tekko +1",
         legs = "Mpaca's Hose",
@@ -154,7 +167,7 @@ function define_sets()
         body = "Mpaca's Doublet",
         hands = "Adhemar Wrist. +1",
         legs = "Tatena. Haidate +1",
-        feet = herc.feet.strta,
+        feet = "Nyame Sollerets",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -169,8 +182,8 @@ function define_sets()
     sets.WS["Shijin Spiral"] = {
         ammo = "Knobkierrie",
         head = "Mpaca's Cap",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
         legs = "Tatena. Haidate +1",
         feet = herc.feet.dexta,
         neck = "Monk's Nodowa +2",
@@ -185,9 +198,9 @@ function define_sets()
         ammo = "Knobkierrie",
         head = "Mpaca's Cap",
         body = "Tatena. Harama. +1",
-        hands = herc.hands.strta,
+        hands = "Nyame Gauntlets",
         legs = "Tatena. Haidate +1",
-        feet = herc.feet.strta,
+        feet = "Nyame Sollerets",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -203,9 +216,9 @@ function define_sets()
         ammo = "Knobkierrie",
         head = "Mpaca's Cap",
         body = "Tatena. Harama. +1",
-        hands = herc.hands.strta,
+        hands = "Nyame Gauntlets",
         legs = "Tatena. Haidate +1",
-        feet = herc.feet.strws,
+        feet = "Nyame Sollerets",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -234,11 +247,11 @@ function define_sets()
     }
     sets.WS.Generic = {
         ammo = "Knobkierrie",
-        head = "Adhemar Bonnet +1",
-        body = "Bhikku Cyclas +1",
-        hands = "Ryuo Tekko +1",
-        legs = "Tatena. Haidate +1",
-        feet = herc.feet.strws,
+        head = "Mpaca's Cap",
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
+        feet = "Nyame Sollerets",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -249,10 +262,10 @@ function define_sets()
     }
     sets.WS.MAB = {
         ammo = "Pemphredo Tathlum",
-        head = herc.head.strws,
-        body = herc.body.wsdmab,
-        hands = "Leyline Gloves",
-        legs = herc.legs.mab,
+        head = "Nyame Helm",
+        body = "Nyame Mail",
+        hands = "Nyame Gauntlets",
+        legs = "Nyame Flanchard",
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
@@ -301,9 +314,6 @@ function define_sets()
         right_ear = "Loquac. Earring",
         right_ring = "Rahab Ring"
     }
-    sets.precast.Utsusemi = set_combine(sets.precast.FastCast, {
-        body = "Passion Jacket"
-    })
 
     sets.midcast[": Ni"] = th_gear
 end

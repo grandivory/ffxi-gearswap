@@ -50,6 +50,10 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * If you equip certain gear (by default, warp rings, dim. rings, or reraise items), then gearswap will not equip any other gear in those slots. The gear pieces that fall into this category can be changed by specifying `lock_gear = S{"Something", "..."}` in your `define_sets()` function.
 
 ## Special Commands
+* In addition to the commands below, you can define any job-specific commands by creating a function `define_commands()`.
+  That function should return a table where each key is the name of the command the each value is the function to execute for that command.
+  If you key the second table with a command that already exists below, your version will overwrite the default.
+* If you set additional binds in `define_sets()` for the new commands, you can declare a `cleanup()` function to remove the binds and they will be removed when the file is unloaded.
 |Command|Effect|
 |--|--|
 |gs c meleemode|Cycle through melee modes. If a mode is provided, the melee mode is set to that|
@@ -149,6 +153,10 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * The lua will look for a `sets.pet_midcast["Summoning Skill"]` for blood pacts that rely mostly on summoning skill
 * The lua will look for a `sets.pet_midcast.Generic` if no other sets have yet been selected
 * You can define a `mod_pet_midcast(spell, midcast_set)` function to alter anything abou the gear that's been chosen up to this point.
+
+## Pet Aftercast
+* After a pet uses an ability, by default this lua will re-equip your steady-state set (based on whether you're engaged or idle)
+* You can define a `mod_pet_aftercast(spell, aftercast_set)` function to alter anything about the gear to equip
 
 ## Status Change
 * If you define `sets.Resting`, it will be equipped when you start resting

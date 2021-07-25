@@ -91,6 +91,8 @@ function get_sets()
     texts.show(melee_display)
     texts.show(idle_display)
     texts.show(magic_display)
+    enable("main", "sub", "range", "ammo", "head", "neck", "left_ear", "right_ear", "body", "hands", "left_ring",
+        "right_ring", "back", "waist", "legs", "feet")
 end
 
 function file_unload(new_file)
@@ -108,6 +110,7 @@ function file_unload(new_file)
     if magic_display ~= nil then
         texts.destroy(magic_display)
     end
+    cleanup()
 end
 
 function precast(spell)
@@ -603,7 +606,9 @@ function pet_midcast(spell)
 end
 
 function pet_aftercast(spell)
-    equip(steady_state())
+    pet_aftercast_set = steady_state()
+    pet_aftercast_set = mod_pet_aftercast(spell, pet_aftercast_set)
+    equip(pet_aftercast_set)
 end
 
 function status_change(new, old)
@@ -705,7 +710,7 @@ function self_command(commandArgs)
             notice('Magic Burst mode is ON')
         end,
         meleeset = function(setArgs)
-            local setname = table.remove(setArgs, 1)
+            local setname = table.concat(setArgs, " ")
             local mode = Melee_Modes[Melee_Mode]
             local set = objectPath(sets, unpack(setname:split('.')))
             if set ~= nil then
@@ -715,7 +720,7 @@ function self_command(commandArgs)
             end
         end,
         magicset = function(setArgs)
-            local setname = table.remove(setArgs, 1)
+            local setname = table.concat(setArgs, " ")
             local mode = Magic_Modes[Magic_Mode]
             local set = objectPath(sets, unpack(setname:split('.')))
             if set ~= nil then
@@ -739,6 +744,10 @@ function self_command(commandArgs)
             end
         end
     }
+    local job_commands = define_commands()
+    for k, v in pairs(job_commands) do
+        command_table[k] = v
+    end
 
     if command_table[command] ~= nil then
         command_table[command](commandArgs)
@@ -749,6 +758,13 @@ end
 ---- User overrides                                  ----
 ---------------------------------------------------------
 function define_sets()
+end
+
+function define_commands()
+    return {}
+end
+
+function cleanup()
 end
 
 function mod_precast(spell, set)
@@ -764,6 +780,10 @@ function mod_aftercast(spell, set)
 end
 
 function mod_pet_midcast(spell, set)
+    return set
+end
+
+function mod_pet_aftercast(spell, set)
     return set
 end
 
