@@ -48,7 +48,7 @@ function define_sets()
         body = "Bunzi's Robe",
         hands = "Bunzi's Gloves",
         legs = "Assid. Pants +1",
-        feet = "Bunzi's Sabots",
+        feet = "Nyame Sollerets",
         neck = "Loricate Torque +1",
         waist = "Slipor Sash",
         left_ear = "Etiolation Earring",
@@ -109,7 +109,7 @@ function define_sets()
         back = back.tp
     }
     sets.TP.DT1H = {
-        main = "Naegling",
+        main = "Tauret",
         sub = "Genmei Shield",
         range = linos.tp,
         head = "Bunzi's Hat",
@@ -293,7 +293,7 @@ function define_sets()
         head = "Bunzi's Hat",
         body = "Bunzi's Robe",
         legs = "Bunzi's Pants",
-        feet = "Bunzi's Sabots",
+        feet = "Nyame Sollerets", -- 7% DT
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring",
@@ -312,7 +312,7 @@ function define_sets()
         head = "Bunzi's Hat",
         body = "Bunzi's Robe",
         legs = "Bunzi's Pants",
-        feet = "Bunzi's Sabots",
+        feet = "Nyame Sollerets", -- 7% DT
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring",
@@ -395,6 +395,9 @@ function define_sets()
     })
     sets.midcast.Minne = set_combine(sets.midcast.Songs.Buff, {
         legs = "Mousai Seraweels +1"
+    })
+    sets.midcast.Carol = set_combine(sets.midcast.Songs.Buff, {
+        hands = "Mousai Gages +1"
     })
 
     sets.midcast.Songs.Debuff = set_combine(sets.midcast.Enfeebling, {

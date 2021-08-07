@@ -247,7 +247,7 @@ function define_sets()
         hands = "Amalric Gages +1",
         legs = "Agwu's Slops",
         feet = "Agwu's Pigaches",
-        left_ring = "Mujin Band"
+        right_ring = "Mujin Band"
     })
     sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
         main = "Contemplator +1"
@@ -260,41 +260,26 @@ function define_sets()
         body = "Agwu's Robe",
         hands = "Agwu's Gages",
         legs = "Agwu's Slops",
-        feet = "Agwu's Pigaches"
+        feet = "Agwu's Pigaches",
+        waist = "Acuity Belt +1"
+    })
+    sets.midcast.HelixMB = set_combine(sets.midcast.Helix, {
+        head = "Pedagogy Mortarboard +3",
+        right_ring = "Mujin Band"
     })
     -- sets.midcast.Helix.Acc = set_combine(sets.midcast.Helix, {
     --     main = "Contemplator +1",
     --     sub = "Khonsu"
     -- })
     sets.midcast.Helix.withBuffs = {}
-    sets.midcast.Helix.withBuffs['Klimaform'] = set_combine(sets.midcast.Helix, {
-        feet = "Arbatel Loafers +1"
-    })
-    sets.midcast.Helix.withBuffs['Klimaform'].Acc = set_combine(sets.midcast.Helix.withBuffs['Klimaform'], {
-        main = "Contemplator +1",
-        sub = "Khonsu"
-    })
     sets.midcast.Luminohelix = set_combine(sets.midcast.Helix, {
         main = "Daybreak"
     })
-    sets.midcast.Luminohelix.withBuffs = {}
-    sets.midcast.Luminohelix.withBuffs['Klimaform'] = set_combine(sets.midcast.Luminohelix, {
-        feet = "Arbatel Loafers +1"
-    })
-    sets.midcast["Luminohelix II"] = sets.midcast.Luminohelix
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
         head = "Pixie Hairpin +1",
         right_ring = "Archon Ring"
     })
     sets.midcast.Kaustra.Acc = set_combine(sets.midcast.Kaustra, {
-        main = "Contemplator +1",
-        sub = "Khonsu"
-    })
-    sets.midcast.Kaustra.withBuffs = {}
-    sets.midcast.Kaustra.withBuffs['Klimaform'] = set_combine(sets.midcast.Kaustra, {
-        feet = "Arbatel Loafers +1"
-    })
-    sets.midcast.Kaustra.withBuffs['Klimaform'].Acc = set_combine(sets.midcast.Kaustra.withBuffs['Klimaform'], {
         main = "Contemplator +1",
         sub = "Khonsu"
     })
@@ -316,7 +301,7 @@ function define_sets()
         feet = "Amalric Nails +1",
         neck = "Erra Pendant",
         left_ear = "Malignance Earring",
-        right_ear = "Mani Earring",
+        -- right_ear = "Mani Earring",
         left_ring = "Archon Ring",
         right_ring = "Shiva Ring +1",
         back = "Bookworm's Cape"

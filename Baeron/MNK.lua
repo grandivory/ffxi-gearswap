@@ -81,10 +81,7 @@ function define_sets()
         hands = "Malignance Gloves",
         legs = "Malignance Tights",
         feet = "Malignance Boots",
-        neck = {
-            name = "Mnk. Nodowa +2",
-            augments = {'Path: A'}
-        },
+        neck = "Mnk. Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
         right_ear = "Telos Earring",
@@ -100,15 +97,15 @@ function define_sets()
         main = "Verethragna",
         ammo = "Coiste Bodhar",
         head = "Mpaca's Cap",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Mpaca's Boots",
+        body = "Mpaca's Doublet",
+        hands = "Mpaca's Gloves",
+        legs = "Mpaca's Hose",
+        feet = "Malignance Boots",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
-        right_ear = "Brutal Earring",
-        left_ring = "Defending Ring",
+        right_ear = "Schere Earring",
+        left_ring = "Epona's Ring",
         right_ring = "Niqmaddu Ring",
         back = back.dexda
     }
@@ -117,22 +114,22 @@ function define_sets()
         ammo = "Amar Cluster",
         head = "Mpaca's Cap",
         body = "Mpaca's Doublet",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Mpaca's Boots",
+        hands = "Mpaca's Gloves",
+        legs = "Mpaca's Hose",
+        feet = "Malignance Boots",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
-        right_ear = "Brutal Earring",
-        left_ring = "Defending Ring",
+        right_ear = "Cryptic Earring",
+        left_ring = "Epona's Ring",
         right_ring = "Niqmaddu Ring",
         back = back.dexda
     }
 
     -- Weapon Skill Sets
     sets.WS["Victory Smite"] = {
-        ammo = "Knobkierrie",
-        head = "Adhemar Bonnet +1",
+        ammo = "Coiste Bodhar",
+        head = "Mpaca's Cap",
         body = "Mpaca's Doublet",
         hands = "Ryuo Tekko +1",
         legs = "Mpaca's Hose",
@@ -147,8 +144,8 @@ function define_sets()
     }
     sets.WS["Victory Smite"].withBuffs = {}
     sets.WS["Victory Smite"].withBuffs.Impetus = {
-        ammo = "Knobkierrie",
-        head = "Adhemar Bonnet +1",
+        ammo = "Coiste Bodhar",
+        head = "Mpaca's Cap",
         body = "Bhikku Cyclas +1",
         hands = "Ryuo Tekko +1",
         legs = "Mpaca's Hose",
@@ -162,19 +159,16 @@ function define_sets()
         back = back.strda
     }
     sets.WS["Raging Fists"] = {
-        ammo = "Knobkierrie",
+        ammo = "Coiste Bodhar",
         head = "Mpaca's Cap",
         body = "Mpaca's Doublet",
         hands = "Adhemar Wrist. +1",
         legs = "Tatena. Haidate +1",
-        feet = "Nyame Sollerets",
+        feet = "Mpaca's Boots",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
-        right_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        right_ear = "Moonshade Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -184,7 +178,7 @@ function define_sets()
         head = "Mpaca's Cap",
         body = "Nyame Mail",
         hands = "Nyame Gauntlets",
-        legs = "Tatena. Haidate +1",
+        legs = "Mpaca's Hose",
         feet = herc.feet.dexta,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
@@ -198,34 +192,28 @@ function define_sets()
         ammo = "Knobkierrie",
         head = "Mpaca's Cap",
         body = "Tatena. Harama. +1",
-        hands = "Nyame Gauntlets",
-        legs = "Tatena. Haidate +1",
-        feet = "Nyame Sollerets",
+        hands = "Mpaca's Gloves",
+        legs = "Mpaca's Hose",
+        feet = "Mpaca's Boots",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
-        right_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        right_ear = "Moonshade Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.vitws
     }
     sets.WS["Tornado Kick"] = {
-        ammo = "Knobkierrie",
+        ammo = "Coiste Bodhar",
         head = "Mpaca's Cap",
         body = "Tatena. Harama. +1",
-        hands = "Nyame Gauntlets",
-        legs = "Tatena. Haidate +1",
+        hands = "Adhemar Wristbands +1",
+        legs = "Mpaca's Hose",
         feet = "Nyame Sollerets",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
-        right_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        right_ear = "Moonshade Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.vitws
@@ -301,6 +289,7 @@ function define_sets()
         right_ring = "Niqmaddu Ring",
         back = back.vitws
     }
+    sets.JA["Chi Blast"] = th_gear
 
     -- Precast sets for spells
     sets.precast.FastCast = {

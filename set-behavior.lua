@@ -441,6 +441,8 @@ function midcast(spell)
             magic_type = BlueMagic[spell.english]
             if magic_type == 'physical' and sets.midcast.BlueMagic.Physical ~= nil then
                 midcast_set = get_set(sets.midcast.BlueMagic.Physical, mode)
+            elseif magic_type == 'addeffect' and sets.midcast.BlueMagic.AddEffect ~= nil then
+                midcast_set = get_set(sets.midcast.BlueMagic.AddEffect, mode)
             elseif magic_type == 'magical' and sets.midcast.BlueMagic.MAB ~= nil then
                 midcast_set = get_set(sets.midcast.BlueMagic.MAB, mode)
             elseif magic_type == 'breath' and sets.midcast.BlueMagic.Breath ~= nil then
@@ -463,6 +465,15 @@ function midcast(spell)
                 end
             elseif sets.midcast.BlueMagic.Skill ~= nil then
                 midcast_set = get_set(sets.midcast.BlueMagic.Skill, mode)
+            end
+        elseif spell.type == "Ninjutsu" then
+            magic_type = Ninjutsu[spell.english]
+            if magic_type == 'debuff' and sets.midcast.Ninja.Debuff ~= nil then
+                midcast_set = get_set(sets.midcast.Ninja.Debuff, mode)
+            elseif magic_type == 'nuke' and sets.midcast.Ninja.Nuke ~= nil then
+                midcast_set = get_set(sets.midcast.Ninja.Nuke, mode)
+            elseif sets.midcast.Ninja.Buff ~= nil then
+                midcast_set = get_set(sets.midcast.Ninja.Buff, mode)
             end
         elseif spell.skill == "Geomancy" and sets.midcast.Geomancy ~= nil then
             midcast_set = get_set(sets.midcast.Geomancy, mode)
@@ -634,12 +645,12 @@ function buff_change(name, is_gained)
                 buffs:remove(buff)
             end
         end
+    end
 
-        if not (midaction() or pet_midaction()) then
-            set = steady_state()
-        else
-            set = {}
-        end
+    if not (midaction() or pet_midaction()) then
+        set = steady_state()
+    else
+        set = {}
     end
 
     set = mod_buff_change(name, is_gained, set)

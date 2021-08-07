@@ -114,12 +114,17 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * The lua will look for `sets.midcast.Elemental` otherwise
 * For Blue magic:
   * `sets.midcast.BlueMagic.Physical` for physical spells
+  * `sets.midcast.BlueMagic.AddEffect` for physical spells with an additional effect
   * `sets.midcast.BlueMagic.MAB` for magic spells
   * `sets.midcast.BlueMagic.Breath` for breath spells
   * `sets.midcast.BlueMagic.Cure` for cures
   * `sets.midcast.BlueMagic.CureSelf` for cures targeted on yourself
   * `sets.midcast.BlueMagic.Debuff` or `sets.midcast.BlueMagic.Skill` for enfeebles
   * `sets.midcast.BlueMagic.Skill` for all other spells
+* For Ninjutsu:
+  * `sets.midcast.Ninja.Buff` for buffs
+  * `sets.midcast.Ninja.Debuff` for debuffs
+  * `sets.midcast.Ninja.Nuke` for nukes
 * For Geomancy:
   * `sets.midcast.Geomancy`
 * For Summoning Magic:

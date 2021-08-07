@@ -255,7 +255,9 @@ function define_sets()
         back = back.strws
     }
     sets.WS["Expiacion"] = sets.WS["Savage Blade"]
-    sets.WS["Black Halo"] = sets.WS["Savage Blade"]
+    sets.WS["Black Halo"] = set_combine(sets.WS["Savage Blade"], {
+        left_ring = "Metamorph Ring +1"
+    })
     sets.WS["Sanguine Blade"] = {
         ammo = "Ghastly Tathlum +1",
         head = "Pixie Hairpin +1",
@@ -404,6 +406,21 @@ function define_sets()
         right_ring = "Rufescent Ring",
         back = back.strws
     }
+    sets.midcast.BlueMagic.AddEffect = {
+        ammo = "Falcon Eye",
+        head = "Malignance Chapeau",
+        body = "Jhakri Robe +2",
+        hands = "Jhakri Cuffs +2",
+        legs = "Jhakri Slops +2",
+        feet = "Malignance Boots",
+        neck = "Mirage Stole +2",
+        waist = "Eschan Stone",
+        left_ear = "Regal Earring",
+        right_ear = "Digni. Earring",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Stikini Ring +1",
+        back = "Aurist's Cape +1"
+    }
     sets.midcast.BlueMagic.MAB = set_combine(sets.midcast.Elemental, {})
     sets.midcast["Tenebral Crush"] = set_combine(sets.midcast.BlueMagic.MAB, {
         head = "Pixie Hairpin +1"
@@ -457,10 +474,28 @@ function define_sets()
 
     -- Specific spells
     sets.midcast["Sound Blast"] = set_combine(sets.midcast.BlueMagic.Debuff, th_gear)
-    sets.midcast["Sudden Lunge"] = sets.midcast.BlueMagic.Physical
-    sets.midcast["Sudden Lunge"].TH = set_combine(sets.midcast.BlueMagic.Physical, th_gear)
-    sets.midcast["Dream Flower"] = sets.midcast.BlueMagic.Debuff
-    sets.midcast["Dream Flower"].TH = set_combine(sets.midcast.BlueMagic.Debuff, th_gear)
+    sets.midcast["Sudden Lunge"] = sets.midcast.BlueMagic.AddEffect
+    sets.midcast["Sudden Lunge"].TH = set_combine(sets.midcast.BlueMagic.AddEffect, th_gear)
+
+    dream_flower = {
+        main = "Tizona",
+        sub = "Bunzi's Rod",
+        ammo = "Pemphredo Tathlum",
+        head = "Malignance Chapeau",
+        body = "Malignance Tabard",
+        hands = "Malignance Gloves",
+        legs = "Malignance Tights",
+        feet = "Malignance Boots",
+        neck = "Mirage Stole +2",
+        waist = "Acuity Belt +1",
+        left_ear = "Regal Earring",
+        right_ear = "Digni. Earring",
+        left_ring = "Defending Ring",
+        right_ring = "Metamor. Ring +1",
+        back = back.nuke
+    }
+    sets.midcast["Dream Flower"] = dream_flower
+    sets.midcast["Dream Flower"].TH = set_combine(dream_flower, th_gear)
 
     TP_Skill_set = set_combine(sets.TP.Att, sets.midcast.BlueMagic.Skill)
 

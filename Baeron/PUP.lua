@@ -38,14 +38,14 @@ function define_sets()
     -- =========================================================================================================
 
     ve_overdrive = {
-        main = "Ohtas",
+        main = "Gnafron's Adargas",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = taeon.head.pet,
         body = taeon.body.pet,
-        hands = taeon.hands.pet,
+        hands = "Mpaca's Gloves",
         legs = taeon.legs.pet,
-        feet = taeon.feet.pet,
+        feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
@@ -59,10 +59,10 @@ function define_sets()
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = "Karagoz Capello +1",
-        body = "Mpaca's Doublet",
-        hands = "Karagoz Guanti +1",
+        body = "Pitre Tobe +3",
+        hands = "Mpaca's Gloves",
         legs = "Heyoka Subligar +1",
-        feet = "Naga Kyahan",
+        feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
@@ -94,13 +94,10 @@ function define_sets()
     }
 
     sets.Idle.Bruiser = {
-        main = {
-            name = "Ohtas",
-            augments = {'Accuracy+70', 'Pet: Accuracy+70', 'Pet: Haste+10%'}
-        },
+        main = "Ohtas",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
-        head = "Anwig Salade",
+        head = taeon.head.pet,
         body = taeon.body.pet,
         hands = taeon.hands.pet,
         legs = taeon.legs.pet,
@@ -108,11 +105,13 @@ function define_sets()
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
         left_ear = "Rimeice Earring",
-        right_ear = "Domes. Earring",
+        right_ear = "Enmerkar Earring",
         left_ring = "Thurandaut Ring +1",
         right_ring = "C. Palug Ring",
         back = back.pet
     }
+    sets.Idle.Bruiser.withBuffs = {}
+    sets.Idle.Bruiser.withBuffs.Overdrive = ve_overdrive
 
     sets.Idle.Turtle = {
         main = "Gnafron's Adargas",
@@ -125,34 +124,30 @@ function define_sets()
         feet = taeon.feet.pet,
         neck = "Shepherd's Chain",
         waist = "Isa Belt",
-        left_ear = "Enmerkar Earring",
-        right_ear = "Rimeice Earring",
+        left_ear = "Rimeice Earring",
+        right_ear = "Enmerkar Earring",
         left_ring = "Thurandaut Ring +1",
         right_ring = "Overbearing Ring",
         back = back.pet
     }
 
     sets.Idle.PUPDD = {
-        main = {
-            name = "Ohtas",
-            augments = {'Accuracy+70', 'Pet: Accuracy+70', 'Pet: Haste+10%'}
-        },
+        main = "Ohtas",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = taeon.head.pet,
-        body = taeon.body.pet,
+        body = "Pitre Tobe +3",
         hands = taeon.hands.pet,
         legs = taeon.legs.pet,
-        feet = taeon.feet.pet,
+        feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
         left_ear = "Rimeice Earring",
-        right_ear = "Domes. Earring",
+        right_ear = "Enmerkar Earring",
         left_ring = "Thurandaut Ring +1",
         right_ring = "C. Palug Ring",
         back = back.pet
     }
-
     sets.Idle.PUPDD.withBuffs = {}
     sets.Idle.PUPDD.withBuffs.Overdrive = sharpshot_overdrive
 
@@ -161,19 +156,22 @@ function define_sets()
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = taeon.hands.pet,
-        legs = "Mpaca's Hose",
+        body = "Pitre Tobe +3",
+        hands = "Mpaca's Gloves",
+        legs = "Kara. Pantaloni +1",
         feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Burana Earring",
-        left_ring = "Varar Ring +1",
+        right_ear = "Enmerkar Earring",
+        left_ring = "Thurandaut Ring +1",
         right_ring = "Varar Ring +1",
         back = back.pet
     }
 
-    sets.Idle.BoneSlayer = sets.Idle.PUPDD
+    sets.Idle.BoneSlayer = copy(sets.Idle.PUPDD)
+    sets.Idle.BoneSlayer.withBuffs = {}
+    sets.Idle.BoneSlayer.withBuffs.Overdrive = ve_overdrive
 
     sets.Idle.PUPMagic = set_combine(sets.Idle.PUPDD, {
         main = "Denouements",
@@ -182,9 +180,6 @@ function define_sets()
         left_ear = "Burana Earring",
         left_ring = "Tali'ah Ring"
     })
-
-    sets.Idle.Bruiser.withBuffs = {}
-    sets.Idle.Bruiser.withBuffs['Overdrive'] = ve_overdrive
 
     -- =========================================================================================================
     -- ***Engaged Sets***
@@ -195,13 +190,13 @@ function define_sets()
         ammo = "Automat. Oil +3",
         head = "Malignance Chapeau",
         body = "Malignance Tabard",
-        hands = herc.hands.dexta,
+        hands = "Malignance Gloves",
         legs = "Malignance Tights",
         feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
         left_ear = "Telos Earring",
-        right_ear = "Brutal Earring",
+        right_ear = "Schere Earring",
         left_ring = "Defending Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -212,14 +207,14 @@ function define_sets()
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = "Mpaca's Cap",
-        body = "Tali'ah Manteel +2",
+        body = "Mpaca's Doublet",
         hands = herc.hands.dexta,
         legs = "Mpaca's Hose",
-        feet = "Mpaca's Boots",
+        feet = herc.feet.dexta,
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
         left_ear = "Telos Earring",
-        right_ear = "Brutal Earring",
+        right_ear = "Schere Earring",
         left_ring = "Epona's Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -230,13 +225,13 @@ function define_sets()
         range = "Animator P +1",
         head = "Mpaca's Cap",
         body = "Mpaca's Doublet",
-        hands = herc.hands.dexta,
-        legs = "Mpaca's Hose",
+        hands = "Mpaca's Gloves",
+        legs = "Heyoka Subligar +1",
         feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
         left_ear = "Telos Earring",
-        right_ear = "Cessance Earring",
+        right_ear = "Schere Earring",
         left_ring = "Epona's Ring",
         right_ring = "Niqmaddu Ring",
         back = back.pet
@@ -253,14 +248,14 @@ function define_sets()
         body = "Mpaca's Doublet",
         hands = "Ryuo Tekko +1",
         legs = "Mpaca's Hose",
-        feet = herc.feet.strcrit,
+        feet = "Mpaca's Boots",
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
         left_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
-        right_ear = "Brutal Earring",
+        right_ear = "Schere Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -271,14 +266,14 @@ function define_sets()
         body = "Mpaca's Doublet",
         hands = "Ryuo Tekko +1",
         legs = "Mpaca's Hose",
-        feet = herc.feet.strcrit,
+        feet = "Mpaca's Boots",
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
-        right_ear = "Brutal Earring",
+        right_ear = "Schere Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -293,7 +288,7 @@ function define_sets()
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Mache Earring +1",
-        right_ear = "Brutal Earring",
+        right_ear = "Schere Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -311,7 +306,7 @@ function define_sets()
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
-        right_ear = "Brutal Earring",
+        right_ear = "Schere Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -320,7 +315,7 @@ function define_sets()
     sets.WS["Raging Fists"] = {
         head = "Mpaca's Cap",
         body = "Mpaca's Doublet",
-        hands = "Nyame Gauntlets",
+        hands = "Mpaca's Gloves",
         legs = "Mpaca's Hose",
         feet = "Mpaca's Boots",
         neck = "Fotia Gorget",
@@ -329,7 +324,7 @@ function define_sets()
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
-        right_ear = "Brutal Earring",
+        right_ear = "Schere Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -375,14 +370,14 @@ function define_sets()
     -- =========================================================================================================
     meleeWS = {
         head = taeon.head.pet,
-        body = "Mpaca's Doublet",
-        hands = taeon.hands.pet,
+        body = taeon.body.pet,
+        hands = "Mpaca's Gloves",
         legs = taeon.legs.pet,
-        feet = taeon.feet.pet,
+        feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
-        left_ear = "Domes. Earring",
-        right_ear = "Burana Earring",
+        left_ear = "Burana Earring",
+        right_ear = "Domes. Earring",
         left_ring = "Thur. Ring +1",
         right_ring = "C. Palug Ring",
         back = back.pet
@@ -390,16 +385,16 @@ function define_sets()
 
     rangedWS = {
         head = "Karagoz Capello +1",
-        body = "Mpaca's Doublet",
-        hands = "Karagoz Guanti +1",
+        body = "Pitre Tobe +3",
+        hands = "Mpaca's Gloves",
         legs = "Kara. Pantaloni +1",
-        feet = "Naga Kyahan",
+        feet = "Mpaca's Boots",
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
-        left_ear = "Domes. Earring",
-        right_ear = "Burana Earring",
+        left_ear = "Burana Earring",
+        right_ear = "Enmerkar Earring",
         left_ring = "Thur. Ring +1",
-        right_ring = "C. Palug Ring",
+        right_ring = "Overbearing Ring",
         back = "Dispersal Mantle"
     }
 
@@ -412,14 +407,16 @@ function define_sets()
     sets.petWS.PUPMagic = sets.Idle.PUPMagic
 
     enmity = {
-        legs = "Heyoka Subligar +1"
+        legs = "Heyoka Subligar +1",
+        left_ear = "Rimeice Earring",
+        right_ear = "Domes. Earring"
     }
     sets.petEnmity = {}
     sets.petEnmity.Bruiser = set_combine(sets.Idle.Bruiser, enmity)
     sets.petEnmity.Turtle = set_combine(sets.Idle.Turtle, enmity)
 
     sets.JA.Overdrive = {
-        body = "Pitre Tobe +1"
+        body = "Pitre Tobe +3"
     }
 
     sets.JA.Repair = {
@@ -458,7 +455,7 @@ function define_sets()
     -- ***Midcast Sets***
     -- =========================================================================================================
     sets.midcast.Cur = {
-        body = "Heka's Kalasiris",
+        body = "Annointed Kalasiris",
         legs = "Gyve Trousers",
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
@@ -513,10 +510,12 @@ function define_sets()
 
     hud:show()
 
+    send_command('bind ^f9 gs c clearmaneuvers')
     send_command('bind ^f10 gs c autodeploy')
 end
 
 function cleanup()
+    send_command('unbind ^f9')
     send_command('unbind ^f10')
 end
 
@@ -524,6 +523,10 @@ function define_commands()
     return {
         autodeploy = function()
             autodeploy = not autodeploy
+        end,
+        clearmaneuvers = function()
+            current_maneuvers:clear()
+            maneuver_queue:clear()
         end
     }
 end
@@ -609,6 +612,13 @@ function update_hud()
 
         -- Pet mode
         hud.pet_mode = pet_mode
+    else
+        hud.pet_hp = '0/0      '
+        hud.pet_mp = '0/0      '
+        hud.pet_current_tp = '0'
+        hud.maneuvers = '              '
+        hud.upcoming_maneuvers = '              '
+        hud.pet_mode = '     '
     end
 
     hud.autodeploy = tostring(autodeploy)
@@ -644,15 +654,15 @@ function maneuver_shorthand(maneuver)
     if maneuver == 'Fire Maneuver' then
         return '\\cs(255, 128, 128)Fire\\cr'
     elseif maneuver == 'Ice Maneuver' then
-        return '\\cs(0, 0, 255)Ice \\cr'
+        return '\\cs(0, 255, 255)Ice \\cr'
     elseif maneuver == 'Wind Maneuver' then
         return '\\cs(0, 255, 0)Wind\\cr'
     elseif maneuver == 'Earth Maneuver' then
         return '\\cs(128, 128, 0)Erth\\cr'
-    elseif maneuver == 'Lightning Maneuver' then
-        return '\\cs(128, 0, 128)Ltng\\cr'
+    elseif maneuver == 'Thunder Maneuver' then
+        return '\\cs(192, 64, 192)Thnd\\cr'
     elseif maneuver == 'Water Maneuver' then
-        return '\\cs(0, 0, 128)Watr\\cr'
+        return '\\cs(0, 0, 255)Watr\\cr'
     elseif maneuver == 'Dark Maneuver' then
         return '\\cs(128, 128, 128)Dark\\cr'
     else
@@ -728,7 +738,7 @@ function mod_buff_change(buff, is_gained, set)
 
             -- Only pop a maneuver from the current maneuvers list if the one we just lost is the next one in the list
             -- This should help to let the lua catch up when it's loaded while maneuvers are already active
-            if maneuver == buff then
+            if maneuver == buff or current_maneuvers:length() > 3 then
                 current_maneuvers:pop()
 
                 -- If we lose a maneuver and we have less than 3, then recast it
@@ -737,6 +747,11 @@ function mod_buff_change(buff, is_gained, set)
                 end
             end
         end
+    end
+
+    if buff == 'Overload' and is_gained then
+        current_maneuvers:clear()
+        maneuver_queue:clear()
     end
 
     return set
@@ -762,9 +777,11 @@ windower.register_event("incoming text", function(original, modified, mode)
     if buffactive["Fire Maneuver"] and original:contains(pet.name) and original:contains("Provoke") then
         last_voke = os.time()
         pet_mode = "TP"
+        equip(steady_state())
     elseif buffactive["Light Maneuver"] and original:contains(pet.name) and original:contains("Flashbulb") then
         last_flash = os.time()
         pet_mode = "TP"
+        equip(steady_state())
     end
 
     return modified, mode

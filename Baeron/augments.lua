@@ -21,10 +21,10 @@ herc.hands = {
         name = "Herculean Gloves",
         augments = {'Accuracy+3', 'CHR+6', '"Refresh"+2', 'Accuracy+12 Attack+12', 'Mag. Acc.+8 "Mag.Atk.Bns."+8'}
     },
-    strta = {
-        name = "Herculean Gloves",
-        augments = {'Accuracy+8', '"Triple Atk."+3', 'STR+8', 'Attack+15'}
-    },
+    -- strta = {
+    --     name = "Herculean Gloves",
+    --     augments = {'Accuracy+8', '"Triple Atk."+3', 'STR+8', 'Attack+15'}
+    -- },
     dexta = {
         name = "Herculean Gloves",
         augments = {'Accuracy+20', '"Triple Atk."+3', 'DEX+10', 'Attack+10'}
@@ -48,10 +48,10 @@ herc.feet = {
         name = "Herculean Boots",
         augments = {'Mag. Acc.+7 "Mag.Atk.Bns."+7', 'CHR+7', '"Refresh"+2'}
     },
-    strta = {
-        name = "Herculean Boots",
-        augments = {'"Triple Atk."+3', 'STR+10', 'Accuracy+3', 'Attack+3'}
-    },
+    -- strta = {
+    --     name = "Herculean Boots",
+    --     augments = {'"Triple Atk."+3', 'STR+10', 'Accuracy+3', 'Attack+3'}
+    -- },
     dexta = {
         name = "Herculean Boots",
         augments = {'"Triple Atk."+4', 'DEX+10', 'Accuracy+8'}
@@ -69,7 +69,7 @@ taeon = {}
 taeon.head = {
     pet = {
         name = "Taeon Chapeau",
-        augments = {'Pet: Accuracy+17 Pet: Rng. Acc.+17', 'Pet: "Dbl. Atk."+5', 'Pet: Damage taken -4%'}
+        augments = {'Pet: Accuracy+25 Pet: Rng. Acc.+25', 'Pet: "Dbl. Atk."+5', 'Pet: Damage taken -4%'}
     }
 }
 taeon.body = {
