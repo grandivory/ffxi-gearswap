@@ -40,6 +40,7 @@ function get_sets()
     sets.precast = {}
     sets.midcast = {}
     sets.midcast.BlueMagic = {}
+    sets.midcast.Ninja = {}
     sets.midcast.Songs = {}
     sets.midcast.mod = {}
     sets.aftercast = {}
