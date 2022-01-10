@@ -654,12 +654,8 @@ function colorize_percent(value, max)
 end
 
 function colorize_tp(value)
-    if value > 750 then
+    if value > 900 then
         return '\\cs(128,255,128)' .. string.format('%4d', value) .. '\\cr'
-    elseif value > 750 then
-        return '\\cs(255,255,0)' .. string.format('%4d', value) .. '\\cr'
-    elseif value > 750 then
-        return '\\cs(128,160,0)' .. string.format('%4d', value) .. '\\cr'
     else
         return '\\cs(255,0,0)' .. string.format('%4d', value) .. '\\cr'
     end
