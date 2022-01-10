@@ -688,16 +688,18 @@ end
 previousTarget = nil
 currentTarget = nil
 
-function job_status_change(new, old)
+function mod_status_change(new, old, set)
     if new == "Engaged" then
         if autodeploy == true and pet.isvalid then
-            if windower.ffxi.get_mob_by_target('t').id then
-                currentTarget = windower.ffxi.get_mob_by_target('t').id
+            if player.target then
+                currentTarget = player.target.index
             end
 
             send_command('@wait 2; input /pet "Deploy" <t>')
         end
     end
+
+    return set
 end
 
 maneuver_queue = Q {}
@@ -852,8 +854,8 @@ windower.register_event("prerender", function()
         if autodeploy == true and player.status == "Engaged" then
             previousTarget = currentTarget
 
-            if windower.ffxi.get_mob_by_target('t') then
-                currentTarget = windower.ffxi.get_mob_by_target('t').id
+            if player.target then
+                currentTarget = player.target.index
             end
 
             if previousTarget ~= currentTarget then

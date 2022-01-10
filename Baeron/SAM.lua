@@ -105,7 +105,9 @@ function define_sets()
         back = back.tp
     }
 
-    sets.TP.TH = set_combine(sets.TH.DT, th_gear)
+    sets.TP.TH = set_combine(sets.TP.DT, th_gear)
+
+    sets.mod.TH = th_gear
 
     -- =========================================================================================================
     -- ***Weapon Skill Sets***

@@ -48,6 +48,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
       ```
 * If you use an item or summon a trust, gearswap will do nothing.
 * If you equip certain gear (by default, warp rings, dim. rings, or reraise items), then gearswap will not equip any other gear in those slots. The gear pieces that fall into this category can be changed by specifying `lock_gear = S{"Something", "..."}` in your `define_sets()` function.
+* If you define `sets.mod.TH`, then you can use `Ctrl+f9` to update your TP mode to include TH gear for the first hit
 
 ## Special Commands
 * In addition to the commands below, you can define any job-specific commands by creating a function `define_commands()`.

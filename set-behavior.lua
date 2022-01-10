@@ -25,6 +25,9 @@ text_settings = {
 ---- State                                           ----
 ---------------------------------------------------------
 local buffs = S {}
+local th_on_tag = false
+local previousTarget = nil
+local currentTarget = nil
 
 ---------------------------------------------------------
 ---- Gearswap functions                              ----
@@ -32,8 +35,8 @@ local buffs = S {}
 function get_sets()
     sets.TP = {}
     sets.TPMod = {}
+    sets.mod = {}
     sets.DT = {}
-    sets.TH = {}
     sets.Idle = {}
     sets.Idle_Avatar = {}
     sets.Idle_Spirit = {}
@@ -69,6 +72,7 @@ function get_sets()
     MB_Mode = false
 
     send_command('bind f9 gs c MeleeMode')
+    send_command('bind ^f9 gs c THMode')
     send_command('bind f10 gs c IdleMode')
     send_command('bind f11 gs c MagicMode')
     send_command('bind f12 gs c EquipGear')
@@ -82,11 +86,12 @@ function get_sets()
     idle_settings.pos.y = idle_settings.pos.y + line_height
     magic_settings.pos.y = magic_settings.pos.y + line_height * 2
 
-    melee_display = texts.new('Melee: ${mode}', melee_settings)
+    melee_display = texts.new('Melee: ${mode}${th_mod}', melee_settings)
     idle_display = texts.new('Idle: ${mode}', idle_settings)
     magic_display = texts.new('Magic: ${mode}', magic_settings)
 
     melee_display.mode = Melee_Modes[Melee_Mode]
+    melee_display.th_mod = ''
     idle_display.mode = Idle_Modes[Idle_Mode]
     magic_display.mode = Magic_Modes[Magic_Mode]
 
@@ -627,11 +632,22 @@ function pet_aftercast(spell)
 end
 
 function status_change(new, old)
-    if new == "Resting" and sets.Resting ~= nil then
-        equip(get_set(sets.Resting, Idle_Modes[Idle_Mode]))
+    set = nil
+
+    if new == "Engaged" then
+        currentTarget = player.target.index
+        if (th_on_tag) then
+            set = set_combine(steady_state(), sets.mod.TH)
+        end
+    elseif new == "Resting" and sets.Resting ~= nil then
+        set = get_set(sets.Resting, Idle_Modes[Idle_Mode])
     else
-        equip(steady_state())
+        set = steady_state()
     end
+
+    set = mod_status_change(new, old, set)
+
+    equip(set)
 end
 
 function buff_change(name, is_gained)
@@ -693,6 +709,14 @@ function self_command(commandArgs)
                 Melee_Mode = cycle_table(Melee_Mode, Melee_Modes)
             end
             melee_display.mode = Melee_Modes[Melee_Mode]
+        end,
+        thmode = function()
+            th_on_tag = not th_on_tag and sets.mod.TH ~= nil
+            if (th_on_tag) then
+                melee_display.th_mod = ' with TH'
+            else
+                melee_display.th_mod = ''
+            end
         end,
         idlemode = function(modeArgs)
             if #modeArgs > 0 then
@@ -769,6 +793,29 @@ function self_command(commandArgs)
     end
 end
 
+-- This happens any time the user does anything, including auto-attack!
+windower.raw_register_event('action', function(action)
+    -- action.category 1 is a melee attack
+    if action.actor_id == player.id and action.category == 1 then
+        previousTarget = currentTarget
+        if player.target ~= nil then
+            currentTarget = player.target.index
+        end
+
+        -- For some reason, gearswap doesn't equip gear here, so send a command to force it
+        send_command('gs c equipgear')
+    end
+end)
+
+windower.register_event('target change', function()
+    if player.status == 'Engaged' then
+        previousTarget = currentTarget
+        currentTarget = player.target.index
+
+        send_command('gs c equipgear')
+    end
+end)
+
 ---------------------------------------------------------
 ---- User overrides                                  ----
 ---------------------------------------------------------
@@ -802,6 +849,10 @@ function mod_pet_aftercast(spell, set)
     return set
 end
 
+function mod_status_change(new_status, old_status, set)
+    return set
+end
+
 function mod_buff_change(buff, is_gained, set)
     return set
 end
@@ -817,7 +868,7 @@ end
 ---------------------------------------------------------
 ---- Behavior functions                              ----
 ---------------------------------------------------------
-function tp(should_equip, buff_override, override_lock, is_user_command)
+function tp(buff_override, override_lock, is_user_command)
     if should_equip == nil then
         should_equip = true
     end
@@ -843,13 +894,14 @@ function tp(should_equip, buff_override, override_lock, is_user_command)
         end
     end
 
+    -- Check if we should equip TH gear
+    if th_on_tag and currentTarget ~= previousTarget then
+        tp_set = set_combine(tp_set, sets.mod.TH)
+    end
+
     tp_set = mod_tp(tp_set, mode, override_lock, is_user_command)
 
-    if should_equip then
-        equip(tp_set)
-    else
-        return tp_set
-    end
+    return tp_set
 end
 
 function idle(should_equip, buff_override, override_lock, is_user_command)
@@ -917,7 +969,7 @@ end
 function steady_state(buff_override, override_lock, is_user_command)
     steady_set = {}
     if player.status == 'Engaged' then
-        steady_set = tp(false, buff_override, override_lock, is_user_command)
+        steady_set = tp(buff_override, override_lock, is_user_command)
     else
         steady_set = idle(false, buff_override, override_lock, is_user_command)
     end
