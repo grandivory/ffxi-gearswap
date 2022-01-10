@@ -7,9 +7,9 @@ lockstyleset = 10
 function define_sets()
     Melee_Modes = T {'Att', 'DT', 'TH', 'DT1H'}
     Idle_Modes = T {'Speed', 'DT', 'Refresh'}
-    Magic_Modes = T {'G.Horn', 'Harp'}
+    Magic_Modes = T {'G.Horn', 'Harp', 'TH'}
 
-    fastcast = .78 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
+    fastcast = .71 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
 
     back = {
         tp = {
@@ -19,6 +19,10 @@ function define_sets()
         strws = {
             name = "Intarabus's Cape",
             augments = {'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
+        },
+        chrws = {
+            name = "Intarabus's Cape",
+            augments = {'CHR+20', 'Accuracy+20 Attack+20', 'CHR+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
         },
         maccfc = {
             name = "Intarabus's Cape",
@@ -33,11 +37,25 @@ function define_sets()
         },
         strws = {
             name = "Linos",
-            augments = {'Accuracy+13 Attack+13', 'Weapon skill damage +3%', 'STR+8'}
+            augments = {'Accuracy+14 Attack+14', 'Weapon skill damage +3%', 'STR+8'}
+        },
+        dexws = {
+            name = "Linos",
+            augments = {'Accuracy+14 Attack+14', 'Weapon skill damage +3%', 'DEX+8'}
+        },
+        chrws = {
+            name = "Linos",
+            augments = {'Accuracy+12 Attack+12', 'Weapon skill damage +3%', 'CHR+8'}
         }
     }
 
     tpdagger = "Centovente"
+
+    th_gear = {
+        head = chironic.head.th,
+        legs = "Volte Hose",
+        waist = "Chaac Belt"
+    }
 
     -- =========================================================================================================
     -- ***Not Engaged Sets***
@@ -45,10 +63,10 @@ function define_sets()
     sets.Idle.DT = {
         sub = "Genmei Shield",
         head = "Bunzi's Hat",
-        body = "Bunzi's Robe",
-        hands = "Bunzi's Gloves",
+        body = bunzi.body,
+        hands = bunzi.hands,
         legs = "Assid. Pants +1",
-        feet = "Nyame Sollerets",
+        feet = nyame.feet,
         neck = "Loricate Torque +1",
         waist = "Slipor Sash",
         left_ear = "Etiolation Earring",
@@ -65,7 +83,8 @@ function define_sets()
             name = "Contemplator +1",
             augments = {'Path: A'}
         },
-        sub = "Oneiros Grip"
+        sub = "Oneiros Grip",
+        right_ring = "Stikini Ring +1"
     })
     sets.Idle.RP = set_combine(sets.Idle.Speed, {
         neck = "Bard's Charm +2"
@@ -79,10 +98,10 @@ function define_sets()
         sub = tpdagger,
         range = linos.tp,
         head = "Bunzi's Hat",
-        body = "Ayanmo Corazza +2",
-        hands = "Bunzi's Gloves",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        body = ayanmo.body,
+        hands = bunzi.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Bard's Charm +2",
         waist = "Reiki Yotai",
         left_ear = "Telos Earring",
@@ -96,10 +115,10 @@ function define_sets()
         sub = tpdagger,
         range = linos.tp,
         head = "Bunzi's Hat",
-        body = "Ayanmo Corazza +2",
-        hands = "Bunzi's Gloves",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        body = ayanmo.body,
+        hands = bunzi.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Bard's Charm +2",
         waist = "Reiki Yotai",
         left_ear = "Telos Earring",
@@ -109,37 +128,34 @@ function define_sets()
         back = back.tp
     }
     sets.TP.DT1H = {
-        main = "Tauret",
+        main = "Naegling",
         sub = "Genmei Shield",
         range = linos.tp,
         head = "Bunzi's Hat",
-        body = "Ayanmo Corazza +2",
-        hands = "Bunzi's Gloves",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        body = ayanmo.body,
+        hands = bunzi.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Reiki Yotai",
+        waist = "Windbuffet Belt +1",
         left_ear = "Telos Earring",
         right_ear = "Cessance Earring",
         left_ring = "Chirich Ring +1",
         right_ring = "Chirich Ring +1",
         back = back.tp
     }
-    sets.TP.TH = set_combine(sets.TP.Att, {
-        ammo = "Per. Lucky Egg",
-        legs = "Volte Hose"
-    })
+    sets.TP.TH = set_combine(sets.TP.Att, th_gear)
 
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
     sets.WS.Generic = {
         range = linos.strws,
-        head = "Nyame Helm",
+        head = nyame.head,
         body = "Bihu Jstcorps. +3",
-        hands = "Nyame Gauntlets",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Bard's Charm +2",
         waist = "Sailfi Belt +1",
         left_ear = {
@@ -148,16 +164,16 @@ function define_sets()
         },
         right_ear = "Ishvara Earring",
         left_ring = "Rufescent Ring",
-        right_ring = "Shukuyu Ring",
+        right_ring = "Epaminondas's Ring",
         back = back.strws
     }
     sets.WS.MAB = {
         range = linos.strws,
-        head = "Nyame Helm",
+        head = nyame.head,
         body = "Bihu Jstcorps. +3",
-        hands = "Bunzi's Gloves",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        hands = bunzi.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Regal Earring",
@@ -168,11 +184,11 @@ function define_sets()
     }
     sets.WS["Savage Blade"] = {
         range = linos.strws,
-        head = "Nyame Helm",
+        head = nyame.head,
         body = "Bihu Jstcorps. +3",
-        hands = "Nyame Gauntlets",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Bard's Charm +2",
         waist = "Sailfi Belt +1",
         left_ear = {
@@ -181,13 +197,14 @@ function define_sets()
         },
         right_ear = "Ishvara Earring",
         left_ring = "Rufescent Ring",
-        right_ring = "Shukuyu Ring",
+        right_ring = "Epaminondas's Ring",
         back = back.strws
     }
     sets.WS["Rudra's Storm"] = {
-        head = "Nyame Helm",
+        range = linos.dexws,
+        head = nyame.head,
         body = "Bihu Jstcorps. +3",
-        hands = "Nyame Gauntlets",
+        hands = nyame.hands,
         legs = "Lustr. Subligar +1",
         feet = "Lustra. Leggings +1",
         neck = "Bard's Charm +2",
@@ -197,15 +214,30 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Ishvara Earring",
-        left_ring = "Petrov Ring",
+        left_ring = "Epaminondas's Ring",
         right_ring = "Ilabrat Ring",
         back = back.strws
     }
+    sets.WS["Mordant Rime"] = {
+        range = linos.chrws,
+        head = nyame.head,
+        body = "Bihu Jstcorps. +3",
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Bard's Charm +2",
+        waist = "Grunfeld Rope",
+        left_ear = "Regal Earring",
+        right_ear = "Ishvara Earring",
+        left_ring = "Metamor. Ring +1",
+        right_ring = "Epaminondas's Ring",
+        back = back.chrws
+    }
     sets.WS.Evisceration = {
-        range = linos.tp,
-        head = "Nyame Helm",
-        body = "Nyame Mail",
-        hands = "Nyame Gauntlets",
+        range = linos.dexws,
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
         legs = "Lustr. Subligar +1",
         feet = "Lustra. Leggings +1",
         neck = "Fotia Gorget",
@@ -220,11 +252,11 @@ function define_sets()
         back.tp
     }
     -- sets.WS.Evisceration.DT1H = {
-    --     head = "Aya. Zucchetto +2",
-    --     body = "Ayanmo Corazza +2",
-    --     hands = "Bunzi's Gloves",
-    --     legs = "Aya. Cosciales +2",
-    --     feet = "Aya. Gambieras +2",
+    --     head = ayanmo.head,
+    --     body = ayanmo.body,
+    --     hands = bunzi.hands,
+    --     legs = ayanmo.legs,
+    --     feet = ayanmo.feet,
     --     neck = "Bard's Charm +2",
     --     waist = "Reiki Yotai",
     --     left_ear = "Telos Earring",
@@ -250,9 +282,9 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 78%
-        main = "Kali", -- 7%
-        sub = "Genmei Shield",
+    sets.precast.FastCast = { -- 71%
+        -- main = "Kali", -- 7%
+        -- sub = "Genmei Shield",
         head = "Bunzi's Hat", -- 10%
         body = "Inyanga Jubbah +2", -- 14%
         hands = "Leyline Gloves", -- 7%
@@ -267,12 +299,10 @@ function define_sets()
         back = back.maccfc -- 10%
 
     }
-    sets.precast.BardSong = set_combine(sets.precast.FastCast, { -- 88%
+    sets.precast.BardSong = set_combine(sets.precast.FastCast, { -- 81%
+        range = "Gjallarhorn",
         head = "Fili Calot +1" -- 14%, +4
         -- feet have an extra -6% song spellcasting time
-    })
-    sets.precast.BardSong['G.Horn'] = set_combine(sets.precast.BardSong, {
-        range = "Gjallarhorn"
     })
     sets.precast.BardSong['Harp'] = set_combine(sets.precast.BardSong, {
         range = "Daurdabla"
@@ -291,9 +321,9 @@ function define_sets()
         main = "Daybreak",
         sub = "Ammurapi Shield",
         head = "Bunzi's Hat",
-        body = "Bunzi's Robe",
-        legs = "Bunzi's Pants",
-        feet = "Nyame Sollerets", -- 7% DT
+        body = bunzi.body,
+        legs = bunzi.legs,
+        feet = nyame.feet, -- 7% DT
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring",
@@ -310,9 +340,9 @@ function define_sets()
         main = "Daybreak",
         sub = "Ammurapi Shield",
         head = "Bunzi's Hat",
-        body = "Bunzi's Robe",
-        legs = "Bunzi's Pants",
-        feet = "Nyame Sollerets", -- 7% DT
+        body = bunzi.body,
+        legs = bunzi.legs,
+        feet = nyame.feet, -- 7% DT
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring",
@@ -345,12 +375,12 @@ function define_sets()
     })
 
     sets.midcast.Enfeebling = {
-        main = "Daybreak",
+        main = "Carnwenhan",
         sub = "Ammurapi Shield",
-        head = "Brioso Roundlet +2",
-        body = "Brioso Justau. +2",
+        head = "Brioso Roundlet +3",
+        body = "Brioso Justau. +3",
         hands = "Inyan. Dastanas +2",
-        legs = "Brioso Cannions +2",
+        legs = "Brioso Cannions +3",
         feet = "Brioso Slippers +3",
         neck = "Incanter's Torque",
         waist = "Acuity Belt +1",
@@ -362,7 +392,7 @@ function define_sets()
     }
 
     sets.midcast.Songs.Buff = {
-        main = "Kali",
+        main = "Carnwenhan",
         sub = "Genmei Shield",
         head = "Fili Calot +1",
         body = "Fili Hongreline +1",
@@ -376,7 +406,7 @@ function define_sets()
         waist = "Flume Belt +1"
     }
     sets.midcast.Paeon = set_combine(sets.midcast.Songs.Buff, {
-        head = "Brioso Roundlet +2"
+        head = "Brioso Roundlet +3"
     })
     sets.midcast.Madrigal = set_combine(sets.midcast.Songs.Buff, {
         head = "Fili Calot +1"
@@ -401,7 +431,7 @@ function define_sets()
     })
 
     sets.midcast.Songs.Debuff = set_combine(sets.midcast.Enfeebling, {
-        main = "Kali",
+        main = "Carnwenhan",
         sub = "Ammurapi Shield",
         range = "Gjallarhorn",
         neck = "Mnbw. Whistle +1",
@@ -410,12 +440,14 @@ function define_sets()
     })
     sets.midcast['Foe Lullaby'] = set_combine(sets.midcast.Songs.Debuff, {
         body = "Fili Hongreline +1",
-        hands = "Brioso Cuffs +2",
+        hands = "Brioso Cuffs +3",
         legs = "Inyanga Shalwar +2"
     })
+    sets.midcast['Foe Lullaby'].TH = set_combine(sets.midcast['Foe Lullaby'], th_gear)
     sets.midcast['Horde Lullaby'] = set_combine(sets.midcast['Foe Lullaby'], {
         range = "Blurred Harp +1"
     })
+    sets.midcast['Horde Lullaby'].TH = set_combine(sets.midcast['Horde Lullaby'], th_gear)
 
     -- =========================================================================================================
     -- ***Weather Gear***
@@ -423,6 +455,10 @@ function define_sets()
     sets.Weather = {
         waist = "Hachirin-no-obi",
         back = "Twilight Cape"
+    }
+
+    sets.Distance = {
+        waist = "Orpheus's Sash"
     }
 
     -- =========================================================================================================

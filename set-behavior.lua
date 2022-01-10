@@ -51,7 +51,7 @@ function get_sets()
     no_shoot_ammo = S {}
     ammo_threshold = 10
     tool_threshold = 10
-    distance_threshold = 7
+    distance_threshold = 10
 
     Melee_Modes = T {}
     Idle_Modes = T {}
@@ -61,7 +61,8 @@ function get_sets()
     Magic_Mode = 1
 
     lock_gear = S {"Warp Ring", "Dim. Ring (Holla)", "Dim. Ring (Dem)", "Dim. Ring (Mea)", "Reraise Hairpin",
-                   "Reraise Earring", "Echad Ring", "Endorsement Ring", "Trizek Ring", "Capacity Ring", "Facility Ring"}
+                   "Reraise Earring", "Echad Ring", "Endorsement Ring", "Trizek Ring", "Capacity Ring", "Facility Ring",
+                   "Caliber Ring"}
 
     define_sets()
 
@@ -440,7 +441,9 @@ function midcast(spell)
             end
         elseif spell.type == "BlueMagic" then
             magic_type = BlueMagic[spell.english]
-            if magic_type == 'physical' and sets.midcast.BlueMagic.Physical ~= nil then
+            if magic_type == 'static' and sets.midcast.BlueMagic.Static ~= nil then
+                midcast_set = get_set(sets.midcast.BlueMagic.Static, mode)
+            elseif magic_type == 'physical' and sets.midcast.BlueMagic.Physical ~= nil then
                 midcast_set = get_set(sets.midcast.BlueMagic.Physical, mode)
             elseif magic_type == 'addeffect' and sets.midcast.BlueMagic.AddEffect ~= nil then
                 midcast_set = get_set(sets.midcast.BlueMagic.AddEffect, mode)
@@ -540,8 +543,8 @@ function aftercast(spell)
         return
     end
 
-    -- If a pet is mid-action, then don't swap sets
-    if (pet.isvalid and (pet_midaction() or string.find(spell.type, 'BloodPact'))) then
+    -- If you or a pet is mid-action, then don't swap sets
+    if midaction() or (pet.isvalid and (pet_midaction() or string.find(spell.type, 'BloodPact'))) then
         return
     end
 
@@ -558,7 +561,7 @@ function pet_midcast(spell)
     if S {BloodPactTypes.healing, BloodPactTypes.magic, BloodPactTypes.magicTP, BloodPactTypes.mnd}:contains(spell.name) then
         mode = Magic_Modes[Magic_Mode]
     else
-        mod = Melee_Modes[Melee_Mode]
+        mode = Melee_Modes[Melee_Mode]
     end
 
     -- Spell-specific sets
@@ -803,11 +806,11 @@ function mod_buff_change(buff, is_gained, set)
     return set
 end
 
-function mod_tp(set, mode)
+function mod_tp(set, mode, override_lock, is_user_command)
     return set
 end
 
-function mod_idle(set, mode)
+function mod_idle(set, mode, override_lock, is_user_command)
     return set
 end
 
@@ -840,7 +843,7 @@ function tp(should_equip, buff_override, override_lock, is_user_command)
         end
     end
 
-    tp_set = mod_tp(tp_set, mode)
+    tp_set = mod_tp(tp_set, mode, override_lock, is_user_command)
 
     if should_equip then
         equip(tp_set)
@@ -868,7 +871,7 @@ function idle(should_equip, buff_override, override_lock, is_user_command)
         idle_set = get_set(sets.Idle, mode, override_lock, is_user_command)
     end
 
-    idle_set = mod_idle(idle_set, mode)
+    idle_set = mod_idle(idle_set, mode, override_lock, is_user_command)
 
     if should_equip then
         equip(idle_set)

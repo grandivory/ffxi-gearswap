@@ -66,6 +66,10 @@ function define_sets()
 
     sets.midcast.Elemental.Proc = set_combine(sets.Idle, {})
 
+    sets.Distance = {
+        waist = "Orpheus's Sash"
+    }
+
     sets.Resting = {
         main = "Contemplator +1"
     }

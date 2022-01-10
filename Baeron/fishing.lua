@@ -17,7 +17,7 @@ function define_sets()
         neck = "Fisher's Torque",
         left_ring = "Noddy Ring",
         right_ring = "Puffin Ring",
-        waist = "Fisherman's Belt"
+        waist = "Fisher's Rope"
     }
 
     sets.Idle.Speed = set_combine(sets.Idle, {

@@ -5,8 +5,8 @@ include('augments')
 lockstyleset = 20
 
 function define_sets()
-    Idle_Modes = T {'Refresh', 'Hybrid', 'DT'}
-    Magic_Modes = T {'Acc', 'MAB', 'Vagary'}
+    Idle_Modes = T {'Refresh', 'Hybrid'}
+    Magic_Modes = T {'MAB', 'Acc', 'Vagary'}
     fastcast = .8
 
     back = {
@@ -38,13 +38,13 @@ function define_sets()
     sets.Idle.Refresh.withBuffs["Sublimation: Activated"] = set_combine(sets.Idle.Refresh, {
         waist = "Embla Sash"
     })
-    sets.Idle.Hybrid = { -- Refresh +8~9, PDT -42% , MDT -48% , MDB +3
+    sets.Idle.Hybrid = { -- Refresh +7~8,
         main = "Malignance Pole", -- DT -20%
         sub = "Khonsu", -- DT -6%
         ammo = "Homiliary", -- Refresh +1
-        head = "Befouled Crown", -- Refresh +1
+        head = nyame.head, -- DT -7%
         body = "Jhakri Robe +2", -- Refresh +4
-        hands = "Agwu's Gages", -- Resist Silence +10
+        hands = nyame.hands, -- DT -7%
         legs = "Assiduity Pants +1", -- Refresh +1~2
         feet = "Herald's Gaiters",
         neck = "Loricate Torque +1", -- DT -6%
@@ -55,21 +55,8 @@ function define_sets()
         right_ring = "Stikini Ring +1", -- Refresh +1
         back = back.nuke
     }
-    sets.Idle.DT = set_combine(sets.Idle.Refresh, { -- Refresh +6~7 , PDT -47%, MDT -51%, MDB +4
-        main = "Malignance Pole", -- 20%
-        sub = "Khonsu", -- 6%
-        ammo = "Vanir Battery", -- MDB +4
-        neck = "Loricate Torque +1", -- 6%
-        left_ear = "Etiolation Earring", -- 3% MDT
-        right_ear = "Regal Earring",
-        left_ring = "Defending Ring", -- 10% DT
-        right_ring = {
-            name = "Dark Ring",
-            augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
-        }
-    })
-    sets.Idle.DT.withBuffs = {}
-    sets.Idle.DT.withBuffs["Sublimation: Activated"] = set_combine(sets.Idle.DT, {
+    sets.Idle.Hybrid.withBuffs = {}
+    sets.Idle.Hybrid.withBuffs["Sublimation: Activated"] = set_combine(sets.Idle.Hybrid, {
         waist = "Embla Sash"
     })
 
@@ -96,7 +83,7 @@ function define_sets()
             name = "Dark Ring",
             augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
         },
-        back = "Aurist's Cape" -- MP +40
+        back = "Aurist's Cape +1" -- MP +40
     }
 
     sets.JA["Tabula Rasa"] = {
@@ -104,11 +91,11 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 83%
+    sets.precast.FastCast = { -- 82%
         ammo = "Sapience Orb", -- 2%
         head = "Vanya Hood", -- 10%
         body = "Zendik Robe", -- 13%
-        hands = "Leyline Gloves", -- 7%
+        hands = "Agwu's Gages", -- 6%
         legs = "Agwu's Slops", -- 7%
         feet = "Acad. Loafers +3", -- 12%
         neck = "Orunmila's Torque", -- 5%
@@ -267,11 +254,6 @@ function define_sets()
         head = "Pedagogy Mortarboard +3",
         right_ring = "Mujin Band"
     })
-    -- sets.midcast.Helix.Acc = set_combine(sets.midcast.Helix, {
-    --     main = "Contemplator +1",
-    --     sub = "Khonsu"
-    -- })
-    sets.midcast.Helix.withBuffs = {}
     sets.midcast.Luminohelix = set_combine(sets.midcast.Helix, {
         main = "Daybreak"
     })
@@ -333,10 +315,6 @@ function define_sets()
 
     }
     sets.midcast.Enfeebling = enfeeblingSet
-    sets.midcast.Enfeebling.withBuffs = {}
-    sets.midcast.Enfeebling.withBuffs["Dark Arts"] = set_combine(enfeeblingSet, {
-        body = "Acad. Gown +1" -- Enfeebling +20
-    })
     sets.midcast.Dispelga = set_combine(sets.midcast.Enfeebling, {
         main = "Daybreak",
         sub = "Ammurapi Shield"
@@ -362,6 +340,10 @@ function define_sets()
         -- sub = "Khonsu",
         waist = "Hachirin-no-obi",
         back = "Twilight Cape"
+    }
+
+    sets.Distance = {
+        waist = "Orpheus's Sash"
     }
 
     organizer_items = {

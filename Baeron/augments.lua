@@ -2,6 +2,67 @@
 -- A single file to define all of the augmented gear that I have available
 -- =========================================================================================================
 -- =========================================================================================================
+-- Odyssey Sets
+-- =========================================================================================================
+nyame = {
+    head = "Nyame Helm",
+    body = "Nyame Mail",
+    hands = "Nyame Gauntlets",
+    legs = "Nyame Flanchard",
+    feet = "Nyame Sollerets"
+}
+
+mpaca = {
+    head = "Mpaca's Cap",
+    body = "Mpaca's Doublet",
+    hands = "Mpaca's Gloves",
+    legs = "Mpaca's Hose",
+    feet = "Mpaca's Boots"
+}
+
+gleti = {
+    head = "Gleti's Mask",
+    body = "Gleti's Cuirass",
+    hands = "Gleti's Gauntlets",
+    legs = "Gleti's Breeches",
+    feet = "Gleti's Boots"
+}
+
+bunzi = {
+    head = "Bunzi's Cap",
+    body = "Bunzi's Robe",
+    hands = "Bunzi's Gloves",
+    legs = "Bunzi's Pants",
+    feet = "Bunzi's Sabots"
+}
+
+sakpata = {}
+
+-- =========================================================================================================
+-- Ambuscade Sets
+-- =========================================================================================================
+flamma = {
+    body = "Flamma Korazin +2"
+}
+
+ayanmo = {
+    head = "Aya. Zucchetto +2",
+    body = "Ayanmo Corazza +2",
+    hands = "Aya. Manopolas +2",
+    legs = "Aya. Cosciales +2",
+    feet = "Aya. Gambieras +2"
+}
+
+-- =========================================================================================================
+-- Unity Sets
+-- =========================================================================================================
+tatenashi = {
+    body = "Tatena. Harama. +1",
+    legs = "Tatena. Haidate +1",
+    feet = "Tatena. Sune"
+}
+
+-- =========================================================================================================
 -- Oseem Augments
 -- =========================================================================================================
 herc = {}
@@ -59,6 +120,18 @@ herc.feet = {
     strcrit = {
         name = "Herculean Boots",
         augments = {'Attack+11', 'Crit. hit damage +4%', 'STR+9'}
+    }
+}
+
+chironic = {}
+chironic.head = {
+    th = {
+        name = "Chironic Hat",
+        augments = {'Mag. Acc.+14', 'Pet: DEX+5', '"Treasure Hunter"+2'}
+    },
+    refresh = {
+        name = "Chironic Hat",
+        augments = {'Pet: DEX+4', 'Attack+6', '"Refresh"+2', 'Mag. Acc.+3 "Mag.Atk.Bns."+3'}
     }
 }
 

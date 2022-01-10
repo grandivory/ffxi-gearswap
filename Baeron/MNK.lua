@@ -5,7 +5,7 @@ include('augments')
 lockstyleset = 2
 
 function define_sets()
-    Melee_Modes = T {'DT', 'Counter', 'Att', 'Acc'}
+    Melee_Modes = T {'PDT', 'DT', 'Counter', 'Att', 'Acc'}
 
     th_gear = {
         ammo = "Per. Lucky Egg",
@@ -14,8 +14,6 @@ function define_sets()
     }
 
     back = {
-        tp = {},
-        strws = {},
         vitws = {
             name = "Segomo's Mantle",
             augments = {'VIT+20', 'Accuracy+20 Attack+20', 'VIT+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%'}
@@ -57,10 +55,10 @@ function define_sets()
         main = "Verethragna",
         ammo = "Coiste Bodhar",
         head = "Adhemar Bonnet +1",
-        body = "Mpaca's Doublet",
+        body = mpaca.body,
         hands = "Adhemar Wrist. +1",
         legs = "Hes. Hose +2",
-        feet = "Anch. Gaiters +2",
+        feet = "Anch. Gaiters +3",
         neck = "Mnk. Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -96,10 +94,10 @@ function define_sets()
     sets.TP.DT = {
         main = "Verethragna",
         ammo = "Coiste Bodhar",
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = "Mpaca's Gloves",
-        legs = "Mpaca's Hose",
+        head = "Malignance Chapeau",
+        body = "Malignance Tabard",
+        hands = "Malignance Gloves",
+        legs = "Malignance Tights",
         feet = "Malignance Boots",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
@@ -109,13 +107,30 @@ function define_sets()
         right_ring = "Niqmaddu Ring",
         back = back.dexda
     }
+    sets.TP.PDT = {
+        main = "Verethragna",
+        ammo = "Coiste Bodhar",
+        head = mpaca.head,
+        body = mpaca.body,
+        hands = mpaca.hands,
+        legs = mpaca.legs,
+        feet = "Malignance Boots",
+        neck = "Monk's Nodowa +2",
+        waist = "Moonbow Belt +1",
+        left_ear = "Sherida Earring",
+        right_ear = "Schere Earring",
+        left_ring = "Epona's Ring",
+        right_ring = "Niqmaddu Ring",
+        back = back.dexda
+
+    }
     sets.TP.Counter = {
         main = "Verethragna",
         ammo = "Amar Cluster",
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = "Mpaca's Gloves",
-        legs = "Mpaca's Hose",
+        head = mpaca.head,
+        body = mpaca.body,
+        hands = mpaca.hands,
+        legs = mpaca.legs,
         feet = "Malignance Boots",
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
@@ -129,10 +144,10 @@ function define_sets()
     -- Weapon Skill Sets
     sets.WS["Victory Smite"] = {
         ammo = "Coiste Bodhar",
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
+        head = mpaca.head,
+        body = mpaca.body,
         hands = "Ryuo Tekko +1",
-        legs = "Mpaca's Hose",
+        legs = mpaca.legs,
         feet = herc.feet.strcrit,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
@@ -145,10 +160,10 @@ function define_sets()
     sets.WS["Victory Smite"].withBuffs = {}
     sets.WS["Victory Smite"].withBuffs.Impetus = {
         ammo = "Coiste Bodhar",
-        head = "Mpaca's Cap",
+        head = mpaca.head,
         body = "Bhikku Cyclas +1",
         hands = "Ryuo Tekko +1",
-        legs = "Mpaca's Hose",
+        legs = mpaca.legs,
         feet = herc.feet.strcrit,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
@@ -160,11 +175,11 @@ function define_sets()
     }
     sets.WS["Raging Fists"] = {
         ammo = "Coiste Bodhar",
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
+        head = mpaca.head,
+        body = mpaca.body,
         hands = "Adhemar Wrist. +1",
-        legs = "Tatena. Haidate +1",
-        feet = "Mpaca's Boots",
+        legs = tatenashi.legs,
+        feet = mpaca.feet,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -174,11 +189,11 @@ function define_sets()
         back = back.strda
     }
     sets.WS["Shijin Spiral"] = {
-        ammo = "Knobkierrie",
-        head = "Mpaca's Cap",
-        body = "Nyame Mail",
-        hands = "Nyame Gauntlets",
-        legs = "Mpaca's Hose",
+        ammo = "Aurgelmir Orb +1",
+        head = mpaca.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = mpaca.legs,
         feet = herc.feet.dexta,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
@@ -190,11 +205,11 @@ function define_sets()
     }
     sets.WS["Howling Fist"] = {
         ammo = "Knobkierrie",
-        head = "Mpaca's Cap",
-        body = "Tatena. Harama. +1",
-        hands = "Mpaca's Gloves",
-        legs = "Mpaca's Hose",
-        feet = "Mpaca's Boots",
+        head = mpaca.head,
+        body = tatenashi.body,
+        hands = mpaca.hands,
+        legs = mpaca.legs,
+        feet = mpaca.feet,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -203,13 +218,13 @@ function define_sets()
         right_ring = "Niqmaddu Ring",
         back = back.vitws
     }
-    sets.WS["Tornado Kick"] = {
+    tk = {
         ammo = "Coiste Bodhar",
-        head = "Mpaca's Cap",
-        body = "Tatena. Harama. +1",
+        head = mpaca.head,
+        body = tatenashi.body,
         hands = "Adhemar Wristbands +1",
-        legs = "Mpaca's Hose",
-        feet = "Nyame Sollerets",
+        legs = mpaca.legs,
+        feet = nyame.feet,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -218,6 +233,11 @@ function define_sets()
         right_ring = "Niqmaddu Ring",
         back = back.vitws
     }
+    sets.WS["Tornado Kick"] = tk
+    sets.WS["Tornado Kick"].withBuffs = {}
+    sets.WS["Tornado Kick"].withBuffs.Footwork = set_combine(tk, {
+        feet = "Anchorite's Gaiters +3"
+    })
     sets.WS["Shell Crusher"] = {
         ammo = "Pemphredo Tathlum",
         head = "Malignance Chapeau",
@@ -229,17 +249,32 @@ function define_sets()
         waist = "Luminary Sash",
         ear1 = "Digni. Earring",
         ear2 = "Enchntr. Earring +1",
-        left_ring = "Mummu Ring",
-        right_ring = "Metamor. Ring +1",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Stikini Ring +1",
         back = back.vitws
+    }
+    sets.WS.Cataclysm = {
+        ammo = "Ghastly Tathlum +1",
+        head = "Pixie Hairpin +1",
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Baetyl Pendant",
+        waist = "Eschan Stone",
+        left_ear = "Friomisi Earring",
+        right_ear = "Moonshade Earring",
+        left_ring = "Archon Ring",
+        right_ring = "Metamor. Ring +1",
+        back = back.strda
     }
     sets.WS.Generic = {
         ammo = "Knobkierrie",
-        head = "Mpaca's Cap",
-        body = "Nyame Mail",
-        hands = "Nyame Gauntlets",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        head = mpaca.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
@@ -249,18 +284,18 @@ function define_sets()
         back = back.strda
     }
     sets.WS.MAB = {
-        ammo = "Pemphredo Tathlum",
-        head = "Nyame Helm",
-        body = "Nyame Mail",
-        hands = "Nyame Gauntlets",
-        legs = "Nyame Flanchard",
+        ammo = "Ghastly Tathlum +1",
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Friomisi Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Metamor. Ring +1",
-        right_ring = "Shiva Ring +1",
+        right_ring = "Epaminondas's Ring",
         back = back.vitws
     }
 
@@ -277,11 +312,12 @@ function define_sets()
         legs = "Hesychast's Hose +2"
     }
     sets.JA.Chakra = {
-        head = "Mpaca's Cap",
+        ammo = "Aurgelmir Orb +1",
+        head = mpaca.head,
         body = "Anch. Cyclas +1",
         hands = "Hes. Gloves +1",
-        legs = "Tatena. Haidate +1",
-        feet = "Mpaca's Boots",
+        legs = tatenashi.legs,
+        feet = mpaca.feet,
         neck = "Unmoving Collar +1",
         left_ear = "Tuisto Earring",
         right_ear = "Odnowa Earring +1",
@@ -305,4 +341,9 @@ function define_sets()
     }
 
     sets.midcast[": Ni"] = th_gear
+
+    sets.Distance = {
+        waist = "Orpheus's Sash"
+    }
+
 end

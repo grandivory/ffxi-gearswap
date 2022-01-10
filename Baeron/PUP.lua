@@ -12,8 +12,8 @@ lockstyleset = 18
 autodeploy = true
 
 function define_sets()
-    Melee_Modes = T {'DT', 'Master', 'Dual', 'Bruiser', 'TH'}
-    Idle_Modes = T {'Speed', 'Bruiser', 'Turtle', 'PUPDD', 'Ranger', 'BoneSlayer', 'PUPMagic'}
+    Melee_Modes = T {'PDT', 'DT', 'Dual-Tank', 'TH'}
+    Idle_Modes = T {'Turtle', 'Bruiser', 'PUPDD', 'Ranger', 'BoneSlayer', 'PUPMagic', 'Speed'}
 
     back = {
         strda = {
@@ -28,9 +28,10 @@ function define_sets()
     }
 
     th_gear = {
-        ammo = "Per. Lucky Egg",
+        -- ammo = "Per. Lucky Egg",
         legs = "Volte Hose",
-        feet = herc.feet.thmab
+        feet = herc.feet.thmab,
+        waist = "Chaac Belt"
     }
 
     -- =========================================================================================================
@@ -38,14 +39,14 @@ function define_sets()
     -- =========================================================================================================
 
     ve_overdrive = {
-        main = "Gnafron's Adargas",
+        main = "Xiucoatl",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = taeon.head.pet,
         body = taeon.body.pet,
-        hands = "Mpaca's Gloves",
+        hands = taeon.hands.pet,
         legs = taeon.legs.pet,
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
@@ -55,14 +56,14 @@ function define_sets()
         back = back.pet
     }
     sharpshot_overdrive = {
-        main = "Gnafron's Adargas",
+        main = "Xiucoatl",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = "Karagoz Capello +1",
         body = "Pitre Tobe +3",
-        hands = "Mpaca's Gloves",
+        hands = mpaca.hands,
         legs = "Heyoka Subligar +1",
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
@@ -77,7 +78,6 @@ function define_sets()
     -- =========================================================================================================
 
     sets.Idle.Speed = {
-        range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = "Malignance Chapeau",
         body = "Malignance Tabard",
@@ -139,7 +139,7 @@ function define_sets()
         body = "Pitre Tobe +3",
         hands = taeon.hands.pet,
         legs = taeon.legs.pet,
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
         left_ear = "Rimeice Earring",
@@ -152,14 +152,14 @@ function define_sets()
     sets.Idle.PUPDD.withBuffs.Overdrive = sharpshot_overdrive
 
     sets.Idle.Ranger = {
-        main = "Denouements",
+        main = "Xiucoatl",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
-        head = "Mpaca's Cap",
+        head = mpaca.head,
         body = "Pitre Tobe +3",
-        hands = "Mpaca's Gloves",
+        hands = mpaca.hands,
         legs = "Kara. Pantaloni +1",
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Burana Earring",
@@ -168,6 +168,8 @@ function define_sets()
         right_ring = "Varar Ring +1",
         back = back.pet
     }
+    sets.Idle.Ranger.withBuffs = {}
+    sets.Idle.Ranger.withBuffs.Overdrive = sharpshot_overdrive
 
     sets.Idle.BoneSlayer = copy(sets.Idle.PUPDD)
     sets.Idle.BoneSlayer.withBuffs = {}
@@ -184,15 +186,33 @@ function define_sets()
     -- =========================================================================================================
     -- ***Engaged Sets***
     -- =========================================================================================================
+    sets.TP.PDT = {
+        main = "Verethragna",
+        range = "Neo Animator",
+        ammo = "Automat. Oil +3",
+        head = mpaca.head,
+        body = mpaca.body,
+        hands = mpaca.hands,
+        legs = mpaca.legs,
+        feet = mpaca.feet,
+        neck = "Shulmanu Collar",
+        waist = "Moonbow Belt +1",
+        left_ear = "Telos Earring",
+        right_ear = "Schere Earring",
+        left_ring = "Epona's Ring",
+        right_ring = "Niqmaddu Ring",
+        back = back.strda
+    }
+
     sets.TP.DT = {
         main = "Verethragna",
-        range = "Animator P +1",
+        range = "Neo Animator",
         ammo = "Automat. Oil +3",
         head = "Malignance Chapeau",
         body = "Malignance Tabard",
         hands = "Malignance Gloves",
         legs = "Malignance Tights",
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
         left_ear = "Telos Earring",
@@ -202,53 +222,35 @@ function define_sets()
         back = back.strda
     }
 
-    sets.TP.Master = {
+    sets.TP['Dual-Tank'] = {
         main = "Verethragna",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = herc.hands.dexta,
-        legs = "Mpaca's Hose",
-        feet = herc.feet.dexta,
-        neck = "Shulmanu Collar",
-        waist = "Moonbow Belt +1",
-        left_ear = "Telos Earring",
-        right_ear = "Schere Earring",
-        left_ring = "Epona's Ring",
-        right_ring = "Niqmaddu Ring",
-        back = back.strda
-    }
-
-    sets.TP.Dual = {
-        main = "Verethragna",
-        range = "Animator P +1",
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = "Mpaca's Gloves",
+        head = mpaca.head,
+        body = mpaca.body,
+        hands = mpaca.hands,
         legs = "Heyoka Subligar +1",
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
-        left_ear = "Telos Earring",
-        right_ear = "Schere Earring",
-        left_ring = "Epona's Ring",
-        right_ring = "Niqmaddu Ring",
+        left_ear = "Rimeice Earring",
+        right_ear = "Domes. Earring",
+        left_ring = "Defending Ring",
+        right_ring = "C. Palug Ring",
         back = back.pet
     }
 
-    sets.TP.Bruiser = sets.Idle.Bruiser
     sets.TP.TH = set_combine(sets.TP.DT, th_gear)
 
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
     sets.WS["Victory Smite"] = {
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
+        head = mpaca.head,
+        body = mpaca.body,
         hands = "Ryuo Tekko +1",
-        legs = "Mpaca's Hose",
-        feet = "Mpaca's Boots",
+        legs = mpaca.legs,
+        feet = mpaca.feet,
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
         left_ear = {
@@ -262,11 +264,11 @@ function define_sets()
     }
 
     sets.WS["Stringing Pummel"] = {
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
+        head = mpaca.head,
+        body = mpaca.body,
         hands = "Ryuo Tekko +1",
-        legs = "Mpaca's Hose",
-        feet = "Mpaca's Boots",
+        legs = mpaca.legs,
+        feet = mpaca.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = {
@@ -280,10 +282,10 @@ function define_sets()
     }
 
     sets.WS["Shijin Spiral"] = {
-        head = "Nyame Helm",
+        head = nyame.head,
         body = "Tali'ah Manteel +2",
         hands = herc.hands.dexta,
-        legs = "Nyame Flanchard",
+        legs = nyame.legs,
         feet = herc.feet.dexta,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
@@ -295,11 +297,11 @@ function define_sets()
     }
 
     sets.WS["Howling Fist"] = {
-        head = "Mpaca's Cap",
+        head = mpaca.head,
         body = "Tali'ah Manteel +2",
-        hands = "Nyame Gauntlets",
-        legs = "Mpaca's Hose",
-        feet = "Nyame Sollerets",
+        hands = nyame.hands,
+        legs = mpaca.legs,
+        feet = nyame.feet,
         neck = "Caro Necklace",
         waist = "Moonbow Belt +1",
         left_ear = {
@@ -313,11 +315,11 @@ function define_sets()
     }
 
     sets.WS["Raging Fists"] = {
-        head = "Mpaca's Cap",
-        body = "Mpaca's Doublet",
-        hands = "Mpaca's Gloves",
-        legs = "Mpaca's Hose",
-        feet = "Mpaca's Boots",
+        head = mpaca.head,
+        body = mpaca.body,
+        hands = mpaca.hands,
+        legs = mpaca.legs,
+        feet = mpaca.feet,
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
         left_ear = {
@@ -331,11 +333,11 @@ function define_sets()
     }
 
     sets.WS.Generic = {
-        head = "Mpaca's Cap",
-        body = "Nyame Mail",
-        hands = "Nyame Gauntlets",
-        legs = "Nyame Flanchard",
-        feet = "Nyame Sollerets",
+        head = mpaca.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Caro Necklace",
         waist = "Moonbow Belt +1",
         left_ear = {
@@ -348,10 +350,10 @@ function define_sets()
         back = back.strda
     }
     sets.WS.MAB = {
-        head = "Nyame Helm",
-        body = "Nyame Mail",
-        hands = "Nyame Gauntlets",
-        legs = "Nyame Flanchard",
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
@@ -361,19 +363,22 @@ function define_sets()
         },
         right_ear = "Friomisi Earring",
         left_ring = "Metamor. Ring +1",
-        right_ring = "Shiva Ring +1",
-        back = "Aurist's Cape"
+        right_ring = "Epaminondas's Ring",
+        back = "Aurist's Cape +1"
     }
+
+    sets.WS["Aeolian Edge"] = set_combine(sets.WS.MAB, th_gear)
 
     -- =========================================================================================================
     -- ***Pet Weapon Skill Sets***
     -- =========================================================================================================
     meleeWS = {
+        main = "Xiucoatl",
         head = taeon.head.pet,
         body = taeon.body.pet,
-        hands = "Mpaca's Gloves",
+        hands = mpaca.hands,
         legs = taeon.legs.pet,
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
         left_ear = "Burana Earring",
@@ -384,11 +389,12 @@ function define_sets()
     }
 
     rangedWS = {
+        main = "Xiucoatl",
         head = "Karagoz Capello +1",
         body = "Pitre Tobe +3",
-        hands = "Mpaca's Gloves",
+        hands = mpaca.hands,
         legs = "Kara. Pantaloni +1",
-        feet = "Mpaca's Boots",
+        feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Burana Earring",
@@ -420,18 +426,20 @@ function define_sets()
     }
 
     sets.JA.Repair = {
-        feet = "Foire Bab. +2",
+        feet = "Foire Babouches +3",
         left_ear = "Guignol Earring",
         back = "Visucius's Mantle"
     }
 
     sets.JA.Maneuver = {
         body = "Kara. Farsetto +1",
-        hands = "Foire Dastanas +2",
+        hands = "Foire Dastanas +3",
         neck = "Buffoon's Collar +1",
         left_ear = "Burana Earring",
         back = "Visucius's Mantle"
     }
+
+    sets.JA.Provoke = th_gear
 
     -- =========================================================================================================
     -- ***Precast Sets***
@@ -471,7 +479,7 @@ function define_sets()
         left_ring = "Kunaji Ring"
     })
 
-    sets.midcast["Dia II"] = th_gear
+    sets.midcast.Dia = th_gear
 
     sets.midcast.Enhancing = {
         head = "Malignance Chapeau",
@@ -491,6 +499,10 @@ function define_sets()
     sets.midcast.RefreshSelf = set_combine(sets.midcast.Enhancing, {
         waist = "Gishdubar Sash"
     })
+
+    -- sets.Distance = {
+    --     waist = "Orpheus's Sash"
+    -- }
 
     organizer_items = {
         bseals = "Beastmen's Seal",
@@ -525,8 +537,11 @@ function define_commands()
             autodeploy = not autodeploy
         end,
         clearmaneuvers = function()
-            current_maneuvers:clear()
-            maneuver_queue:clear()
+            if (maneuver_queue:length() > 0) then
+                maneuver_queue:clear()
+            elseif (current_maneuvers:length() > 0) then
+                current_maneuvers:pop()
+            end
         end
     }
 end
@@ -555,7 +570,7 @@ hud_defaults = {
     }
 }
 
-hud_text = [[| Kenbishi:      | Maneuvers:                | Config:            |
+hud_text = [[| Kenbishi:      | Maneuvers (^f9 to clear): | Config(^f10):      |
 |  HP: ${pet_hp|0/0|%9s} |  Current: ${maneuvers||%14s}  |  Autodeploy: ${autodeploy||%5s} |
 |  MP: ${pet_mp|0/0|%9s} |  Upcoming: ${upcoming_maneuvers||%14s} |  Pet Mode: ${pet_mode||%5s}   |
 |  TP: [${pet_current_tp|0|%4s}]    |                           |                    |
@@ -759,13 +774,18 @@ end
 
 pet_mode = "TP"
 
-function mod_idle(set, mode)
-    if pet_mode == "WS" and sets.petWS[mode] ~= nil and buffactive["Overdrive"] == nil then
-        return sets.petWS[mode]
-    elseif pet_mode == "ENM" and sets.petEnmity[mode] ~= nil and buffactive["Overdrive"] == nil then
-        return sets.petEnmity[mode]
+function mod_idle(set, mode, override_lock, is_user_command)
+    if pet.isvalid then
+        if pet_mode == "WS" and sets.petWS[mode] ~= nil and buffactive["Overdrive"] == nil then
+            return get_set(sets.petWS, mode, override_lock, is_user_command)
+        elseif pet_mode == "ENM" and sets.petEnmity[mode] ~= nil and buffactive["Overdrive"] == nil then
+            return get_set(sets.petEnmity, mode, override_lock, is_user_command)
+        else
+            return set
+        end
     else
-        return set
+        -- If we don't have a pet, just use the default DT + Speed set
+        return get_set(sets.Idle.Speed, mode, override_lock, is_user_command)
     end
 end
 

@@ -16,8 +16,8 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * You can also switch directly to a specific mode with `gs c MeleeMode DT` (for example), or `/console gs c MeleeMode DT` from a macro
 * TP Mods:
   * If you have `sets.TPMod['Buff name']` defined, then any gear there will be added to your TP set while `Buff name` is active
-  * You can also define a `mod_tp(set, mode)` function that will receive the current set that the lua thinks you should equip along with the current melee mode, and should return the actual set to equip (by default this just returns the same set)
-  * Similarly, you can also define a `mod_idle(set, mode)` function
+  * You can also define a `mod_tp(set, mode, override_lock, is_user_command)` function that will receive the current set that the lua thinks you should equip along with the current melee mode, and should return the actual set to equip (by default this just returns the same set)
+  * Similarly, you can also define a `mod_idle(set, mode, override_lock, is_user_command)` function
 * Distance Threshold:
   * You can set `distance_threshold` to some value, and put gear into `sets.Distance`. Then, if you are closer than `distance_threshold` while using an elemental ability, the `sets.Distance` gear will be added to your set.
 * Magic burst mode:
@@ -120,6 +120,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * `sets.midcast.BlueMagic.Cure` for cures
   * `sets.midcast.BlueMagic.CureSelf` for cures targeted on yourself
   * `sets.midcast.BlueMagic.Debuff` or `sets.midcast.BlueMagic.Skill` for enfeebles
+  * `sets.midcast.BlueMagic.Static` for buffs with a static effect (not affected by skill)
   * `sets.midcast.BlueMagic.Skill` for all other spells
 * For Ninjutsu:
   * `sets.midcast.Ninja.Buff` for buffs
