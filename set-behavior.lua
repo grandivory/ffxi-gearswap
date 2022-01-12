@@ -1,6 +1,7 @@
 include('texts')
 include('ability-data')
 include('utils')
+res = require('resources')
 
 ---------------------------------------------------------
 ---- Configuration                                   ----
@@ -28,6 +29,7 @@ local buffs = S {}
 local th_on_tag = false
 local previousTarget = nil
 local currentTarget = nil
+local current_stances = {}
 
 ---------------------------------------------------------
 ---- Gearswap functions                              ----
@@ -50,6 +52,7 @@ function get_sets()
     sets.pet_midcast = {}
     sets.WS = {}
     sets.JA = {}
+    stances = {}
 
     no_shoot_ammo = S {}
     ammo_threshold = 10
@@ -74,6 +77,7 @@ function get_sets()
     send_command('bind f9 gs c MeleeMode')
     send_command('bind ^f9 gs c THMode')
     send_command('bind f10 gs c IdleMode')
+    send_command('bind ^f10 gs c clearStances')
     send_command('bind f11 gs c MagicMode')
     send_command('bind f12 gs c EquipGear')
     send_command('bind ^f12 gs c EquipGear override')
@@ -81,23 +85,28 @@ function get_sets()
     melee_settings = table.copy(text_settings)
     idle_settings = table.copy(text_settings)
     magic_settings = table.copy(text_settings)
+    stance_settings = table.copy(text_settings)
 
     line_height = text_settings.text.size * 1.5 + text_settings.padding * 2 + 3
     idle_settings.pos.y = idle_settings.pos.y + line_height
     magic_settings.pos.y = magic_settings.pos.y + line_height * 2
+    stance_settings.pos.y = stance_settings.pos.y + line_height * 3
 
     melee_display = texts.new('Melee: ${mode}${th_mod}', melee_settings)
     idle_display = texts.new('Idle: ${mode}', idle_settings)
     magic_display = texts.new('Magic: ${mode}', magic_settings)
+    stance_display = texts.new('Stances: ${stances}', stance_settings)
 
     melee_display.mode = Melee_Modes[Melee_Mode]
     melee_display.th_mod = ''
     idle_display.mode = Idle_Modes[Idle_Mode]
     magic_display.mode = Magic_Modes[Magic_Mode]
+    stance_display.stances = ''
 
     texts.show(melee_display)
     texts.show(idle_display)
     texts.show(magic_display)
+    texts.show(stance_display)
     enable("main", "sub", "range", "ammo", "head", "neck", "left_ear", "right_ear", "body", "hands", "left_ring",
         "right_ring", "back", "waist", "legs", "feet")
 end
@@ -105,6 +114,7 @@ end
 function file_unload(new_file)
     send_command('unbind f9')
     send_command('unbind f10')
+    send_command('unbind ^f10')
     send_command('unbind f11')
     send_command('unbind f12')
     send_command('unbind ^f12')
@@ -123,6 +133,16 @@ end
 function precast(spell)
     if no_action_types:contains(spell.type) then
         return
+    end
+
+    -- Check stances to see if we need to update
+    for stance_set, abilities in pairs(stances) do
+        for name in pairs(abilities) do
+            if name == spell.name then
+                current_stances[stance_set] = spell
+            end
+        end
+        update_stance_display()
     end
 
     -- If a pet is mid-action, then don't swap sets
@@ -781,6 +801,10 @@ function self_command(commandArgs)
             if lockstyleset ~= nil then
                 send_command('input /lockstyleset ' .. lockstyleset)
             end
+        end,
+        clearstances = function()
+            current_stances = {}
+            update_stance_display()
         end
     }
     local job_commands = define_commands()
@@ -814,6 +838,28 @@ windower.register_event('target change', function()
 
         send_command('gs c equipgear')
     end
+end)
+
+tick = os.time()
+
+-- Make sure that we stay in the right stance once it's set
+windower.register_event('prerender', function()
+    if os.time() > tick then
+        tick = os.time()
+
+        for stance_set in pairs(stances) do
+            local ability = current_stances[stance_set]
+            if current_stances[stance_set] ~= nil and not buffactive[ability.name] and not midaction() and
+                windower.ffxi.get_ability_recasts()[res.job_abilities[ability.id].recast_id] <= 0 then
+                send_command('input /ja ' .. ability.name .. ' <me>')
+
+            end
+        end
+    end
+end)
+
+windower.register_event('zone change', function()
+    current_stances = {}
 end)
 
 ---------------------------------------------------------
@@ -984,4 +1030,19 @@ function cycle_table(index, table)
     else
         return 1
     end
+end
+
+function update_stance_display()
+    stances_string = ''
+    for stance_set in pairs(stances) do
+        if current_stances[stance_set] ~= nil then
+            if stances_string == '' then
+                stances_string = current_stances[stance_set].name
+            else
+                stances_string = stances_string .. ', ' .. current_stances[stance_set].name
+            end
+        end
+    end
+
+    stance_display.stances = stances_string
 end

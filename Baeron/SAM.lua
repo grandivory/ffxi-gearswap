@@ -92,7 +92,7 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Aurgelmir Orb +1",
         head = mpaca.head,
-        body = af.body,
+        body = mpaca.body,
         hands = af.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -233,4 +233,11 @@ function define_sets()
         back = "Twilight Cape"
     }
 
+    -- =========================================================================================================
+    -- ***Stances***
+    -- =========================================================================================================
+    stances.SAM = {'Hasso', 'Seigan'}
 end
+
+current_stance = nil
+stances = S {'Hasso', 'Seigan'}
