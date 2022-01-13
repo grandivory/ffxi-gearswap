@@ -93,20 +93,24 @@ function get_sets()
     stance_settings.pos.y = stance_settings.pos.y + line_height * 3
 
     melee_display = texts.new('Melee: ${mode}${th_mod}', melee_settings)
-    idle_display = texts.new('Idle: ${mode}', idle_settings)
-    magic_display = texts.new('Magic: ${mode}', magic_settings)
-    stance_display = texts.new('Stances: ${stances}', stance_settings)
-
     melee_display.mode = Melee_Modes[Melee_Mode]
     melee_display.th_mod = ''
-    idle_display.mode = Idle_Modes[Idle_Mode]
-    magic_display.mode = Magic_Modes[Magic_Mode]
-    stance_display.stances = ''
-
     texts.show(melee_display)
+
+    idle_display = texts.new('Idle: ${mode}', idle_settings)
+    idle_display.mode = Idle_Modes[Idle_Mode]
     texts.show(idle_display)
+
+    magic_display = texts.new('Magic: ${mode}', magic_settings)
+    magic_display.mode = Magic_Modes[Magic_Mode]
     texts.show(magic_display)
-    texts.show(stance_display)
+
+    if stances ~= {} then
+        stance_display = texts.new('Stances: ${stances}', stance_settings)
+        stance_display.stances = ''
+        texts.show(stance_display)
+    end
+
     enable("main", "sub", "range", "ammo", "head", "neck", "left_ear", "right_ear", "body", "hands", "left_ring",
         "right_ring", "back", "waist", "legs", "feet")
 end
@@ -126,6 +130,9 @@ function file_unload(new_file)
     end
     if magic_display ~= nil then
         texts.destroy(magic_display)
+    end
+    if stance_display ~= nil then
+        texts.destroy(stance_display)
     end
     cleanup()
 end
@@ -658,6 +665,8 @@ function status_change(new, old)
         currentTarget = player.target.index
         if (th_on_tag) then
             set = set_combine(steady_state(), sets.mod.TH)
+        else
+            set = steady_state()
         end
     elseif new == "Resting" and sets.Resting ~= nil then
         set = get_set(sets.Resting, Idle_Modes[Idle_Mode])
@@ -860,6 +869,7 @@ end)
 
 windower.register_event('zone change', function()
     current_stances = {}
+    update_stance_display()
 end)
 
 ---------------------------------------------------------
@@ -1033,6 +1043,10 @@ function cycle_table(index, table)
 end
 
 function update_stance_display()
+    if stance_display == nil then
+        return
+    end
+
     stances_string = ''
     for stance_set in pairs(stances) do
         if current_stances[stance_set] ~= nil then
