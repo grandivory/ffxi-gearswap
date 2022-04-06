@@ -6,8 +6,8 @@ lockstyleset = 10
 
 function define_sets()
     Melee_Modes = T {'Att', 'DT', 'TH', 'DT1H'}
-    Idle_Modes = T {'Speed', 'DT', 'Refresh'}
-    Magic_Modes = T {'G.Horn', 'Harp', 'TH'}
+    Idle_Modes = T {'Speed', 'DT', 'Refresh', 'Evasion'}
+    Magic_Modes = T {'G.Horn', 'Harp', 'TH', 'Enmity'}
 
     fastcast = .71 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
 
@@ -27,6 +27,10 @@ function define_sets()
         maccfc = {
             name = "Intarabus's Cape",
             augments = {'CHR+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', 'Damage taken-5%'}
+        },
+        eva = {
+            name = "Intarabus's Cape",
+            augments = {'AGI+20', 'Eva.+20 /Mag. Eva.+20', 'Evasion+10', 'Enmity+10', 'Evasion+15'}
         }
     }
 
@@ -45,7 +49,7 @@ function define_sets()
         },
         chrws = {
             name = "Linos",
-            augments = {'Accuracy+12 Attack+12', 'Weapon skill damage +3%', 'CHR+8'}
+            augments = {'Accuracy+14 Attack+14', 'Weapon skill damage +3%', 'CHR+8'}
         }
     }
 
@@ -55,6 +59,22 @@ function define_sets()
         head = chironic.head.th,
         legs = "Volte Hose",
         waist = "Chaac Belt"
+    }
+
+    enmity_gear = {
+        main = "Mafic Cudgel",
+        sub = "Genmei Shield",
+        ammo = "Sapience Orb",
+        head = "Halitus Helm",
+        body = "Emet Harness +1",
+        legs = "Zoar Subligar +1",
+        neck = "Unmoving Collar +1",
+        waist = "Kasiri Belt",
+        left_ear = "Friomisi Earring",
+        right_ear = "Cryptic Earring",
+        left_ring = "Supershear Ring",
+        right_ring = "Eihwaz Ring",
+        back = back.eva
     }
 
     -- =========================================================================================================
@@ -89,7 +109,24 @@ function define_sets()
     sets.Idle.RP = set_combine(sets.Idle.Speed, {
         neck = "Bard's Charm +2"
     })
-
+    sets.Idle.Evasion = {
+        main = "Nibiru Knife",
+        -- sub = "Nibiru Knife",
+        sub = "Genmei Shield",
+        ammo = "Amar Cluster",
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Bathy Choker +1",
+        waist = "Kasiri Belt",
+        left_ear = "Eabani Earring",
+        right_ear = "Infused Earring",
+        left_ring = "Gelatinous Ring +1",
+        right_ring = "Vengeful Ring",
+        back = back.eva
+    }
     -- =========================================================================================================
     -- ***Engaged Sets***
     -- =========================================================================================================
@@ -105,7 +142,7 @@ function define_sets()
         neck = "Bard's Charm +2",
         waist = "Reiki Yotai",
         left_ear = "Telos Earring",
-        right_ear = "Cessance Earring",
+        right_ear = "Eabani Earring",
         left_ring = "Chirich Ring +1",
         right_ring = "Chirich Ring +1",
         back = back.tp
@@ -122,7 +159,7 @@ function define_sets()
         neck = "Bard's Charm +2",
         waist = "Reiki Yotai",
         left_ear = "Telos Earring",
-        right_ear = "Cessance Earring",
+        right_ear = "Eabani Earring",
         left_ring = "Defending Ring",
         right_ring = "Chirich Ring +1",
         back = back.tp
@@ -152,7 +189,7 @@ function define_sets()
     sets.WS.Generic = {
         range = linos.strws,
         head = nyame.head,
-        body = "Bihu Jstcorps. +3",
+        body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -170,7 +207,7 @@ function define_sets()
     sets.WS.MAB = {
         range = linos.strws,
         head = nyame.head,
-        body = "Bihu Jstcorps. +3",
+        body = nyame.body,
         hands = bunzi.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -185,7 +222,7 @@ function define_sets()
     sets.WS["Savage Blade"] = {
         range = linos.strws,
         head = nyame.head,
-        body = "Bihu Jstcorps. +3",
+        body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -203,7 +240,7 @@ function define_sets()
     sets.WS["Rudra's Storm"] = {
         range = linos.dexws,
         head = nyame.head,
-        body = "Bihu Jstcorps. +3",
+        body = nyame.body,
         hands = nyame.hands,
         legs = "Lustr. Subligar +1",
         feet = "Lustra. Leggings +1",
@@ -221,7 +258,7 @@ function define_sets()
     sets.WS["Mordant Rime"] = {
         range = linos.chrws,
         head = nyame.head,
-        body = "Bihu Jstcorps. +3",
+        body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -286,9 +323,9 @@ function define_sets()
         -- main = "Kali", -- 7%
         -- sub = "Genmei Shield",
         head = "Bunzi's Hat", -- 10%
-        body = "Inyanga Jubbah +2", -- 14%
+        body = inyanga.body, -- 14%
         hands = "Leyline Gloves", -- 7%
-        legs = telchine.legs.enhfc, -- 5%
+        legs = "Volte Brais", -- 5%
         feet = telchine.feet.enhfc, -- 5%
         neck = "Orunmila's Torque", -- 5%
         waist = "Embla Sash", -- 5%
@@ -313,6 +350,10 @@ function define_sets()
     sets.precast['Honor March'] = set_combine(sets.precast.BardSong, {
         range = "Marsyas"
     })
+    sets.precast.Pianissimo = {}
+    sets.precast.Pianissimo.Enmity = enmity_gear
+    sets.precast.Tenuto = {}
+    sets.precast.Tenuto.Enmity = enmity_gear
 
     -- =========================================================================================================
     -- ***Midcast Sets for Spells***
@@ -393,11 +434,11 @@ function define_sets()
 
     sets.midcast.Songs.Buff = {
         main = "Carnwenhan",
-        sub = "Genmei Shield",
+        sub = "Kali",
         head = "Fili Calot +1",
         body = "Fili Hongreline +1",
         hands = "Fili Manchettes +1",
-        legs = "Inyanga Shalwar +2",
+        legs = inyanga.legs,
         feet = "Brioso Slippers +3",
         neck = "Mnbw. Whistle +1",
         right_ear = "Etiolation Earring",
@@ -423,11 +464,17 @@ function define_sets()
     sets.midcast.Scherzo = set_combine(sets.midcast.Songs.Buff, {
         feet = "Fili Cothurnes +1"
     })
+    sets.midcast.Etude = set_combine(sets.midcast.Songs.Buff, {
+        head = mousai.head
+    })
     sets.midcast.Minne = set_combine(sets.midcast.Songs.Buff, {
-        legs = "Mousai Seraweels +1"
+        legs = mousai.legs
     })
     sets.midcast.Carol = set_combine(sets.midcast.Songs.Buff, {
-        hands = "Mousai Gages +1"
+        hands = mousai.hands
+    })
+    sets.midcast.Mambo = set_combine(sets.midcast.Songs.Buff, {
+        feet = mousai.feet
     })
 
     sets.midcast.Songs.Debuff = set_combine(sets.midcast.Enfeebling, {
@@ -438,16 +485,25 @@ function define_sets()
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1"
     })
+    sets.midcast.Threnody = set_combine(sets.midcast.Songs.Debuff, {
+        body = mousai.body
+    })
     sets.midcast['Foe Lullaby'] = set_combine(sets.midcast.Songs.Debuff, {
         body = "Fili Hongreline +1",
         hands = "Brioso Cuffs +3",
-        legs = "Inyanga Shalwar +2"
+        legs = inyanga.legs
     })
     sets.midcast['Foe Lullaby'].TH = set_combine(sets.midcast['Foe Lullaby'], th_gear)
+    sets.midcast['Foe Lullaby'].Enmity = set_combine(sets.midcast['Foe Lullaby'], enmity_gear, {
+        ammo = empty
+    })
     sets.midcast['Horde Lullaby'] = set_combine(sets.midcast['Foe Lullaby'], {
         range = "Blurred Harp +1"
     })
     sets.midcast['Horde Lullaby'].TH = set_combine(sets.midcast['Horde Lullaby'], th_gear)
+    sets.midcast['Horde Lullaby'].Enmity = set_combine(sets.midcast['Horde Lullaby'], enmity_gear, {
+        ammo = empty
+    })
 
     -- =========================================================================================================
     -- ***Weather Gear***

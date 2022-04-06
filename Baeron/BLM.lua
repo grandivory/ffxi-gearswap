@@ -35,7 +35,7 @@ function define_sets()
         head = "Vanya Hood",
         body = "Zendik Robe",
         hands = telchine.hands.enhfc,
-        legs = "Psycloth Lappas",
+        legs = "Volte Brais",
         feet = "Amalric Nails",
         neck = "Orunmila's Torque",
         waist = "Embla Sash",

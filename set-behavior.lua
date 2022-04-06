@@ -31,6 +31,7 @@ local previousTarget = nil
 local currentTarget = nil
 local current_stances = {}
 
+local is_debug = false
 ---------------------------------------------------------
 ---- Gearswap functions                              ----
 ---------------------------------------------------------
@@ -70,8 +71,6 @@ function get_sets()
                    "Reraise Earring", "Echad Ring", "Endorsement Ring", "Trizek Ring", "Capacity Ring", "Facility Ring",
                    "Caliber Ring"}
 
-    define_sets()
-
     MB_Mode = false
 
     send_command('bind f9 gs c MeleeMode')
@@ -81,6 +80,8 @@ function get_sets()
     send_command('bind f11 gs c MagicMode')
     send_command('bind f12 gs c EquipGear')
     send_command('bind ^f12 gs c EquipGear override')
+
+    define_sets()
 
     melee_settings = table.copy(text_settings)
     idle_settings = table.copy(text_settings)
@@ -105,7 +106,7 @@ function get_sets()
     magic_display.mode = Magic_Modes[Magic_Mode]
     texts.show(magic_display)
 
-    if stances ~= {} then
+    if next(stances) ~= nil then
         stance_display = texts.new('Stances: ${stances}', stance_settings)
         stance_display.stances = ''
         texts.show(stance_display)
@@ -138,7 +139,9 @@ function file_unload(new_file)
 end
 
 function precast(spell)
+    debug("Precast")
     if no_action_types:contains(spell.type) then
+        debug("no action")
         return
     end
 
@@ -146,6 +149,7 @@ function precast(spell)
     for stance_set, abilities in pairs(stances) do
         for name in pairs(abilities) do
             if name == spell.name then
+                debug("Setting " .. stance_set .. " to " .. name)
                 current_stances[stance_set] = spell
             end
         end
@@ -154,6 +158,7 @@ function precast(spell)
 
     -- If a pet is mid-action, then don't swap sets
     if (pet.isvalid and pet_midaction() and not spell.type == 'SummonerPact') then
+        debug("pet is mid-action. Not changing sets.")
         return
     end
 
@@ -161,22 +166,28 @@ function precast(spell)
 
     -- Determine which mode to use for this ability
     if spell.cast_time == nil then
+        debug("Using melee mode")
         mode = Melee_Modes[Melee_Mode]
     else
+        debug("Using magic mode")
         mode = Magic_Modes[Magic_Mode]
     end
 
     -- Spell-specific sets
     if sets.precast[spell.name] ~= nil then
+        debug("spell-specific set")
         precast_set = get_set(sets.precast[spell.name], mode)
     elseif sets.JA[spell.name] ~= nil then
+        debug("spell-specific set")
         precast_set = get_set(sets.JA[spell.name], mode)
     elseif sets.WS[spell.name] ~= nil then
+        debug("spell-specific set")
         precast_set = get_set(sets.WS[spell.name], mode)
     end
 
     -- Ranged attack
     if spell.action_type == 'Ranged Attack' and sets.precast.RA ~= nil then
+        debug("ranged attack")
         precast_set = get_set(sets.precast.RA, mode)
     end
 
@@ -184,8 +195,10 @@ function precast(spell)
     if precast_set == nil then
         if spell.type == "CorsairRoll" then
             if sets.precast["Phantom Roll"] ~= nil then
+                debug("Phantom Roll")
                 precast_set = get_set(sets.precast["Phantom Roll"], mode)
             elseif sets.JA["Phantom Roll"] ~= nil then
+                debug("Phantom Roll")
                 precast_set = get_set(sets.JA["Phantom Roll"], mode)
             end
         end
@@ -195,8 +208,10 @@ function precast(spell)
     if precast_set == nil then
         if spell.type == "CorsairShot" then
             if sets.precast["Quick Draw"] ~= nil then
+                debug("Quick Draw")
                 precast_set = get_set(sets.precast["Quick Draw"], mode)
             elseif sets.JA["Quick Draw"] ~= nil then
+                debug("Quick Draw")
                 precast_set = get_set(sets.JA["Quick Draw"], mode)
             end
         end
@@ -206,8 +221,10 @@ function precast(spell)
     if precast_set == nil then
         if (spell.type == "BloodPactWard" or spell.type == "BloodPactRage") and not buffactive["Astral Conduit"] then
             if sets.precast["Blood Pact"] ~= nil then
+                debug("Blood Pact")
                 precast_set = get_set(sets.precast["Blood Pact"], mode)
             elseif sets.JA["Blood Pact"] ~= nil then
+                debug("Blood Pact")
                 precast_set = get_set(sets.JA["Blood Pact"], mode)
             end
         end
@@ -218,12 +235,15 @@ function precast(spell)
         for name, set in pairs(sets.precast) do
             if string.find(spell.name, name) then
                 -- Spell-family sets
+                debug("Spell Family")
                 precast_set = get_set(set, mode)
             elseif string.find(spell.type, name) then
                 -- Spell-type sets
+                debug("Spell Family")
                 precast_set = get_set(set, mode)
             elseif spell.skill ~= nil and string.find(spell.skill, name) then
                 -- Spell skill sets
+                debug("Spell Family")
                 precast_set = get_set(set, mode)
             end
         end
@@ -233,6 +253,7 @@ function precast(spell)
     if precast_set == nil then
         for name, set in pairs(sets.JA) do
             if string.find(spell.name, name) then
+                debug("Partial JA match")
                 precast_set = get_set(set, mode)
             end
         end
@@ -247,13 +268,16 @@ function precast(spell)
             if spell.type == "WeaponSkill" then
                 if ElementalWS:contains(spell.name) then
                     if sets.WS.MAB ~= nil then
+                        debug("Generic Magic WS")
                         precast_set = get_set(sets.WS.MAB, mode)
                     elseif sets.WS.Elemental ~= nil then
+                        debug("Generic Magic WS")
                         precast_set = get_set(sets.WS.Elemental, mode)
                     end
                 end
                 if precast_set == nil then
                     if sets.WS.Generic ~= nil then
+                        debug("Generic WS")
                         precast_set = get_set(sets.WS.Generic, mode)
                     end
                 end
@@ -264,6 +288,7 @@ function precast(spell)
             ----------------------
             -- Generic Fast Cast
             if sets.precast.FastCast ~= nil then
+                debug("Generic Fast Cast")
                 precast_set = get_set(sets.precast.FastCast, mode)
             end
         end
@@ -271,12 +296,14 @@ function precast(spell)
 
     -- Only equip weather gear during precast for instant-cast abilities. Any others will equip it during midcast
     if spell.cast_time == nil and ElementalWS:contains(spell.name) and weather_match(spell) and sets.Weather ~= nil then
+        debug("Equipping Weather Gear")
         precast_set = set_combine(precast_set, get_set(sets.Weather, mode))
     end
 
     -- If distance_threshold is set and the player is closer than the threshold, equip distance gear
     if distance_threshold ~= nil and spell.target.distance < distance_threshold and (ElementalWS:contains(spell.name)) and
         sets.Distance ~= nil then
+        debug("Equipping Distance Gear")
         precast_set = set_combine(precast_set, get_set(sets.Distance, mode))
     end
 
@@ -317,9 +344,13 @@ function precast(spell)
     if spell.type == 'Ninjutsu' then
         tool_to_check = NinjutsuTools[spell.name]
         tool_available = player.inventory[tool_to_check]
-        if (tool_available == nil or tool_available.count < tool_threshold) and player.mainjob == 'NIN' then
-            tool_to_check = NinjutsuUniversalTools[spell.name]
-            tool_available = player.inventory[tool_to_check]
+        if (tool_available == nil or tool_available.count < tool_threshold) and player.main_job == 'NIN' then
+            nin_tool_to_check = NinjutsuUniversalTools[spell.name]
+            nin_tool_available = player.inventory[nin_tool_to_check]
+            if nin_tool_available ~= nil and (tool_available == nil or nin_tool_available.count > tool_available.count) then
+                tool_to_check = nin_tool_to_check
+                tool_available = nin_tool_available
+            end
         end
         if tool_available == nil then
             tool_count = 0
@@ -338,6 +369,7 @@ function precast(spell)
             if spell.name == checkSpell then
                 for cancelBuff, wait in pairs(config) do
                     if buffactive[cancelBuff] ~= nil then
+                        debug("Canceling " .. cancelBuff)
                         if wait > 0 then
                             if fastcast ~= nil then
                                 wait_time = wait * (1 - fastcast)
@@ -363,17 +395,21 @@ function precast(spell)
 end
 
 function midcast(spell)
+    debug("Midcast")
     if no_action_types:contains(spell.type) then
+        debug("no action")
         return
     end
 
     -- If a pet is mid-action, then don't swap sets
     if (pet.isvalid and pet_midaction()) then
+        debug("Pet is mid-action. Not changing sets.")
         return
     end
 
     -- For spells without a cast time (like job abilities or weapon skills), gear swaps happen in the precast
     if spell.cast_time == nil and spell.action_type ~= 'Ranged Attack' then
+        debug("This is an instant ability! Skipping midcast")
         return
     end
 
@@ -382,16 +418,20 @@ function midcast(spell)
 
     if MB_Mode and sets.midcast[spell.name .. 'MB'] then
         -- Spell-specific magic burst
+        debug("Spell-specific magic burst")
         midcast_set = get_set(sets.midcast[spell.name .. 'MB'], mode)
     elseif spell.target.type == 'SELF' and sets.midcast[spell.name .. 'Self'] then
         -- Self-targeted spells
+        debug("Self-targeted spell")
         midcast_set = get_set(sets.midcast[spell.name .. 'Self'], mode)
     elseif sets.midcast[spell.name] then
         -- Spell-specific sets
+        debug("Spell-specific set")
         midcast_set = get_set(sets.midcast[spell.name], mode)
     end
 
     if spell.action_type == 'Ranged Attack' and sets.midcast.RA ~= nil then
+        debug("Ranged attack")
         midcast_set = get_set(sets.midcast.RA, Melee_Modes[Melee_Mode])
     end
 
@@ -402,13 +442,16 @@ function midcast(spell)
         for name, set in pairs(sets.midcast) do
             if MB_Mode and ends_with(name, 'MB') and string.find(spell.name, name:sub(1, -3)) then
                 -- Partial name magic burst
+                debug("Partial name magic burst")
                 midcast_set = get_set(set, mode)
                 break
             elseif spell.target.type == 'SELF' and ends_with(name, 'Self') and string.find(spell.name, name:sub(1, -5)) then
                 -- Partial name self-targeted
+                debug("Partial name self-targeted spell")
                 midcast_set = get_set(set, mode)
                 break
             elseif string.find(spell.name, name) then
+                debug("Partial spell name match")
                 midcast_set = get_set(set, mode)
             end
         end
@@ -420,105 +463,144 @@ function midcast(spell)
     if midcast_set == nil then
         if spell.skill == "Healing Magic" then
             if NaSpells:contains(spell.name) and sets.midcast.NaSpell ~= nil then
+                debug("-na spell")
                 midcast_set = get_set(sets.midcast.NaSpell, mode)
             elseif spell.target.type == 'SELF' and sets.midcast.CureSelf ~= nil then
+                debug("Self-cure")
                 midcast_set = get_set(sets.midcast.CureSelf, mode)
             elseif sets.midcast.Healing ~= nil then
+                debug("Healing spell")
                 midcast_set = get_set(sets.midcast.Healing, mode)
             end
         elseif spell.skill == "Enhancing Magic" then
             if EnhancingSpells:contains(spell.name) and spell.target.type == 'SELF' and sets.midcast.EnhancingSelf ~=
                 nil then
+                debug("Self-enhancing spell")
                 midcast_set = get_set(sets.midcast.EnhancingSelf, mode)
             elseif EnhancingSpells:contains(spell.name) and sets.midcast.Enhancing ~= nil then
+                debug("Enhancing spell")
                 midcast_set = get_set(sets.midcast.Enhancing, mode)
             elseif spell.target.type == 'SELF' and sets.midcast.EnhancingDurationSelf ~= nil then
+                debug("Enhancing duration self-targeted spell")
                 midcast_set = get_set(sets.midcast.EnhancingDurationSelf, mode)
             elseif sets.midcast.EnhancingDuration ~= nil then
+                debug("Enhancing duration spell")
                 midcast_set = get_set(sets.midcast.EnhancingDuration, mode)
             elseif spell.target.type == 'SELF' and sets.midcast.EnhancingSelf ~= nil then
+                debug("Self-enhancing spell")
                 midcast_set = get_set(sets.midcast.EnhancingSelf, mode)
             elseif sets.midcast.Enhancing ~= nil then
+                debug("Enhancing spell")
                 midcast_set = get_set(sets.midcast.Enhancing, mode)
             end
         elseif spell.skill == "Enfeebling Magic" then
             if EnfeeblingMND:contains(spell.name) and sets.midcast.EnfeeblingMND ~= nil then
+                debug("MND-based enfeebling spell")
                 midcast_set = get_set(sets.midcast.EnfeeblingMND, mode)
             elseif EnfeeblingINT:contains(spell.name) and sets.midcast.EnfeeblingINT ~= nil then
+                debug("INT-based enfeebling spell")
                 midcast_set = get_set(sets.midcast.EnfeeblingINT, mode)
             elseif sets.midcast.Enfeebling ~= nil then
+                debug("Enfeebling spell")
                 midcast_set = get_set(sets.midcast.Enfeebling, mode)
             elseif sets.midcast.MAcc ~= nil then
+                debug("Enfeebling spell - using MAcc set")
                 midcast_set = get_set(sets.midcast.MAcc, mode)
             end
         elseif spell.skill == "Divine Magic" then
             if DivineEnfeebles:contains(spell.name) and sets.midcast.DivineEnfeeble ~= nil then
+                debug("Divine enfeebling spell")
                 midcast_set = get_set(sets.midcast.DivineEnfeeble, mode)
             elseif DivineEnhancing:contains(spell.name) and sets.midcast.DivineEnhancing ~= nil then
+                debug("Diving enhancing spell")
                 midcast_set = get_set(sets.midcast.DivineEnhancing, mode)
             elseif MB_Mode and sets.midcast.DivineMB ~= nil then
+                debug("Divine magic burst")
                 midcast_set = get_set(sets.midcast.DivineMB, mode)
             elseif sets.midcast.Divine ~= nil then
+                debug("Divine spell")
                 midcast_set = get_set(sets.midcast.Divine, mode)
             end
         elseif spell.skill == "Elemental Magic" then
             if MB_Mode and sets.midcast.ElementalMB ~= nil then
+                debug("Elemental magic burst")
                 midcast_set = get_set(sets.midcast.ElementalMB, mode)
             elseif sets.midcast.Elemental ~= nil then
+                debug("Elemental magic")
                 midcast_set = get_set(sets.midcast.Elemental, mode)
             end
         elseif spell.skill == "Dark Magic" then
             if sets.midcast.DarkMagic ~= nil then
+                debug("Dark magic")
                 midcast_set = get_set(sets.midcast.DarkMagic, mode)
             end
         elseif spell.type == "BlueMagic" then
             magic_type = BlueMagic[spell.english]
             if magic_type == 'static' and sets.midcast.BlueMagic.Static ~= nil then
+                debug("Blue magic static buff")
                 midcast_set = get_set(sets.midcast.BlueMagic.Static, mode)
             elseif magic_type == 'physical' and sets.midcast.BlueMagic.Physical ~= nil then
+                debug("Blue magic physical")
                 midcast_set = get_set(sets.midcast.BlueMagic.Physical, mode)
             elseif magic_type == 'addeffect' and sets.midcast.BlueMagic.AddEffect ~= nil then
+                debug("Blue magic added effect")
                 midcast_set = get_set(sets.midcast.BlueMagic.AddEffect, mode)
             elseif magic_type == 'magical' and sets.midcast.BlueMagic.MAB ~= nil then
+                debug("Blue magic magical damage")
                 midcast_set = get_set(sets.midcast.BlueMagic.MAB, mode)
             elseif magic_type == 'breath' and sets.midcast.BlueMagic.Breath ~= nil then
+                debug("Blue magic breath")
                 midcast_set = get_set(sets.midcast.BlueMagic.Breath, mode)
             elseif magic_type == 'cure' and spell.target.type == 'SELF' and sets.midcast.BlueMagic.CureSelf ~= nil then
+                debug("Blue magic self-cure")
                 midcast_set = get_set(sets.midcast.BlueMagic.CureSelf, mode)
             elseif magic_type == 'cure' and sets.midcast.BlueMagic.Cure ~= nil then
+                debug("Blue magic cure")
                 midcast_set = get_set(sets.midcast.BlueMagic.Cure, mode)
             elseif magic_type == 'buff' then
                 if sets.midcast.BlueMagic.Buff ~= nil then
+                    debug("Blue magic buff")
                     midcast_set = get_set(sets.midcast.BlueMagic.Buff, mode)
                 elseif sets.midcast.BlueMagic.Skill ~= nil then
+                    debug("Blue magic skill-based buff")
                     midcast_set = get_set(sets.midcast.BlueMagic.Skill, mode)
                 end
             elseif magic_type == 'debuff' then
                 if sets.midcast.BlueMagic.Debuff ~= nil then
+                    debug("Blue magic debuff")
                     midcast_set = get_set(sets.midcast.BlueMagic.Debuff, mode)
                 elseif sets.midcast.BlueMagic.Skill ~= nil then
+                    debug("Blue magic skill-based debuff")
                     midcast_set = get_set(sets.midcast.BlueMagic.Skill, mode)
                 end
             elseif sets.midcast.BlueMagic.Skill ~= nil then
+                debug("Blue magic skill-based spell")
                 midcast_set = get_set(sets.midcast.BlueMagic.Skill, mode)
             end
         elseif spell.type == "Ninjutsu" then
             magic_type = Ninjutsu[spell.english]
             if magic_type == 'debuff' and sets.midcast.Ninja.Debuff ~= nil then
+                debug("Ninjutsu debuff")
                 midcast_set = get_set(sets.midcast.Ninja.Debuff, mode)
             elseif magic_type == 'nuke' and sets.midcast.Ninja.Nuke ~= nil then
+                debug("Ninjutsu nuke")
                 midcast_set = get_set(sets.midcast.Ninja.Nuke, mode)
             elseif sets.midcast.Ninja.Buff ~= nil then
+                debug("Ninjutsu buff")
                 midcast_set = get_set(sets.midcast.Ninja.Buff, mode)
             end
         elseif spell.skill == "Geomancy" and sets.midcast.Geomancy ~= nil then
+            debug("Geomancy spell")
             midcast_set = get_set(sets.midcast.Geomancy, mode)
         elseif spell.skill == "Summoning Magic" and sets.midcast.Summon ~= nil then
+            debug("Summoning magic")
             midcast_set = get_set(sets.midcast.Summon, mode)
         elseif spell.skill == "Singing" then
             if spell.targets['Enemy'] and sets.midcast.Songs.Debuff ~= nil then
+                debug("Singing debuff")
                 midcast_set = get_set(sets.midcast.Songs.Debuff, mode)
             elseif sets.midcast.Songs.Buff ~= nil then
+                debug("Singing buff")
                 midcast_set = get_set(sets.midcast.Songs.Buff, mode)
             end
         end
@@ -528,6 +610,7 @@ function midcast(spell)
         for name, set in pairs(sets.midcast) do
             if (not S {'BlueMagic', 'mod'}:contains(name)) and string.find(spell.type, name) then
                 -- Spell-type sets
+                debug("Spell type match")
                 midcast_set = get_set(set, mode)
             end
         end
@@ -535,27 +618,32 @@ function midcast(spell)
 
     -- Look for a generic midcast set if none has been chosen yet
     if midcast_set == nil and sets.midcast.Generic ~= nil then
+        debug("Generic midcast set")
         midcast_set = get_set(sets.midcast.Generic, mode)
     end
 
     -- If there's still no midcast set, just jump to the tp or idle set, as needed
     if midcast_set == nil then
+        debug("Using steady-state set")
         midcast_set = steady_state()
     end
 
     if WeatherSpells:contains(spell.name) and weather_match(spell) and sets.Weather ~= nil then
+        debug("Adding in weather gear")
         midcast_set = set_combine(midcast_set, get_set(sets.Weather, mode))
     end
 
     -- If distance_threshold is set and the player is closer than the threshold, equip distance gear
     if distance_threshold ~= nil and spell.target.distance < distance_threshold and WeatherSpells:contains(spell.name) and
         spell.skill ~= "Healing Magic" and sets.Distance ~= nil then
+        debug("Adding in distance gear")
         midcast_set = set_combine(midcast_set, get_set(sets.Distance, mode))
     end
 
     -- Go through any buff-specific pieces
     for buff, buffset in pairs(sets.midcast.mod) do
         if buffactive[buff] ~= nil or buffs:contains(buff) then
+            debug("Adding in gear for " .. buff)
             midcast_set = set_combine(midcast_set, get_set(buffset, mode))
         end
     end
@@ -571,12 +659,14 @@ function midcast(spell)
 end
 
 function aftercast(spell)
+    debug("Aftercast")
     if no_action_types:contains(spell.type) then
         return
     end
 
     -- If you or a pet is mid-action, then don't swap sets
     if midaction() or (pet.isvalid and (pet_midaction() or string.find(spell.type, 'BloodPact'))) then
+        debug("Pet is mid-action. Not changing sets.")
         return
     end
 
@@ -588,16 +678,21 @@ function aftercast(spell)
 end
 
 function pet_midcast(spell)
+    debug("Pet midcast")
     pet_set = nil
 
-    if S {BloodPactTypes.healing, BloodPactTypes.magic, BloodPactTypes.magicTP, BloodPactTypes.mnd}:contains(spell.name) then
+    if S {PetAbilityTypes.healing, PetAbilityTypes.magic, PetAbilityTypes.magicTP, PetAbilityTypes.mnd}:contains(
+        spell.name) then
+        debug("Using magic mode")
         mode = Magic_Modes[Magic_Mode]
     else
+        debug("Using melee mode")
         mode = Melee_Modes[Melee_Mode]
     end
 
     -- Spell-specific sets
     if sets.pet_midcast[spell.name] then
+        debug("Spell-specific set")
         pet_set = get_set(sets.pet_midcast[spell.name], mode)
     end
 
@@ -607,43 +702,59 @@ function pet_midcast(spell)
     if pet_set == nil then
         for name, set in pairs(sets.pet_midcast) do
             if string.find(spell.name, name) then
+                debug("Partial name match")
                 pet_set = get_set(set, mode)
             end
         end
     end
 
     if pet_set == nil then
-        pact_type = BloodPacts[spell.name]
-        if pact_type == BloodPactTypes.buffDuration and sets.pet_midcast.Buff ~= nil then
+        pet_ability_type = BloodPacts[spell.name]
+        if pet_ability_type == PetAbilityTypes.buff and sets.pet_midcast.Buff ~= nil then
+            debug("Pet buff")
             pet_set = get_set(sets.pet_midcast.Buff, mode)
-        elseif pact_type == BloodPactTypes.mnd and sets.pet_midcast.BuffMND ~= nil then
+        elseif pet_ability_type == PetAbilityTypes.mnd and sets.pet_midcast.BuffMND ~= nil then
+            debug("Pet MND-based buff")
             pet_set = get_set(sets.pet_midcast.BuffMND, mode)
-        elseif pact_type == BloodPactTypes.debuff and sets.pet_midcast.MAcc ~= nil then
+        elseif pet_ability_type == PetAbilityTypes.debuff and sets.pet_midcast.MAcc ~= nil then
+            debug("Pet debuff")
             pet_set = get_set(sets.pet_midcast.Macc, mode)
-        elseif pact_type == BloodPactTypes.healing and sets.pet_midcast.Healing ~= nil then
+        elseif pet_ability_type == PetAbilityTypes.healing and sets.pet_midcast.Healing ~= nil then
+            debug("Pet healing")
             pet_set = get_set(sets.pet_midcast.Healing, mode)
-        elseif pact_type == BloodPactTypes.magic and sets.pet_midcast.Magic ~= nil then
+        elseif pet_ability_type == PetAbilityTypes.magic and sets.pet_midcast.Magic ~= nil then
+            debug("Pet magic spell")
             pet_set = get_set(sets.pet_midcast.Magic, mode)
-        elseif pact_type == BloodPactTypes.magicTP then
+        elseif pet_ability_type == PetAbilityTypes.magicTP then
             if sets.pet_midcast.MagicTP ~= nil then
+                debug("Pet TP-based magic spell")
                 pet_set = get_set(sets.pet_midcast.MagicTP, mode)
             elseif sets.pet_midcast.Magic ~= nil then
+                debug("Pet TP-based magic spell using generic magic set")
                 pet_set = get_set(sets.pet_midcast.Magic, mode)
             end
-        elseif pact_type == BloodPactTypes.phys and sets.pet_midcast.Physical ~= nil then
+        elseif pet_ability_type == PetAbilityTypes.physical and sets.pet_midcast.Physical ~= nil then
+            debug("Pet physical attack")
             pet_set = get_set(sets.pet_midcast.Physical, mode)
-        elseif pact_type == BloodPactTypes.physTP then
+        elseif pet_ability_type == PetAbilityTypes.multihit and sets.pet_midcast.MultiHit ~= nil then
+            debug("Pet multi-hit physical attack")
+            pet_set = get_set(sets.pet_midcast.MultiHit, mode)
+        elseif pet_ability_type == PetAbilityTypes.physTP then
             if sets.pet_midcast.PhysicalTP ~= nil then
+                debug("Pet TP-based physical attack")
                 pet_set = get_set(sets.pet_midcast.PhysicalTP, mode)
             elseif sets.pet_midcast.Physical ~= nil then
+                debug("Pet TP-based physical attack using generic physical set")
                 pet_set = get_set(sets.pet_midcast.Physical, mode)
             end
-        elseif pact_type == BloodPactTypes.skill and sets.pet_midcast["Summoning Skill"] ~= nil then
+        elseif pet_ability_type == PetAbilityTypes.skill and sets.pet_midcast["Summoning Skill"] ~= nil then
+            debug("Pet summoning-skill-based ability")
             pet_set = get_set(sets.pet_midcast["Summoning Skill"], mode)
         end
     end
 
     if pet_set == nil and sets.pet_midcast.Generic ~= nil then
+        debug("Using generic pet set")
         pet_set = get_set(set.pet_midcast.Generic, mode)
     end
 
@@ -680,6 +791,7 @@ function status_change(new, old)
 end
 
 function buff_change(name, is_gained)
+    debug("Buff change")
     set = nil
 
     if is_gained then
@@ -699,6 +811,7 @@ function buff_change(name, is_gained)
     if not (midaction() or pet_midaction()) then
         set = steady_state()
     else
+        debug("Mid-action. Not changing sets.")
         set = {}
     end
 
@@ -797,6 +910,9 @@ function self_command(commandArgs)
                 error('No set was found by the name of ' .. setname)
             end
         end,
+        steadystate = function()
+            equip(steady_state(nil, false, false))
+        end,
         equipgear = function(equipArgs)
             local override_flag
             if #equipArgs > 0 then
@@ -814,6 +930,10 @@ function self_command(commandArgs)
         clearstances = function()
             current_stances = {}
             update_stance_display()
+        end,
+        debug = function()
+            is_debug = not is_debug
+            notice("Debug is set to " .. tostring(is_debug))
         end
     }
     local job_commands = define_commands()
@@ -828,6 +948,9 @@ end
 
 -- This happens any time the user does anything, including auto-attack!
 windower.raw_register_event('action', function(action)
+    if action == nil then
+        return
+    end
     -- action.category 1 is a melee attack
     if action.actor_id == player.id and action.category == 1 then
         previousTarget = currentTarget
@@ -836,7 +959,7 @@ windower.raw_register_event('action', function(action)
         end
 
         -- For some reason, gearswap doesn't equip gear here, so send a command to force it
-        send_command('gs c equipgear')
+        send_command('gs c steadystate')
     end
 end)
 
@@ -845,11 +968,11 @@ windower.register_event('target change', function()
         previousTarget = currentTarget
         currentTarget = player.target.index
 
-        send_command('gs c equipgear')
+        send_command('gs c steadystate')
     end
 end)
 
-tick = os.time()
+local tick = os.time()
 
 -- Make sure that we stay in the right stance once it's set
 windower.register_event('prerender', function()
@@ -1059,4 +1182,10 @@ function update_stance_display()
     end
 
     stance_display.stances = stances_string
+end
+
+function debug(message)
+    if is_debug then
+        notice("Debug:" .. message)
+    end
 end

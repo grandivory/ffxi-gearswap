@@ -6,14 +6,30 @@ lockstyleset = 16
 
 function define_sets()
     Melee_Modes = T {'DT', 'Att', 'Acc', 'Refresh'}
-    Idle_Modes = T {'Speed', 'Refresh', 'Hybrid', 'DT'}
-    Magic_Modes = T {'Acc', 'MAB', 'TH'}
+    Idle_Modes = T {'Speed', 'Refresh', 'Hybrid', 'DT', 'Evasion'}
+    Magic_Modes = T {'Acc', 'MAB', 'TH', 'Enmity'}
     fastcast = .8
 
     th_gear = {
         ammo = "Per. Lucky Egg",
         legs = "Volte Hose",
         feet = herc.feet.thmab
+    }
+
+    enmity_gear = {
+        ammo = "Sapience Orb",
+        head = nyame.head,
+        body = "Emet Harness +1",
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Unmoving Collar +1",
+        waist = "Kasiri Belt",
+        left_ear = "Cryptic Earring",
+        right_ear = "Friomisi Earring",
+        left_ring = "Supershear Ring",
+        right_ring = "Eihwaz Ring",
+        back = "Earthcry Mantle"
     }
 
     back = {
@@ -32,6 +48,10 @@ function define_sets()
         nuke = {
             name = "Rosmerta's Cape",
             augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Mag.Atk.Bns."+10', 'Phys. dmg. taken-10%'}
+        },
+        evafc = {
+            name = "Rosmerta's Cape",
+            augments = {'AGI+20', 'Eva.+20 /Mag. Eva.+20', 'Evasion+10', '"Fast Cast"+10', 'Evasion+15'}
         },
         bluskill = {
             name = "Cornflower Cape",
@@ -100,10 +120,10 @@ function define_sets()
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
         },
         ammo = "Vanir Battery", -- +4 MDB
-        head = "Malignance Chapeau", -- DT - 6%
+        head = malignance.head, -- DT - 6%
         body = "Jhakri Robe +2", -- Refresh +4
         hands = herc.hands.refresh, -- Refresh +2, PDT -2%
-        legs = "Malignance Tights", -- DT -7%
+        legs = malignance.legs, -- DT -7%
         feet = herc.feet.refresh, -- Refresh +2, PDT -2%
         neck = "Loricate Torque +1", -- DT -6%
         left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
@@ -126,11 +146,11 @@ function define_sets()
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
         },
         ammo = "Vanir Battery", -- +4 MDB
-        head = "Malignance Chapeau", -- DT - 6%
+        head = malignance.head, -- DT - 6%
         body = "Jhakri Robe +2", -- Refresh +4
-        hands = "Malignance Gloves", -- DT -5%
+        hands = malignance.hands, -- DT -5%
         legs = "Carmine Cuisses +1",
-        feet = "Malignance Boots", -- DT -4%
+        feet = malignance.feet, -- DT -4%
         neck = "Loricate Torque +1", -- DT -6%
         left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
         waist = "Flume Belt +1", -- PDT -4%
@@ -142,15 +162,33 @@ function define_sets()
         back = back.tp -- PDT -10%
     }
 
+    sets.Idle.Evasion = { -- +590~600 Evasion, 55% PDT, 47% MDT
+        main = "Tizona",
+        sub = "Sakpata's Sword", -- 10% DT
+        ammo = "Amar Cluster", -- +10 Evasion
+        head = nyame.head, -- +91 Evasion, 7% DT
+        body = nyame.body, -- +102 Evasion, 9% DT
+        hands = nyame.hands, -- +80 Evasion, 7% DT
+        legs = nyame.legs, -- +85 Evasion, 8% DT
+        feet = nyame.feet, -- +119 Evasion, 7% DT
+        neck = "Bathy Choker +1", -- +20~30 Evasion
+        waist = "Kasiri Belt", -- +13 Evasion
+        left_ear = "Eabani Earring", -- +15 Evasion
+        right_ear = "Infused Earring", -- +10 Evasion
+        left_ring = "Supershear Ring",
+        right_ring = "Gelatinous Ring +1", -- 7% PDT, +1% MDT
+        back = back.evafc -- +45 Evasion
+    }
+
     -- Engaged Sets
 
     aftermath = {
         ammo = "Ginsen", -- Aurgelmir Orb +1
-        head = "Malignance Chapeau",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        head = malignance.head,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
         neck = "Mirage Stole +2",
         waist = "Reiki Yotai",
         left_ear = "Telos Earring",
@@ -164,9 +202,9 @@ function define_sets()
         main = "Tizona",
         sub = "Thibron",
         ammo = "Ginsen",
-        head = "Adhemar Bonnet +1",
+        head = adhemar.head,
         body = ayanmo.body,
-        hands = "Adhemar Wrist. +1",
+        hands = adhemar.hands,
         legs = "Samnuha Tights",
         feet = herc.feet.dexta,
         neck = "Mirage Stole +2",
@@ -185,11 +223,11 @@ function define_sets()
 
     -- DT Sets
     sets.TP.DT = set_combine(sets.TP.Att, { -- 50% DT
-        head = "Malignance Chapeau", -- 6% DT
-        body = "Malignance Tabard", -- 9% DT
-        hands = "Malignance Gloves", -- 5% DT
-        legs = "Malignance Tights", -- 7% DT
-        feet = "Malignance Boots", -- 4%
+        head = malignance.head, -- 6% DT
+        body = malignance.body, -- 9% DT
+        hands = malignance.hands, -- 5% DT
+        legs = malignance.legs, -- 7% DT
+        feet = malignance.feet, -- 4%
         neck = "Mirage Stole +2",
         left_ring = "Defending Ring", -- 10%
         back = back.tp
@@ -205,11 +243,11 @@ function define_sets()
     -- WS Sets
     sets.WS["Chant du Cygne"] = {
         ammo = "Aurgelmir Orb +1",
-        head = "Adhemar Bonnet +1",
-        body = gleti.body,
-        hands = "Adhemar Wrist. +1",
-        legs = gleti.feet,
-        feet = "Gleti's Boots",
+        head = adhemar.head,
+        body = nyame.body,
+        hands = adhemar.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Mirage Stole +2",
         waist = "Fotia Belt",
         left_ear = "Mache Earring +1",
@@ -239,7 +277,7 @@ function define_sets()
     sets.WS["Savage Blade"] = {
         ammo = "Aurgelmir Orb +1",
         head = nyame.head,
-        body = "Assim. Jubbah +3",
+        body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -276,7 +314,7 @@ function define_sets()
     sets.WS.Generic = {
         ammo = "Amar Cluster",
         head = nyame.head,
-        body = "Assim. Jubbah +3",
+        body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -295,7 +333,7 @@ function define_sets()
         ammo = "Ghastly Tathlum +1",
         head = nyame.head,
         body = nyame.body,
-        hands = "Jhakri Cuffs +2",
+        hands = nyame.hands,
         legs = nyame.legs,
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
@@ -319,7 +357,7 @@ function define_sets()
         },
         ammo = "Sapience Orb", -- 2%
         head = herc.head.refresh, -- 7%
-        body = taeon.body.fc, -- 9%
+        body = taeon.body.fcphalanx, -- 9%
         hands = "Leyline Gloves", -- 7%
         legs = "Psycloth Lappas", -- 7%
         feet = "Carmine Greaves +1", -- 8%
@@ -328,7 +366,7 @@ function define_sets()
         right_ear = "Enchntr. Earring +1", -- 2%
         left_ring = "Kishar Ring", -- 4%
         right_ring = "Rahab Ring", -- 2%
-        back = "Fi Follet Cape +1" -- 10%
+        back = back.evafc -- 10%
     }
     sets.precast.BlueMagic = set_combine(sets.precast.FastCast, {
         body = "Hashishin Mintan +1"
@@ -379,7 +417,7 @@ function define_sets()
         ammo = "Pemphredo Tathlum",
         head = "Assim. Keffiyeh +3",
         body = "Jhakri Robe +2",
-        hands = "Malignance Gloves",
+        hands = malignance.hands,
         legs = "Assim. Shalwar +3",
         feet = "Jhakri Pigaches +2", -- TODO: Replace
         neck = "Mirage Stole +2",
@@ -393,7 +431,7 @@ function define_sets()
 
     sets.midcast.BlueMagic.Physical = {
         ammo = "Ginsen",
-        head = "Adhemar Bonnet +1",
+        head = adhemar.head,
         body = gleti.body,
         hands = "Jhakri Cuffs +2",
         legs = gleti.feet,
@@ -408,11 +446,11 @@ function define_sets()
     }
     sets.midcast.BlueMagic.AddEffect = { -- Acc +340, MAcc +325, BLU +16
         ammo = "Falcon Eye", -- Acc +13
-        head = "Malignance Chapeau", -- Acc +50, MAcc +50
+        head = malignance.head, -- Acc +50, MAcc +50
         body = "Jhakri Robe +2", -- Acc +46, MAcc +46 (and more INT than Malignance)
         hands = "Jhakri Cuffs +2", -- Acc +43, MAcc +43 (and more INT than Malignance)
         legs = "Jhakri Slops +2", -- TODO: Replace; Acc +45, MAcc +45 (and more INT than Malignance)
-        feet = "Malignance Boots", -- Acc +50, MAcc +50
+        feet = malignance.feet, -- Acc +50, MAcc +50
         neck = "Mirage Stole +2", -- Acc +25, MAcc +25
         waist = "Eschan Stone", -- Acc +15, MAcc +7
         left_ear = "Telos Earring", -- Acc +10
@@ -471,13 +509,13 @@ function define_sets()
 
     }
     sets.midcast.BlueMagic.Debuff = sets.midcast.Enfeebling
-    sets.midcast.BlueMagic.Static = { -- 50% DT, 20% FC, 5% SIRD
+    sets.midcast.BlueMagic.Static = { -- 50% DT, 20% FC
         ammo = "Sapience Orb", -- 2% FC
-        head = "Malignance Chapeau", -- 6% DT
-        body = "Malignance Tabard", -- 9% DT
-        hands = "Malignance Gloves", -- 5% DT
-        legs = "Malignance Tights", -- 7% DT
-        feet = "Malignance Boots", -- 4% DT
+        head = malignance.head, -- 6% DT
+        body = malignance.body, -- 9% DT
+        hands = malignance.hands, -- 5% DT
+        legs = malignance.legs, -- 7% DT
+        feet = malignance.feet, -- 4% DT
         neck = "Orunmila's Torque", -- 5% FC
         waist = "Flume Belt +1", -- 4% PDT
         left_ear = "Etiolation Earring", -- 1% FC, 3% MDT
@@ -487,15 +525,15 @@ function define_sets()
             name = "Dark Ring",
             augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
         },
-        back = "Fi Follet Cape +1" -- 10% FC, 5% SIRD
+        back = back.evafc -- 10% FC
     }
 
     -- Specific spells
     sets.midcast["Occultation"] = { -- 551 skill (11 shadows), 40% PDT, 30% MDT, 5% FC
         ammo = "Sapience Orb", -- 2% FC
-        head = "Malignance Chapeau", -- 6% DT
+        head = malignance.head, -- 6% DT
         body = "Assim. Jubbah +3", -- +23 Skill
-        hands = "Malignance Gloves", -- 5% DT
+        hands = malignance.hands, -- 5% DT
         legs = "Hashishin Tayt +1", -- +23 Skill
         feet = "Luhlaza Charuqs +1", -- +8 Skill
         neck = "Mirage Stole +2", -- +20 Skill
@@ -513,15 +551,38 @@ function define_sets()
     sets.midcast["Sudden Lunge"] = sets.midcast.BlueMagic.AddEffect
     sets.midcast["Sudden Lunge"].TH = set_combine(sets.midcast.BlueMagic.AddEffect, th_gear)
 
+    sets.midcast["Temporal Shift"] = sets.midcast.BlueMagic.Debuff
+    sets.midcast["Temporal Shift"].Enmity = enmity_gear
+    sets.midcast["Actinic Burst"] = sets.midcast.BlueMagic.Debuff
+    sets.midcast["Actinic Burst"].Enmity = enmity_gear
+    sets.midcast.Fantod = sets.midcast.BlueMagic.Static
+    sets.midcast.Fantod.Enmity = enmity_gear
+
+    sets.midcast.Phalanx = {
+        ammo = "Sapience Orb",
+        head = taeon.head.fcphalanx,
+        body = taeon.body.fcphalanx,
+        hands = taeon.hands.fcphalanx,
+        legs = taeon.legs.fcphalanx,
+        feet = taeon.feet.fcphalanx,
+        neck = "Orunmila's Torque",
+        -- waist = "Olumpus Sash",
+        left_ear = "Odnowa Earring +1",
+        right_ear = "Enchntr. Earring +1",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Stikini Ring +1"
+        -- back = "Merciful Cape"
+    }
+
     dream_flower = {
         main = "Tizona",
         sub = "Bunzi's Rod",
         ammo = "Pemphredo Tathlum",
-        head = "Malignance Chapeau",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        head = malignance.head,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
         neck = "Mirage Stole +2",
         waist = "Acuity Belt +1",
         left_ear = "Regal Earring",

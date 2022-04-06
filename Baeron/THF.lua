@@ -30,10 +30,10 @@ function define_sets()
 
     -- sets.Idle.Speed = { -- 50% DT, 4 MDB
     --     ammo = "Vanir Battery", -- MDB +4
-    --     head = "Malignance Chapeau", -- 6% DT
-    --     body = "Malignance Tabard", -- 9% DT
-    --     hands = "Malignance Gloves", -- 5% DT
-    --     legs = "Malignance Tights", -- 7% DT
+    --     head = malignance.head, -- 6% DT
+    --     body = malignance.body, -- 9% DT
+    --     hands = malignance.hands, -- 5% DT
+    --     legs = malignance.legs, -- 7% DT
     --     feet = "Jute Boots +1",
     --     neck = "Loricate Torque +1", -- 6% DT
     --     waist = "Flume Belt +1", -- 4% PDT
@@ -47,11 +47,11 @@ function define_sets()
     -- }
     sets.Idle.Evasion = { -- 50% PDT, 47% MDT, +215 AGI, +582~592 Evasion
         ammo = "Yamarang", -- 15 Evasion
-        head = "Malignance Chapeau", -- 33 AGI, 91 Evasion, 6% DT
-        body = "Malignance Tabard", -- 42 AGI, 102 Evasion, 9% DT
-        hands = "Malignance Gloves", -- 24 AGI, 80 Evasion, 5% DT
-        legs = "Malignance Tights", -- 42 AGI, 85 Evasion, 7% DT
-        feet = "Malignance Boots", -- 49 AGI, 119 Evasion, 4% DT
+        head = malignance.head, -- 33 AGI, 91 Evasion, 6% DT
+        body = malignance.body, -- 42 AGI, 102 Evasion, 9% DT
+        hands = malignance.hands, -- 24 AGI, 80 Evasion, 5% DT
+        legs = malignance.legs, -- 42 AGI, 85 Evasion, 7% DT
+        feet = malignance.feet, -- 49 AGI, 119 Evasion, 4% DT
         neck = "Bathy Choker +1", -- 20~30 Evasion, +3 Regen
         waist = "Flume Belt +1", -- 4% PDT
         left_ear = "Eabani Earring", -- 15 Evasion
@@ -76,16 +76,16 @@ function define_sets()
         main = "Aeneas",
         sub = "Gleti's Knife",
         ammo = "Aurgelmir Orb +1",
-        head = "Adhemar Bonnet +1",
+        head = adhemar.head,
         body = "Pillager's Vest +3",
-        hands = "Adhemar Wrist. +1",
+        hands = adhemar.hands,
         legs = "Samnuha Tights",
         feet = "Plunderer's Poulaines +3",
         neck = "Asn. Gorget +2",
         waist = "Reiki Yotai",
         left_ear = "Sherida Earring",
         right_ear = "Cessance Earring",
-        left_ring = "Petrov Ring",
+        left_ring = "Gere Ring",
         right_ring = "Epona's Ring",
         back = back.tp
     }
@@ -95,9 +95,9 @@ function define_sets()
         ammo = "Cath Palug Stone",
         head = "Pillager's Bonnet +3",
         body = "Pillager's Vest +3",
-        hands = "Adhemar Wrist. +1",
+        hands = adhemar.hands,
         legs = "Samnuha Tights",
-        feet = "Malignance Boots",
+        feet = malignance.feet,
         neck = "Assassin's Gorget +2",
         waist = "Reiki Yotai",
         left_ear = "Sherida Earring",
@@ -112,11 +112,11 @@ function define_sets()
     }
     sets.TP.TH = set_combine(sets.TP.Att, th_gear)
     sets.TP.DT = set_combine(sets.TP.Att, { -- 50% DT
-        head = "Malignance Chapeau", -- 6% DT
-        body = "Malignance Tabard", -- 9% DT
-        hands = "Malignance Gloves", -- 5% DT
-        legs = "Malignance Tights", -- 7% DT
-        feet = "Malignance Boots", -- 4% DT
+        head = malignance.head, -- 6% DT
+        body = malignance.body, -- 9% DT
+        hands = malignance.hands, -- 5% DT
+        legs = malignance.legs, -- 7% DT
+        feet = malignance.feet, -- 4% DT
         left_ring = "Defending Ring", -- 10% DT
         back = back.tp -- 10% PDT
 
@@ -126,18 +126,18 @@ function define_sets()
         head = gleti.head,
         body = gleti.body,
         hands = gleti.hands,
-        legs = gleti.feet,
-        feet = "Gleti's Boots"
+        legs = gleti.legs,
+        feet = gleti.feet
     })
     -- for mode, set in pairs(sets.TP) do
     --     -- Add in special gear for Sneak/Trick attack
     --     if not string.find(mode, 'TH') then
     --         set.withBuffs = {}
     --         set.withBuffs['Sneak Attack'] = set_combine(set, {
-    --             head = "Adhemar Bonnet +1",
-    --             body = "Malignance Tabard",
-    --             hands = "Adhemar Wrist. +1",
-    --             feet = "Malignance Boots",
+    --             head = adhemar.head,
+    --             body = malignance.body,
+    --             hands = adhemar.hands,
+    --             feet = malignance.feet,
     --             neck = "Assassin's Gorget +2",
     --             waist = "Wanion Belt",
     --             left_ear = "Brutal Earring",
@@ -147,11 +147,11 @@ function define_sets()
     --             back = back.tp
     --         })
     --         set.withBuffs['Trick Attack'] = set_combine(set, {
-    --             head = "Adhemar Bonnet +1",
+    --             head = adhemar.head,
     --             body = "Plunderer's Vest +3",
-    --             hands = "Malignance Gloves",
-    --             legs = "Malignance Tights",
-    --             feet = "Malignance Boots",
+    --             hands = malignance.hands,
+    --             legs = malignance.legs,
+    --             feet = malignance.feet,
     --             neck = "Assassin's Gorget +2",
     --             left_ring = "Ilabrat Ring",
     --             right_ring = "Regal Ring"
@@ -162,11 +162,11 @@ function define_sets()
         main = "Aeneas",
         sub = "Gleti's Knife",
         ammo = "Yamarang",
-        head = "Malignance Chapeau",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        head = malignance.head,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
         neck = "Asn. Gorget +2",
         waist = "Flume Belt +1",
         left_ear = "Eabani Earring",
@@ -176,12 +176,14 @@ function define_sets()
         back = back.evasion
     }
 
+    sets.mod.TH = th_gear
+
     -- JA Sets; equip on use
     sets.JA['Sneak Attack'] = set_combine(set, {
-        head = "Adhemar Bonnet +1",
-        body = "Malignance Tabard",
-        hands = "Adhemar Wrist. +1",
-        feet = "Malignance Boots",
+        head = adhemar.head,
+        body = malignance.body,
+        hands = adhemar.hands,
+        feet = malignance.feet,
         neck = "Assassin's Gorget +2",
         waist = "Wanion Belt",
         left_ear = "Brutal Earring",
@@ -191,11 +193,11 @@ function define_sets()
         back = back.dexws
     })
     sets.JA['Trick Attack'] = set_combine(set, {
-        head = "Adhemar Bonnet +1",
+        head = adhemar.head,
         body = "Plunderer's Vest +3",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
         neck = "Assassin's Gorget +2",
         left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring"
@@ -365,7 +367,7 @@ function define_sets()
     sets.precast.FastCast = { -- 34%
         ammo = "Sapience Orb", -- 2%
         head = "Herculean Helm", -- 7%
-        body = taeon.body.fc, -- 9%
+        body = taeon.body.fcphalanx, -- 9%
         hands = "Leyline Gloves", -- 7%
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Loquac. Earring", -- 2%

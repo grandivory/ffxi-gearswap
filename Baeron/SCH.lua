@@ -16,6 +16,14 @@ function define_sets()
         }
     }
 
+    af = {
+        head = "Acad. Mortarboard +1",
+        body = "Acad. Gown +1",
+        hands = "Acad. Bracers +3",
+        legs = "Acad. Pants +3",
+        feet = "Acad. Loafers +3"
+    }
+
     -- Not Engaged
     sets.Idle.Refresh = { -- Refresh +11~13, PDT -6% , MDT -12% , MDB +3
         main = "Contemplator +1", -- Refresh +1~2
@@ -23,7 +31,7 @@ function define_sets()
         ammo = "Homiliary", -- Refresh +1
         head = "Befouled Crown", -- Refresh +1
         body = "Jhakri Robe +2", -- Refresh +4
-        hands = "Agwu's Gages", -- Resist Silence +10
+        hands = agwu.hands, -- Resist Silence +10
         legs = "Assiduity Pants +1", -- Refresh +1~2
         feet = "Herald's Gaiters",
         neck = "Loricate Torque +1", -- DT -6%
@@ -61,7 +69,23 @@ function define_sets()
     })
 
     -- Engaged Sets
-    -- sets.TP.Att = {}
+    sets.TP = {
+        main = "Malignance Pole",
+        sub = "Khonsu",
+        ammo = "Amar Cluster",
+        head = "Blistering Sallet +1",
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Sanctity Necklace",
+        waist = "Windbuffet Belt +1",
+        left_ear = "Crep. Earring",
+        right_ear = "Telos Earring",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Chirich Ring +1",
+        back = back.nuke
+    }
 
     -- WS Sets
     sets.WS["Myrkr"] = {
@@ -91,13 +115,13 @@ function define_sets()
     }
 
     -- Precast sets for spells
-    sets.precast.FastCast = { -- 82%
+    sets.precast.FastCast = { -- 83%
         ammo = "Sapience Orb", -- 2%
         head = "Vanya Hood", -- 10%
         body = "Zendik Robe", -- 13%
-        hands = "Agwu's Gages", -- 6%
-        legs = "Agwu's Slops", -- 7%
-        feet = "Acad. Loafers +3", -- 12%
+        hands = af.hands, -- 9%
+        legs = "Volte Brais", -- 8%
+        feet = af.feet, -- 12%
         neck = "Orunmila's Torque", -- 5%
         waist = "Embla Sash", -- 5%
         left_ear = "Loquac. Earring", -- 2%
@@ -119,7 +143,7 @@ function define_sets()
         head = "Vanya Hood", -- 10% Potency
         body = "Annointed Kalasiris", -- 10% Potency
         hands = "Vanya Cuffs", -- 7% Potency
-        legs = "Gyve Trousers", -- 10% Potency
+        legs = af.legs, -- 15% Potency
         feet = "Vanya Clogs", -- 10% potency
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
@@ -138,6 +162,7 @@ function define_sets()
         main = "Gada",
         sub = "Genmei Shield",
         hands = "Hieros Mittens",
+        legs = af.legs,
         feet = "Vanya Clogs",
         neck = "Incanter's Torque",
         waist = "Gishdubar Sash",
@@ -152,7 +177,7 @@ function define_sets()
         head = "Befouled Crown", -- +16
         body = telchine.body.enhfc, -- +12
         hands = "Chironic Gloves", -- +15
-        legs = "Acad. Pants +1", -- +20
+        legs = af.legs, -- +24
         feet = telchine.feet.enhfc,
         neck = "Incanter's Torque", -- +10
         waist = "Embla Sash", -- Duration +10%
@@ -176,22 +201,21 @@ function define_sets()
         sub = "Ammurapi Shield", -- Duration +10
         head = "Arbatel Bonnet +1",
         back = back.nuke -- Duration + 15
-
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {
         waist = "Siegel Sash"
     })
 
     sets.midcast.Elemental = {
-        main = "Marin Staff +1",
-        sub = "Khonsu",
-        ammo = "Ghastly Tathlum +1",
+        main = "Bunzi's Rod",
+        sub = "Ammurapi Shield",
+        ammo = "Pemphredo Tathlum",
         head = "Peda. M.board +3",
         body = "Amalric Doublet +1",
         hands = "Amalric Gages +1",
-        legs = "Jhakri Slops +2",
-        feet = "Agwu's Pigaches",
-        neck = "Argute Stole +2",
+        legs = agwu.legs,
+        feet = agwu.feet,
+        neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Malignance Earring",
         right_ear = "Regal Earring",
@@ -199,16 +223,18 @@ function define_sets()
         right_ring = "Metamorph Ring +1",
         back = back.nuke
     }
-    sets.midcast.Elemental.withBuffs = {}
-    sets.midcast.Elemental.withBuffs['Klimaform'] = set_combine(sets.midcast.Elemental, {
-        feet = "Arbatel Loafers +1"
+    sets.midcast.Aero = set_combine(sets.midcast.Elemental, {
+        main = "Marin Staff +1",
+        sub = "Enki Strap"
+    })
+    sets.midcast.Stone = set_combine(sets.midcast.Elemental, {
+        neck = "Quanpur Necklace"
     })
     sets.midcast.Elemental.Acc = set_combine(sets.midcast.Elemental, {
         main = "Contemplator +1",
         sub = "Khonsu",
-        ammo = "Pemphredo Tathlum",
-        hands = "Jhakri Cuffs +2",
-        feet = "Acad. Loafers +3",
+        hands = agwu.hands,
+        feet = af.feet,
         left_ring = "Kishar Ring"
     })
     sets.midcast.Elemental.Vagary = {
@@ -219,7 +245,7 @@ function define_sets()
         body = "Jhakri Robe +2",
         hands = "Jhakri Cuffs +2",
         legs = "Psycloth Lappas",
-        feet = "Acad. Loafers +3",
+        feet = af.feet,
         neck = "Loricate Torque +1",
         waist = "Luminary Sash",
         left_ear = "Etiolation Earring",
@@ -232,8 +258,8 @@ function define_sets()
         head = "Pedagogy Mortarboard +3",
         body = "Amalric Doublet +1",
         hands = "Amalric Gages +1",
-        legs = "Agwu's Slops",
-        feet = "Agwu's Pigaches",
+        legs = agwu.legs,
+        feet = agwu.feet,
         right_ring = "Mujin Band"
     })
     sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
@@ -243,11 +269,11 @@ function define_sets()
         main = "Bunzi's Rod",
         sub = "Culminus",
         ammo = "Ghastly Tathlum +1",
-        head = "Agwu's Cap",
-        body = "Agwu's Robe",
-        hands = "Agwu's Gages",
-        legs = "Agwu's Slops",
-        feet = "Agwu's Pigaches",
+        head = agwu.head,
+        body = agwu.body,
+        hands = agwu.hands,
+        legs = agwu.legs,
+        feet = agwu.feet,
         waist = "Acuity Belt +1"
     })
     sets.midcast.HelixMB = set_combine(sets.midcast.Helix, {
@@ -290,7 +316,7 @@ function define_sets()
     }
     sets.midcast.Drain = set_combine(sets.midcast.DarkMagic, {
         ammo = "Pemphredo Tathlum",
-        feet = "Agwu's Pigaches",
+        feet = agwu.feet,
         neck = "Erra Pendant",
         right_ring = "Evanescence Ring"
     })
@@ -302,9 +328,9 @@ function define_sets()
         ammo = "Pemphredo Tathlum", -- MAcc +8
         head = "Jhakri Coronal +2", -- MAcc +44
         body = "Jhakri Robe +2", -- MAcc +46
-        hands = "Jhakri Cuffs +2", -- MAcc +43
-        legs = "Psycloth Lappas", -- MAcc +45, Enfeebling +18
-        feet = "Acad. Loafers +3", -- MAcc +66
+        hands = af.hands, -- MAcc +48
+        legs = af.legs, -- MAcc +49, "Light Arts" + 24
+        feet = af.feet, -- MAcc +66
         neck = "Argute Stole +2", -- Macc +30
         waist = "Luminary Sash", -- MAcc +10
         left_ear = "Malignance Earring", -- MAcc +10
@@ -319,6 +345,7 @@ function define_sets()
         main = "Daybreak",
         sub = "Ammurapi Shield"
     })
+    sets.midcast.Stun = enfeeblingSet
 
     -- Pieces to switch out when buffs are active
     sets.midcast.mod.Perpetuance = {

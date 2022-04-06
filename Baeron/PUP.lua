@@ -79,10 +79,10 @@ function define_sets()
 
     sets.Idle.Speed = {
         ammo = "Automat. Oil +3",
-        head = "Malignance Chapeau",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
+        head = malignance.head,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
         feet = "Hermes' Sandals",
         neck = "Loricate Torque +1",
         waist = "Moonbow Belt +1",
@@ -118,10 +118,10 @@ function define_sets()
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = "Anwig Salade",
-        body = taeon.body.pet,
-        hands = taeon.hands.pet,
-        legs = taeon.legs.pet,
-        feet = taeon.feet.pet,
+        body = rao.body,
+        hands = rao.hands,
+        legs = rao.legs,
+        feet = rao.feet,
         neck = "Shepherd's Chain",
         waist = "Isa Belt",
         left_ear = "Rimeice Earring",
@@ -180,14 +180,14 @@ function define_sets()
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         left_ear = "Burana Earring",
-        left_ring = "Tali'ah Ring"
+        left_ring = taliah.ring
     })
 
     -- =========================================================================================================
     -- ***Engaged Sets***
     -- =========================================================================================================
     sets.TP.PDT = {
-        main = "Verethragna",
+        main = "Godhands",
         range = "Neo Animator",
         ammo = "Automat. Oil +3",
         head = mpaca.head,
@@ -199,19 +199,19 @@ function define_sets()
         waist = "Moonbow Belt +1",
         left_ear = "Telos Earring",
         right_ear = "Schere Earring",
-        left_ring = "Epona's Ring",
+        left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
     }
 
     sets.TP.DT = {
-        main = "Verethragna",
+        main = "Godhands",
         range = "Neo Animator",
         ammo = "Automat. Oil +3",
-        head = "Malignance Chapeau",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
+        head = malignance.head,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
         feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
@@ -223,7 +223,7 @@ function define_sets()
     }
 
     sets.TP['Dual-Tank'] = {
-        main = "Verethragna",
+        main = "Godhands",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = mpaca.head,
@@ -258,7 +258,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Schere Earring",
-        left_ring = "Regal Ring",
+        left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
     }
@@ -276,14 +276,14 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Schere Earring",
-        left_ring = "Regal Ring",
+        left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
     }
 
     sets.WS["Shijin Spiral"] = {
         head = nyame.head,
-        body = "Tali'ah Manteel +2",
+        body = nyame.body,
         hands = herc.hands.dexta,
         legs = nyame.legs,
         feet = herc.feet.dexta,
@@ -298,7 +298,7 @@ function define_sets()
 
     sets.WS["Howling Fist"] = {
         head = mpaca.head,
-        body = "Tali'ah Manteel +2",
+        body = nyame.body,
         hands = nyame.hands,
         legs = mpaca.legs,
         feet = nyame.feet,
@@ -309,7 +309,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Schere Earring",
-        left_ring = "Regal Ring",
+        left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
     }
@@ -327,7 +327,7 @@ function define_sets()
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
         right_ear = "Schere Earring",
-        left_ring = "Regal Ring",
+        left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
     }
@@ -482,11 +482,11 @@ function define_sets()
     sets.midcast.Dia = th_gear
 
     sets.midcast.Enhancing = {
-        head = "Malignance Chapeau",
-        body = "Malignance Tabard",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        head = malignance.head,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
         neck = "Loricate Torque +1",
         waist = "Siegel Sash",
         left_ear = "Etiolation Earring",
@@ -787,7 +787,6 @@ function mod_idle(set, mode, override_lock, is_user_command)
     end
 end
 
-tick = os.time()
 last_voke = nil
 last_flash = nil
 
@@ -804,6 +803,8 @@ windower.register_event("incoming text", function(original, modified, mode)
 
     return modified, mode
 end)
+
+local tick = os.time()
 
 windower.register_event("prerender", function()
     update_hud()

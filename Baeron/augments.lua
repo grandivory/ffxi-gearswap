@@ -36,12 +36,22 @@ bunzi = {
     feet = "Bunzi's Sabots"
 }
 
+agwu = {
+    axe = "Agwu's Axe",
+    head = "Agwu's Cap",
+    body = "Agwu's Robe",
+    hands = "Agwu's Gages",
+    legs = "Agwu's Slops",
+    feet = "Agwu's Pigaches"
+}
+
 sakpata = {}
 
 -- =========================================================================================================
 -- Ambuscade Sets
 -- =========================================================================================================
 flamma = {
+    head = "Flamma Zucchetto +2",
     body = "Flamma Korazin +2"
 }
 
@@ -53,13 +63,66 @@ ayanmo = {
     feet = "Aya. Gambieras +2"
 }
 
+inyanga = {
+    head = "Inyanga Tiara +1",
+    body = "Inyanga Jubbah +2",
+    hands = "Inyan. Dastanas +2",
+    legs = "Inyanga Shalwar +2",
+    feet = "Inyanga Crackows +1"
+}
+
+taliah = {
+    body = "Tali'ah Manteel +2",
+    ring = "Tali'ah Ring"
+}
+
 -- =========================================================================================================
 -- Unity Sets
 -- =========================================================================================================
 tatenashi = {
     body = "Tatena. Harama. +1",
     legs = "Tatena. Haidate +1",
-    feet = "Tatena. Sune"
+    feet = "Tatena. Sune. +1"
+}
+
+-- =========================================================================================================
+-- Abjuration Sets
+-- =========================================================================================================
+adhemar = {
+    head = "Adhemar Bonnet +1",
+    hands = "Adhemar Wrist. +1"
+}
+
+rao = {
+    body = "Rao Togi +1",
+    hands = "Rao Kote +1",
+    legs = "Rao Haidate +1",
+    feet = "Rao Sune-Ate +1"
+}
+
+ryuo = {
+    hands = "Ryuo Tekko +1"
+}
+-- =========================================================================================================
+-- SU3 Sets
+-- =========================================================================================================
+
+mousai = {
+    head = "Mousai Turban +1",
+    body = "Mousai Manteel +1",
+    hands = "Mousai Gages +1",
+    legs = "Mousai Seraweels +1",
+    feet = "Mousai Crackows +1"
+}
+-- =========================================================================================================
+-- HTMB Sets
+-- =========================================================================================================
+malignance = {
+    head = "Malignance Chapeau",
+    body = "Malignance Tabard",
+    hands = "Malignance Gloves",
+    legs = "Malignance Tights",
+    feet = "Malignance Boots"
 }
 
 -- =========================================================================================================
@@ -140,15 +203,19 @@ chironic.head = {
 -- =========================================================================================================
 taeon = {}
 taeon.head = {
+    fcphalanx = {
+        name = "Taeon Chapeau",
+        augments = {'"Fast Cast"+5', 'Phalanx +3'}
+    },
     pet = {
         name = "Taeon Chapeau",
         augments = {'Pet: Accuracy+25 Pet: Rng. Acc.+25', 'Pet: "Dbl. Atk."+5', 'Pet: Damage taken -4%'}
     }
 }
 taeon.body = {
-    fc = {
+    fcphalanx = {
         name = "Taeon Tabard",
-        augments = {'"Fast Cast"+5'}
+        augments = {'"Fast Cast"+5', 'Phalanx +3'}
     },
     pet = {
         name = "Taeon Tabard",
@@ -156,18 +223,30 @@ taeon.body = {
     }
 }
 taeon.hands = {
+    fcphalanx = {
+        name = "Taeon Gloves",
+        augments = {'"Fast Cast"+5', 'Phalanx +3'}
+    },
     pet = {
         name = "Taeon Gloves",
         augments = {'Pet: Accuracy+25 Pet: Rng. Acc.+25', 'Pet: "Dbl. Atk."+5', 'Pet: Damage taken -4%'}
     }
 }
 taeon.legs = {
+    fcphalanx = {
+        name = "Taeon Tights",
+        augments = {'"Fast Cast"+5', 'Phalanx +3'}
+    },
     pet = {
         name = "Taeon Tights",
         augments = {'Pet: Accuracy+23 Pet: Rng. Acc.+23', 'Pet: "Dbl. Atk."+5', 'Pet: Damage taken -4%'}
     }
 }
 taeon.feet = {
+    fcphalanx = {
+        name = "Taeon Boots",
+        augments = {'"Fast Cast"+5', 'Phalanx +3'}
+    },
     pet = {
         name = "Taeon Boots",
         augments = {'Pet: Accuracy+23 Pet: Rng. Acc.+23', 'Pet: "Dbl. Atk."+5', 'Pet: Damage taken -4%'}

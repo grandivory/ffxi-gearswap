@@ -4,10 +4,15 @@ include('augments')
 lockstyleset = 12
 
 function define_sets()
-    Melee_Modes = T {'DT', 'TH'}
+    Melee_Modes = T {'DT', 'Acc', 'Omen', 'Glass'}
     Idle_Modes = T {'Speed', 'DT'}
 
     fastcast = .22 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
+
+    -- =========================================================================================================
+    -- ***Stances***
+    -- =========================================================================================================
+    stances.SAM = S {'Hasso', 'Seigan'}
 
     back = {
         tp = {
@@ -26,15 +31,15 @@ function define_sets()
     }
 
     af = {
-        head = "Wakido Kabuto +2",
-        body = "Wakido Domaru +2",
-        hands = "Wakido Kote +2",
-        legs = "Wakido Haidate +2"
+        head = "Wakido Kabuto +3",
+        body = "Wakido Domaru +3",
+        hands = "Wakido Kote +3",
+        legs = "Wakido Haidate +3"
     }
 
     relic = {
-        body = "Sakonji Domaru +1",
-        hands = "Sakonji Kote +1"
+        body = "Sakonji Domaru +3",
+        hands = "Sakonji Kote +2"
     }
 
     jseneck = "Samurai's Nodowa +2"
@@ -92,7 +97,7 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Aurgelmir Orb +1",
         head = mpaca.head,
-        body = mpaca.body,
+        body = af.body,
         hands = af.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -102,6 +107,44 @@ function define_sets()
         right_ear = "Dedition Earring",
         left_ring = "Defending Ring",
         right_ring = "Niqmaddu Ring",
+        back = back.tp
+    }
+
+    sets.TP.Acc = {
+        main = "Masamune",
+        sub = "Utu Grip",
+        ammo = "Amar Cluster",
+        head = mpaca.head,
+        body = af.body,
+        hands = af.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = jseneck,
+        waist = "Ioskeha Belt +1",
+        left_ear = "Telos Earring",
+        right_ear = "Crep. Earring",
+        left_ring = "Defending Ring",
+        right_ring = "Regal Ring",
+        back = back.tp
+    }
+
+    sets.TP.Omen = sets.TP.DT
+
+    sets.TP.Glass = {
+        main = "Masamune",
+        sub = "Utu Grip",
+        ammo = "Crepuscular Pebble",
+        head = flamma.head,
+        body = tatenashi.body,
+        hands = af.hands,
+        legs = tatenashi.legs,
+        feet = tatenashi.feet,
+        neck = jseneck,
+        waist = "Ioskeha Belt +1",
+        left_ear = "Telos Earring",
+        right_ear = "Schere Earring",
+        left_ring = "Niqmaddu Ring",
+        right_ring = "Chirich Ring +1",
         back = back.tp
     }
 
@@ -116,9 +159,9 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Knobkierrie",
         head = mpaca.head,
-        body = flamma.body,
+        body = relic.body,
         hands = nyame.hands,
-        legs = af.legs,
+        legs = nyame.legs,
         feet = nyame.feet,
         neck = jseneck,
         waist = "Sailfi Belt +1",
@@ -127,6 +170,38 @@ function define_sets()
         left_ring = "Epaminondas's Ring",
         right_ring = "Niqmaddu Ring",
         back = back.ws
+    }
+    sets.WS.Generic.Acc = {
+        sub = "Utu Grip",
+        ammo = "Knobkierrie",
+        head = mpaca.head,
+        body = relic.body,
+        hands = nyame.hands,
+        legs = af.legs,
+        feet = nyame.feet,
+        neck = jseneck,
+        waist = "Ioskeha Belt +1",
+        left_ear = "Moonshade Earring",
+        right_ear = "Schere Earring",
+        left_ring = "Niqmaddu Ring",
+        right_ring = "Regal Ring",
+        back = back.ws
+    }
+    sets.WS.Generic.Omen = {
+        sub = "Utu Grip",
+        ammo = "Ginsen",
+        head = af.head,
+        body = af.body,
+        hands = ryuo.hands,
+        legs = tatenashi.legs,
+        feet = rao.feet,
+        neck = "Sanctity Necklace",
+        waist = "Ioskeha Belt +1",
+        left_ear = "Telos Earring",
+        right_ear = "Mache Earring +1",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Chirich Ring +1",
+        back = back.tp
     }
     sets.WS.MAB = {
         sub = "Utu Grip",
@@ -139,15 +214,32 @@ function define_sets()
         neck = jseneck,
         waist = "Orpheus's Sash",
         left_ear = "Moonshade Earring",
-        right_ear = "Friomisi Earring",
+        right_ear = "Lugra Earring +1",
         left_ring = "Epaminondas's Ring",
-        right_ring = "Shiva Ring +1",
+        right_ring = "Regal Ring",
         back = back.mab
     }
+    sets.WS.MAB.Omen = {
+        sub = "Utu Grip",
+        ammo = "Ginsen",
+        head = af.head,
+        body = af.body,
+        hands = ryuo.hands,
+        legs = tatenashi.legs,
+        feet = rao.feet,
+        neck = "Sanctity Necklace",
+        waist = "Ioskeha Belt +1",
+        left_ear = "Telos Earring",
+        right_ear = "Mache Earring +1",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Chirich Ring +1",
+        back = back.tp
+    }
+
     sets.WS["Tachi: Ageha"] = {
         sub = "Utu Grip",
         ammo = "Pemphredo Tathlum",
-        head = nyame.head,
+        head = "Blistering Sallet +1",
         body = mpaca.body,
         hands = mpaca.hands,
         legs = mpaca.legs,
@@ -164,7 +256,7 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Knobkierrie",
         head = mpaca.head,
-        body = flamma.body,
+        body = relic.body,
         hands = nyame.hands,
         legs = af.legs,
         feet = nyame.feet,
@@ -183,13 +275,13 @@ function define_sets()
         ammo = "Knobkierrie",
         head = mpaca.head,
         body = tatenashi.body,
-        hands = "Ryuo Tekko +1",
+        hands = ryuo.hands,
         legs = mpaca.legs,
         feet = nyame.feet,
         neck = jseneck,
         waist = "Fotia Belt",
         left_ear = "Moonshade Earring",
-        right_ear = "Thrud Earring",
+        right_ear = "Lugra Earring +1",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.ws
@@ -233,11 +325,8 @@ function define_sets()
         back = "Twilight Cape"
     }
 
-    -- =========================================================================================================
-    -- ***Stances***
-    -- =========================================================================================================
-    stances.SAM = {'Hasso', 'Seigan'}
-end
+    sets.Distance = {
+        waist = "Orpheus's Sash"
+    }
 
-current_stance = nil
-stances = S {'Hasso', 'Seigan'}
+end

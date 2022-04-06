@@ -49,9 +49,9 @@ function define_sets()
     sets.TP.Damage = {
         sub = "Utu Grip",
         ammo = "Coiste Bodhar",
-        head = "Adhemar Bonnet +1",
+        head = adhemar.head,
         body = ayanmo.body,
-        hands = "Adhemar Wrist. +1",
+        hands = adhemar.hands,
         legs = "Samnuha Tights",
         feet = "Herculean Boots",
         neck = "Sanctity Necklace",
