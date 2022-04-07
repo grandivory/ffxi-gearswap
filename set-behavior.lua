@@ -139,7 +139,7 @@ function file_unload(new_file)
 end
 
 function precast(spell)
-    debug("Precast")
+    debug("Precast: " .. spell.name)
     if no_action_types:contains(spell.type) then
         debug("no action")
         return
@@ -226,6 +226,19 @@ function precast(spell)
             elseif sets.JA["Blood Pact"] ~= nil then
                 debug("Blood Pact")
                 precast_set = get_set(sets.JA["Blood Pact"], mode)
+            end
+        end
+    end
+
+    -- Ready Moves
+    if precast_set == nil then
+        if spell.type == "Monster" then
+            if sets.precast.Ready ~= nil then
+                debug("Ready Move")
+                precast_set = get_set(sets.precast.Ready, mode)
+            elseif sets.JA.Ready ~= nil then
+                debug("Ready Move")
+                precast_set = get_set(sets.JA.Ready, mode)
             end
         end
     end
@@ -395,7 +408,7 @@ function precast(spell)
 end
 
 function midcast(spell)
-    debug("Midcast")
+    debug("Midcast: " .. spell.name)
     if no_action_types:contains(spell.type) then
         debug("no action")
         return
@@ -536,6 +549,7 @@ function midcast(spell)
             end
         elseif spell.type == "BlueMagic" then
             magic_type = BlueMagic[spell.english]
+            debug("Blue magic type: " .. magic_type)
             if magic_type == 'static' and sets.midcast.BlueMagic.Static ~= nil then
                 debug("Blue magic static buff")
                 midcast_set = get_set(sets.midcast.BlueMagic.Static, mode)
@@ -579,6 +593,7 @@ function midcast(spell)
             end
         elseif spell.type == "Ninjutsu" then
             magic_type = Ninjutsu[spell.english]
+            debug("Ninjutsu Type: " .. magic_type)
             if magic_type == 'debuff' and sets.midcast.Ninja.Debuff ~= nil then
                 debug("Ninjutsu debuff")
                 midcast_set = get_set(sets.midcast.Ninja.Debuff, mode)
@@ -659,13 +674,14 @@ function midcast(spell)
 end
 
 function aftercast(spell)
-    debug("Aftercast")
+    debug("Aftercast: " .. spell.name)
     if no_action_types:contains(spell.type) then
         return
     end
 
     -- If you or a pet is mid-action, then don't swap sets
-    if midaction() or (pet.isvalid and (pet_midaction() or string.find(spell.type, 'BloodPact'))) then
+    if midaction() or
+        (pet.isvalid and (pet_midaction() or spell.type == 'Monster' or string.find(spell.type, 'BloodPact'))) then
         debug("Pet is mid-action. Not changing sets.")
         return
     end
@@ -678,7 +694,7 @@ function aftercast(spell)
 end
 
 function pet_midcast(spell)
-    debug("Pet midcast")
+    debug("Pet midcast: " .. spell.name)
     pet_set = nil
 
     if S {PetAbilityTypes.healing, PetAbilityTypes.magic, PetAbilityTypes.magicTP, PetAbilityTypes.mnd}:contains(
@@ -709,7 +725,8 @@ function pet_midcast(spell)
     end
 
     if pet_set == nil then
-        pet_ability_type = BloodPacts[spell.name]
+        pet_ability_type = PetAbilities[spell.name]
+        debug("Pet ability type: " .. pet_ability_type)
         if pet_ability_type == PetAbilityTypes.buff and sets.pet_midcast.Buff ~= nil then
             debug("Pet buff")
             pet_set = get_set(sets.pet_midcast.Buff, mode)
@@ -718,7 +735,7 @@ function pet_midcast(spell)
             pet_set = get_set(sets.pet_midcast.BuffMND, mode)
         elseif pet_ability_type == PetAbilityTypes.debuff and sets.pet_midcast.MAcc ~= nil then
             debug("Pet debuff")
-            pet_set = get_set(sets.pet_midcast.Macc, mode)
+            pet_set = get_set(sets.pet_midcast.MAcc, mode)
         elseif pet_ability_type == PetAbilityTypes.healing and sets.pet_midcast.Healing ~= nil then
             debug("Pet healing")
             pet_set = get_set(sets.pet_midcast.Healing, mode)
@@ -755,7 +772,7 @@ function pet_midcast(spell)
 
     if pet_set == nil and sets.pet_midcast.Generic ~= nil then
         debug("Using generic pet set")
-        pet_set = get_set(set.pet_midcast.Generic, mode)
+        pet_set = get_set(sets.pet_midcast.Generic, mode)
     end
 
     pet_set = mod_pet_midcast(spell, pet_set)
@@ -764,6 +781,8 @@ function pet_midcast(spell)
 end
 
 function pet_aftercast(spell)
+    debug("Pet aftercast: " .. spell.name)
+
     pet_aftercast_set = steady_state()
     pet_aftercast_set = mod_pet_aftercast(spell, pet_aftercast_set)
     equip(pet_aftercast_set)
@@ -953,22 +972,32 @@ windower.raw_register_event('action', function(action)
     end
     -- action.category 1 is a melee attack
     if action.actor_id == player.id and action.category == 1 then
+        local previousTargetMatch = previousTarget == currentTarget
         previousTarget = currentTarget
         if player.target ~= nil then
             currentTarget = player.target.index
         end
 
+        local currentTargetMatch = previousTarget == currentTarget
         -- For some reason, gearswap doesn't equip gear here, so send a command to force it
-        send_command('gs c steadystate')
+        if th_on_tag and previousTargetMatch ~= currentTargetMatch then
+            debug("TH Tag state changed. Recalculating gear set")
+            send_command('gs c steadystate')
+        end
     end
 end)
 
 windower.register_event('target change', function()
     if player.status == 'Engaged' then
+        local previousTargetMatch = previousTarget == currentTarget
         previousTarget = currentTarget
         currentTarget = player.target.index
+        local currentTargetMatch = previousTarget == currentTarget
 
-        send_command('gs c steadystate')
+        if th_on_tag and previousTargetMatch ~= currentTargetMatch then
+            debug("TH Tag state changed. Recalculating gear set")
+            send_command('gs c steadystate')
+        end
     end
 end)
 
@@ -1186,6 +1215,6 @@ end
 
 function debug(message)
     if is_debug then
-        notice("Debug:" .. message)
+        notice("Debug: " .. message)
     end
 end

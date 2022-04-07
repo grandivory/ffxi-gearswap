@@ -72,7 +72,9 @@ inyanga = {
 }
 
 taliah = {
+    head = "Tali'ah Turban +2",
     body = "Tali'ah Manteel +2",
+    legs = "Tali'ah Seraweels +2",
     ring = "Tali'ah Ring"
 }
 

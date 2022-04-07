@@ -76,6 +76,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * For phantom roll, you can use `sets.precast["Phantom Roll"]` or `sets.JA["Phantom Roll"]` for a generic roll set. For specific rolls, define a set using the spell names, as above!
 * For quick draw, you can use `sets.precast["Quick Draw"]` or `sets.JA["Quick Draw"]`
 * For summoner blood pacts, you can use `sets.precast["Blood Pact"]` or `sets.JA["Blood Pact"]`
+* For beastmaster pet ready moves, you can use `sets.precast.Ready` or `sets.JA.Ready`
 * If you define a `sets.precast["Something"]`, "Somthing" will be searched against the full spell name of what you're casting, then the type, so you can (for example) define a `sets.precast.Cur` that will match to ANY cure spell, Curaga, or Cura, or you can define `sets.precast.Healing` for any healing magic
 * If you use a weapon skill and don't have a ws-specific set defined, then the lua will look for `sets.WS.MAB` or `sets.WS.Elemental` for elemental-based WS, or `sets.WS.Generic` for physical-based WS
   * Further, for elemental weapon skills, the lua will check against the current weather and day to equip `sets.Weather`, if it's defined
