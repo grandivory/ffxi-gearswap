@@ -63,6 +63,12 @@ ayanmo = {
     feet = "Aya. Gambieras +2"
 }
 
+meghanada = {
+    hands = "Meg. Gloves +2",
+    body = "Meg. Cuirie +2",
+    legs = "Meg. Chausses +2"
+}
+
 inyanga = {
     head = "Inyanga Tiara +1",
     body = "Inyanga Jubbah +2",
@@ -95,6 +101,16 @@ adhemar = {
     hands = "Adhemar Wrist. +1"
 }
 
+carmine = {
+    head = "Carmine Mask +1",
+    legs = "Carmine Cuisses +1",
+    feet = "Carmine Greaves +1"
+}
+lustratio = {
+    legs = "Lustr. Subligar +1",
+    feet = "Lustra. Leggings +1"
+}
+
 rao = {
     body = "Rao Togi +1",
     hands = "Rao Kote +1",
@@ -115,6 +131,11 @@ mousai = {
     hands = "Mousai Gages +1",
     legs = "Mousai Seraweels +1",
     feet = "Mousai Crackows +1"
+}
+
+turms = {
+    hands = "Turms Mittens +1",
+    feet = "Turms Leggings +1"
 }
 -- =========================================================================================================
 -- HTMB Sets
@@ -139,6 +160,13 @@ herc.head = {
     dexta = {
         name = "Herculean Helm",
         augments = {'Accuracy+24', '"Triple Atk."+3', 'DEX+10'}
+    }
+}
+
+herc.body = {
+    phalanx = {
+        name = "Herculean Vest",
+        augments = {'"Mag.Atk.Bns."+7', 'Pet: Mag. Acc.+19', 'Phalanx +4', 'Accuracy+14 Attack+14'}
     }
 }
 
@@ -252,6 +280,10 @@ taeon.feet = {
     pet = {
         name = "Taeon Boots",
         augments = {'Pet: Accuracy+23 Pet: Rng. Acc.+23', 'Pet: "Dbl. Atk."+5', 'Pet: Damage taken -4%'}
+    },
+    sird = {
+        name = "Taeon Boots",
+        augments = {'Mag. Evasion+20', 'Spell interruption rate down -10%', 'HP+47'}
     }
 }
 

@@ -4,59 +4,54 @@ include('set-behavior')
 lockstyleset = 14
 
 function define_sets()
+
+    af = {
+        head = "Drachen Armet",
+        body = "Drachen Mail",
+        hands = "Drachen Fng. Gnt.",
+        legs = "Drachen Brais",
+        feet = "Drachen Greaves"
+    }
+
+    drg = {
+        main = "Spear of Trials",
+        ammo = "Olibanum Sachet",
+        head = "Voyager Sallet",
+        body = "Scp. Harness +1",
+        hands = af.hands,
+        legs = af.legs,
+        feet = "Bounding Boots",
+        neck = "Love Torque",
+        waist = "Swift Belt",
+        left_ear = "Coral Earring",
+        right_ear = "Coral Earring",
+        left_ring = "Lava's Ring",
+        right_ring = "Kusha's Ring",
+        back = "Amemet Mantle +1"
+    }
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle = {
-        ammo = "Olibanum Sachet",
-        head = "Empress Hairpin",
-        body = "Padded Armor",
-        hands = "Iron Mittens",
-        legs = "Iron Subligar",
-        feet = "Bounding Boots",
-        neck = "Peacock Amulet",
-        waist = "Swift Belt",
-        left_ear = "Beetle Earring +1",
-        right_ear = "Beetle Earring +1",
-        left_ring = "Rajas Ring",
-        right_ring = "Jaeger Ring"
-    }
+    sets.Idle = drg
 
     -- =========================================================================================================
     -- ***Engaged Sets***
     -- =========================================================================================================
-    sets.TP = {
-        main = "Mythril Lance",
-        ammo = "Olibanum Sachet",
-        head = "Empress Hairpin",
-        body = "Padded Armor",
-        hands = "Iron Mittens",
-        legs = "Iron Subligar",
-        feet = "Bounding Boots",
-        neck = "Peacock Amulet",
-        waist = "Swift Belt",
-        left_ear = "Beetle Earring +1",
-        right_ear = "Beetle Earring +1",
-        left_ring = "Rajas Ring",
-        right_ring = "Jaeger Ring"
-    }
+    sets.TP = drg
 
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
-    sets.WS.Generic = {
-        ammo = "Olibanum Sachet",
-        head = "Voyager Sallet",
-        body = "Padded Armor",
-        hands = "Iron Mittens",
-        legs = "Iron Subligar",
-        feet = "Bounding Boots",
-        neck = "Spike Necklace",
-        waist = "Swift Belt",
-        left_ear = "Beetle Earring +1",
-        right_ear = "Beetle Earring +1",
+    sets.WS.Generic = set_combine(drg, {
+        waist = "Cuchulain's Belt",
         left_ring = "Rajas Ring",
         right_ring = "Kshama Ring No.8"
-    }
+    })
 
+    -- =========================================================================================================
+    -- ***Job Ability Sets***
+    -- =========================================================================================================
+    sets.JA.Jump = {
+        feet = af.feet
+    }
 end

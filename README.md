@@ -85,6 +85,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * Ammo counting! You can set an `ammo_threshold` variable (default 10) and the lua will warn you when you're running low on ammo.
 * If you define a `no_shoot_ammo` variable as `S{'Bullet 1', 'Bullet 2'}` (yes, the S matters), then the lua won't let you shoot that bullet, even if you put it into a set
 * Tool counting! You can set a `tool_threshold` variable (default 10) and the lua will warn you when you're running low on ninja tools. This works for both the spell-specific tools and the universal tools, if you're on ninja main.
+* You can also set `pet_food_threshold` to automatically let you know when you're running low on whatever pet food is defined in your `Reward` set
 * Auto-canceling! The lua will automatically cancel shadows (1.5 seconds into casting) if you're casting Utsusemi: Ichi and have fewer than 3 remaining, will automatically cancel Stoneskin when casting Stoneskin, cancel Sneak for SPectral Jig or Sneak, and a few others.
 
 ## Midcast

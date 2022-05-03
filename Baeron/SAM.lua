@@ -7,7 +7,7 @@ function define_sets()
     Melee_Modes = T {'DT', 'Acc', 'Omen', 'Glass'}
     Idle_Modes = T {'Speed', 'DT'}
 
-    fastcast = .22 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
+    fastcast = .32 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
 
     -- =========================================================================================================
     -- ***Stances***
@@ -58,7 +58,7 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Crepuscular Pebble",
         head = af.head,
-        body = nyame.body,
+        body = "Sacro Breastplate",
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -76,7 +76,7 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Crepuscular Pebble",
         head = af.head,
-        body = nyame.body,
+        body = "Sacro Breastplate",
         hands = nyame.hands,
         legs = nyame.legs,
         feet = "Danzo Sune-ate",
@@ -305,8 +305,9 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 22%
+    sets.precast.FastCast = { -- 32%
         ammo = "Sapience Orb", -- 2%
+        body = "Sacro Breastplate", -- 10%
         hands = { -- 7%
             name = "Leyline Gloves",
             augments = {'Accuracy+14', 'Mag. Acc.+13', '"Mag.Atk.Bns."+13', '"Fast Cast"+2'}

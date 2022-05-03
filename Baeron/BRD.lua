@@ -132,7 +132,7 @@ function define_sets()
     -- =========================================================================================================
     sets.TP.Att = {
         main = "Naegling",
-        sub = tpdagger,
+        sub = "Crepuscular Knife",
         range = linos.tp,
         head = "Bunzi's Hat",
         body = ayanmo.body,
@@ -149,7 +149,7 @@ function define_sets()
     }
     sets.TP.DT = {
         main = "Naegling",
-        sub = tpdagger,
+        sub = "Crepuscular Knife",
         range = linos.tp,
         head = "Bunzi's Hat",
         body = ayanmo.body,
@@ -425,7 +425,7 @@ function define_sets()
         feet = "Brioso Slippers +3",
         neck = "Incanter's Torque",
         waist = "Acuity Belt +1",
-        left_ear = "Enchntr. Earring +1",
+        left_ear = "Regal Earring",
         right_ear = "Digni. Earring",
         left_ring = "Metamor. Ring +1",
         right_ring = "Stikini Ring +1",
@@ -498,7 +498,8 @@ function define_sets()
         ammo = empty
     })
     sets.midcast['Horde Lullaby'] = set_combine(sets.midcast['Foe Lullaby'], {
-        range = "Blurred Harp +1"
+        range = "Blurred Harp +1",
+        body = "Brioso Justau. +3"
     })
     sets.midcast['Horde Lullaby'].TH = set_combine(sets.midcast['Horde Lullaby'], th_gear)
     sets.midcast['Horde Lullaby'].Enmity = set_combine(sets.midcast['Horde Lullaby'], enmity_gear, {
