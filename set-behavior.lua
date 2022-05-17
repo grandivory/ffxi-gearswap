@@ -43,6 +43,7 @@ function get_sets()
     sets.Idle = {}
     sets.Idle_Avatar = {}
     sets.Idle_Spirit = {}
+    sets.item = {}
     sets.precast = {}
     sets.midcast = {}
     sets.midcast.BlueMagic = {}
@@ -141,9 +142,16 @@ end
 
 function precast(spell)
     log_debug("Precast: " .. spell.name)
+
+    precast_set = nil
+
     if no_action_types:contains(spell.type) then
-        log_debug("no action")
-        return
+        if sets.item[spell.name] ~= nil then
+            precast_set = get
+        else
+            log_debug("no action")
+            return
+        end
     end
 
     -- Check stances to see if we need to update
@@ -162,8 +170,6 @@ function precast(spell)
         log_debug("pet is mid-action. Not changing sets.")
         return
     end
-
-    precast_set = nil
 
     -- Determine which mode to use for this ability
     if spell.cast_time == nil then
@@ -688,9 +694,6 @@ end
 
 function aftercast(spell)
     log_debug("Aftercast: " .. spell.name)
-    if no_action_types:contains(spell.type) then
-        return
-    end
 
     -- If you or a pet is mid-action, then don't swap sets
     if midaction() or

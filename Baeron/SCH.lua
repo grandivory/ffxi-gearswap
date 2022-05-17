@@ -30,7 +30,7 @@ function define_sets()
         sub = "Oneiros Grip", -- Refresh +1
         ammo = "Homiliary", -- Refresh +1
         head = "Befouled Crown", -- Refresh +1
-        body = "Jhakri Robe +2", -- Refresh +4
+        body = jhakri.body, -- Refresh +4
         hands = agwu.hands, -- Resist Silence +10
         legs = "Assiduity Pants +1", -- Refresh +1~2
         feet = "Herald's Gaiters",
@@ -51,7 +51,7 @@ function define_sets()
         sub = "Khonsu", -- DT -6%
         ammo = "Homiliary", -- Refresh +1
         head = nyame.head, -- DT -7%
-        body = "Jhakri Robe +2", -- Refresh +4
+        body = jhakri.body, -- Refresh +4
         hands = nyame.hands, -- DT -7%
         legs = "Assiduity Pants +1", -- Refresh +1~2
         feet = "Herald's Gaiters",
@@ -91,7 +91,7 @@ function define_sets()
     sets.WS["Myrkr"] = {
         ammo = "Ghastly Tathlum +1", -- MP +35
         head = "Pixie Hairpin +1", -- MP +120
-        body = "Amalric Doublet +1", -- MP +153
+        body = amalric.body, -- MP +153
         hands = "Vanya Cuffs", -- MP +94
         legs = "Psycloth Lappas", -- MP +109
         feet = "Psycloth Boots", -- MP +124
@@ -211,8 +211,8 @@ function define_sets()
         sub = "Ammurapi Shield",
         ammo = "Pemphredo Tathlum",
         head = "Peda. M.board +3",
-        body = "Amalric Doublet +1",
-        hands = "Amalric Gages +1",
+        body = amalric.body,
+        hands = amalric.hands,
         legs = agwu.legs,
         feet = agwu.feet,
         neck = "Baetyl Pendant",
@@ -242,8 +242,8 @@ function define_sets()
         sub = "Khonsu",
         ammo = "Pemphredo Tathlum",
         head = "Befouled Crown",
-        body = "Jhakri Robe +2",
-        hands = "Jhakri Cuffs +2",
+        body = jhakri.body,
+        hands = jhakri.hands,
         legs = "Psycloth Lappas",
         feet = af.feet,
         neck = "Loricate Torque +1",
@@ -256,8 +256,8 @@ function define_sets()
     }
     sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
         head = "Pedagogy Mortarboard +3",
-        body = "Amalric Doublet +1",
-        hands = "Amalric Gages +1",
+        body = amalric.body,
+        hands = amalric.hands,
         legs = agwu.legs,
         feet = agwu.feet,
         right_ring = "Mujin Band"
@@ -303,10 +303,10 @@ function define_sets()
         sub = "Genmei Shield",
         ammo = "Ghastly Tathlum +1",
         head = "Pixie Hairpin +1",
-        body = "Jhakri Robe +2",
-        hands = "Jhakri Cuffs +2",
+        body = jhakri.body,
+        hands = jhakri.hands,
         legs = "Peda. Pants +1",
-        feet = "Amalric Nails +1",
+        feet = amalric.feet,
         neck = "Erra Pendant",
         left_ear = "Malignance Earring",
         -- right_ear = "Mani Earring",
@@ -326,8 +326,8 @@ function define_sets()
         main = "Contemplator +1", -- MAcc +70
         sub = "Khonsu", -- MAcc +30
         ammo = "Pemphredo Tathlum", -- MAcc +8
-        head = "Jhakri Coronal +2", -- MAcc +44
-        body = "Jhakri Robe +2", -- MAcc +46
+        head = jhakri.head, -- MAcc +44
+        body = jhakri.body, -- MAcc +46
         hands = af.hands, -- MAcc +48
         legs = af.legs, -- MAcc +49, "Light Arts" + 24
         feet = af.feet, -- MAcc +66

@@ -71,7 +71,7 @@ function define_sets()
         },
         ammo = "Vanir Battery", -- +4 MDB
         head = herc.head.refresh, -- Refresh +2
-        body = "Jhakri Robe +2", -- Refresh +4
+        body = jhakri.body, -- Refresh +4
         hands = herc.hands.refresh, -- Refresh +2, PDT -2%
         legs = herc.legs.refresh, -- Refresh +2
         feet = herc.feet.refresh, -- Refresh +2, PDT -2%
@@ -94,7 +94,7 @@ function define_sets()
         },
         ammo = "Vanir Battery", -- +4 MDB
         head = herc.head.refresh, -- Refresh +2
-        body = "Jhakri Robe +2", -- Refresh +4
+        body = jhakri.body, -- Refresh +4
         hands = herc.hands.refresh, -- Refresh +2, PDT -2%
         legs = herc.legs.refresh, -- Refresh +2
         feet = herc.feet.refresh, -- Refresh +2, PDT -2%
@@ -121,7 +121,7 @@ function define_sets()
         },
         ammo = "Vanir Battery", -- +4 MDB
         head = malignance.head, -- DT - 6%
-        body = "Jhakri Robe +2", -- Refresh +4
+        body = jhakri.body, -- Refresh +4
         hands = herc.hands.refresh, -- Refresh +2, PDT -2%
         legs = malignance.legs, -- DT -7%
         feet = herc.feet.refresh, -- Refresh +2, PDT -2%
@@ -147,7 +147,7 @@ function define_sets()
         },
         ammo = "Vanir Battery", -- +4 MDB
         head = malignance.head, -- DT - 6%
-        body = "Jhakri Robe +2", -- Refresh +4
+        body = jhakri.body, -- Refresh +4
         hands = malignance.hands, -- DT -5%
         legs = "Carmine Cuisses +1",
         feet = malignance.feet, -- DT -4%
@@ -300,7 +300,7 @@ function define_sets()
         ammo = "Ghastly Tathlum +1",
         head = "Pixie Hairpin +1",
         body = "Amalric Doublet +1",
-        hands = "Jhakri Cuffs +2",
+        hands = jhakri.hands,
         legs = "Luhlaza Shalwar +3",
         feet = "Amalric Nails +1",
         neck = "Baetyl Pendant",
@@ -378,7 +378,7 @@ function define_sets()
         sub = "Nibiru Cudgel",
         head = telchine.head.enhfc,
         body = "Amalric Doublet +1",
-        hands = "Jhakri Cuffs +2",
+        hands = jhakri.hands,
         legs = "Gyve Trousers",
         feet = "Medium's Sabots",
         neck = "Phalaina Locket",
@@ -398,7 +398,7 @@ function define_sets()
         main = "Maxentius",
         sub = "Bunzi's Rod",
         ammo = "Ghastly Tathlum +1",
-        head = "Jhakri Coronal +2",
+        head = jhakri.head,
         body = "Amalric Doublet +1",
         hands = "Amalric Gages +1",
         legs = "Luhlaza Shalwar +3",
@@ -416,10 +416,10 @@ function define_sets()
         sub = "Bunzi's Rod",
         ammo = "Pemphredo Tathlum",
         head = "Assim. Keffiyeh +3",
-        body = "Jhakri Robe +2",
+        body = jhakri.body,
         hands = malignance.hands,
         legs = "Assim. Shalwar +3",
-        feet = "Jhakri Pigaches +2", -- TODO: Replace
+        feet = jhakri.feet, -- TODO: Replace
         neck = "Mirage Stole +2",
         waist = "Acuity Belt +1",
         left_ear = "Regal Earring",
@@ -433,7 +433,7 @@ function define_sets()
         ammo = "Ginsen",
         head = adhemar.head,
         body = gleti.body,
-        hands = "Jhakri Cuffs +2",
+        hands = jhakri.hands,
         legs = gleti.feet,
         feet = "Gleti's Boots",
         neck = "Mirage Stole +2",
@@ -447,9 +447,9 @@ function define_sets()
     sets.midcast.BlueMagic.AddEffect = { -- Acc +340, MAcc +325, BLU +16
         ammo = "Falcon Eye", -- Acc +13
         head = malignance.head, -- Acc +50, MAcc +50
-        body = "Jhakri Robe +2", -- Acc +46, MAcc +46 (and more INT than Malignance)
-        hands = "Jhakri Cuffs +2", -- Acc +43, MAcc +43 (and more INT than Malignance)
-        legs = "Jhakri Slops +2", -- TODO: Replace; Acc +45, MAcc +45 (and more INT than Malignance)
+        body = jhakri.body, -- Acc +46, MAcc +46 (and more INT than Malignance)
+        hands = jhakri.hands, -- Acc +43, MAcc +43 (and more INT than Malignance)
+        legs = jhakri.legs, -- TODO: Replace; Acc +45, MAcc +45 (and more INT than Malignance)
         feet = malignance.feet, -- Acc +50, MAcc +50
         neck = "Mirage Stole +2", -- Acc +25, MAcc +25
         waist = "Eschan Stone", -- Acc +15, MAcc +7

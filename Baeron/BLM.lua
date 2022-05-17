@@ -1,5 +1,5 @@
 include('set-behavior')
-include('organizer-lib')
+include('augments')
 
 lockstyleset = 5
 
@@ -12,7 +12,7 @@ function define_sets()
         sub = "Khonsu",
         ammo = "Sapience Orb",
         head = "Spurrina Coif",
-        body = "Jhakri Robe +2",
+        body = jhakri.body,
         hands = "Serpentes Cuffs",
         legs = "Assid. Pants +1",
         feet = "Herald's Gaiters",
@@ -36,7 +36,7 @@ function define_sets()
         body = "Zendik Robe",
         hands = telchine.hands.enhfc,
         legs = "Volte Brais",
-        feet = "Amalric Nails",
+        feet = amalric.feet,
         neck = "Orunmila's Torque",
         waist = "Embla Sash",
         left_ear = "Malignance Earring",
@@ -50,11 +50,11 @@ function define_sets()
         main = "Contemplator +1",
         sub = "Khonsu",
         ammo = "Pemphredo Tathlum",
-        head = "Jhakri Coronal +2",
-        body = "Amalric Doublet +1",
-        hands = "Jhakri Cuffs +2",
-        legs = "Jhakri Slops +2",
-        feet = "Amalric Nails +1",
+        head = jhakri.head,
+        body = amalric.body,
+        hands = jhakri.hands,
+        legs = jhakri.legs,
+        feet = amalric.feet,
         neck = "Baetyl Pendant",
         waist = "Eschan Stone",
         left_ear = "Malignance Earring",

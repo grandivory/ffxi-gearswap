@@ -69,6 +69,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 |gs c equipgear|Equip the current "correct" gear based on the character's state - TP for engaged, Idle for not engaged|
 
 ## Precast
+* If you have a `sets.item[item name]`, then that set will be used when using an item. Otherwise, no changes are made when using an item
 * If you have a `sets.precast[spell name]`, that set will be used
 * If you have a `sets.JA[spell name]`, that set will be used
 * If you have a `sets.WS[spell name]`, that set will be used

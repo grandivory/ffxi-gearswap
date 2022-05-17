@@ -5,7 +5,7 @@ include('augments')
 lockstyleset = 2
 
 function define_sets()
-    Melee_Modes = T {'PDT', 'DT', 'Counter', 'Att', 'Acc'}
+    Melee_Modes = T {'PDT', 'DT', 'Godhands', 'Counter', 'Att', 'Acc'}
     stances.MNK = S {'Impetus'}
     stances.Footwork = S {'Footwork'}
     stances.Berserk = S {'Berserk'}
@@ -50,7 +50,6 @@ function define_sets()
     -- ***Not Engaged Sets***
     -- =========================================================================================================
     sets.Idle = {
-        main = "Verethragna",
         ammo = "Vanir Battery",
         head = malignance.head,
         body = malignance.body,
@@ -130,6 +129,22 @@ function define_sets()
         back = back.dexda
     }
     sets.TP.DT.withBuffs = {}
+    sets.TP.Godhands = {
+        main = "Godhands",
+        ammo = "Coiste Bodhar",
+        head = malignance.head,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
+        neck = "Monk's Nodowa +2",
+        waist = "Moonbow Belt +1",
+        left_ear = "Sherida Earring",
+        right_ear = "Mache Earring +1",
+        left_ring = "Gere Ring",
+        right_ring = "Niqmaddu Ring",
+        back = back.dexda
+    }
     -- sets.TP.DT.withBuffs.Impetus = set_combine(sets.TP.DT, {
     --     body = empy.body
     -- })

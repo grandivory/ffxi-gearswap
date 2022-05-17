@@ -71,10 +71,34 @@ function define_sets()
         neck = "Unmoving Collar +1",
         waist = "Kasiri Belt",
         left_ear = "Friomisi Earring",
-        right_ear = "Cryptic Earring",
+        right_ear = "Trux Earring",
         left_ring = "Supershear Ring",
         right_ring = "Eihwaz Ring",
         back = back.eva
+    }
+
+    af = {
+        head = "Brioso Roundlet +3",
+        body = "Brioso Jstcorps. +3",
+        hands = "Brioso Cuffs +3",
+        legs = "Brioso Cannions +3",
+        feet = "Brioso Slippers +3"
+    }
+
+    relic = {
+        head = "Bihu Roundlet +3",
+        body = "Bihu Jstcorps. +3",
+        hands = "Bihu Cuffs +1",
+        legs = "Bihu Cannions +1",
+        feet = "Bihu Slippers +1"
+    }
+
+    empyrean = {
+        head = "Fili Calot +1",
+        body = "Fili Hongreline +1",
+        hands = "Fili Manchettes +1",
+        legs = "Fili Rhingrave +1",
+        feet = "Fili Cothurnes +1"
     }
 
     -- =========================================================================================================
@@ -82,15 +106,15 @@ function define_sets()
     -- =========================================================================================================
     sets.Idle.DT = {
         sub = "Genmei Shield",
-        head = "Bunzi's Hat",
+        head = bunzi.head,
         body = bunzi.body,
         hands = bunzi.hands,
         legs = "Assid. Pants +1",
         feet = nyame.feet,
         neck = "Loricate Torque +1",
         waist = "Slipor Sash",
-        left_ear = "Etiolation Earring",
-        right_ear = "Mendi. Earring",
+        left_ear = "Mendi. Earring",
+        right_ear = "Etiolation Earring",
         left_ring = "Defending Ring",
         right_ring = "Kunaji Ring",
         back = back.tp
@@ -240,7 +264,7 @@ function define_sets()
     sets.WS["Rudra's Storm"] = {
         range = linos.dexws,
         head = nyame.head,
-        body = nyame.body,
+        body = "Bihu Jstcorps. +3",
         hands = nyame.hands,
         legs = "Lustr. Subligar +1",
         feet = "Lustra. Leggings +1",
@@ -258,7 +282,7 @@ function define_sets()
     sets.WS["Mordant Rime"] = {
         range = linos.chrws,
         head = nyame.head,
-        body = nyame.body,
+        body = relic.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,

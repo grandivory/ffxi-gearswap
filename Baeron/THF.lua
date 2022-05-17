@@ -226,8 +226,8 @@ function define_sets()
     -- Non-THF JAs
     sets.JA['Waltz'] = {
         ammo = "Yamarang",
-        hands = "Meg. Gloves +2",
-        -- legs = "Meg. Chausses +1",
+        hands = meghanada.hands,
+        -- legs = meghanada.legs,
         waist = "Gishdubar Sash",
         left_ear = "Odnowa Earring +1",
         left_ring = "Petrov Ring"
@@ -238,7 +238,7 @@ function define_sets()
         ammo = "Seeth. Bomblet +1",
         head = "Plun. Bonnet +3",
         body = "Plunderer's Vest +3",
-        hands = "Meg. Gloves +2",
+        hands = meghanada.hands,
         legs = "Plun. Culottes +3",
         feet = nyame.feet,
         neck = "Asn. Gorget +2",

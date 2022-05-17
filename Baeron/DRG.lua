@@ -5,6 +5,7 @@ lockstyleset = 14
 
 function define_sets()
 
+    stances.SAM = S {'Hasso', 'Seigan'}
     af = {
         head = "Drachen Armet",
         body = "Drachen Mail",
@@ -13,26 +14,32 @@ function define_sets()
         feet = "Drachen Greaves"
     }
 
+    relic = {
+        body = "Wyrm Mail"
+    }
+
     drg = {
-        main = "Spear of Trials",
+        main = "Erebus's Lance",
         ammo = "Olibanum Sachet",
-        head = "Voyager Sallet",
-        body = "Scp. Harness +1",
-        hands = af.hands,
+        head = "Askar Zucchetto",
+        body = "Homam Corazza",
+        hands = "Askar Manopolas",
         legs = af.legs,
-        feet = "Bounding Boots",
-        neck = "Love Torque",
-        waist = "Swift Belt",
-        left_ear = "Coral Earring",
+        feet = "Ace's Leggings",
+        neck = "Lancer's Torque",
+        waist = "Ninurta's Sash",
+        left_ear = "Brutal Earring",
         right_ear = "Coral Earring",
         left_ring = "Lava's Ring",
         right_ring = "Kusha's Ring",
-        back = "Amemet Mantle +1"
+        back = "Cerb. Mantle +1"
     }
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle = drg
+    sets.Idle = set_combine(drg, {
+        legs = "Blood Cuisses"
+    })
 
     -- =========================================================================================================
     -- ***Engaged Sets***
@@ -42,16 +49,29 @@ function define_sets()
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
-    sets.WS.Generic = set_combine(drg, {
-        waist = "Cuchulain's Belt",
+    sets.WS.Generic = {
+        ammo = "Olibanum Sachet",
+        head = "Ares' Mask",
+        body = "Aurum Cuirass",
+        hands = "Ares' Gauntlets",
+        legs = "Aurum Cuisses",
+        feet = "Hct. Leggings +1",
+        neck = "Lancer's Torque",
+        waist = "Anguinus Belt",
+        left_ear = "Coral Earring",
+        right_ear = "Coral Earring",
         left_ring = "Rajas Ring",
-        right_ring = "Kshama Ring No.8"
-    })
+        right_ring = "Strigoi Ring",
+        back = "Cerb. Mantle +1"
+    }
 
     -- =========================================================================================================
     -- ***Job Ability Sets***
     -- =========================================================================================================
     sets.JA.Jump = {
         feet = af.feet
+    }
+    sets.JA['Call Wyvern'] = {
+        body = relic.body
     }
 end

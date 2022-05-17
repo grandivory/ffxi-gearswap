@@ -31,18 +31,18 @@ function define_sets()
     }
 
     af = {
-        head = "Rune. Bandeau +2",
-        body = "Runeist's Coat +2",
-        hands = "Runeist's Mitons +2",
+        head = "Rune. Bandeau +3",
+        body = "Runeist's Coat +3",
+        hands = "Runeist's Mitons +3",
         legs = "Rune. Trousers +2",
         feet = "Runeist Bottes +1"
     }
 
     relic = {
-        head = "Fu. Bandeau +1",
-        body = "Futhark Coat +1",
+        head = "Fu. Bandeau +3",
+        body = "Futhark Coat +3",
         hands = "Futhark Mitons +1",
-        legs = "Futhark Trousers +1",
+        legs = "Futhark Trousers +3",
         feet = "Futhark Boots +1"
     }
 
@@ -59,13 +59,13 @@ function define_sets()
         ammo = "Staunch Tathlum +1", -- DT -3%
         head = "Halitus Helm", -- +8
         body = "Emet Harness +1", -- +10, PDT -6%
-        hands = relic.hands, -- +4
+        hands = "Kurys Gloves", -- +9
         legs = empyrean.legs, -- +11, PDT -7%
         feet = empyrean.feet, -- +6, PDT -5%
         neck = "Futhark Torque +2", -- +10, DT -7%
         waist = "Kasiri Belt", -- +3,
         left_ear = "Cryptic Earring", -- +4
-        right_ear = "Odnowa Earring +1", -- PDT -3%, MDT -5%
+        right_ear = "Trux Earring", -- +5
         left_ring = "Gelatinous Ring +1", -- PDT -7%, MDT +1%
         right_ring = "Defending Ring", -- DT -10%
         back = back.tank -- +10
@@ -85,7 +85,7 @@ function define_sets()
         sub = "Refined Grip +1",
         ammo = "Staunch Tathlum +1",
         head = nyame.head,
-        body = nyame.body,
+        body = af.body,
         hands = nyame.hands,
         legs = carmine.legs,
         feet = nyame.feet,
@@ -121,7 +121,7 @@ function define_sets()
         sub = "Irenic Strap +1",
         ammo = "Staunch Tathlum +1",
         head = nyame.head,
-        body = nyame.body,
+        body = af.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -160,10 +160,10 @@ function define_sets()
         sub = "Refined Grip +1",
         ammo = "Staunch Tathlum +1",
         head = nyame.head,
-        body = nyame.body,
-        hands = nyame.hands,
+        body = af.body,
+        hands = turms.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = turms.feet,
         neck = "Futhark Torque +2",
         waist = "Engraved Belt",
         left_ear = "Cryptic Earring",
@@ -283,6 +283,7 @@ function define_sets()
         head = empyrean.head,
         legs = af.legs,
         neck = "Incanter's Torque",
+        waist = "Bishop's Sash",
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1",
         back = "Altruistic Cape"
@@ -325,9 +326,6 @@ function define_sets()
     })
     sets.JA.Swordplay = {
         hands = relic.hands
-    }
-    sets.JA['Vivacious Pulse'] = {
-        head = empyrean.head
     }
     sets.JA.Embolden = {
         back = "Evasionist's Cape"
@@ -380,7 +378,7 @@ function define_sets()
         main = "Epeolatry",
         ammo = "Staunch Tathlum +1", -- Switch for Staunch Tathlum +1, 11%
         head = agwu.head, -- 10%
-        body = nyame.body,
+        body = af.body,
         hands = "Rawhide Gloves", -- 15%
         legs = carmine.legs, -- 20%
         feet = taeon.feet.sird, -- 10%
@@ -393,7 +391,7 @@ function define_sets()
         back = back.tank
     }
 
-    sird_enmity = { -- 80%, Enmity +66
+    sird_enmity = { -- 80%, Enmity +69
         main = "Epeolatry",
         ammo = "Staunch Tathlum +1", -- Switch for Staunch Tathlum +1, 11%
         head = agwu.head, -- 10%, Enmity +15
@@ -404,7 +402,7 @@ function define_sets()
         neck = "Moonlight Necklace", -- 15%, Enmity +15
         waist = "Audumbla Sash", -- 10%
         left_ear = "Cryptic Earring", -- Enmity +4
-        right_ear = "Friomisi Earring", -- Enmity +2
+        right_ear = "Trux Earring", -- Enmity +5
         left_ring = "Supershear Ring", -- Enmity +5
         right_ring = "Eihwaz Ring", -- Enmity +5,
         back = back.tank -- Enmity +10
@@ -415,7 +413,7 @@ function define_sets()
         sub = "Mensch Strap +1", -- PDT -5%
         ammo = "Staunch Tathlum +1", -- Switch for Staunch Tathlum +1, 11%, DT -3%
         head = agwu.head,
-        body = nyame.body, -- DT -9%
+        body = af.body, -- DT -9%
         hands = "Rawhide Gloves", -- 15%
         legs = carmine.legs, -- 20%
         feet = taeon.feet.sird, -- 10%
@@ -444,11 +442,11 @@ function define_sets()
     })
     sets.midcast.Phalanx = {
         ammo = "Staunch Tathlum +1",
-        head = af.head,
-        body = herc.body.phalanx,
-        hands = taeon.hands.fcphalanx,
-        legs = taeon.legs.fcphalanx,
-        feet = taeon.feet.fcphalanx,
+        head = relic.head, -- +7
+        body = herc.body.phalanx, -- +4
+        hands = taeon.hands.fcphalanx, -- +3
+        legs = taeon.legs.fcphalanx, -- +3
+        feet = taeon.feet.fcphalanx, -- +#
         neck = "Incanter's Torque",
         waist = "Olympus Sash",
         left_ear = "Mimir Earring",
@@ -460,7 +458,7 @@ function define_sets()
     sets.midcast.Bar = {
         ammo = "Staunch Tathlum +1",
         head = empyrean.head,
-        body = nyame.body,
+        body = af.body,
         legs = relic.legs,
         feet = carmine.feet,
         neck = "Incanter's Torque",
@@ -489,10 +487,10 @@ function define_sets()
     sets.midcast.Cocoon = sird_dt
 
     -- Spell-specific gear
-    sets.midcast.Regen = {set_combine(sets.midcast.EnhancingDuration, {
+    sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
         head = af.head,
         neck = "Sacro Gorget"
-    })}
+    })
     sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {
         head = empyrean.head
     })

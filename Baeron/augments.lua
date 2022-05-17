@@ -21,6 +21,7 @@ mpaca = {
 }
 
 gleti = {
+    knife = "Gleti's Knife",
     head = "Gleti's Mask",
     body = "Gleti's Cuirass",
     hands = "Gleti's Gauntlets",
@@ -29,7 +30,8 @@ gleti = {
 }
 
 bunzi = {
-    head = "Bunzi's Cap",
+    rod = "Bunzi's Rod",
+    head = "Bunzi's Hat",
     body = "Bunzi's Robe",
     hands = "Bunzi's Gloves",
     legs = "Bunzi's Pants",
@@ -45,43 +47,93 @@ agwu = {
     feet = "Agwu's Pigaches"
 }
 
-sakpata = {}
+sakpata = {
+    sword = "Sakpata's Sword"
+}
 
 -- =========================================================================================================
 -- Ambuscade Sets
 -- =========================================================================================================
-flamma = {
-    head = "Flamma Zucchetto +2",
-    body = "Flamma Korazin +2"
+sulevia = {
+    head = "Sulevia's Mask +1",
+    body = "Sulevia's Plate. +1",
+    hands = "Sulev. Gauntlets +1",
+    legs = "Sulevi. Cuisses +1",
+    feet = "Sulev. Leggings +1",
+    ring = "Sulevia's Ring"
 }
-
-ayanmo = {
-    head = "Aya. Zucchetto +2",
-    body = "Ayanmo Corazza +2",
-    hands = "Aya. Manopolas +2",
-    legs = "Aya. Cosciales +2",
-    feet = "Aya. Gambieras +2"
+hizamaru = {
+    head = "Hizamaru Somen +1",
+    body = "Hiza. Haramaki +1",
+    hands = "Hizamaru Kote +1",
+    legs = "Hiza. Hizayoroi +1",
+    feet = "Hiza. Sune-Ate +1",
+    ring = "Hizamaru Ring"
 }
-
-meghanada = {
-    hands = "Meg. Gloves +2",
-    body = "Meg. Cuirie +2",
-    legs = "Meg. Chausses +2"
-}
-
 inyanga = {
     head = "Inyanga Tiara +1",
     body = "Inyanga Jubbah +2",
     hands = "Inyan. Dastanas +2",
     legs = "Inyanga Shalwar +2",
-    feet = "Inyanga Crackows +1"
+    feet = "Inyanga Crackows +1",
+    ring = "Inyanga Ring"
+}
+meghanada = {
+    head = "Meghanada Visor +1",
+    hands = "Meg. Gloves +2",
+    body = "Meg. Cuirie +2",
+    legs = "Meg. Chausses +2",
+    feet = "Meg. Jam. +1",
+    ring = "Meghanada Ring"
+}
+jhakri = {
+    head = "Jhakri Coronal +2",
+    body = "Jhakri Robe +2",
+    hands = "Jhakri Cuffs +2",
+    legs = "Jhakri Slops +2",
+    feet = "Jhakri Pigaches +2",
+    ring = "Jhakri Ring"
 }
 
+flamma = {
+    head = "Flam. Zucchetto +2",
+    body = "Flamma Korazin +2",
+    hands = "Flam. Manopolas +1",
+    legs = "Flamma Dirs +1",
+    feet = "Flam. Gambieras +1",
+    ring = "Flamma Ring"
+}
 taliah = {
     head = "Tali'ah Turban +2",
     body = "Tali'ah Manteel +2",
+    hands = "Tali'ah Gages +1",
     legs = "Tali'ah Seraweels +2",
+    feet = "Tali'ah Crackows +1",
     ring = "Tali'ah Ring"
+}
+mummu = {
+    head = "Mummu Bonnet +2",
+    body = "Mummu Jacket +2",
+    hands = "Mummu Wrists +2",
+    legs = "Mummu Kecks +2",
+    feet = "Mummu Gamashes +2",
+    ring = "Mummu Ring"
+}
+ayanmo = {
+    head = "Aya. Zucchetto +2",
+    body = "Ayanmo Corazza +2",
+    hands = "Aya. Manopolas +2",
+    legs = "Aya. Cosciales +2",
+    feet = "Aya. Gambieras +2",
+    ring = "Ayanmo Ring"
+}
+mallquis = {
+    head = "Mallquis Chapeau +1",
+    body = "Mallquis Saio +1",
+    hands = "Mallquis Cuffs +1",
+    legs = "Mallquis Trews +1",
+    feet = "Mallquis Clogs +1",
+    ring = "Mallquis Ring"
 }
 
 -- =========================================================================================================
@@ -93,6 +145,10 @@ tatenashi = {
     feet = "Tatena. Sune. +1"
 }
 
+kentarch = {
+    belt = "Kentarch Belt +1"
+}
+
 -- =========================================================================================================
 -- Abjuration Sets
 -- =========================================================================================================
@@ -101,10 +157,22 @@ adhemar = {
     hands = "Adhemar Wrist. +1"
 }
 
+amalric = {
+    head = "Amalric Coif +1",
+    body = "Amalric Doublet +1",
+    hands = "Amalric Gages +1",
+    feet = "Amalric Nails +1"
+}
+
 carmine = {
     head = "Carmine Mask +1",
     legs = "Carmine Cuisses +1",
     feet = "Carmine Greaves +1"
+}
+
+kaykaus = {
+    body = "Kaykaus Bliaut +1",
+    hands = "Kaykaus Cuffs +1"
 }
 lustratio = {
     legs = "Lustr. Subligar +1",
@@ -125,6 +193,12 @@ ryuo = {
 -- SU3 Sets
 -- =========================================================================================================
 
+ea = {
+    head = "Ea Hat +1",
+    body = "Ea Houppelande +1",
+    hands = "Ea Cuffs +1",
+    legs = "Ea Slops +1"
+}
 mousai = {
     head = "Mousai Turban +1",
     body = "Mousai Manteel +1",
@@ -225,6 +299,11 @@ chironic.head = {
     refresh = {
         name = "Chironic Hat",
         augments = {'Pet: DEX+4', 'Attack+6', '"Refresh"+2', 'Mag. Acc.+3 "Mag.Atk.Bns."+3'}
+    }
+}
+chironic.legs = {
+    macc = {
+        name = "Chironic Hose"
     }
 }
 
