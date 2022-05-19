@@ -196,7 +196,6 @@ ryuo = {
 ea = {
     head = "Ea Hat +1",
     body = "Ea Houppelande +1",
-    hands = "Ea Cuffs +1",
     legs = "Ea Slops +1"
 }
 mousai = {

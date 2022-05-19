@@ -39,7 +39,7 @@ function define_sets()
 
     relic = {
         hands = "Hes. Gloves +1",
-        legs = "Hes. Hose +2"
+        legs = "Hes. Hose +3"
     }
 
     empy = {

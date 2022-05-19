@@ -34,7 +34,7 @@ function define_sets()
         head = "Rune. Bandeau +3",
         body = "Runeist's Coat +3",
         hands = "Runeist's Mitons +3",
-        legs = "Rune. Trousers +2",
+        legs = "Rune. Trousers +3",
         feet = "Runeist Bottes +1"
     }
 

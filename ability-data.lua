@@ -36,7 +36,7 @@ BuffJAs = S {'Accession', 'Accomplice', 'Addendum: Black', 'Addendum: White', 'A
              'Unbridled Wisdom', 'Unleash', 'Unlimited Shot', 'Valiance', 'Vallation', 'Velocity Shot', 'Warcry',
              'Warding Circle', 'Warrior\'s Charge', 'Widened Compass', 'Yaegasumi', 'Yonin'}
 
-NaSpells = S {"Blindna", "Erase", "Paralyna", "Poisona", "Silena", "Stona", "Viruna"}
+NaSpells = S {"Blindna", "Cursna", "Erase", "Paralyna", "Poisona", "Silena", "Stona", "Viruna"}
 EnhancingSpells = S {"Aquaveil", "Barfire", "Barfira", "Barblizzard", "Barblizzara", "Baraero", "Baraera", "Barstone",
                      "Barstonra", "Barthunder", "Barthundra", "Barwater", "Barwatera", "Boost-STR", "Boost-DEX",
                      "Boost-VIT", "Boost-AGI", "Boost-INT", "Boost-MND", "Boost-CHR", "Enthunder", "Enstone", "Enaero",

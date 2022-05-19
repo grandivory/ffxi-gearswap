@@ -269,7 +269,7 @@ function define_sets()
         legs = "Lustr. Subligar +1",
         feet = "Lustra. Leggings +1",
         neck = "Bard's Charm +2",
-        waist = "Grunfeld Rope",
+        waist = kentarch.belt,
         left_ear = {
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
@@ -287,7 +287,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Grunfeld Rope",
+        waist = kentarch.belt,
         left_ear = "Regal Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Metamor. Ring +1",
