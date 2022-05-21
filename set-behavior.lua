@@ -145,9 +145,18 @@ function precast(spell)
 
     precast_set = nil
 
+    -- Determine which mode to use for this ability
+    if spell.cast_time == nil then
+        log_debug("Using melee mode")
+        mode = Melee_Modes[Melee_Mode]
+    else
+        log_debug("Using magic mode")
+        mode = Magic_Modes[Magic_Mode]
+    end
+
     if no_action_types:contains(spell.type) then
         if sets.item[spell.name] ~= nil then
-            precast_set = get
+            precast_set = get_set(sets.item[spell.name], mode)
         else
             log_debug("no action")
             return
@@ -169,15 +178,6 @@ function precast(spell)
     if (pet.isvalid and pet_midaction() and not spell.type == 'SummonerPact') then
         log_debug("pet is mid-action. Not changing sets.")
         return
-    end
-
-    -- Determine which mode to use for this ability
-    if spell.cast_time == nil then
-        log_debug("Using melee mode")
-        mode = Melee_Modes[Melee_Mode]
-    else
-        log_debug("Using magic mode")
-        mode = Magic_Modes[Magic_Mode]
     end
 
     -- Spell-specific sets

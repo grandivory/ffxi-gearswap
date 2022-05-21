@@ -345,6 +345,12 @@ function define_sets()
         back = back.nuke
     }
 
+    sets.item["Holy Water"] = {
+        neck = "Nicander's Necklace",
+        left_ring = "Purity Ring",
+        right_ring = "Blenmot's Ring +1"
+    }
+
     -- Precast sets for spells
     sets.precast.FastCast = { -- 73%
         main = { -- 4%

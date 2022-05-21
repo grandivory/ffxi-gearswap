@@ -301,8 +301,9 @@ chironic.head = {
     }
 }
 chironic.legs = {
-    macc = {
-        name = "Chironic Hose"
+    maccdrain = {
+        name = "Chironic Hose",
+        augments = {'Mag. Acc.+25 "Mag.Atk.Bns."+25', '"Drain" and "Aspir" potency +3', 'INT+10', 'Mag. Acc.+11'}
     }
 }
 
