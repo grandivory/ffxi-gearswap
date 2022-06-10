@@ -12,7 +12,7 @@ lockstyleset = 18
 autodeploy = true
 
 function define_sets()
-    Melee_Modes = T {'PDT', 'DT', 'Dual-Tank', 'TH'}
+    Melee_Modes = T {'PDT', 'DT', 'Dual-Tank', 'TH', 'Bruiser'}
     Idle_Modes = T {'Turtle', 'Bruiser', 'PUPDD', 'Ranger', 'BoneSlayer', 'PUPMagic', 'Speed'}
 
     back = {
@@ -242,6 +242,24 @@ function define_sets()
 
     sets.TP.TH = set_combine(sets.TP.DT, th_gear)
 
+    sets.TP.Bruiser = {
+        main = "Ohtas",
+        range = "Animator P +1",
+        ammo = "Automat. Oil +3",
+        head = taeon.head.pet,
+        body = taeon.body.pet,
+        hands = taeon.hands.pet,
+        legs = taeon.legs.pet,
+        feet = taeon.feet.pet,
+        neck = "Shulmanu Collar",
+        waist = "Incarnation Sash",
+        left_ear = "Rimeice Earring",
+        right_ear = "Enmerkar Earring",
+        left_ring = "Thurandaut Ring +1",
+        right_ring = "C. Palug Ring",
+        back = back.pet
+    }
+
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
@@ -440,6 +458,15 @@ function define_sets()
     }
 
     sets.JA.Provoke = th_gear
+
+    -- =========================================================================================================
+    -- ***Item Sets***
+    -- =========================================================================================================
+    sets.item["Holy Water"] = {
+        neck = "Nicander's Necklace",
+        left_ring = "Purity Ring",
+        right_ring = "Blenmot's Ring +1"
+    }
 
     -- =========================================================================================================
     -- ***Precast Sets***

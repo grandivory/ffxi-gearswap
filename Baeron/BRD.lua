@@ -341,6 +341,15 @@ function define_sets()
     }
 
     -- =========================================================================================================
+    -- ***Item Sets***
+    -- =========================================================================================================
+    sets.item["Holy Water"] = {
+        neck = "Nicander's Necklace",
+        left_ring = "Purity Ring",
+        right_ring = "Blenmot's Ring +1"
+    }
+
+    -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
     sets.precast.FastCast = { -- 71%
@@ -522,7 +531,7 @@ function define_sets()
         ammo = empty
     })
     sets.midcast['Horde Lullaby'] = set_combine(sets.midcast['Foe Lullaby'], {
-        range = "Blurred Harp +1",
+        range = "Daurdabla",
         body = "Brioso Justau. +3"
     })
     sets.midcast['Horde Lullaby'].TH = set_combine(sets.midcast['Horde Lullaby'], th_gear)

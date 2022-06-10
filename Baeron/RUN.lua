@@ -54,20 +54,20 @@ function define_sets()
         feet = "Erilaz Greaves +1"
     }
 
-    enmity = { -- +87, PDT -48%, MDT -24%
+    enmity = { -- +87, PDT -47%, MDT -24%
         main = "Epeolatry", -- +23
         ammo = "Staunch Tathlum +1", -- DT -3%
         head = "Halitus Helm", -- +8
         body = "Emet Harness +1", -- +10, PDT -6%
         hands = "Kurys Gloves", -- +9
         legs = empyrean.legs, -- +11, PDT -7%
-        feet = empyrean.feet, -- +6, PDT -5%
+        feet = "Ahosi Leggings", -- +7, PDT -4%
         neck = "Futhark Torque +2", -- +10, DT -7%
         waist = "Kasiri Belt", -- +3,
         left_ear = "Cryptic Earring", -- +4
         right_ear = "Trux Earring", -- +5
-        left_ring = "Gelatinous Ring +1", -- PDT -7%, MDT +1%
-        right_ring = "Defending Ring", -- DT -10%
+        left_ring = "Defending Ring", -- DT -10%
+        right_ring = "Gelatinous Ring +1", -- PDT -7%, MDT +1%
         back = back.tank -- +10
     }
 
@@ -332,6 +332,15 @@ function define_sets()
     }
 
     -- =========================================================================================================
+    -- ***Item Sets***
+    -- =========================================================================================================
+    sets.item["Holy Water"] = {
+        neck = "Nicander's Necklace",
+        left_ring = "Purity Ring",
+        right_ring = "Blenmot's Ring +1"
+    }
+
+    -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
     sets.precast.FastCast = { -- 61%
@@ -451,8 +460,8 @@ function define_sets()
         waist = "Olympus Sash",
         left_ear = "Mimir Earring",
         right_ear = "Odnowa Earring +1",
-        left_ring = "Gelatinous Ring +1",
-        right_ring = "Stikini Ring +1",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Gelatinous Ring +1",
         back = "Moonlight Cape"
     }
     sets.midcast.Bar = {
@@ -473,14 +482,14 @@ function define_sets()
     -- Enmity Spells
     sets.midcast.Flash = sird_enmity
     sets.midcast.Foil = sird_enmity
-    sets.midcast['Sheep Song'] = sird_enmity
-    sets.midcast['Geist Wall'] = sird_enmity
     sets.midcast.Jettatura = sird_enmity
     sets.midcast['Blank Gaze'] = sird_enmity
     sets.midcast.Soporific = sird_enmity
     sets.midcast.Sandspin = sird_enmity
 
     -- SIRD Spells
+    sets.midcast['Sheep Song'] = sird_dt
+    sets.midcast['Geist Wall'] = sird_dt
     sets.midcast['Healing Breeze'] = sird_dt
     sets.midcast['Wild Carrot'] = sird_dt
     sets.midcast.Pollen = sird_dt

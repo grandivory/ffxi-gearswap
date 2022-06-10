@@ -42,7 +42,7 @@ EnhancingSpells = S {"Aquaveil", "Barfire", "Barfira", "Barblizzard", "Barblizza
                      "Boost-VIT", "Boost-AGI", "Boost-INT", "Boost-MND", "Boost-CHR", "Enthunder", "Enstone", "Enaero",
                      "Enblizzard", "Enfire", "Enwater", "EnthunderII", "Enstone II", "Enaero II", "Enblizzard II",
                      "Enfire II", "Enwater II", "Gain-STR", "Gain-DEX", "Gain-VIT", "Gain-AGI", "Gain-INT", "Gain-MND",
-                     "Gain-CHR", "Phalanx", "Phalanx II", "Temper", "Temper II"}
+                     "Gain-CHR", "Temper", "Temper II"}
 EnfeeblingMND = S {"Addle", "Addle II", "Distract II", "Distract III", "Frazzle", "Frazzle II", "Frazzle III",
                    "Paralyze", "Paralyze II", "Silence", "Slow", "Slow II"}
 EnfeeblingINT = S {"Bind", "Blind", "Break", "Breakga", "Dispel", "Gravity", "Gravity II", "Poison", "Poison II",

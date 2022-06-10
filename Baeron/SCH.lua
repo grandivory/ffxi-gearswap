@@ -114,6 +114,15 @@ function define_sets()
         legs = "Peda. Pants +1"
     }
 
+    -- =========================================================================================================
+    -- ***Item Sets***
+    -- =========================================================================================================
+    sets.item["Holy Water"] = {
+        neck = "Nicander's Necklace",
+        left_ring = "Purity Ring",
+        right_ring = "Blenmot's Ring +1"
+    }
+
     -- Precast sets for spells
     sets.precast.FastCast = { -- 83%
         ammo = "Sapience Orb", -- 2%

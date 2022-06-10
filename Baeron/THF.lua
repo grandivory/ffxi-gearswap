@@ -123,6 +123,7 @@ function define_sets()
     })
     sets.TP.DTTH = set_combine(sets.TP.DT, th_gear)
     sets.TP.Crit = set_combine(sets.TP.Att, {
+        main = "Tauret",
         head = gleti.head,
         body = gleti.body,
         hands = gleti.hands,

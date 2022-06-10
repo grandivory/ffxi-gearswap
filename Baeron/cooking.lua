@@ -4,7 +4,7 @@ include('organizer-lib')
 lockstyleset = nil
 
 function define_sets()
-    Idle_Modes = T {'HQ', 'Success'}
+    Idle_Modes = T {'HQ', 'Success', 'NoHQ'}
     sets.Idle.HQ = {
         main = "Debahocho +1",
         head = "Chef's Hat",
@@ -15,5 +15,8 @@ function define_sets()
     }
     sets.Idle.Success = set_combine(sets.Idle.HQ, {
         left_ring = "Craftkeeper's Ring"
+    })
+    sets.Idle.NoHQ = set_combine(sets.Idle.Success, {
+        left_ring = "Chef's Ring"
     })
 end

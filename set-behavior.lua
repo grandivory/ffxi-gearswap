@@ -1160,12 +1160,14 @@ function get_set(set_definition, mode_name, override_lock, is_user_command)
     set = copy(set_definition)
 
     if set_definition[mode_name] ~= nil then
+        log_debug('Using ' .. mode_name .. ' mode.')
         set = copy(set_definition[mode_name])
     end
 
     if set.withBuffs ~= nil then
         for buff, buffset in pairs(set.withBuffs) do
             if buffactive[buff] ~= nil or buffs:contains(buff) then
+                log_debug('Using ' .. buff .. ' set')
                 set = copy(buffset)
             end
         end
