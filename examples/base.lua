@@ -44,6 +44,7 @@ function define_sets()
     sets.Idle.DT = {}
     sets.Idle_Avatar = {} -- Used while an Avatar is out
     sets.Idle_Spirit = {} -- Used while a spirit is out
+    sets.Idle_Pet = {} -- Used while any pet is out
     sets.Resting = {}
     sets.Resting.DT = {} -- Modes can be applied to other sets, too
 
@@ -55,6 +56,7 @@ function define_sets()
     sets.TP.Refresh = {}
     sets.TP_Avatar = {} -- Used while an Avatar is out
     sets.TP_Spirit = {} -- Used while a spirit is out
+    sets.TP_Pet = {} -- Used while any pet is out
     sets.TPMod['Sneak Attack'] = {} -- This set will be used if you engage while "Sneak Attack" is active
 
     -- =========================================================================================================
@@ -84,6 +86,11 @@ function define_sets()
     sets.JA['Blood Pact'] = {}
 
     -- =========================================================================================================
+    -- ***Item Sets***
+    -- =========================================================================================================
+    sets.item['Holy Water'] = {} -- This set will be used when you use holy water FROM A MACRO (/item "Holy Water" <me>)
+
+    -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
     sets.precast.FastCast = {}
@@ -104,6 +111,7 @@ function define_sets()
     sets.midcast.EnfeeblingMND = {}
     sets.midcast.EnfeeblingINT = {}
     sets.midcast.Enfeebling = {}
+    sets.midcast.ElementalEnfeeble = {}
     sets.midcast.DivineEnfeeble = {}
     sets.midcast.DivineEnhancing = {}
     sets.midcast.Divine = {}
@@ -153,5 +161,11 @@ function define_sets()
         waist = "Hachirin-no-obi",
         back = "Twilight Cape"
     }
+
+    sets.Distance = {
+        waist = "Orpheus's Sash"
+    }
+
+    sets.WakeUp = {}
 
 end
