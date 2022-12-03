@@ -7,11 +7,11 @@ function define_sets()
     Idle_Modes = T {'Fish', 'Speed'}
 
     sets.Idle = {
-        ranged = "Lu Shang's F. Rod",
+        ranged = "Ebisu F. Rod +1",
         ammo = "Dwarf Pugil",
         head = "Tlahtlamah Glasses",
         body = "Fisherman's Smock",
-        hands = "Kachina Gloves",
+        hands = "Fisherman's Gloves",
         legs = "Fisherman's Hose",
         feet = "Waders",
         neck = "Fisher's Torque",

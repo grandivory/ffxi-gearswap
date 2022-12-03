@@ -46,21 +46,21 @@ function define_sets()
         feet = "Futhark Boots +1"
     }
 
-    empyrean = {
-        head = "Erilaz Galea +1",
-        body = "Erilaz Surcoat +1",
+    empy = {
+        head = "Erilaz Galea +2",
+        body = "Erilaz Surcoat +2",
         hands = "Erilaz Gauntlets +1",
-        legs = "Eri. Leg Guards +1",
-        feet = "Erilaz Greaves +1"
+        legs = "Eri. Leg Guards +2",
+        feet = "Erilaz Greaves +2"
     }
 
-    enmity = { -- +87, PDT -47%, MDT -24%
+    enmity = { -- +88, PDT -52%, MDT -36%
         main = "Epeolatry", -- +23
         ammo = "Staunch Tathlum +1", -- DT -3%
         head = "Halitus Helm", -- +8
         body = "Emet Harness +1", -- +10, PDT -6%
         hands = "Kurys Gloves", -- +9
-        legs = empyrean.legs, -- +11, PDT -7%
+        legs = empy.legs, -- +12, DT -12%
         feet = "Ahosi Leggings", -- +7, PDT -4%
         neck = "Futhark Torque +2", -- +10, DT -7%
         waist = "Kasiri Belt", -- +3,
@@ -180,7 +180,7 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Yamarang",
         head = ayanmo.head,
-        body = ayanmo.body,
+        body = "Ashera Harness",
         hands = adhemar.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -198,7 +198,7 @@ function define_sets()
         sub = "Utu Grip",
         ammo = "Yamarang",
         head = ayanmo.head,
-        body = ayanmo.body,
+        body = "Ashera Harness",
         hands = adhemar.hands,
         legs = meghanada.legs,
         feet = nyame.feet,
@@ -280,7 +280,7 @@ function define_sets()
     -- ***Job Ability Sets***
     -- =========================================================================================================
     sets.JA['Vivacious Pulse'] = {
-        head = empyrean.head,
+        head = empy.head,
         legs = af.legs,
         neck = "Incanter's Torque",
         waist = "Bishop's Sash",
@@ -446,7 +446,8 @@ function define_sets()
         right_ear = "Andoaa Earring"
     }
     sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {
-        head = empyrean.head,
+        head = empy.head,
+        hands = "Regal Gauntlets",
         legs = relic.legs
     })
     sets.midcast.Phalanx = {
@@ -454,7 +455,7 @@ function define_sets()
         head = relic.head, -- +7
         body = herc.body.phalanx, -- +4
         hands = taeon.hands.fcphalanx, -- +3
-        legs = taeon.legs.fcphalanx, -- +3
+        legs = herc.legs.phalanx, -- +4
         feet = taeon.feet.fcphalanx, -- +#
         neck = "Incanter's Torque",
         waist = "Olympus Sash",
@@ -466,7 +467,7 @@ function define_sets()
     }
     sets.midcast.Bar = {
         ammo = "Staunch Tathlum +1",
-        head = empyrean.head,
+        head = empy.head,
         body = af.body,
         legs = relic.legs,
         feet = carmine.feet,
@@ -498,10 +499,11 @@ function define_sets()
     -- Spell-specific gear
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
         head = af.head,
-        neck = "Sacro Gorget"
+        neck = "Sacro Gorget",
+        right_ear = "Erilaz Earring"
     })
     sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {
-        head = empyrean.head
+        head = empy.head
     })
 
     sets.midcast.Generic = sird -- If no other set is found, this set is used instead
@@ -514,4 +516,18 @@ function define_sets()
         waist = "Orpheus's Sash"
     }
 
+end
+
+function mod_aftercast(spell, set)
+    if spell.interrupted ~= true then
+        if spell.name == 'Rayke' then
+            send_command(
+                '@timers create Rayke 50 down; wait 35; input /p Rayke wearing off in 15 seconds; wait 15; input /p Rayke is OFF')
+        elseif spell.name == 'Gambit' then
+            send_command(
+                '@timers create Gambit 96 down; wait 66; input /p Gambit wearing off in 30 seconds; wait 30; input /p Gambit is OFF')
+        end
+    end
+
+    return set
 end

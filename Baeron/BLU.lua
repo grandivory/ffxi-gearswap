@@ -7,7 +7,7 @@ lockstyleset = 16
 function define_sets()
     Melee_Modes = T {'DT', 'Att', 'Acc', 'Refresh'}
     Idle_Modes = T {'Speed', 'Refresh', 'Hybrid', 'DT', 'Evasion'}
-    Magic_Modes = T {'Acc', 'MAB', 'TH', 'Enmity'}
+    Magic_Modes = T {'Acc', 'MAB', 'TH', 'Enmity', 'DT'}
     fastcast = .8
 
     th_gear = {
@@ -59,7 +59,30 @@ function define_sets()
         }
     }
 
-    -- Not Engaged
+    af = {
+        head = "Assim. Keffiyeh +3",
+        body = "Assim. Jubbah +3",
+        hands = "Assim. Bazubands +1",
+        legs = "Assim. Shalwar +3"
+    }
+
+    relic = {
+        head = "Luhlaza Keffiyeh +1",
+        legs = "Luhlaza Shalwar +3",
+        feet = "Luhlaza Charuqs +1"
+    }
+
+    empy = {
+        head = "Hashishin Kavuk +3",
+        body = "Hashishin Mintan +2",
+        hands = "Hashi. Bazu. +2",
+        legs = "Hashishin Tayt +2",
+        feet = "Hashi. Basmak +2"
+    }
+
+    -- =========================================================================================================
+    -- ***Not Engaged Sets***
+    -- =========================================================================================================
     sets.Idle.Refresh = { -- Refresh +18, +4 MDB, -24% PDT, -9% MDT
         main = { -- Refresh +2
             name = "Colada",
@@ -180,8 +203,9 @@ function define_sets()
         back = back.evafc -- +45 Evasion
     }
 
-    -- Engaged Sets
-
+    -- =========================================================================================================
+    -- ***Engaged Sets***
+    -- =========================================================================================================
     aftermath = {
         ammo = "Ginsen", -- Aurgelmir Orb +1
         head = malignance.head,
@@ -240,7 +264,9 @@ function define_sets()
 
     sets.TP.Refresh = sets.Idle.Refresh
 
-    -- WS Sets
+    -- =========================================================================================================
+    -- ***Weapon Skill Sets***
+    -- =========================================================================================================
     sets.WS["Chant du Cygne"] = {
         ammo = "Aurgelmir Orb +1",
         head = adhemar.head,
@@ -258,17 +284,14 @@ function define_sets()
     }
     sets.WS["Requiescat"] = {
         ammo = "Coiste Bodhar",
-        head = nyame.head,
+        head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Brutal Earring",
         left_ring = "Rufescent Ring",
         right_ring = "Epona's Ring",
@@ -276,17 +299,14 @@ function define_sets()
     }
     sets.WS["Savage Blade"] = {
         ammo = "Aurgelmir Orb +1",
-        head = nyame.head,
+        head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Mirage Stole +2",
         waist = "Sailfi Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Rufescent Ring",
         right_ring = "Epaminondas's Ring",
@@ -296,15 +316,21 @@ function define_sets()
     sets.WS["Black Halo"] = set_combine(sets.WS["Savage Blade"], {
         left_ring = "Metamorph Ring +1"
     })
+    sets.WS.Realmrazer = set_combine(sets.WS["Savage Blade"], {
+        neck = "Fotia Gorget",
+        waist = "Fotia Belt",
+        left_ring = "Metamorph Ring +1"
+    })
+
     sets.WS["Sanguine Blade"] = {
         ammo = "Ghastly Tathlum +1",
         head = "Pixie Hairpin +1",
         body = amalric.body,
-        hands = jhakri.hands,
-        legs = "Luhlaza Shalwar +3",
+        hands = empy.hands,
+        legs = relic.legs,
         feet = amalric.feet,
         neck = "Baetyl Pendant",
-        waist = "Eschan Stone",
+        waist = "Sacro Cord",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
         left_ring = "Archon Ring",
@@ -313,17 +339,14 @@ function define_sets()
     }
     sets.WS.Generic = {
         ammo = "Amar Cluster",
-        head = nyame.head,
+        head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Mirage Stole +2",
         waist = "Sailfi Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Rufescent Ring",
         right_ring = "Epaminondas's Ring",
@@ -331,13 +354,13 @@ function define_sets()
     }
     sets.WS.MAB = {
         ammo = "Ghastly Tathlum +1",
-        head = nyame.head,
+        head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
-        waist = "Eschan Stone",
+        waist = "Sacro Cord",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
         left_ring = "Epaminondas's Ring",
@@ -345,13 +368,18 @@ function define_sets()
         back = back.nuke
     }
 
+    -- =========================================================================================================
+    -- ***Item Sets***
+    -- =========================================================================================================
     sets.item["Holy Water"] = {
         neck = "Nicander's Necklace",
         left_ring = "Purity Ring",
         right_ring = "Blenmot's Ring +1"
     }
 
-    -- Precast sets for spells
+    -- =========================================================================================================
+    -- ***Precast Sets for Spells***
+    -- =========================================================================================================
     sets.precast.FastCast = { -- 73%
         main = { -- 4%
             name = "Colada",
@@ -365,7 +393,7 @@ function define_sets()
         head = herc.head.refresh, -- 7%
         body = taeon.body.fcphalanx, -- 9%
         hands = "Leyline Gloves", -- 7%
-        legs = "Psycloth Lappas", -- 7%
+        legs = psycloth.legs, -- 7%
         feet = "Carmine Greaves +1", -- 8%
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Loquac. Earring", -- 2%
@@ -375,16 +403,18 @@ function define_sets()
         back = back.evafc -- 10%
     }
     sets.precast.BlueMagic = set_combine(sets.precast.FastCast, {
-        body = "Hashishin Mintan +1"
+        body = empy.body
     })
 
-    -- Midcast sets for spells
+    -- =========================================================================================================
+    -- ***Midcast Sets***
+    -- =========================================================================================================
     sets.midcast.Cur = {
         main = "Bunzi's Rod",
         sub = "Nibiru Cudgel",
         head = telchine.head.enhfc,
         body = amalric.body,
-        hands = jhakri.hands,
+        hands = empy.hands,
         legs = "Gyve Trousers",
         feet = "Medium's Sabots",
         neck = "Phalaina Locket",
@@ -404,13 +434,13 @@ function define_sets()
         main = "Maxentius",
         sub = "Bunzi's Rod",
         ammo = "Ghastly Tathlum +1",
-        head = jhakri.head,
+        head = empy.head,
         body = amalric.body,
         hands = amalric.hands,
-        legs = "Luhlaza Shalwar +3",
+        legs = amalric.legs,
         feet = amalric.feet,
-        neck = "Baetyl Pendant",
-        waist = "Eschan Stone",
+        neck = "Sibyl Scarf",
+        waist = "Sacro Cord",
         left_ear = "Friomisi Earring",
         right_ear = "Regal Earring",
         left_ring = "Shiva Ring +1",
@@ -421,11 +451,11 @@ function define_sets()
         main = "Tizona",
         sub = "Bunzi's Rod",
         ammo = "Pemphredo Tathlum",
-        head = "Assim. Keffiyeh +3",
+        head = af.head,
         body = jhakri.body,
         hands = malignance.hands,
-        legs = "Assim. Shalwar +3",
-        feet = jhakri.feet, -- TODO: Replace
+        legs = af.legs,
+        feet = empy.feet,
         neck = "Mirage Stole +2",
         waist = "Acuity Belt +1",
         left_ear = "Regal Earring",
@@ -437,26 +467,26 @@ function define_sets()
 
     sets.midcast.BlueMagic.Physical = {
         ammo = "Ginsen",
-        head = adhemar.head,
+        head = empy.head,
         body = gleti.body,
-        hands = jhakri.hands,
+        hands = empy.hands,
         legs = gleti.feet,
         feet = "Gleti's Boots",
         neck = "Mirage Stole +2",
         waist = "Sailfi Belt +1",
         left_ear = "Telos Earring",
         right_ear = "Odr Earring",
-        left_ring = "Shukuyu Ring",
+        left_ring = "Ilabrat Ring",
         right_ring = "Rufescent Ring",
         back = back.strws
     }
-    sets.midcast.BlueMagic.AddEffect = { -- Acc +340, MAcc +325, BLU +16
+    sets.midcast.BlueMagic.AddEffect = { -- Acc
         ammo = "Falcon Eye", -- Acc +13
-        head = malignance.head, -- Acc +50, MAcc +50
-        body = jhakri.body, -- Acc +46, MAcc +46 (and more INT than Malignance)
-        hands = jhakri.hands, -- Acc +43, MAcc +43 (and more INT than Malignance)
-        legs = jhakri.legs, -- TODO: Replace; Acc +45, MAcc +45 (and more INT than Malignance)
-        feet = malignance.feet, -- Acc +50, MAcc +50
+        head = empy.head, -- Acc +61, MAcc +61
+        body = empy.body, -- Acc +54, MAcc +54
+        hands = empy.hands, -- Acc +52, MAcc +52
+        legs = empy.legs, -- Acc +53, MAcc +53
+        feet = empy.feet, -- Acc +50, MAcc +50
         neck = "Mirage Stole +2", -- Acc +25, MAcc +25
         waist = "Eschan Stone", -- Acc +15, MAcc +7
         left_ear = "Telos Earring", -- Acc +10
@@ -471,9 +501,21 @@ function define_sets()
     })
     sets.midcast["Palling Salvo"] = sets.midcast["Tenebral Crush"]
     sets.midcast["Atra. Libations"] = sets.midcast["Tenebral Crush"]
+    sets.midcast.BlueMagic.MAB.DT = set_combine(sets.midcast.Elemental, {
+        body = empy.body, -- 12%
+        hands = empy.hands, -- 9%
+        legs = empy.legs -- 11%
+    })
+    sets.midcast["Tenebral Crush"].DT = set_combine(sets.midcast["Tenebral Crush"], {
+        body = empy.body, -- 12%
+        hands = empy.hands, -- 9%
+        legs = empy.legs -- 11%
+    })
+    sets.midcast["Palling Salvo"].DT = sets.midcast["Tenebral Crush"].DT
+    sets.midcast["Atra. Libations"].DT = sets.midcast["Tenebral Crush"].DT
     sets.midcast.BlueMagic.Breath = set_combine(sets.midcast.Elemental, {
         -- ammo = "Mavi Tathlum",
-        head = "Luh. Keffiyeh +1"
+        head = relic.head
     })
     sets.midcast.BlueMagic.Breath.TH = set_combine(sets.midcast.BlueMagic.Breath, th_gear)
     sets.midcast.BlueMagic.Cure = set_combine(sets.midcast.Cur, {
@@ -503,11 +545,11 @@ function define_sets()
     }
     sets.midcast.BlueMagic.Skill = { -- +129
         -- ammo = "Mavi Tathlum", -- +5
-        head = "Luh. Keffiyeh +1", -- +13
-        body = "Assim. Jubbah +3", -- +24
+        head = relic.head, -- +13
+        body = af.body, -- +24
         hands = "Rawhide Gloves", -- +10
-        legs = "Hashishin Tayt +1", -- +23
-        feet = "Luhlaza Charuqs +1", -- +8
+        legs = empy.legs, -- +28
+        feet = relic.feet, -- +8
         neck = "Mirage Stole +2", -- +20
         left_ring = "Stikini Ring +1", -- +8
         right_ring = "Stikini Ring +1", -- +8
@@ -538,10 +580,10 @@ function define_sets()
     sets.midcast["Occultation"] = { -- 551 skill (11 shadows), 40% PDT, 30% MDT, 5% FC
         ammo = "Sapience Orb", -- 2% FC
         head = malignance.head, -- 6% DT
-        body = "Assim. Jubbah +3", -- +23 Skill
+        body = af.body, -- +23 Skill
         hands = malignance.hands, -- 5% DT
-        legs = "Hashishin Tayt +1", -- +23 Skill
-        feet = "Luhlaza Charuqs +1", -- +8 Skill
+        legs = empy.legs, -- +23 Skill
+        feet = relic.feet, -- +8 Skill
         neck = "Mirage Stole +2", -- +20 Skill
         waist = "Flume Belt +1", -- 4% PDT
         left_ear = "Etiolation Earring", -- 1% FC, 3% MDT
@@ -567,9 +609,9 @@ function define_sets()
     sets.midcast.Phalanx = {
         ammo = "Sapience Orb",
         head = taeon.head.fcphalanx,
-        body = taeon.body.fcphalanx,
+        body = herc.body.phalanx,
         hands = taeon.hands.fcphalanx,
-        legs = taeon.legs.fcphalanx,
+        legs = herc.legs.phalanx,
         feet = taeon.feet.fcphalanx,
         neck = "Orunmila's Torque",
         -- waist = "Olumpus Sash",
@@ -600,11 +642,18 @@ function define_sets()
     sets.midcast["Dream Flower"] = dream_flower
     sets.midcast["Dream Flower"].TH = set_combine(dream_flower, th_gear)
 
-    TP_Skill_set = set_combine(sets.TP.Att, sets.midcast.BlueMagic.Skill)
-
+    -- =========================================================================================================
+    -- ***Special Sets***
+    -- =========================================================================================================
     -- Pieces to switch out when buffs are active
     sets.midcast.mod.Diffusion = {
-        feet = "Luhlaza Charuqs +1"
+        feet = relic.feet
+    }
+    sets.midcast.mod["Burst Affinity"] = {
+        feet = empy.feet
+    }
+    sets.midcast.mod["Chain Affinity"] = {
+        head = empy.head
     }
 
     -- Pieces to switch out when the day/weather matches
@@ -615,18 +664,5 @@ function define_sets()
 
     sets.Distance = {
         waist = "Orpheus's Sash"
-    }
-
-    organizer_items = {
-        bseals = "Beastmen's Seal",
-        kseals = "Kindred's Seal",
-        kcrests = "Kindred's Crest",
-        hkcrests = "High Kindred's Crest",
-        skcrest = "Sacred Kindred's Crest",
-        warp_ring = "Warp Ring",
-        caliber_ring = "Caliber Ring",
-        vocation_ring = "Vocation Ring",
-        facility_ring = "Facility Ring",
-        aptitude_mantle = "Aptitude Mantle"
     }
 end

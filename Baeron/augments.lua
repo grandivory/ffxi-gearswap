@@ -48,7 +48,12 @@ agwu = {
 }
 
 sakpata = {
-    sword = "Sakpata's Sword"
+    sword = "Sakpata's Sword",
+    head = "Sakpata's Helm",
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
+    legs = "Sakpata's Cuisses",
+    feet = "Sakpata's Leggings"
 }
 
 -- =========================================================================================================
@@ -71,19 +76,19 @@ hizamaru = {
     ring = "Hizamaru Ring"
 }
 inyanga = {
-    head = "Inyanga Tiara +1",
+    head = "Inyanga Tiara +2",
     body = "Inyanga Jubbah +2",
     hands = "Inyan. Dastanas +2",
     legs = "Inyanga Shalwar +2",
-    feet = "Inyanga Crackows +1",
+    feet = "Inyan. Crackows +2",
     ring = "Inyanga Ring"
 }
 meghanada = {
-    head = "Meghanada Visor +1",
+    head = "Meghanada Visor +2",
     hands = "Meg. Gloves +2",
     body = "Meg. Cuirie +2",
     legs = "Meg. Chausses +2",
-    feet = "Meg. Jam. +1",
+    feet = "Meg. Jam. +2",
     ring = "Meghanada Ring"
 }
 jhakri = {
@@ -98,7 +103,7 @@ jhakri = {
 flamma = {
     head = "Flam. Zucchetto +2",
     body = "Flamma Korazin +2",
-    hands = "Flam. Manopolas +1",
+    hands = "Flam. Manopolas +2",
     legs = "Flamma Dirs +1",
     feet = "Flam. Gambieras +1",
     ring = "Flamma Ring"
@@ -128,7 +133,7 @@ ayanmo = {
     ring = "Ayanmo Ring"
 }
 mallquis = {
-    head = "Mallquis Chapeau +1",
+    head = "Mallquis Chapeau +2",
     body = "Mallquis Saio +1",
     hands = "Mallquis Cuffs +1",
     legs = "Mallquis Trews +1",
@@ -161,6 +166,7 @@ amalric = {
     head = "Amalric Coif +1",
     body = "Amalric Doublet +1",
     hands = "Amalric Gages +1",
+    legs = "Amalric Slops +1",
     feet = "Amalric Nails +1"
 }
 
@@ -187,7 +193,16 @@ rao = {
 }
 
 ryuo = {
-    hands = "Ryuo Tekko +1"
+    hands = "Ryuo Tekko +1",
+    feet = "Ryuo Sune-ate +1"
+}
+
+souveran = {
+    head = "Souveran Schaller +1",
+    body = "Souveran Cuirass +1",
+    hands = "Souveran Handschuhs +1",
+    legs = "Souveran Diechlings +1",
+    feet = "Souveran Schuhs +1"
 }
 -- =========================================================================================================
 -- SU3 Sets
@@ -195,8 +210,17 @@ ryuo = {
 
 ea = {
     head = "Ea Hat +1",
-    body = "Ea Houppelande +1",
+    body = "Ea Houppe. +1",
     legs = "Ea Slops +1"
+}
+
+heyoka = {
+    legs = "Heyoka Subligar +1"
+}
+
+kendatsuba = {
+    head = "Ken. Jinpachi +1",
+    body = "Ken. Samue +1"
 }
 mousai = {
     head = "Mousai Turban +1",
@@ -209,6 +233,39 @@ mousai = {
 turms = {
     hands = "Turms Mittens +1",
     feet = "Turms Leggings +1"
+}
+
+-- =========================================================================================================
+-- Geas Fete Sets
+-- =========================================================================================================
+vanya = {
+    head = {
+        name = "Vanya Hood",
+        augments = {'MP+50', '"Fast Cast"+10', 'Haste+2%'}
+    },
+    hands = {
+        name = "Vanya Cuffs",
+        augments = {'MP+50', '"Cure" potency +7%', 'Enmity-6'}
+    },
+    legs = {
+        name = "Vanya Slops",
+        augments = {'Healing magic skill +20', '"Cure" spellcasting time -7%', 'Magic dmg. taken -3'}
+    },
+    feet = {
+        name = "Vanya Clogs",
+        augments = {'"Cure" potency +5%', '"Cure" spellcasting time -15%', '"Conserve MP"+6'}
+    }
+}
+
+psycloth = {
+    legs = {
+        name = "Psycloth Lappas",
+        augments = {'MP+80', 'Mag. Acc.+15', '"Fast Cast"+7'}
+    },
+    feet = {
+        name = "Psycloth Boots",
+        augments = {'MP+50', 'INT+7', '"Conserve MP"+6'}
+    }
 }
 -- =========================================================================================================
 -- HTMB Sets
@@ -262,7 +319,12 @@ herc.legs = {
     refresh = {
         name = "Herculean Trousers",
         augments = {'"Mag.Atk.Bns."+5', '"Rapid Shot"+3', '"Refresh"+2'}
+    },
+    phalanx = {
+        name = "Herculean Trousers",
+        augments = {'Attack+23', 'DEX+9', 'Phalanx +4'}
     }
+
 }
 
 herc.feet = {
@@ -307,6 +369,45 @@ chironic.legs = {
     }
 }
 
+merlinic = {}
+merlinic.head = {
+    drainaspir = {
+        name = "Merlinic Hood",
+        augments = {'Mag. Acc.+12 "Mag.Atk.Bns."+12', '"Drain" and "Aspir" potency +8', 'INT+3', 'Mag. Acc.+14',
+                    '"Mag.Atk.Bns."+8'}
+    }
+}
+merlinic.body = {
+    drainaspir = {
+        name = "Merlinic Jubbah",
+        augments = {'Mag. Acc.+28', '"Drain" and "Aspir" potency +8', 'MND+3', '"Mag.Atk.Bns."+10'}
+    }
+}
+merlinic.hands = {
+    drainaspir = {
+        name = "Merlinic Dastanas",
+        augments = {'Mag. Acc.+18 "Mag.Atk.Bns."+18', '"Drain" and "Aspir" potency +8', 'MND+3', 'Mag. Acc.+7'}
+    },
+    occult = {
+        name = "Merlinic Dastanas",
+        augments = {'Mag. Acc.+25 "Mag.Atk.Bns."+25', '"Occult Acumen"+11', 'VIT+10'}
+    }
+}
+merlinic.legs = {}
+merlinic.feet = {
+    occult = {
+        name = "Merlinic Crackows",
+        augments = {'"Mag.Atk.Bns."+29', '"Occult Acumen"+8', 'CHR+5', 'Mag. Acc.+14'}
+    }
+}
+
+odyssean = {}
+odyssean.feet = {
+    fc = {
+        name = "Odyssean Greaves",
+        augments = {'"Fast Cast"+6', 'AGI+4', 'Mag. Acc.+8'}
+    }
+}
 -- =========================================================================================================
 -- Skirmish Augments
 -- =========================================================================================================
@@ -386,6 +487,10 @@ telchine.hands = {
     }
 }
 telchine.legs = {
+    att = {
+        name = "Telchine Braconi",
+        augments = {'Accuracy+20', '"Store TP"+6', 'DEX+10'}
+    },
     enhfc = {
         name = "Telchine Braconi",
         augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
@@ -396,4 +501,32 @@ telchine.feet = {
         name = "Telchine Pigaches",
         augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
     }
+}
+
+yorium = {}
+yorium.head = {
+    phalanx = {
+        name = "Yorium Barbuta",
+        augments = {'Spell interruption rate down -10%', 'Phalanx +3'}
+    }
+}
+yorium.body = {
+    phalanx = {
+        name = "Yorium Cuirass",
+        augments = {'Spell interruption rate down -10%', 'Phalanx +3'}
+    }
+}
+yorium.feet = {
+    phalanx = {
+        name = "Yorium Sabatons",
+        augments = {'Phalanx +3'}
+    }
+}
+
+-- =========================================================================================================
+-- Sinister Reign Augments
+-- =========================================================================================================
+malevolence = {
+    name = "Malevolence",
+    augments = {'INT+10', 'Mag. Acc.+10', '"Mag.Atk.Bns."+8', '"Fast Cast"+5'}
 }

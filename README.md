@@ -20,6 +20,8 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * Similarly, you can also define a `mod_idle(set, mode, override_lock, is_user_command)` function
 * Distance Threshold:
   * You can set `distance_threshold` to some value, and put gear into `sets.Distance`. Then, if you are closer than `distance_threshold` while using an elemental ability, the `sets.Distance` gear will be added to your set.
+* Auto wake-up gear:
+  * If you specify any gear in `sets.WakeUp`, then it will automatically be equipped as long as you are asleep, whether engaged or not. It will stop being equipped once you've woken up (assuming you have something to replace it in your normal sets)
 * Magic burst mode:
   * If you call `gs c MB` (or `/console gs c MB` from a macro), it will turn on magic-burst mode. This will use a magic-burst-specific set for your NEXT SPELL ONLY if one is defined. No matter what you cast next, magic burst mode will be turned off after you finish casting.
 * `f12` is set to equip whatever the correct gear is for that time. If you are engaged, it will equip the correct TP set. If you are not, it will equip the correct Idle set. It will also turn on the lockstyle for your job
@@ -46,7 +48,6 @@ These luas are meant to be a generic way to set up gearsets for any job and have
         sets.WS["Rudra's Storm"].withBuffs = {}
         sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = {... my sneak attack Rudra's set}
       ```
-* If you use an item or summon a trust, gearswap will do nothing.
 * If you equip certain gear (by default, warp rings, dim. rings, or reraise items), then gearswap will not equip any other gear in those slots. The gear pieces that fall into this category can be changed by specifying `lock_gear = S{"Something", "..."}` in your `define_sets()` function.
 * If you define `sets.mod.TH`, then you can use `Ctrl+f9` to update your TP mode to include TH gear for the first hit
 * You can define stances in sets, like `stances.sam = S {'Hasso', 'Seigan'}`. If you use an ability in that set, gearswap will attempt to reuse that same ability any time the buff by the same name runs out.
@@ -67,6 +68,8 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 |gs c meleeset|Equip a particular set while enforcing the current melee mode|
 |gs c magicset|Equip a particular set while enforcing the current magic mode|
 |gs c equipgear|Equip the current "correct" gear based on the character's state - TP for engaged, Idle for not engaged|
+|gs c autows <name>|Automatically use the given weaponskill after passing the TP threshold|
+|gs c wsthreshold <threshold>|Set the TP threshold for automatically using weaponskills (1500 by default)|
 
 ## Precast
 * If you have a `sets.item[item name]`, then that set will be used when using an item. Otherwise, no changes are made when using an item
@@ -97,6 +100,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * For ranged attacks, the lua looks for `sets.midcast.RA`
 * If you define a `sets.midcast["Something"]`, "Something" will be searched against the full name of the spell you're casting, then the type, so you could define (for example) a `sets.midcast.Cur` that would match to ANY Cure spell, Curaga, or Cura, or you can define `sets.midcast.Healing` for any Healing magic.
 * Additionally, you can define `sets.midcast["SomethingMB"]` or `sets.midcast["SomethingSelf"]` to match "Something" against the full name of the spell when magic burst mode is on or when you're targeting yourself, respectively.
+* If you see a skillchain performed, cast a spell that matches the skillchain element(s), and have a corresponding magic burst set defined, then it will automatically be used, even if you don't manually turn on magic burst mode.
 * For healing magic:
   * The lua will look for a `sets.midcast.NaSpell` for any -na spells.
   * The lua will look for a `sets.midcast.CureSelf` if you're targeting yourself.
@@ -117,6 +121,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * The lua will look for `sets.midcast.DivineMB` if magic burst mode is on
   * The lua will look for `sets.midcast.Divine` for any other case
 * For Elemental magic:
+  * The lua will look for `sets.midcast.ElementalEnfeeble` for elemental enfeebles (burn, choke, drown, etc.)
   * If magic burst mode is on, the lua will look for `sets.midcast.ElementalMB`
   * The lua will look for `sets.midcast.Elemental` otherwise
 * For Blue magic:
@@ -178,4 +183,4 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 
 ## Pet Classes
 * If you have a pet out and that pet is mid-action, then gearswap is temporarily disabled - it will not change gear until your pet finishes their action (which makes sure that your pet gear stays on until they finish)
-* If you have defined a `sets.TP_Avatar`, `sets.TP_Spirit`, `sets.Idle_Avatar`, or `sets.Idle_Spirit`, then those sets will be used in place of your normal TP or Idle sets when you have an avatar or spirit summoned, respectively.
+* If you have defined a `sets.TP_Avatar`, `sets.TP_Spirit`, `sets.TP_Pet`, `sets.Idle_Avatar`, `sets.Idle_Spirit`, or `sets.Idle_Pet` then those sets will be used in place of your normal TP or Idle sets when you have an avatar or spirit summoned, respectively.

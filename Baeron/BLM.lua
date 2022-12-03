@@ -1,89 +1,653 @@
 include('set-behavior')
 include('augments')
+-- inspect = require('inspect')
 
-lockstyleset = 5
+lockstyleset = 3
 
 function define_sets()
-    Idle_Modes = T {'Idle'}
-    Magic_Modes = T {'Proc', 'Nuke'}
+    Idle_Modes = T {'Speed', 'Refresh', 'Death'}
+    Magic_Modes = T {'MAB', 'Acc', 'Coat', 'DT', 'Occult', 'TH'}
 
-    sets.Idle = {
-        main = "Malignance Pole",
-        sub = "Khonsu",
-        ammo = "Sapience Orb",
-        head = "Spurrina Coif",
-        body = jhakri.body,
-        hands = "Serpentes Cuffs",
-        legs = "Assid. Pants +1",
-        feet = "Herald's Gaiters",
-        neck = "Loricate Torque +1",
-        waist = "Slipor Sash",
-        left_ear = "Andoaa Earring",
-        right_ear = "Regal Earring",
-        left_ring = "Defending Ring",
-        right_ring = {
-            name = "Dark Ring",
-            augments = {'Phys. dmg. taken -5%', 'Magic dmg. taken -6%'}
+    fastcast = .78 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
+
+    back = {
+        nuke = {
+            name = "Taranus's Cape",
+            augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Mag.Atk.Bns."+10', 'Phys. dmg. taken-10%'}
         },
-        back = "Fi Follet Cape +1"
+        fcmp = {
+            name = "Taranus's Cape",
+            augments = {'MP+60', 'Mag. Acc+20 /Mag. Dmg.+20', 'MP+20', '"Fast Cast"+10', 'Phys. dmg. taken-10%'}
+        },
+        occult = {
+            name = "Taranus's Cape",
+            augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
+        },
+        tp = {
+            name = "Taranus's Cape",
+            augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
+        },
+        cure = {
+            name = "Taranus's Cape",
+            augments = {'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'MND+10', '"Cure Potency"+10', 'Phys. dmg. taken-10%'}
+        },
+        mabws = {
+            name = "Taranus's Cape",
+            augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', 'Weapon skill damage +10%',
+                        'Phys. dmg. taken-10%'}
+        }
     }
 
-    sets.precast.FastCast = {
-        main = "Oranyan",
+    th = {
+        ammo = "Per. Lucky Egg",
+        legs = "Volte Hose",
+        waist = "Chaac Belt"
+    }
+
+    af = {
+        head = "Spae. Petasos +2",
+        body = "Spaekona's Coat +3",
+        hands = "Spae. Gloves +3",
+        legs = "Spae. Tonban +3",
+        feet = "Spae. Sabots +3"
+    }
+
+    relic = {
+        head = "Arch. Petasos +3",
+        body = "Arch. Coat +3",
+        hands = "Arch. Gloves +3",
+        legs = "Arch. Tonban +3",
+        feet = "Arch. Sabots +3"
+    }
+
+    empy = {
+        head = "Wicce Petasos +1",
+        body = "Wicce Coat +1",
+        hands = "Wicce Gloves +1",
+        legs = "Wicce Tonban +1",
+        feet = "Wicce Sabots +1"
+    }
+
+    -- =========================================================================================================
+    -- ***Not Engaged Sets***
+    -- =========================================================================================================
+    sets.Idle.DT = {
+        main = "Malignance Pole", -- 20%
+        sub = "Khonsu", -- 6%
+        ammo = "Staunch Tathlum +1", -- 3%
+        head = nyame.head, -- 7%
+        body = nyame.body, -- 9%
+        hands = nyame.hands, -- 7%
+        legs = nyame.legs, -- 8%
+        feet = nyame.feet, -- 7%
+        neck = "Loricate Torque +1", -- 6%
+        waist = "Fucho-no-Obi", -- Refresh +1
+        left_ear = "Etiolation Earring", -- 3% MDT
+        right_ear = "Halasz Earring", -- MP +45
+        left_ring = "Shadow Ring", -- Resist Death
+        right_ring = "Mephitas's Ring +1", -- Convert 50 HP to MP
+        back = back.fcmp -- 10% PDT
+    }
+    sets.Idle.Refresh = set_combine(sets.Idle.DT, { -- 53% DT, Refresh +8~11
+        sub = "Oneiros Grip", -- +1 sub 75%
+        head = "Befouled Crown", -- +1
+        body = jhakri.body, -- +4
+        -- body = empy.body, -- +4
+        legs = "Assiduity Pants +1", -- +1~2
+        waist = "Fucho-no-Obi", -- +1 sub 50%
+        left_ring = "Stikini Ring +1", -- +1
+        right_ring = "Stikini Ring +1" -- +1
+    })
+    sets.Idle.Speed = set_combine(sets.Idle.Refresh, { -- 52% DT, Refresh +8~10
         sub = "Khonsu",
-        ammo = "Sapience Orb",
-        head = "Vanya Hood",
-        body = "Zendik Robe",
-        hands = telchine.hands.enhfc,
-        legs = "Volte Brais",
-        feet = amalric.feet,
-        neck = "Orunmila's Torque",
-        waist = "Embla Sash",
-        left_ear = "Malignance Earring",
-        right_ear = "Loquac. Earring",
-        left_ring = "Kishar Ring",
-        right_ring = "Rahab Ring",
-        back = "Fi Follet Cape +1"
+        feet = "Herald's Gaiters"
+    })
+    sets.Idle.Death = { -- MP +1024 (vs. +960 in precast), PDT -40%, MDT -30%
+        ammo = "Psilomene", -- MP +45
+        -- head = "Pixie Hairpin +1", -- MP +120
+        head = nyame.head, -- MP +59, DT -7%
+        -- body = amalric.body, -- MP +153
+        body = nyame.body, -- MP +88, DT -9%
+        -- hands = vanya.hands, -- MP +94
+        hands = nyame.hands, -- MP +73, DT -7%
+        legs = amalric.legs, -- MP +185
+        -- feet = psycloth.feet, -- MP +124
+        feet = nyame.feet, -- MP +44, DT -7%
+        neck = "Dualism Collar +1", -- MP +60
+        waist = "Shinjutsu-no-obi +1", -- MP +85
+        left_ear = "Etiolation Earring", -- MP +50
+        right_ear = "Halasz Earring", -- MP +45
+        left_ring = "Mephitas's Ring", -- Convert 100 HP to MP
+        right_ring = "Mephitas's Ring +1", -- Convert 110 HP to MP
+        back = back.fcmp -- MP +80
     }
 
-    sets.midcast.Elemental = {
+    -- =========================================================================================================
+    -- ***Engaged Sets***
+    -- =========================================================================================================
+    sets.TP = {
+        main = "Malignance Pole",
+        sub = "Bloodrain Strap",
+        ammo = "Amar Cluster",
+        head = nyame.head,
+        body = nyame.body,
+        hands = "Gazu Bracelet +1",
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Combatant's Torque",
+        waist = "Olseni Belt",
+        left_ear = "Telos Earring",
+        right_ear = "Mache Earring +1",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Chirich Ring +1",
+        back = back.tp
+    }
+
+    -- =========================================================================================================
+    -- ***Weapon Skill Sets***
+    -- =========================================================================================================
+    sets.WS.Generic = {
+        ammo = "Oshasha's Treatise",
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Rep. Plat. Medal",
+        waist = "Grunfeld Rope",
+        left_ear = "Telos Earring",
+        right_ear = "Moonshade Earring",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Epaminondas's Ring",
+        back = back.tp
+    } -- Any physical weapon skill that isn't otherwise specified
+    sets.WS.MAB = {
+        ammo = "Ghastly Tathlum +1",
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Sibyl Scarf",
+        waist = "Orpheus's Sash",
+        left_ear = "Regal Earring",
+        right_ear = "Moonshade Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Epaminondas's Ring",
+        back = back.nuke
+        -- back = back.mabws
+    } -- Any magical weapon skill that isn't otherwise specified
+    sets.WS.Myrkr = { -- MP +1206
+        ammo = "Psilomene", -- MP +45
+        head = "Pixie Hairpin +1", -- MP +120
+        body = amalric.body, -- MP +153
+        hands = vanya.hands, -- MP +94
+        legs = amalric.legs, -- MP +185
+        feet = psycloth.feet, -- MP +124
+        neck = "Dualism Collar +1", -- MP +60
+        waist = "Shinjutsu-no-obi +1", -- MP +85
+        left_ear = "Etiolation Earring", -- MP +50
+        right_ear = "Moonshade Earring",
+        left_ring = "Mephitas's Ring", -- Converts 100 HP to MP
+        right_ring = "Mephitas's Ring +1", -- Converts 110 HP to MP
+        back = back.fcmp -- MP +80
+    }
+    sets.WS.Cataclysm = set_combine(sets.WS.MAB, {
+        head = "Pixie Hairpin +1",
+        body = amalric.body,
+        legs = amalric.legs,
+        left_ring = "Archon Ring"
+    })
+    sets.WS['Earth Crusher'] = set_combine(sets.WS.MAB, {
+        head = agwu.head,
+        hands = agwu.hands,
+        feet = agwu.feet,
+        neck = "Quanpur Necklace"
+    })
+
+    -- =========================================================================================================
+    -- ***Job Ability Sets***
+    -- =========================================================================================================
+    sets.JA.Manafont = {
+        body = relic.body
+    }
+
+    -- =========================================================================================================
+    -- ***Item Sets***
+    -- =========================================================================================================
+    sets.item["Holy Water"] = {
+        neck = "Nicander's Necklace",
+        left_ring = "Purity Ring",
+        right_ring = "Blenmot's Ring +1"
+    }
+
+    -- =========================================================================================================
+    -- ***Precast Sets for Spells***
+    -- =========================================================================================================
+    sets.precast.FastCast = { -- 78%
+        ammo = "Sapience Orb", -- 2%
+        head = amalric.head, -- 11%
+        body = "Zendik Robe", -- 13%
+        hands = agwu.hands, -- 6%
+        legs = "Volte Brais", -- 8%
+        feet = amalric.feet, -- 6%
+        neck = "Orunmila's Torque", -- 5%
+        waist = "Shinjutsu-no-obi +1", -- 5%
+        left_ear = "Loquacious Earring", -- 2%
+        right_ear = "Malignance Earring", -- 4%
+        left_ring = "Kishar Ring", -- 4%
+        right_ring = "Rahab Ring", -- 2%
+        back = back.fcmp -- 10%
+    }
+    sets.precast.Death = { -- MP +960, FC +71%
+        sub = "Niobid Strap", -- MP +20
+        ammo = "Psilomene", -- MP +45
+        head = amalric.head, -- MP +61, FC +11%
+        body = "Zendik Robe", -- MP +61, FC +13%
+        hands = agwu.hands, -- MP +73, FC +6%
+        -- hands = "Helios Gloves", -- MP +94, FC +5%
+        legs = psycloth.legs, -- MP +109, FC +7%
+        feet = amalric.feet, -- MP +106, FC +6%
+        neck = "Orunmila's Torque", -- MP +30, FC +5%
+        waist = "Shinjutsu-no-obi +1", -- MP +85, FC +5%
+        left_ear = "Loquacious Earring", -- MP +30, FC +2%
+        right_ear = "Etiolation Earring", -- MP +50, FC +1%
+        left_ring = "Mephitas's Ring", -- Converts 100 HP to MP
+        right_ring = "Mephitas's Ring +1", -- Converts 110 HP to MP
+        back = back.fcmp -- MP +80, FC +10%
+    }
+    sets.precast.Dispelga = set_combine(sets.precast.FastCast, {
+        main = "Daybreak"
+    })
+    sets.precast.Impact = set_combine(sets.precast.FastCast, {
+        head = empty,
+        body = "Crepuscular Cloak"
+    })
+
+    -- =========================================================================================================
+    -- ***Midcast Sets for Spells***
+    -- =========================================================================================================
+    sets.midcast.Cur = {
+        ammo = "Staunch Tathlum +1",
+        head = vanya.head,
+        body = "Vrikodara Jupon",
+        hands = empy.hands,
+        legs = "Gyve Trousers",
+        feet = vanya.feet,
+        neck = "Incanter's Torque",
+        waist = "Luminary Sash",
+        left_ear = "Mendicant's Earring",
+        right_ear = "Meili Earring",
+        left_ring = "Menelaus's Ring",
+        right_ring = "Defending Ring",
+        back = "Fi Follet Cape +1"
+        -- back = back.cure
+    } -- This will match any spell containing "Cur" in the name, so Cure, Curaga, etc.
+    sets.midcast.CureSelf = set_combine(sets.midcast.Cur, {
+        neck = "Phalaina Locket",
+        waist = "Gishdubar Sash",
+        left_ring = "Kunaji Ring"
+    }) -- This will be used when casting any healing magic on yourself
+
+    sets.midcast.Enhancing = {
+        main = "Gada",
+        sub = "Ammurapi Shield",
+        ammo = "Pemphredo Tathlum",
+        head = telchine.head.enhfc,
+        body = telchine.body.enhfc,
+        hands = telchine.hands.enhfc,
+        legs = telchine.legs.enhfc,
+        feet = telchine.feet.enhfc,
+        neck = "Incanter's Torque",
+        waist = "Olympus Sash",
+        left_ear = "Andoaa Earring",
+        right_ear = "Mimir Earring",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Stikini Ring +1",
+        back = "Fi Follet Cape +1"
+    }
+    sets.midcast.EnhancingDuration = {
+        main = "Gada",
+        sub = "Ammurapi Shield",
+        waist = "Embla Sash"
+    }
+    sets.midcast.Stoneskin = set_combine(sets.midcast.Enhancing, {
+        -- neck = "Nodens Gorget",
+        waist = "Siegel Sash"
+    })
+    sets.midcast.Aquaveil = set_combine(sets.midcast.Enhancing, {
+        head = amalric.head,
+        hands = "Regal Cuffs"
+    })
+    sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {
+        head = amalric.head
+    })
+    sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
+        main = "Bolelabunga",
+        sub = "Ammurapi Shield"
+    })
+
+    sets.midcast.Enfeebling = {
         main = "Contemplator +1",
         sub = "Khonsu",
         ammo = "Pemphredo Tathlum",
-        head = jhakri.head,
+        head = amalric.head,
+        body = af.body,
+        hands = "Regal Cuffs",
+        legs = psycloth.legs,
+        feet = af.feet,
+        neck = "Sorcerer's Stole +2",
+        waist = "Acuity Belt +1",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Kishar Ring",
+        right_ring = "Metamor. Ring +1",
+        back = "Aurist's Cape +1"
+    }
+    sets.midcast.EnfeeblingMND = set_combine(sets.midcast.Enfeebling, {
+        head = "Cath Palug Crown",
+        waist = "Luminary Sash",
+        left_ring = "Stikini Ring +1"
+    })
+    sets.midcast.EnfeeblingINT = set_combine(sets.midcast.Enfeebling, {
+        left_ring = "Stikini Ring +1"
+    })
+
+    sets.midcast.Dispelga = set_combine(sets.midcast.EnfeeblingInt, {
+        main = "Daybreak",
+        sub = "Ammurapi Shield"
+    })
+
+    sets.midcast.Sleepga = sets.midcast.Enfeebling
+    sets.midcast.Sleepga.TH = set_combine(sets.midcast.Enfeebling, th)
+    sets.midcast.Breakga = sets.midcast.Enfeebling
+    sets.midcast.Breakga.TH = set_combine(sets.midcast.Enfeebling, th)
+    sets.midcast.Dia = th
+
+    sets.midcast.Elemental = {
+        main = "Marin Staff +1",
+        sub = "Alber Strap",
+        ammo = "Pemphredo Tathlum",
+        head = agwu.head,
         body = amalric.body,
-        hands = jhakri.hands,
-        legs = jhakri.legs,
+        hands = amalric.hands,
+        legs = amalric.legs,
         feet = amalric.feet,
         neck = "Baetyl Pendant",
-        waist = "Eschan Stone",
-        left_ear = "Malignance Earring",
-        right_ear = "Regal Earring",
+        waist = "Sacro Cord",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
         left_ring = "Freke Ring",
         right_ring = "Shiva Ring +1",
-        back = "Aurist's Cape"
+        back = back.nuke
+    } -- Any nuke
+    sets.midcast.Elemental.Acc = {
+        main = "Marin Staff +1",
+        sub = "Enki Strap",
+        ammo = "Pemphredo Tathlum",
+        head = relic.head,
+        body = relic.body,
+        hands = relic.hands,
+        legs = relic.legs,
+        feet = relic.feet,
+        neck = "Sanctity Necklace",
+        waist = "Sacro Cord",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Shiva Ring +1",
+        back = back.nuke
+    } -- This will be used when in 'Acc' magic mode
+    sets.midcast.Elemental.Coat = set_combine(sets.midcast.Elemental, {
+        body = af.body
+    })
+    sets.midcast.Elemental.DT = { -- 48% DT
+        main = "Marin Staff +1",
+        sub = "Khonsu", -- 6% DT
+        ammo = "Pemphredo Tathlum",
+        head = empy.head, -- 11% DT
+        body = amalric.body,
+        hands = amalric.hands,
+        legs = amalric.legs,
+        feet = empy.feet, -- 11% DT
+        neck = "Sorcerer's Stole +2",
+        waist = "Sacro Cord",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Defending Ring", -- 10% DT
+        back = back.nuke -- 10% PDT
     }
 
-    sets.midcast.Elemental.Proc = set_combine(sets.Idle, {})
+    sets.midcast.Elemental.Occult = {
+        sub = "Bloodrain Strap",
+        ammo = "Seraphic Ampulla",
+        head = mallquis.head,
+        body = af.body,
+        hands = merlinic.hands.occult,
+        legs = "Perdition Slops",
+        feet = merlinic.feet.occult,
+        neck = "Combatant's Torque",
+        waist = "Oneiros Rope",
+        left_ear = "Dedition Earring",
+        right_ear = "Crepuscular Earring",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Crepuscular Ring",
+        back = back.occult
+    }
+
+    sets.midcast.ElementalEnfeeble = {
+        main = "Contemplator +1",
+        sub = "Khonsu",
+        ammo = "Pemphredo Tathlum",
+        head = empy.head,
+        body = relic.body,
+        hands = af.hands,
+        legs = relic.legs,
+        feet = relic.feet,
+        neck = "Sorcerer's Stole +2",
+        waist = "Acuity Belt +1",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Metamor. Ring +1",
+        back = "Aurist's Cape +1"
+    }
+
+    sets.midcast.ElementalMB = {
+        main = "Marin Staff +1",
+        sub = "Alber Strap",
+        ammo = "Pemphredo Tathlum",
+        head = ea.head,
+        body = ea.body,
+        hands = agwu.hands,
+        legs = ea.legs,
+        feet = agwu.feet,
+        neck = "Sorcerer's Stole +2",
+        waist = "Sacro Cord",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Mujin Band",
+        back = back.nuke
+    } -- This is used during magic bursts
+    sets.midcast.ElementalMB.Acc = {
+        main = "Marin Staff +1",
+        sub = "Enki Strap",
+        ammo = "Pemphredo Tathlum",
+        head = ea.head,
+        body = ea.body,
+        hands = agwu.hands,
+        legs = ea.legs,
+        feet = relic.feet,
+        neck = "Sorcerer's Stole +2",
+        waist = "Acuity Belt +1",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Metamor. Ring +1",
+        back = back.nuke
+
+    } -- This is used in 'Acc' mode during magic bursts
+    sets.midcast.ElementalMB.Coat = set_combine(sets.midcast.ElementalMB, {
+        main = bunzi.rod,
+        sub = "Ammurapi Shield",
+        body = af.body
+    })
+    sets.midcast.ElementalMB.DT = {
+        main = "Marin Staff +1",
+        sub = "Khonsu",
+        ammo = "Pemphredo Tathlum",
+        head = empy.head,
+        body = ea.body,
+        hands = agwu.hands,
+        legs = agwu.legs,
+        feet = empy.feet,
+        neck = "Sorcerer's Stole +2",
+        waist = "Sacro Cord",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Defending Ring",
+        back = back.nuke
+    }
+    sets.midcast.ElementalMB.DT.withBuffs = {}
+    sets.midcast.ElementalMB.DT.withBuffs["Mana Wall"] = set_combine(sets.midcast.ElementalMB.DT, {
+        ammo = "Staunch Tathlum +1",
+        head = ea.head,
+        body = af.body,
+        left_ring = "Gelatinous Ring +1"
+    })
+
+    sets.midcast.Death = {
+        -- main = "Hvergelmir"
+        main = "Marin Staff +1",
+        sub = "Niobid Strap",
+        ammo = "Ghastly Tathlum +1",
+        head = "Pixie Hairpin +1",
+        body = amalric.body,
+        hands = amalric.hands,
+        legs = amalric.legs,
+        feet = amalric.feet,
+        neck = "Sanctity Necklace",
+        waist = "Acuity Belt +1",
+        left_ear = "Barkarole Earring",
+        right_ear = "Etiolation Earring",
+        left_ring = "Mephitas's Ring +1",
+        right_ring = "Archon Ring",
+        back = back.fcmp
+    }
+    sets.midcast.DeathMB = {
+        -- main = "Hvergelmir"
+        main = "Marin Staff +1",
+        sub = "Niobid Strap",
+        ammo = "Ghastly Tathlum +1",
+        head = "Pixie Hairpin +1",
+        body = ea.body,
+        hands = agwu.hands,
+        legs = ea.legs,
+        feet = amalric.feet,
+        neck = "Sorcerer's Stole +2",
+        waist = "Acuity Belt +1",
+        left_ear = "Barkarole Earring",
+        right_ear = "Etiolation Earring",
+        left_ring = "Mephitas's Ring +1",
+        right_ring = "Archon Ring",
+        back = back.fcmp
+    }
+
+    sets.midcast.Impact = {
+        main = bunzi.rod,
+        sub = "Ammurapi Shield",
+        ammo = "Pemphredo Tathlum",
+        head = empty,
+        body = "Crepuscular Cloak",
+        hands = af.hands,
+        legs = af.legs,
+        feet = af.feet,
+        neck = "Sorcerer's Stole +2",
+        waist = "Acuity Belt +1",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Metamor. Ring +1",
+        back = "Aurist's Cape +1"
+    }
+
+    sets.midcast.DarkMagic = {
+        main = "Rubicundity",
+        sub = "Ammurapi Shield",
+        ammo = "Pemphredo Tathlum",
+        head = amalric.head,
+        body = amalric.body,
+        hands = relic.hands,
+        legs = af.legs,
+        feet = empy.feet,
+        neck = "Incanter's Torque",
+        waist = "Acuity Belt +1",
+        left_ear = "Regal Earring",
+        right_ear = "Mani Earring",
+        left_ring = "Stikini Ring +1",
+        right_ring = "Archon Ring",
+        back = "Bane Cape"
+    }
+    sets.midcast.Drain = set_combine(sets.midcast.DarkMagic, {
+        head = merlinic.head.drainaspir,
+        body = merlinic.body.drainaspir,
+        hands = merlinic.hands.drainaspir,
+        legs = af.legs,
+        feet = agwu.feet,
+        neck = "Erra Pendant",
+        waist = "Fucho-no-Obi",
+        left_ear = "Regal Earring",
+        left_ring = "Evanescence Ring"
+    })
+    sets.midcast.Aspir = sets.midcast.Drain
+
+    -- =========================================================================================================
+    -- ***Special Sets***
+    -- =========================================================================================================
+    sets.Weather = {
+        waist = "Hachirin-no-obi",
+        back = "Twilight Cape"
+    }
 
     sets.Distance = {
         waist = "Orpheus's Sash"
     }
 
-    sets.Resting = {
-        main = "Contemplator +1"
+    sets.WakeUp = {
+        main = "Prime Staff"
     }
 
-    organizer_items = {
-        bseals = "Beastmen's Seal",
-        kseals = "Kindred's Seal",
-        kcrests = "Kindred's Crest",
-        hkcrests = "High Kindred's Crest",
-        skcrest = "Sacred Kindred's Crest",
-        warp_ring = "Warp Ring",
-        caliber_ring = "Caliber Ring",
-        vocation_ring = "Vocation Ring",
-        facility_ring = "Facility Ring",
-        aptitude_mantle = "Aptitude Mantle"
-    }
+end
+
+function mod_idle(set, mode, override_lock, is_user_command)
+    if buffactive["Mana Wall"] ~= nil then
+        return set_combine(set, {
+            feet = empy.feet
+        })
+    end
+
+    return set
+end
+
+function mod_tp(set, mode, override_lock, is_user_command)
+    if buffactive["Mana Wall"] ~= nil then
+        return set_combine(set, {
+            feet = empy.feet
+        })
+    end
+
+    return set
+end
+
+function mod_midcast(spell, set)
+    if spell.name:contains("Stone") then
+        return set_combine(set, {
+            neck = "Quanpur Necklace"
+        })
+    end
+
+    return set
 end

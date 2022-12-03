@@ -1,12 +1,11 @@
 include('set-behavior')
-include('organizer-lib')
 include('augments')
 
 lockstyleset = 20
 
 function define_sets()
     Idle_Modes = T {'Refresh', 'Hybrid'}
-    Magic_Modes = T {'MAB', 'Acc', 'Vagary'}
+    Magic_Modes = T {'MAB', 'Acc', 'Vagary', 'Sortie'}
     fastcast = .8
 
     back = {
@@ -22,6 +21,18 @@ function define_sets()
         hands = "Acad. Bracers +3",
         legs = "Acad. Pants +3",
         feet = "Acad. Loafers +3"
+    }
+
+    relic = {
+        head = "Pedagogy Mortarboard +3",
+        legs = "Peda. Pants +1"
+    }
+
+    empy = {
+        head = "Arbatel Bonnet +3",
+        hands = "Arbatel Bracers +2",
+        feet = "Arbatel Loafers +3",
+        ear = "Arbatel Earring +1"
     }
 
     -- Not Engaged
@@ -93,15 +104,15 @@ function define_sets()
         head = "Pixie Hairpin +1", -- MP +120
         body = amalric.body, -- MP +153
         hands = "Vanya Cuffs", -- MP +94
-        legs = "Psycloth Lappas", -- MP +109
-        feet = "Psycloth Boots", -- MP +124
+        legs = psycloth.legs, -- MP +109
+        feet = psycloth.feet, -- MP +124
         neck = "Sanctity Necklace", -- MP +35
-        waist = "Eschan Stone", -- MP +20
+        waist = "Fucho-no-obi", -- MP +30
         left_ear = { -- TP +250
             name = "Moonshade Earring",
             augments = {'Accuracy+4', 'TP Bonus +250'}
         },
-        right_ear = "Etiolation Earring", -- MP +50
+        right_ear = "Etiolation Earring", -- MP +50v dfgsdfgdfs
         left_ring = "Lebeche Ring", -- MP +40
         right_ring = { -- MP +20
             name = "Dark Ring",
@@ -111,7 +122,7 @@ function define_sets()
     }
 
     sets.JA["Tabula Rasa"] = {
-        legs = "Peda. Pants +1"
+        legs = relic.legs
     }
 
     -- =========================================================================================================
@@ -140,7 +151,7 @@ function define_sets()
         back = "Fi Follet Cape +1" -- 10%
     }
     sets.precast.Impact = set_combine(sets.precast.FastCast, {
-        body = "Twilight Cloak"
+        body = "Crepuscular Cloak"
     })
     sets.precast.Dispelga = set_combine(sets.precast.FastCast, {
         main = "Daybreak",
@@ -155,7 +166,7 @@ function define_sets()
         legs = af.legs, -- 15% Potency
         feet = "Vanya Clogs", -- 10% potency
         neck = "Incanter's Torque",
-        waist = "Luminary Sash",
+        waist = "Sacro Cord",
         left_ear = "Mendicant's Earring", -- 5%
         right_ear = "Regal Earring",
         left_ring = "Lebeche Ring", -- 3%
@@ -176,7 +187,7 @@ function define_sets()
         neck = "Incanter's Torque",
         waist = "Gishdubar Sash",
         left_ear = "Meili Earring",
-        left_ring = "Haoma's Ring",
+        left_ring = "Menelaus's Ring",
         right_ring = "Haoma's Ring"
     })
 
@@ -208,7 +219,7 @@ function define_sets()
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
         main = "Bolelabunga", -- 10% +1 Potency
         sub = "Ammurapi Shield", -- Duration +10
-        head = "Arbatel Bonnet +1",
+        head = empy.head,
         back = back.nuke -- Duration + 15
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {
@@ -219,15 +230,15 @@ function define_sets()
         main = "Bunzi's Rod",
         sub = "Ammurapi Shield",
         ammo = "Pemphredo Tathlum",
-        head = "Peda. M.board +3",
+        head = relic.head,
         body = amalric.body,
         hands = amalric.hands,
         legs = agwu.legs,
         feet = agwu.feet,
         neck = "Baetyl Pendant",
-        waist = "Eschan Stone",
-        left_ear = "Malignance Earring",
-        right_ear = "Regal Earring",
+        waist = "Sacro Cord",
+        left_ear = "Regal Earring",
+        right_ear = empy.ear,
         left_ring = "Freke Ring",
         right_ring = "Metamorph Ring +1",
         back = back.nuke
@@ -253,7 +264,7 @@ function define_sets()
         head = "Befouled Crown",
         body = jhakri.body,
         hands = jhakri.hands,
-        legs = "Psycloth Lappas",
+        legs = psycloth.legs,
         feet = af.feet,
         neck = "Loricate Torque +1",
         waist = "Luminary Sash",
@@ -264,7 +275,7 @@ function define_sets()
         back = back.nuke
     }
     sets.midcast.ElementalMB = set_combine(sets.midcast.Elemental, {
-        head = "Pedagogy Mortarboard +3",
+        head = relic.head,
         body = amalric.body,
         hands = amalric.hands,
         legs = agwu.legs,
@@ -274,7 +285,15 @@ function define_sets()
     sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
         main = "Contemplator +1"
     })
-    sets.midcast.Helix = set_combine(sets.midcast.Elemental, {
+    sets.midcast.AeroMB = set_combine(sets.midcast.ElementalMB, {
+        main = "Marin Staff +1",
+        sub = "Enki Strap"
+    })
+    sets.midcast.StoneMB = set_combine(sets.midcast.ElementalMB, {
+        neck = "Quanpur Necklace"
+    })
+
+    sets.midcast.helix = set_combine(sets.midcast.Elemental, {
         main = "Bunzi's Rod",
         sub = "Culminus",
         ammo = "Ghastly Tathlum +1",
@@ -283,13 +302,31 @@ function define_sets()
         hands = agwu.hands,
         legs = agwu.legs,
         feet = agwu.feet,
-        waist = "Acuity Belt +1"
+        neck = "Argute Stole +2",
+        waist = "Sacro Cord"
     })
-    sets.midcast.HelixMB = set_combine(sets.midcast.Helix, {
-        head = "Pedagogy Mortarboard +3",
-        right_ring = "Mujin Band"
+    sets.midcast.helix.Sortie = { -- 63% FC
+        main = "Malignance Pole",
+        sub = "Khonsu",
+        ammo = "Sapience Orb", -- 2% FC
+        head = "Pixie Hairpin +1",
+        body = "Zendik Robe", -- 13% FC
+        hands = "Gendewitha Gages +1", -- 7% FC
+        legs = "Psycloth Lappas", -- 7% FC
+        feet = telchine.feet.enhfc, -- 5% FC
+        neck = "Orunmila's Torque", -- 5% FC
+        waist = "Embla Sash", -- 5% FC
+        left_ear = "Etiolation Earring", -- 1% FC
+        right_ear = "Loquac. Earring", -- 2% FC
+        left_ring = "Kishar Ring", -- 4% FC
+        right_ring = "Rahab Ring", -- 2% FC
+        back = "Fi Follet Cape +1" -- 10% FC
+    }
+    sets.midcast.helixMB = set_combine(sets.midcast.helix, {
+        head = relic.head,
+        left_ring = "Mujin Band"
     })
-    sets.midcast.Luminohelix = set_combine(sets.midcast.Helix, {
+    sets.midcast.Luminohelix = set_combine(sets.midcast.helix, {
         main = "Daybreak"
     })
     sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
@@ -304,7 +341,7 @@ function define_sets()
         main = "Contemplator +1",
         sub = "Khonsu",
         head = empty,
-        body = "Twilight Cloak"
+        body = "Crepuscular Cloak"
     })
 
     sets.midcast.DarkMagic = {
@@ -314,11 +351,11 @@ function define_sets()
         head = "Pixie Hairpin +1",
         body = jhakri.body,
         hands = jhakri.hands,
-        legs = "Peda. Pants +1",
+        legs = relic.legs,
         feet = amalric.feet,
         neck = "Erra Pendant",
-        left_ear = "Malignance Earring",
-        -- right_ear = "Mani Earring",
+        left_ear = "Regal Earring",
+        right_ear = empy.ear,
         left_ring = "Archon Ring",
         right_ring = "Shiva Ring +1",
         back = "Bookworm's Cape"
@@ -342,8 +379,8 @@ function define_sets()
         feet = af.feet, -- MAcc +66
         neck = "Argute Stole +2", -- Macc +30
         waist = "Luminary Sash", -- MAcc +10
-        left_ear = "Malignance Earring", -- MAcc +10
-        right_ear = "Regal Earring", -- MAcc +15
+        left_ear = "Regal Earring", -- MAcc +15
+        right_ear = "Malignance Earring", -- MAcc +10, INT+8, MND+8
         left_ring = "Stikini Ring +1", -- MAcc +11
         right_ring = "Metamorph Ring +1", -- MAcc +11~15
         back = back.nuke -- MAcc +20
@@ -358,16 +395,16 @@ function define_sets()
 
     -- Pieces to switch out when buffs are active
     sets.midcast.mod.Perpetuance = {
-        hands = "Arbatel Bracers +1"
-    }
-    sets.midcast.mod.Immanence = {
-        hands = "Arbatel Bracers +1"
+        hands = empy.hands
     }
     sets.midcast.mod.Ebullience = {
-        head = "Arbatel Bonnet +1"
+        head = empy.head
     }
     sets.midcast.mod.Rapture = {
-        head = "Arbatel Bonnet +1"
+        head = empy.head
+    }
+    sets.midcast.mod.Klimaform = {
+        feet = empy.feet
     }
 
     -- Pieces to switch out when the day/weather matches
@@ -382,16 +419,7 @@ function define_sets()
         waist = "Orpheus's Sash"
     }
 
-    organizer_items = {
-        bseals = "Beastmen's Seal",
-        kseals = "Kindred's Seal",
-        kcrests = "Kindred's Crest",
-        hkcrests = "High Kindred's Crest",
-        skcrest = "Sacred Kindred's Crest",
-        warp_ring = "Warp Ring",
-        caliber_ring = "Caliber Ring",
-        vocation_ring = "Vocation Ring",
-        facility_ring = "Facility Ring",
-        aptitude_mantle = "Aptitude Mantle"
+    sets.WakeUp = {
+        main = "Prime Staff"
     }
 end

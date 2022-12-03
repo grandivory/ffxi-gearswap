@@ -9,12 +9,12 @@ function define_sets()
     Idle_Modes = T {'Speed', 'DT', 'Refresh', 'Evasion'}
     Magic_Modes = T {'G.Horn', 'Harp', 'TH', 'Enmity'}
 
-    fastcast = .71 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
+    fastcast = .75 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
 
     back = {
         tp = {
             name = "Intarabus's Cape",
-            augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
+            augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dual Wield"+10', 'Phys. dmg. taken-10%'}
         },
         strws = {
             name = "Intarabus's Cape",
@@ -41,7 +41,7 @@ function define_sets()
         },
         strws = {
             name = "Linos",
-            augments = {'Accuracy+14 Attack+14', 'Weapon skill damage +3%', 'STR+8'}
+            augments = {'Accuracy+15 Attack+15', 'Weapon skill damage +3%', 'STR+8'}
         },
         dexws = {
             name = "Linos",
@@ -79,7 +79,7 @@ function define_sets()
 
     af = {
         head = "Brioso Roundlet +3",
-        body = "Brioso Jstcorps. +3",
+        body = "Brioso Justau. +3",
         hands = "Brioso Cuffs +3",
         legs = "Brioso Cannions +3",
         feet = "Brioso Slippers +3"
@@ -93,34 +93,34 @@ function define_sets()
         feet = "Bihu Slippers +1"
     }
 
-    empyrean = {
-        head = "Fili Calot +1",
-        body = "Fili Hongreline +1",
-        hands = "Fili Manchettes +1",
-        legs = "Fili Rhingrave +1",
-        feet = "Fili Cothurnes +1"
+    empy = {
+        head = "Fili Calot +2",
+        body = "Fili Hongreline +2",
+        hands = "Fili Manchettes +2",
+        legs = "Fili Rhingrave +2",
+        feet = "Fili Cothurnes +2"
     }
 
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.DT = {
-        sub = "Genmei Shield",
-        head = bunzi.head,
-        body = bunzi.body,
-        hands = bunzi.hands,
+    sets.Idle.DT = { -- 67% PDT, 50% MDT
+        sub = "Genmei Shield", -- 10% PDT
+        head = empy.head, -- 10%
+        body = bunzi.body, -- 10%
+        hands = empy.hands, -- 10%
         legs = "Assid. Pants +1",
-        feet = nyame.feet,
-        neck = "Loricate Torque +1",
-        waist = "Slipor Sash",
+        feet = nyame.feet, -- 7%
+        neck = "Warder's Charm +1", -- Elemental resistance, occasionally absorb spells
+        waist = "Slipor Sash", -- 3% MDT
         left_ear = "Mendi. Earring",
         right_ear = "Etiolation Earring",
-        left_ring = "Defending Ring",
+        left_ring = "Defending Ring", -- 10%
         right_ring = "Kunaji Ring",
-        back = back.tp
+        back = back.tp -- 10% PDT
     }
     sets.Idle.Speed = set_combine(sets.Idle.DT, {
-        feet = "Fili Cothurnes +1"
+        feet = empy.feet
     })
     sets.Idle.Refresh = set_combine(sets.Idle.DT, {
         main = {
@@ -129,9 +129,6 @@ function define_sets()
         },
         sub = "Oneiros Grip",
         right_ring = "Stikini Ring +1"
-    })
-    sets.Idle.RP = set_combine(sets.Idle.Speed, {
-        neck = "Bard's Charm +2"
     })
     sets.Idle.Evasion = {
         main = "Nibiru Knife",
@@ -156,52 +153,52 @@ function define_sets()
     -- =========================================================================================================
     sets.TP.Att = {
         main = "Naegling",
-        sub = "Crepuscular Knife",
+        sub = tpdagger,
         range = linos.tp,
-        head = "Bunzi's Hat",
-        body = ayanmo.body,
+        head = bunzi.head,
+        body = "Ashera Harness",
         hands = bunzi.hands,
-        legs = nyame.legs,
+        legs = telchine.legs.att,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Reiki Yotai",
+        waist = "Sailfi Belt +1",
         left_ear = "Telos Earring",
-        right_ear = "Eabani Earring",
+        right_ear = "Cessance Earring",
         left_ring = "Chirich Ring +1",
         right_ring = "Chirich Ring +1",
         back = back.tp
     }
     sets.TP.DT = {
         main = "Naegling",
-        sub = "Crepuscular Knife",
+        sub = tpdagger,
         range = linos.tp,
-        head = "Bunzi's Hat",
-        body = ayanmo.body,
-        hands = bunzi.hands,
-        legs = nyame.legs,
-        feet = nyame.feet,
+        head = bunzi.head, -- 7%
+        body = "Ashera Harness", -- 7%
+        hands = bunzi.hands, -- 8%
+        legs = nyame.legs, -- 8%
+        feet = nyame.feet, -- 7%
         neck = "Bard's Charm +2",
-        waist = "Reiki Yotai",
+        waist = "Sailfi Belt +1",
         left_ear = "Telos Earring",
-        right_ear = "Eabani Earring",
-        left_ring = "Defending Ring",
+        right_ear = "Cessance Earring",
+        left_ring = "Moonlight Ring", -- 5%
         right_ring = "Chirich Ring +1",
-        back = back.tp
+        back = back.tp -- 10% PDT
     }
     sets.TP.DT1H = {
         main = "Naegling",
         sub = "Genmei Shield",
         range = linos.tp,
-        head = "Bunzi's Hat",
-        body = ayanmo.body,
+        head = bunzi.head,
+        body = "Ashera Harness",
         hands = bunzi.hands,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Windbuffet Belt +1",
+        waist = "Sailfi Belt +1",
         left_ear = "Telos Earring",
         right_ear = "Cessance Earring",
-        left_ring = "Chirich Ring +1",
+        left_ring = "Moonlight Ring",
         right_ring = "Chirich Ring +1",
         back = back.tp
     }
@@ -219,12 +216,9 @@ function define_sets()
         feet = nyame.feet,
         neck = "Bard's Charm +2",
         waist = "Sailfi Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
-        left_ring = "Rufescent Ring",
+        left_ring = "Ilabrat Ring",
         right_ring = "Epaminondas's Ring",
         back = back.strws
     }
@@ -235,7 +229,7 @@ function define_sets()
         hands = bunzi.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Baetyl Pendant",
+        neck = "Sibyl Scarf",
         waist = "Eschan Stone",
         left_ear = "Regal Earring",
         right_ear = "Friomisi Earring",
@@ -246,35 +240,29 @@ function define_sets()
     sets.WS["Savage Blade"] = {
         range = linos.strws,
         head = nyame.head,
-        body = nyame.body,
+        body = relic.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
         waist = "Sailfi Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
-        left_ring = "Rufescent Ring",
+        left_ring = "Metamor. Ring +1",
         right_ring = "Epaminondas's Ring",
         back = back.strws
     }
     sets.WS["Rudra's Storm"] = {
         range = linos.dexws,
         head = nyame.head,
-        body = "Bihu Jstcorps. +3",
+        body = relic.body,
         hands = nyame.hands,
-        legs = "Lustr. Subligar +1",
-        feet = "Lustra. Leggings +1",
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Bard's Charm +2",
         waist = kentarch.belt,
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
-        right_ear = "Ishvara Earring",
+        left_ear = "Moonshade Earring",
+        right_ear = "Mache Earring +1",
         left_ring = "Epaminondas's Ring",
         right_ring = "Ilabrat Ring",
         back = back.strws
@@ -296,19 +284,16 @@ function define_sets()
     }
     sets.WS.Evisceration = {
         range = linos.dexws,
-        head = nyame.head,
-        body = nyame.body,
-        hands = nyame.hands,
-        legs = "Lustr. Subligar +1",
-        feet = "Lustra. Leggings +1",
+        head = "Blistering Sallet +1",
+        body = ayanmo.body,
+        hands = bunzi.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Brutal Earring",
-        left_ring = "Ilabrat Ring",
+        left_ring = "Hetairoi Ring",
         right_ring = "Begrudging Ring",
         back.tp
     }
@@ -331,13 +316,13 @@ function define_sets()
     -- ***Job Ability Sets***
     -- =========================================================================================================
     sets.JA.Troubadour = {
-        body = "Bihu Jstcorps. +3"
+        body = relic.body
     }
     sets.JA['Soul Voice'] = {
-        legs = "Bihu Cannions +1"
+        legs = relic.legs
     }
     sets.JA.Nightingale = {
-        feet = "Bihu Slippers +1"
+        feet = relic.feet
     }
 
     -- =========================================================================================================
@@ -352,13 +337,11 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 71%
-        -- main = "Kali", -- 7%
-        -- sub = "Genmei Shield",
-        head = "Bunzi's Hat", -- 10%
+    sets.precast.FastCast = { -- 75%
+        head = bunzi.head, -- 10%
         body = inyanga.body, -- 14%
-        hands = "Leyline Gloves", -- 7%
-        legs = "Volte Brais", -- 5%
+        hands = "Leyline Gloves", -- 8%
+        legs = "Volte Brais", -- 8%
         feet = telchine.feet.enhfc, -- 5%
         neck = "Orunmila's Torque", -- 5%
         waist = "Embla Sash", -- 5%
@@ -369,9 +352,9 @@ function define_sets()
         back = back.maccfc -- 10%
 
     }
-    sets.precast.BardSong = set_combine(sets.precast.FastCast, { -- 81%
+    sets.precast.BardSong = set_combine(sets.precast.FastCast, { -- 86%
         range = "Gjallarhorn",
-        head = "Fili Calot +1" -- 14%, +4
+        head = empy.head -- 15%, +5
         -- feet have an extra -6% song spellcasting time
     })
     sets.precast.BardSong['Harp'] = set_combine(sets.precast.BardSong, {
@@ -394,16 +377,17 @@ function define_sets()
     sets.midcast.Cur = {
         main = "Daybreak",
         sub = "Ammurapi Shield",
-        head = "Bunzi's Hat",
-        body = bunzi.body,
-        legs = bunzi.legs,
-        feet = nyame.feet, -- 7% DT
+        head = bunzi.head,
+        body = kaykaus.body,
+        hands = inyanga.hands,
+        legs = vanya.legs,
+        feet = vanya.feet,
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring",
         right_ear = "Meili Earring",
-        left_ring = "Haoma's Ring",
-        right_ring = "Haoma's Ring",
+        left_ring = "Menelaus's Ring",
+        right_ring = "Stikini Ring +1",
         back = "Aurist's Cape +1"
     }
     sets.midcast.CureSelf = set_combine(sets.midcast.Cur, {
@@ -413,10 +397,11 @@ function define_sets()
     sets.midcast.Healing = {
         main = "Daybreak",
         sub = "Ammurapi Shield",
-        head = "Bunzi's Hat",
+        head = vanya.head,
         body = bunzi.body,
-        legs = bunzi.legs,
-        feet = nyame.feet, -- 7% DT
+        hands = "Hieros Mittens",
+        legs = vanya.legs,
+        feet = vanya.feet,
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring",
@@ -425,24 +410,29 @@ function define_sets()
         right_ring = "Haoma's Ring",
         back = back.maccfc
     }
+    sets.midcast.Cursna = set_combine(sets.midcast.Healing, {
+        neck = "Debilis Medallion"
+    })
+
     sets.midcast.Enhancing = {
-        main = "Daybreak",
+        main = "Pukulatmuj +1",
         sub = "Ammurapi Shield",
         head = telchine.head.enhfc,
         body = telchine.body.enhfc,
-        hands = "Inyan. Dastanas +2",
+        hands = inyanga.hands,
         legs = telchine.legs.enhfc,
         feet = telchine.feet.enhfc,
         neck = "Incanter's Torque",
-        waist = "Embla Sash",
+        waist = "Olympus Sash",
         left_ear = "Andoaa Earring",
-        right_ear = "Etiolation Earring",
+        right_ear = "Mimir Earring",
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1",
         back = "Fi Follet Cape +1"
     }
     sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {
-        hands = telchine.hands.enhfc
+        hands = telchine.hands.enhfc,
+        waist = "Embla Sash"
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.Enhancing, {
         waist = "Siegel Sash"
@@ -451,11 +441,11 @@ function define_sets()
     sets.midcast.Enfeebling = {
         main = "Carnwenhan",
         sub = "Ammurapi Shield",
-        head = "Brioso Roundlet +3",
-        body = "Brioso Justau. +3",
-        hands = "Inyan. Dastanas +2",
-        legs = "Brioso Cannions +3",
-        feet = "Brioso Slippers +3",
+        head = af.head,
+        body = af.body,
+        hands = inyanga.hands,
+        legs = af.legs,
+        feet = af.feet,
         neck = "Incanter's Torque",
         waist = "Acuity Belt +1",
         left_ear = "Regal Earring",
@@ -468,34 +458,35 @@ function define_sets()
     sets.midcast.Songs.Buff = {
         main = "Carnwenhan",
         sub = "Kali",
-        head = "Fili Calot +1",
-        body = "Fili Hongreline +1",
-        hands = "Fili Manchettes +1",
+        head = empy.head,
+        body = empy.body,
+        hands = empy.hands,
         legs = inyanga.legs,
-        feet = "Brioso Slippers +3",
+        feet = af.feet,
         neck = "Mnbw. Whistle +1",
         right_ear = "Etiolation Earring",
         left_ring = "Defending Ring",
-        right_ring = "Kunaji Ring",
-        waist = "Flume Belt +1"
+        right_ring = "Gelatinous Ring +1",
+        waist = "Flume Belt +1",
+        back = back.maccfc
     }
     sets.midcast.Paeon = set_combine(sets.midcast.Songs.Buff, {
-        head = "Brioso Roundlet +3"
+        head = af.head
     })
     sets.midcast.Madrigal = set_combine(sets.midcast.Songs.Buff, {
-        head = "Fili Calot +1"
+        head = empy.head
     })
     sets.midcast.Minuet = set_combine(sets.midcast.Songs.Buff, {
-        body = "Fili Hongreline +1"
+        body = empy.body
     })
     sets.midcast.March = set_combine(sets.midcast.Songs.Buff, {
-        head = "Fili Manchettes +1"
+        hands = empy.hands
     })
     sets.midcast.Ballad = set_combine(sets.midcast.Songs.Buff, {
-        legs = "Fili Rhingrave +1"
+        legs = empy.legs
     })
     sets.midcast.Scherzo = set_combine(sets.midcast.Songs.Buff, {
-        feet = "Fili Cothurnes +1"
+        feet = empy.feet
     })
     sets.midcast.Etude = set_combine(sets.midcast.Songs.Buff, {
         head = mousai.head
@@ -522,8 +513,8 @@ function define_sets()
         body = mousai.body
     })
     sets.midcast['Foe Lullaby'] = set_combine(sets.midcast.Songs.Debuff, {
-        body = "Fili Hongreline +1",
-        hands = "Brioso Cuffs +3",
+        body = empy.body,
+        hands = af.hands,
         legs = inyanga.legs
     })
     sets.midcast['Foe Lullaby'].TH = set_combine(sets.midcast['Foe Lullaby'], th_gear)
@@ -532,7 +523,7 @@ function define_sets()
     })
     sets.midcast['Horde Lullaby'] = set_combine(sets.midcast['Foe Lullaby'], {
         range = "Daurdabla",
-        body = "Brioso Justau. +3"
+        body = af.body
     })
     sets.midcast['Horde Lullaby'].TH = set_combine(sets.midcast['Horde Lullaby'], th_gear)
     sets.midcast['Horde Lullaby'].Enmity = set_combine(sets.midcast['Horde Lullaby'], enmity_gear, {
@@ -549,46 +540,6 @@ function define_sets()
 
     sets.Distance = {
         waist = "Orpheus's Sash"
-    }
-
-    -- =========================================================================================================
-    -- ***Items to Keep***
-    -- =========================================================================================================
-    organizer_items = {
-        -- Medicines
-        echodrops = "Echo Drops",
-
-        -- Food
-        attfood = "Red Curry Bun",
-        accfood = "Sublime Sushi",
-        accfoodHQ = "Sublime Sushi +1",
-        petfood = "Grape Daifuku +1",
-        craftfood = "Coconut Rusk",
-        fishfood = "Fisherman's Feast",
-        magicfood = "Tropical Crepe",
-
-        -- Seals
-        bseals = "Beastmen's Seal",
-        kseals = "Kindred's Seal",
-        kcrests = "Kindred's Crest",
-        hkcrests = "High Kindred's Crest",
-        skcrest = "Sacred Kindred's Crest",
-
-        -- Exp Rings
-        caliber_ring = "Caliber Ring",
-        vocation_ring = "Vocation Ring",
-        facility_ring = "Facility Ring",
-
-        -- Tools
-        shihei = "Shihei",
-        monomi = "Sanjaku-tenugui",
-        tonko = "Shinobi-tabi",
-
-        -- Other
-        forbiddenkeys = "Forbidden Key",
-        dialkey1 = "Dial Key #Ab",
-        silvervoucher = "Silver Voucher",
-        coppervoucher = "Copper Voucher"
     }
 
 end

@@ -2,7 +2,6 @@ include('set-behavior')
 include('organizer-lib')
 include('augments')
 require('queues')
-require('strings')
 
 texts = require('texts')
 res = require('resources')
@@ -33,7 +32,22 @@ function define_sets()
         feet = herc.feet.thmab,
         waist = "Chaac Belt"
     }
-
+    af = {
+        head = " +3",
+        body = " +3",
+        hands = " +3",
+        legs = " +3",
+        feet = " +3"
+    }
+    relic = {
+        body = "Pitre Tobe +3"
+    }
+    empy = {
+        head = "Kara. Cappello +2",
+        body = "Karagoz Farsetto +2",
+        hands = "Karagoz Guanti +2",
+        legs = "Kara. Pantaloni +2"
+    }
     -- =========================================================================================================
     -- ***Overdrive Definitions***
     -- =========================================================================================================
@@ -46,7 +60,7 @@ function define_sets()
         body = taeon.body.pet,
         hands = taeon.hands.pet,
         legs = taeon.legs.pet,
-        feet = mpaca.feet,
+        feet = taeon.feet.pet,
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
@@ -59,11 +73,11 @@ function define_sets()
         main = "Xiucoatl",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
-        head = "Karagoz Capello +1",
-        body = "Pitre Tobe +3",
-        hands = mpaca.hands,
-        legs = "Heyoka Subligar +1",
-        feet = mpaca.feet,
+        head = empy.head,
+        body = relic.body,
+        hands = empy.hands,
+        legs = heyoka.legs,
+        feet = "Naga Kyahan",
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
@@ -104,7 +118,7 @@ function define_sets()
         feet = taeon.feet.pet,
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
-        left_ear = "Rimeice Earring",
+        left_ear = "Domes. Earring",
         right_ear = "Enmerkar Earring",
         left_ring = "Thurandaut Ring +1",
         right_ring = "C. Palug Ring",
@@ -136,7 +150,7 @@ function define_sets()
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = taeon.head.pet,
-        body = "Pitre Tobe +3",
+        body = relic.body,
         hands = taeon.hands.pet,
         legs = taeon.legs.pet,
         feet = mpaca.feet,
@@ -156,13 +170,13 @@ function define_sets()
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
         head = mpaca.head,
-        body = "Pitre Tobe +3",
+        body = relic.body,
         hands = mpaca.hands,
-        legs = "Kara. Pantaloni +1",
+        legs = empy.legs,
         feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
-        left_ear = "Burana Earring",
+        left_ear = "Crep. Earring",
         right_ear = "Enmerkar Earring",
         left_ring = "Thurandaut Ring +1",
         right_ring = "Varar Ring +1",
@@ -179,6 +193,7 @@ function define_sets()
         main = "Denouements",
         range = "Animator P +1",
         ammo = "Automat. Oil +3",
+        waist = "Ukko Sash",
         left_ear = "Burana Earring",
         left_ring = taliah.ring
     })
@@ -186,6 +201,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Engaged Sets***
     -- =========================================================================================================
+
     sets.TP.PDT = {
         main = "Godhands",
         range = "Neo Animator",
@@ -198,7 +214,7 @@ function define_sets()
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
         left_ear = "Telos Earring",
-        right_ear = "Schere Earring",
+        right_ear = "Mache Earring +1",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -216,8 +232,8 @@ function define_sets()
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
         left_ear = "Telos Earring",
-        right_ear = "Schere Earring",
-        left_ring = "Defending Ring",
+        right_ear = "Odnowa Earring +1",
+        left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
     }
@@ -228,7 +244,7 @@ function define_sets()
         ammo = "Automat. Oil +3",
         head = mpaca.head,
         body = mpaca.body,
-        hands = mpaca.hands,
+        hands = empy.hands,
         legs = "Heyoka Subligar +1",
         feet = mpaca.feet,
         neck = "Shulmanu Collar",
@@ -241,40 +257,21 @@ function define_sets()
     }
 
     sets.TP.TH = set_combine(sets.TP.DT, th_gear)
-
-    sets.TP.Bruiser = {
-        main = "Ohtas",
-        range = "Animator P +1",
-        ammo = "Automat. Oil +3",
-        head = taeon.head.pet,
-        body = taeon.body.pet,
-        hands = taeon.hands.pet,
-        legs = taeon.legs.pet,
-        feet = taeon.feet.pet,
-        neck = "Shulmanu Collar",
-        waist = "Incarnation Sash",
-        left_ear = "Rimeice Earring",
-        right_ear = "Enmerkar Earring",
-        left_ring = "Thurandaut Ring +1",
-        right_ring = "C. Palug Ring",
-        back = back.pet
-    }
+    sets.TP.Bruiser = sets.Idle.Bruiser
 
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
+
     sets.WS["Victory Smite"] = {
         head = mpaca.head,
         body = mpaca.body,
-        hands = "Ryuo Tekko +1",
+        hands = mpaca.hands,
         legs = mpaca.legs,
         feet = mpaca.feet,
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
@@ -284,15 +281,12 @@ function define_sets()
     sets.WS["Stringing Pummel"] = {
         head = mpaca.head,
         body = mpaca.body,
-        hands = "Ryuo Tekko +1",
+        hands = mpaca.hands,
         legs = mpaca.legs,
         feet = mpaca.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
@@ -316,16 +310,13 @@ function define_sets()
 
     sets.WS["Howling Fist"] = {
         head = mpaca.head,
-        body = nyame.body,
-        hands = nyame.hands,
+        body = mpaca.body,
+        hands = mpaca.hands,
         legs = mpaca.legs,
-        feet = nyame.feet,
-        neck = "Caro Necklace",
+        feet = mpaca.feet,
+        neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
@@ -340,13 +331,25 @@ function define_sets()
         feet = mpaca.feet,
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        left_ear = "Moonshade Earring",
         right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
+        back = back.strda
+    }
+
+    sets.WS["Asuran Fists"] = {
+        head = empy.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = mpaca.legs,
+        feet = nyame.feet,
+        neck = "Fotia Gorget",
+        waist = "Fotia Belt",
+        left_ear = "Telos Earring",
+        right_ear = "Schere Earring",
+        left_ring = "Niqmaddu Ring",
+        right_ring = "Regal Ring",
         back = back.strda
     }
 
@@ -358,11 +361,8 @@ function define_sets()
         feet = nyame.feet,
         neck = "Caro Necklace",
         waist = "Moonbow Belt +1",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
-        right_ear = "Brutal Earring",
+        left_ear = "Moonshade Earring",
+        right_ear = "Schere Earring",
         left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -373,23 +373,19 @@ function define_sets()
         hands = nyame.hands,
         legs = nyame.legs,
         feet = herc.feet.thmab,
-        neck = "Baetyl Pendant",
-        waist = "Eschan Stone",
-        left_ear = {
-            name = "Moonshade Earring",
-            augments = {'Accuracy+4', 'TP Bonus +250'}
-        },
+        neck = "Sibyl Scarf",
+        waist = "Orpheus's Sash",
+        left_ear = "Moonshade Earring",
         right_ear = "Friomisi Earring",
         left_ring = "Metamor. Ring +1",
         right_ring = "Epaminondas's Ring",
         back = "Aurist's Cape +1"
     }
 
-    sets.WS["Aeolian Edge"] = set_combine(sets.WS.MAB, th_gear)
-
     -- =========================================================================================================
     -- ***Pet Weapon Skill Sets***
     -- =========================================================================================================
+
     meleeWS = {
         main = "Xiucoatl",
         head = taeon.head.pet,
@@ -408,10 +404,10 @@ function define_sets()
 
     rangedWS = {
         main = "Xiucoatl",
-        head = "Karagoz Capello +1",
-        body = "Pitre Tobe +3",
+        head = empy.head,
+        body = relic.body,
         hands = mpaca.hands,
-        legs = "Kara. Pantaloni +1",
+        legs = empy.legs,
         feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
@@ -440,7 +436,7 @@ function define_sets()
     sets.petEnmity.Turtle = set_combine(sets.Idle.Turtle, enmity)
 
     sets.JA.Overdrive = {
-        body = "Pitre Tobe +3"
+        body = relic.body
     }
 
     sets.JA.Repair = {
@@ -450,7 +446,7 @@ function define_sets()
     }
 
     sets.JA.Maneuver = {
-        body = "Kara. Farsetto +1",
+        body = empy.body,
         hands = "Foire Dastanas +3",
         neck = "Buffoon's Collar +1",
         left_ear = "Burana Earring",
@@ -462,6 +458,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Item Sets***
     -- =========================================================================================================
+
     sets.item["Holy Water"] = {
         neck = "Nicander's Necklace",
         left_ring = "Purity Ring",
@@ -471,6 +468,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets***
     -- =========================================================================================================
+
     sets.precast.FastCast = {
         head = "Herculean Helm",
         body = "Zendik Robe",
@@ -489,6 +487,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Midcast Sets***
     -- =========================================================================================================
+
     sets.midcast.Cur = {
         body = "Annointed Kalasiris",
         legs = "Gyve Trousers",
@@ -527,21 +526,29 @@ function define_sets()
         waist = "Gishdubar Sash"
     })
 
-    -- sets.Distance = {
-    --     waist = "Orpheus's Sash"
+    -- =========================================================================================================
+    -- ***Pet Midcast Sets***
+    -- =========================================================================================================
+
+    -- sets.pet_midcast.Generic = {
+    --     main = "Xiucoatl",
+    --     -- head = herc.head.petmab,
+    --     body = "Udug Jacket",
+    --     -- hands = herc.hands.petmab,
+    --     -- legs = relic.legs,
+    --     -- feet = relic.feet,
+    --     feet = "Foire Babouches +3",
+    --     neck = "Adad Amulet",
+    --     waist = "Ukko Sash",
+    --     left_ear = "Burana Earring",
+    --     right_ear = "Enmerkar Earring",
+    --     left_ring = "Tali'ah Ring",
+    --     right_ring = "C. Palug Ring"
+    --     -- back = back.petmab,
     -- }
 
-    organizer_items = {
-        bseals = "Beastmen's Seal",
-        kseals = "Kindred's Seal",
-        kcrests = "Kindred's Crest",
-        hkcrests = "High Kindred's Crest",
-        skcrest = "Sacred Kindred's Crest",
-        warp_ring = "Warp Ring",
-        caliber_ring = "Caliber Ring",
-        vocation_ring = "Vocation Ring",
-        facility_ring = "Facility Ring",
-        aptitude_mantle = "Aptitude Mantle"
+    sets.Distance = {
+        waist = "Orpheus's Sash"
     }
 
     hud = texts.new('', hud_defaults)

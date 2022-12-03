@@ -30,6 +30,9 @@ local th_on_tag = false
 local previousTarget = nil
 local currentTarget = nil
 local current_stances = {}
+local autows_threshold = 1500
+local autows = false
+local active_skillchains = {}
 
 local is_debug = false
 ---------------------------------------------------------
@@ -71,7 +74,7 @@ function get_sets()
 
     lock_gear = S {"Warp Ring", "Dim. Ring (Holla)", "Dim. Ring (Dem)", "Dim. Ring (Mea)", "Reraise Hairpin",
                    "Reraise Earring", "Echad Ring", "Endorsement Ring", "Trizek Ring", "Capacity Ring", "Facility Ring",
-                   "Caliber Ring"}
+                   "Caliber Ring", "Shobuhouou Kabuto"}
 
     MB_Mode = false
 
@@ -445,10 +448,24 @@ function midcast(spell)
         return
     end
 
-    midcast_set = nil
-    mode = Magic_Modes[Magic_Mode]
+    local midcast_set = nil
+    local mode = Magic_Modes[Magic_Mode]
+    local use_magic_burst = MB_Mode
 
-    if MB_Mode and sets.midcast[spell.name .. 'MB'] then
+    if use_magic_burst ~= true then
+        -- If there is an active skillchain on the current target,
+        -- the spell's element matches the skillchain elements,
+        -- and the spell's casting time is less than the remaining skillchain time,
+        -- then turn on magic burst mode
+        skillchain_details = active_skillchains[spell.target.id]
+        if skillchain_details ~= nil and skillchain_details.skillchain.elements:contains(spell.element) and
+            (spell.cast_time * fastcast < skillchain_details.end_time - os.time()) then
+            log_debug('Auto-magic-bursting!')
+            use_magic_burst = true
+        end
+    end
+
+    if use_magic_burst and sets.midcast[spell.name .. 'MB'] then
         -- Spell-specific magic burst
         log_debug("Spell-specific magic burst")
         midcast_set = get_set(sets.midcast[spell.name .. 'MB'], mode)
@@ -472,7 +489,7 @@ function midcast(spell)
     ----------------------
     if midcast_set == nil then
         for name, set in pairs(sets.midcast) do
-            if MB_Mode and ends_with(name, 'MB') and string.find(spell.name, name:sub(1, -3)) then
+            if use_magic_burst and ends_with(name, 'MB') and string.find(spell.name, name:sub(1, -3)) then
                 -- Partial name magic burst
                 log_debug("Partial name magic burst")
                 midcast_set = get_set(set, mode)
@@ -546,7 +563,7 @@ function midcast(spell)
             elseif DivineEnhancing:contains(spell.name) and sets.midcast.DivineEnhancing ~= nil then
                 log_debug("Diving enhancing spell")
                 midcast_set = get_set(sets.midcast.DivineEnhancing, mode)
-            elseif MB_Mode and sets.midcast.DivineMB ~= nil then
+            elseif use_magic_burst and sets.midcast.DivineMB ~= nil then
                 log_debug("Divine magic burst")
                 midcast_set = get_set(sets.midcast.DivineMB, mode)
             elseif sets.midcast.Divine ~= nil then
@@ -554,7 +571,10 @@ function midcast(spell)
                 midcast_set = get_set(sets.midcast.Divine, mode)
             end
         elseif spell.skill == "Elemental Magic" then
-            if MB_Mode and sets.midcast.ElementalMB ~= nil then
+            if ElementalEnfeebles:contains(spell.name) and sets.midcast.ElementalEnfeeble ~= nil then
+                log_debug("Elemental enfeebling spell")
+                midcast_set = get_set(sets.midcast.ElementalEnfeeble, mode)
+            elseif use_magic_burst and sets.midcast.ElementalMB ~= nil then
                 log_debug("Elemental magic burst")
                 midcast_set = get_set(sets.midcast.ElementalMB, mode)
             elseif sets.midcast.Elemental ~= nil then
@@ -684,16 +704,16 @@ function midcast(spell)
 
     midcast_set = mod_midcast(spell, midcast_set)
 
-    if MB_Mode then
-        MB_Mode = false
-        notice('Magic Burst mode is OFF')
-    end
-
     equip(midcast_set)
 end
 
 function aftercast(spell)
     log_debug("Aftercast: " .. spell.name)
+
+    if spell.interrupted ~= true and spell.cast_time ~= nil and MB_Mode then
+        MB_Mode = false
+        notice('Magic Burst mode is OFF')
+    end
 
     -- If you or a pet is mid-action, then don't swap sets
     if midaction() or
@@ -858,7 +878,7 @@ end
 -- Make sure that the correct idle set gets equipped after gaining or losing a pet
 function pet_change(pet, gain)
     if (not (gain and pet_midaction())) then
-        idle()
+        steady_state()
     end
 end
 
@@ -966,6 +986,25 @@ function self_command(commandArgs)
             current_stances = {}
             update_stance_display()
         end,
+        autows = function(args)
+            if #args > 0 then
+                autows = table.concat(args, " ")
+                notice("Setting auto-ws to " .. autows .. " at " .. tostring(autows_threshold) .. " TP.")
+            else
+                autows = false
+                notice("Disabling auto-ws")
+            end
+        end,
+        wsthreshold = function(args)
+            if #args > 0 then
+                autows_threshold = table.remove(args, 1) + 0 -- Convert to a number
+                if autows ~= false then
+                    notice("Setting auto-ws to " .. autows .. " at " .. tostring(autows_threshold) .. " TP.")
+                else
+                    notice("Setting auto-ws threshold to " .. autows_threshold)
+                end
+            end
+        end,
         debug = function()
             is_debug = not is_debug
             notice("Debug is set to " .. tostring(is_debug))
@@ -986,6 +1025,8 @@ windower.raw_register_event('action', function(action)
     if action == nil then
         return
     end
+
+    -- Keep track of when a player makes melee attacks to support TH-on-tag
     -- action.category 1 is a melee attack
     if action.actor_id == player.id and action.category == 1 then
         local previousTargetMatch = previousTarget == currentTarget
@@ -1000,10 +1041,28 @@ windower.raw_register_event('action', function(action)
             log_debug("TH Tag state changed. Recalculating gear set")
             send_command('gs c steadystate')
         end
+
+        -- Keep track of open skillchains for auto-magic-burst
+        -- In order, these are finish WS, finish spell, finish TP move, and finish pet abilities
+        -- These should be all the abilities that can close a skillchain
+    elseif S {3, 4, 11, 13}:contains(action.category) then
+        for _, target in pairs(action.targets) do
+            for _, details in pairs(target.actions) do
+                if Skillchains[details.add_effect_message] ~= nil then
+                    log_debug('Skillchain detected! ' .. Skillchains[details.add_effect_message].name .. ' on ' ..
+                                  target.id)
+                    active_skillchains[target.id] = {
+                        skillchain = Skillchains[details.add_effect_message],
+                        end_time = os.time() + 12
+                    }
+                end
+            end
+        end
     end
 end)
 
 windower.register_event('target change', function()
+    -- Keep track of when a player switches targets for TH-on-tag
     if player.status == 'Engaged' then
         local previousTargetMatch = previousTarget == currentTarget
         previousTarget = currentTarget
@@ -1024,6 +1083,7 @@ windower.register_event('prerender', function()
     if os.time() > tick then
         tick = os.time()
 
+        -- Keep up any stances that the player has set
         for stance_set in pairs(stances) do
             local ability = current_stances[stance_set]
             if current_stances[stance_set] ~= nil and not buffactive[ability.name] and not midaction() and
@@ -1031,6 +1091,26 @@ windower.register_event('prerender', function()
                 send_command('input /ja ' .. ability.name .. ' <me>')
 
             end
+        end
+
+        -- Auto-ws if one is set
+        if autows ~= false and player.tp > autows_threshold and not midaction() and player.status == 'Engaged' then
+            send_command('input /ws "' .. autows .. '" <t>')
+        end
+
+        -- Clear out any inactive skillchains
+        local count_changed = false
+        local skillchain_count = 0
+        for id, details in pairs(active_skillchains) do
+            if details.end_time < tick then
+                active_skillchains[id] = nil
+                count_changed = true
+            else
+                skillchain_count = skillchain_count + 1
+            end
+        end
+        if count_changed then
+            log_debug(skillchain_count .. ' skillchains are still being tracked')
         end
     end
 end)
@@ -1093,6 +1173,7 @@ end
 ---- Behavior functions                              ----
 ---------------------------------------------------------
 function tp(buff_override, override_lock, is_user_command)
+    log_debug('TP set...')
     if should_equip == nil then
         should_equip = true
     end
@@ -1105,6 +1186,8 @@ function tp(buff_override, override_lock, is_user_command)
             tp_set = get_set(sets.TP_Avatar, mode, override_lock, is_user_command)
         elseif string.find(pet.name, 'Spirit') and sets.TP_Spirit ~= nil then
             tp_set = get_set(sets.TP_Spirit, mode, override_lock, is_user_command)
+        elseif sets.TP_Pet ~= nil then
+            tp_set = get_set(sets.TP_Pet, mode, override_lock, is_user_command)
         end
     end
 
@@ -1123,12 +1206,19 @@ function tp(buff_override, override_lock, is_user_command)
         tp_set = set_combine(tp_set, sets.mod.TH)
     end
 
+    -- Check if we need to be woken Up
+    if buffactive['Sleep'] ~= nil and sets.WakeUp ~= nil then
+        log_debug('Waking up...')
+        tp_set = set_combine(tp_set, sets.WakeUp)
+    end
+
     tp_set = mod_tp(tp_set, mode, override_lock, is_user_command)
 
     return tp_set
 end
 
-function idle(should_equip, buff_override, override_lock, is_user_command)
+function idle(buff_override, override_lock, is_user_command)
+    log_debug('Idle set...')
     if should_equip == nil then
         should_equip = true
     end
@@ -1140,6 +1230,8 @@ function idle(should_equip, buff_override, override_lock, is_user_command)
             idle_set = get_set(sets.Idle_Avatar, mode, override_lock, is_user_command)
         elseif string.find(pet.name, 'Spirit') and next(sets.Idle_Spirit) ~= nil then
             idle_set = get_set(sets.Idle_Spirit, mode, override_lock, is_user_command)
+        elseif next(sets.Idle_Pet) ~= nil then
+            idle_set = get_set(sets.Idle_Pet, mode, override_lock, is_user_command)
         end
     end
 
@@ -1149,11 +1241,13 @@ function idle(should_equip, buff_override, override_lock, is_user_command)
 
     idle_set = mod_idle(idle_set, mode, override_lock, is_user_command)
 
-    if should_equip then
-        equip(idle_set)
-    else
-        return idle_set
+    -- Check if we need to be woken Up
+    if buffactive['Sleep'] ~= nil and sets.WakeUp ~= nil then
+        log_debug('Waking up...')
+        idle_set = set_combine(idle_set, sets.WakeUp)
     end
+
+    return idle_set
 end
 
 function get_set(set_definition, mode_name, override_lock, is_user_command)
@@ -1195,9 +1289,11 @@ end
 function steady_state(buff_override, override_lock, is_user_command)
     steady_set = {}
     if player.status == 'Engaged' then
+        log_debug("Engaged - using TP set")
         steady_set = tp(buff_override, override_lock, is_user_command)
     else
-        steady_set = idle(false, buff_override, override_lock, is_user_command)
+        log_debug("Not Engaged - using Idle set")
+        steady_set = idle(buff_override, override_lock, is_user_command)
     end
 
     return steady_set

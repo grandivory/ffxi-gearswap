@@ -1,6 +1,6 @@
 include('utils')
 
-no_action_types = S {"Item", "Trust"}
+no_action_types = S {"Item"}
 
 ElementalWS = S {"Gust Slash", "Cyclone", "Energy Steal", "Energy Drain", "Aeolian Edge", "Burning Blade",
                  "Red Lotus Blade", "Shining Blade", "Seraph Blade", "Spirits Within", "Sanguine Blade", "Atonement",
@@ -47,6 +47,7 @@ EnfeeblingMND = S {"Addle", "Addle II", "Distract II", "Distract III", "Frazzle"
                    "Paralyze", "Paralyze II", "Silence", "Slow", "Slow II"}
 EnfeeblingINT = S {"Bind", "Blind", "Break", "Breakga", "Dispel", "Gravity", "Gravity II", "Poison", "Poison II",
                    "Poisonga"}
+ElementalEnfeebles = S {"Burn", "Choke", "Drown", "Frost", "Rasp", "Shock"}
 DivineEnfeebles = S {"Flash", "Repose"}
 DivineEnhancing = S {"Enlight", "Enlight II"}
 
@@ -708,3 +709,62 @@ PetAbilities = merge(BloodPacts, ReadyMoves)
 
 Avatars = S {'Alexander', 'Atomos', 'Cait Sith', 'Carbuncle', 'Diabolos', 'Fenrir', 'Garuda', 'Ifrit', 'Leviathan',
              'Odin', 'Phoenix', 'Ramuh', 'Shiva', 'Siren', 'Titan'}
+
+Skillchains = {
+    [288] = {
+        name = 'Light',
+        elements = S {'Light', 'Fire', 'Lightning', 'Wind'}
+    },
+    [289] = {
+        name = 'Darkness',
+        elements = S {'Dark', 'Earth', 'Water', 'Ice'}
+    },
+    [290] = {
+        name = 'Gravitation',
+        elements = S {'Earth', 'Dark'}
+    },
+    [291] = {
+        name = 'Fragmentation',
+        elements = S {'Lightning', 'Wind'}
+    },
+    [292] = {
+        name = 'Distortion',
+        elements = S {'Ice', 'Water'}
+    },
+    [293] = {
+        name = 'Fusion',
+        elements = S {'Fire', 'Light'}
+    },
+    [294] = {
+        name = 'Compression',
+        elements = S {'Dark'}
+    },
+    [295] = {
+        name = 'Liquefaction',
+        elements = S {'Fire'}
+    },
+    [296] = {
+        name = 'Induration',
+        elements = S {'Ice'}
+    },
+    [297] = {
+        name = 'Reverberation',
+        elements = S {'Water'}
+    },
+    [298] = {
+        name = 'Transfixion',
+        elements = S {'Light'}
+    },
+    [299] = {
+        name = 'Scission',
+        elements = S {'Earth'}
+    },
+    [300] = {
+        name = 'Detonation',
+        elements = S {'Wind'}
+    },
+    [301] = {
+        name = 'Impaction',
+        elements = S {'Lightning'}
+    }
+}
