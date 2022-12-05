@@ -38,6 +38,12 @@ function define_sets()
     tool_threshold = 10 -- Below this, the lua will warn you that you're low on tools
 
     -- =========================================================================================================
+    -- ***Stances***
+    -- =========================================================================================================
+    stances.SAM = S {'Hasso', 'Seigan'} -- This will cause these abilities to be reused any time they fall off, if the ability is off cooldown. Using the other ability will overwrite the stance, so that if you use Seigan, it won't try to reuse Hasso anymore, and vice versa.
+    stances.WAR = S {'Berserk'} -- Putting a stance under a different name allows multiple stances to be tracked at once. Here, you can have the lua automatically keep up both Berserk and Hasso
+
+    -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
     sets.Idle = {}

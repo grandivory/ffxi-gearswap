@@ -46,6 +46,7 @@ function get_sets()
     sets.Idle = {}
     sets.Idle_Avatar = {}
     sets.Idle_Spirit = {}
+    sets.Idle_Pet = {}
     sets.item = {}
     sets.precast = {}
     sets.midcast = {}

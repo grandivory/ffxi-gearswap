@@ -12,19 +12,19 @@ function define_sets()
     fastcast = .8 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
 
     af = {
-        head = "Geomancy Galero",
-        body = "Geomancy Tunic",
-        hands = "Geomancy Mitaines",
-        legs = "Geomancy Pants",
-        feet = "Geomancy Sandals"
+        head = "Geomancy Galero +1",
+        body = "Geomancy Tunic +1",
+        hands = "Geomancy Mitaines +1",
+        legs = "Geomancy Pants +1",
+        feet = "Geomancy Sandals +1"
     }
 
     relic = {
-        head = "Bagua Galero",
-        body = "Bagua Tunic",
-        hands = "Bagua Mitaines",
-        legs = "Bagua Pants",
-        feet = "Bagua Sandals"
+        head = "Bagua Galero +1",
+        body = "Bagua Tunic +1",
+        hands = "Bagua Mitaines +1",
+        legs = "Bagua Pants +1",
+        feet = "Bagua Sandals +1"
     }
 
     empy = {
@@ -51,28 +51,12 @@ function define_sets()
         legs = "Volte Hose"
     }
 
-    geo = {
-        main = "Maxentius",
-        sub = "Genmei Shield",
-        ammo = "Amar Cluster",
-        head = nyame.head,
-        body = nyame.body,
-        hands = "Gazu Bracelet +1",
-        legs = nyame.legs,
-        feet = nyame.feet,
-        neck = "Combatant's Torque",
-        waist = "Grunfeld Rope",
-        left_ear = "Telos Earring",
-        right_ear = "Crepuscular Earring",
-        left_ring = "Chirich Ring +1",
-        right_ring = "Chirich Ring +1",
-        back = back.tp
-    }
-
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle = { -- 57% PDT, 50% MDT, Refresh +3
+    sets.Idle = { -- 83% PDT, 76% MDT, Refresh +3
+        main = "Malignance Pole", -- 20% DT
+        sub = "Khonsu", -- 6% DT
         ammo = "Staunch Tathlum +1", -- 3% DT
         head = nyame.head, -- 7% DT
         body = nyame.body, -- 9% DT
@@ -88,7 +72,7 @@ function define_sets()
         back = back.tp -- 10% PDT
     }
     sets.Idle.Speed = set_combine(sets.Idle, {
-        feet = "Herald's Gaiters"
+        feet = af.feet
     })
     sets.Idle.Refresh = set_combine(sets.Idle, { -- +9~13
         main = "Contemplator +1", -- +1~2
@@ -124,6 +108,7 @@ function define_sets()
     -- ***Engaged Sets***
     -- =========================================================================================================
     sets.TP = {
+        -- main = "Trial Wand",
         main = "Maxentius",
         sub = "Genmei Shield",
         ammo = "Amar Cluster",
@@ -214,8 +199,7 @@ function define_sets()
         head = amalric.head, -- 11%
         body = "Zendik Robe", -- 13%
         hands = agwu.hands, -- 6%
-        legs = "Volte Brais", -- 8%
-        -- legs = af.legs, -- 15%
+        legs = af.legs, -- 9~15%
         feet = amalric.feet, -- 6%,
         neck = "Orunmila's Torque", -- 5%,
         waist = "Embla Sash", -- 5%,
@@ -351,14 +335,11 @@ function define_sets()
         sub = "Ammurapi Shield",
         ammo = "Pemphredo Tathlum",
         head = "Cath Palug Crown",
-        -- head = af.head,
         body = agwu.body,
-        -- body = af.body,
         hands = "Regal Cuffs",
         legs = "Psycloth Lappas",
         -- legs = af.legs,
         feet = agwu.feet,
-        -- feet = af.feet,
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Malignance Earring",
@@ -479,7 +460,7 @@ function define_sets()
         back = "Aurist's Cape +1"
     }
     sets.midcast.Drain = set_combine(sets.midcast.DarkMagic, {
-        head = merlinic.head.drainaspir,
+        head = relic.head,
         body = merlinic.body.drainaspir,
         hands = merlinic.hands.drainaspir,
         feet = agwu.feet,
