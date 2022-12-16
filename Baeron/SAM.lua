@@ -97,7 +97,7 @@ function define_sets()
         feet = ryuo.feet,
         neck = jseneck,
         waist = "Sailfi Belt +1",
-        left_ear = "Telos Earring",
+        left_ear = "Kasuga Earring +1",
         right_ear = "Dedition Earring",
         left_ring = "Defending Ring",
         right_ring = "Niqmaddu Ring",
@@ -115,7 +115,7 @@ function define_sets()
         feet = ryuo.feet,
         neck = jseneck,
         waist = "Ioskeha Belt +1",
-        left_ear = "Telos Earring",
+        left_ear = "Kasuga Earring +1",
         right_ear = "Schere Earring",
         left_ring = "Defending Ring",
         right_ring = "Niqmaddu Ring",
@@ -135,7 +135,7 @@ function define_sets()
         feet = ryuo.feet,
         neck = jseneck,
         waist = "Sailfi Belt +1",
-        left_ear = "Telos Earring",
+        left_ear = "Kasuga Earring +1",
         right_ear = "Dedition Earring",
         left_ring = "Niqmaddu Ring",
         right_ring = "Chirich Ring +1",
@@ -232,19 +232,19 @@ function define_sets()
         back = back.tp
     }
     sets.WS.MAB = {
-        sub = "Utu Grip",
+        -- sub = "Utu Grip",
         ammo = "Knobkierrie",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = jseneck,
+        neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Moonshade Earring",
         right_ear = "Friomisi Earring",
         left_ring = "Epaminondas's Ring",
-        right_ring = "Regal Ring",
+        right_ring = "Metamor. Ring +1",
         back = back.mab
     }
     sets.WS.MAB.Omen = {

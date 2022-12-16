@@ -61,11 +61,11 @@ function define_sets()
     }
 
     empy = {
-        head = "Wicce Petasos +1",
+        head = "Wicce Petasos +2",
         body = "Wicce Coat +1",
         hands = "Wicce Gloves +1",
         legs = "Wicce Tonban +1",
-        feet = "Wicce Sabots +1"
+        feet = "Wicce Sabots +2"
     }
 
     -- =========================================================================================================
@@ -131,7 +131,7 @@ function define_sets()
         ammo = "Amar Cluster",
         head = nyame.head,
         body = nyame.body,
-        hands = "Gazu Bracelet +1",
+        hands = gazu.bracelet,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Combatant's Torque",
@@ -405,7 +405,7 @@ function define_sets()
         main = "Marin Staff +1",
         sub = "Khonsu", -- 6% DT
         ammo = "Pemphredo Tathlum",
-        head = empy.head, -- 11% DT
+        head = empy.head, -- 10~11% DT
         body = amalric.body,
         hands = amalric.hands,
         legs = amalric.legs,
@@ -608,8 +608,7 @@ function define_sets()
     -- ***Special Sets***
     -- =========================================================================================================
     sets.Weather = {
-        waist = "Hachirin-no-obi",
-        back = "Twilight Cape"
+        waist = "Hachirin-no-obi"
     }
 
     sets.Distance = {

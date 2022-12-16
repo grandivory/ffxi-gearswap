@@ -32,8 +32,8 @@ function define_sets()
 
     af = {
         head = "Rune. Bandeau +3",
-        body = "Runeist's Coat +3",
-        hands = "Runeist's Mitons +3",
+        body = "Runeist Coat +3",
+        hands = "Runeist Mitons +3",
         legs = "Rune. Trousers +3",
         feet = "Runeist Bottes +1"
     }
@@ -307,7 +307,8 @@ function define_sets()
     sets.JA.Lunge = magic_damage
 
     sets.JA.Vallation = set_combine(enmity, {
-        body = af.body
+        body = af.body,
+        legs = relic.legs
     })
     sets.JA.Valiance = sets.JA.Vallation
     sets.JA.Gambit = set_combine(enmity, {

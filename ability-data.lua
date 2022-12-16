@@ -43,10 +43,10 @@ EnhancingSpells = S {"Aquaveil", "Barfire", "Barfira", "Barblizzard", "Barblizza
                      "Enblizzard", "Enfire", "Enwater", "EnthunderII", "Enstone II", "Enaero II", "Enblizzard II",
                      "Enfire II", "Enwater II", "Gain-STR", "Gain-DEX", "Gain-VIT", "Gain-AGI", "Gain-INT", "Gain-MND",
                      "Gain-CHR", "Temper", "Temper II"}
-EnfeeblingMND = S {"Addle", "Addle II", "Distract II", "Distract III", "Frazzle", "Frazzle II", "Frazzle III",
-                   "Paralyze", "Paralyze II", "Silence", "Slow", "Slow II"}
-EnfeeblingINT = S {"Bind", "Blind", "Break", "Breakga", "Dispel", "Gravity", "Gravity II", "Poison", "Poison II",
-                   "Poisonga"}
+EnfeeblingMND = S {"Addle", "Addle II", "Distract", "Distract II", "Distract III", "Frazzle", "Frazzle II",
+                   "Frazzle III", "Paralyze", "Paralyze II", "Silence", "Slow", "Slow II"}
+EnfeeblingINT = S {"Bind", "Blind", "Blind II", "Break", "Breakga", "Dispel", "Dispelga", "Gravity", "Gravity II",
+                   "Poison", "Poison II", "Poisonga"}
 ElementalEnfeebles = S {"Burn", "Choke", "Drown", "Frost", "Rasp", "Shock"}
 DivineEnfeebles = S {"Flash", "Repose"}
 DivineEnhancing = S {"Enlight", "Enlight II"}

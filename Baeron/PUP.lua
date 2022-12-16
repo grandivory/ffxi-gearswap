@@ -203,7 +203,8 @@ function define_sets()
     -- =========================================================================================================
 
     sets.TP.PDT = {
-        main = "Godhands",
+        -- main = "Godhands",
+        main = "Verethragna",
         range = "Neo Animator",
         ammo = "Automat. Oil +3",
         head = mpaca.head,
@@ -372,7 +373,8 @@ function define_sets()
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
-        feet = herc.feet.thmab,
+        feet = nyame.feet,
+        -- feet = herc.feet.thmab,
         neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Moonshade Earring",
@@ -524,6 +526,14 @@ function define_sets()
 
     sets.midcast.RefreshSelf = set_combine(sets.midcast.Enhancing, {
         waist = "Gishdubar Sash"
+    })
+
+    sets.midcast.Phalanx = set_combine(sets.midcast.Enhancing, {
+        head = taeon.head.fcphalanx,
+        body = herc.body.phalanx,
+        hands = taeon.hands.fcphalanx,
+        legs = herc.legs.phalanx,
+        feet = taeon.feet.fcphalanx
     })
 
     -- =========================================================================================================

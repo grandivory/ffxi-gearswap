@@ -164,6 +164,7 @@ function define_sets()
     -- })
 
     sets.TP.Godhands = set_combine(sets.TP.DT, {
+        main = "Godhands",
         right_ear = "Mache Earring +1"
     })
     sets.TP.Godhands.withBuffs = {}

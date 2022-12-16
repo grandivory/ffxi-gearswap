@@ -187,6 +187,7 @@ function define_sets()
     }
     sets.TP.DT1H = {
         main = "Naegling",
+        -- main = "Twashtar",
         sub = "Genmei Shield",
         range = linos.tp,
         head = bunzi.head,

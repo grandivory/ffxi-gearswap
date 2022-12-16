@@ -150,7 +150,7 @@ function precast(spell)
     precast_set = nil
 
     -- Determine which mode to use for this ability
-    if spell.cast_time == nil then
+    if spell.cast_time == nil and spell.type ~= "CorsairShot" then
         log_debug("Using melee mode")
         mode = Melee_Modes[Melee_Mode]
     else

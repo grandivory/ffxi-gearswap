@@ -5,7 +5,7 @@ include('set-behavior')
 lockstyleset = 19
 
 function define_sets()
-    -- Melee_Modes = T {}
+    Melee_Modes = T {'Club', 'Staff'}
     Idle_Modes = T {'Speed', 'Refresh'}
     Magic_Modes = T {'MAB', 'Acc'}
 
@@ -28,11 +28,11 @@ function define_sets()
     }
 
     empy = {
-        head = "Azimuth Hood",
-        body = "Azimuth Coat",
-        hands = "Azimuth Gloves",
-        legs = "Azimuth Tights",
-        feet = "Azimuth Gaiters"
+        head = "Azimuth Hood +1",
+        body = "Azimuth Coat +1",
+        hands = "Azimuth Gloves +1",
+        legs = "Azimuth Tights +1",
+        feet = "Azimuth Gaiters +1"
     }
 
     back = {
@@ -74,10 +74,10 @@ function define_sets()
     sets.Idle.Speed = set_combine(sets.Idle, {
         feet = af.feet
     })
-    sets.Idle.Refresh = set_combine(sets.Idle, { -- +9~13
+    sets.Idle.Refresh = set_combine(sets.Idle, { -- +10~14
         main = "Contemplator +1", -- +1~2
         sub = "Oneiros Grip", -- +1 sub 75%
-        head = "Befouled Crown", -- +1
+        head = chironic.head.refresh, -- +2
         body = jhakri.body, -- +4
         legs = "Assiduity Pants +1", -- +1~2
         waist = "Fucho-no-Obi", -- +1 sub 50%
@@ -107,14 +107,30 @@ function define_sets()
     -- =========================================================================================================
     -- ***Engaged Sets***
     -- =========================================================================================================
-    sets.TP = {
-        -- main = "Trial Wand",
+    sets.TP.Club = {
         main = "Maxentius",
         sub = "Genmei Shield",
         ammo = "Amar Cluster",
         head = nyame.head,
         body = nyame.body,
-        hands = "Gazu Bracelet +1",
+        hands = gazu.bracelet,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Combatant's Torque",
+        waist = "Grunfeld Rope",
+        left_ear = "Telos Earring",
+        right_ear = "Crepuscular Earring",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Chirich Ring +1",
+        back = back.tp
+    }
+    sets.TP.Staff = {
+        main = "Malignance Pole",
+        sub = "Khonsu",
+        ammo = "Amar Cluster",
+        head = nyame.head,
+        body = nyame.body,
+        hands = gazu.bracelet,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Combatant's Torque",
@@ -195,6 +211,7 @@ function define_sets()
     -- =========================================================================================================
     sets.precast.FastCast = { -- 83%
         main = "Solstice", -- 5%
+        sub = "Genmei Shield",
         range = "Dunna", -- 3%
         head = amalric.head, -- 11%
         body = "Zendik Robe", -- 13%
@@ -222,13 +239,13 @@ function define_sets()
     -- =========================================================================================================
     sets.midcast["Indi-"] = {
         main = "Solstice",
+        sub = "Genmei Shield",
         range = "Dunna",
         head = empy.head,
         body = relic.body,
         hands = af.hands,
         legs = relic.legs,
-        feet = "Medium's Sabots",
-        -- feet = empy.feet,
+        feet = empy.feet,
         neck = "Incanter's Torque",
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1",
@@ -236,13 +253,13 @@ function define_sets()
     }
     sets.midcast["Geo-"] = {
         main = "Solstice",
+        sub = "Genmei Shield",
         range = "Dunna",
         head = empy.head,
         body = relic.body,
         hands = af.hands,
         legs = relic.legs,
         feet = "Medium's Sabots",
-        -- feet = empy.feet,
         neck = "Incanter's Torque",
         -- neck = "Bagua Charm +2",
         left_ring = "Stikini Ring +1",

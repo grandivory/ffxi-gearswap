@@ -161,7 +161,7 @@ function define_sets()
     sets.pet_midcast.Generic = {} -- If no other set is found, this set is used instead
 
     -- =========================================================================================================
-    -- ***Weather Gear***
+    -- ***Special Sets***
     -- =========================================================================================================
     sets.Weather = {
         waist = "Hachirin-no-obi",

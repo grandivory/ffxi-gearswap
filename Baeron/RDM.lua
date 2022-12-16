@@ -4,7 +4,7 @@ include('augments')
 lockstyleset = 5
 function define_sets()
     Melee_Modes = T {'Swords', 'Aeolian', 'Acc', 'Enspell', 'Odin', 'TH'}
-    Idle_Modes = T {'Speed', 'DT', 'Refresh'}
+    Idle_Modes = T {'DT', 'Refresh'}
     Magic_Modes = T {'MAB', 'Acc'}
     stances.RDM = S {'Composure'}
 
@@ -26,7 +26,7 @@ function define_sets()
         feet = "Vitiation Boots +3"
     }
 
-    empyrean = {
+    empy = {
         head = "Lethargy Chappel +2",
         body = "Lethargy Sayon +2",
         hands = "Lethargy Gantherots +2",
@@ -99,15 +99,11 @@ function define_sets()
         head = malignance.head, -- 6%
         body = malignance.body, -- 9%
         hands = malignance.hands, -- 5%
-        legs = malignance.legs, -- 7%
+        legs = carmine.legs, -- zoom zoom
         feet = malignance.feet, -- 4%
         neck = "Loricate Torque +1", -- 6%
         left_ring = "Defending Ring", -- 10%
         back = back.tp -- 10% PDT
-    })
-
-    sets.Idle.Speed = set_combine(sets.Idle.DT, {
-        legs = carmine.legs
     })
 
     -- =========================================================================================================
@@ -133,7 +129,7 @@ function define_sets()
         back = back.tp
     }
     sets.TP.Aeolian = set_combine(sets.TP.Swords, {
-        main = "Tauret",
+        main = malevolence,
         sub = bunzi.rod
     })
 
@@ -233,7 +229,7 @@ function define_sets()
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Sanctity Necklace",
+        neck = "Rep. Plat. Medal",
         waist = "Sailfi Belt +1",
         left_ear = "Regal Earring",
         right_ear = "Moonshade Earring",
@@ -301,7 +297,7 @@ function define_sets()
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Sanctity Necklace",
+        neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Malignance Earring",
         right_ear = "Friomisi Earring",
@@ -318,7 +314,7 @@ function define_sets()
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Sanctity Necklace",
+        neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Regal Earring",
         right_ear = "Moonshade Earring",
@@ -399,7 +395,7 @@ function define_sets()
     -- ***Precast sets for spells***
     -- ===============================================================================================
 
-    -- RDM needs 50% to cap (30% comes from traits)
+    -- RDM needs 42% to cap (38% comes from traits)
 
     sets.precast.FastCast = {
         head = af.head, -- 16%
@@ -429,7 +425,7 @@ function define_sets()
     -- *** Midcast sets for spells ***
     -- ==========================================================================================================
 
-    -- 60% Potency, 9% Potency II
+    -- 71% Potency, 11% Potency II
     sets.midcast.Cur = {
         main = "Chatoyant Staff", -- +10%
         sub = "Enki Strap",
@@ -438,9 +434,8 @@ function define_sets()
         head = "Vanya Hood", -- +17%
         body = kaykaus.body, -- II +4%
         hands = kaykaus.hands, -- +11% II +4% (from the set bonus)
-        -- legs		=	af.legs,
-        legs = "Vanya Slops", -- 7%
-        feet = "Vanya Clogs", -- 10%
+        legs = af.legs, -- 11~12%
+        feet = kaykaus.feet, -- 17% II +2%
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring", -- 5%
@@ -454,7 +449,8 @@ function define_sets()
         sub = "Genmei Shield",
         neck = "Debilis Medallion",
         ring1 = "Haoma's Ring",
-        ring2 = "Haoma's Ring"
+        ring2 = "Haoma's Ring",
+        back = "Oretan. Cape +1"
     })
 
     sets.midcast.Enfeebling = {
@@ -472,7 +468,7 @@ function define_sets()
         left_ear = "Regal Earring",
         right_ear = "Snotra Earring",
         left_ring = "Stikini Ring +1",
-        right_ring = "Metamorph Ring +1",
+        right_ring = "Kishar Ring",
         back = back.enfws
     }
     sets.midcast.EnfeeblingAcc = {
@@ -512,7 +508,7 @@ function define_sets()
         back = back.enfws
     }
     sets.midcast.EnfeeblingINT = {
-        main = "Naegling",
+        main = bunzi.rod,
         sub = "Ammurapi Shield",
         ranged = empty,
         ammo = "Regal Gem",
@@ -531,21 +527,26 @@ function define_sets()
     }
 
     sets.midcast.Enfeebling.withBuffs = {}
-    sets.midcast.Enfeebling.withBuffs.Saboteur = {
-        hands = empyrean.hands
-    }
+    sets.midcast.Enfeebling.withBuffs.Saboteur = set_combine(sets.midcast.Enfeebling, {
+        hands = empy.hands
+    })
     sets.midcast.EnfeeblingAcc.withBuffs = {}
-    sets.midcast.EnfeeblingAcc.withBuffs.Saboteur = {
-        hands = empyrean.hands
-    }
+    sets.midcast.EnfeeblingAcc.withBuffs.Saboteur = set_combine(sets.midcast.EnfeeblingAcc, {
+        hands = empy.hands
+    })
     sets.midcast.EnfeeblingMND.withBuffs = {}
-    sets.midcast.EnfeeblingMND.withBuffs.Saboteur = {
-        hands = empyrean.hands
-    }
+    sets.midcast.EnfeeblingMND.withBuffs.Saboteur = set_combine(sets.midcast.EnfeeblingMND, {
+        hands = empy.hands
+    })
     sets.midcast.EnfeeblingINT.withBuffs = {}
-    sets.midcast.EnfeeblingINT.withBuffs.Saboteur = {
-        hands = empyrean.hands
-    }
+    sets.midcast.EnfeeblingINT.withBuffs.Saboteur = set_combine(sets.midcast.EnfeeblingINT, {
+        hands = empy.hands
+    })
+
+    sets.midcast.Dispelga = set_combine(sets.midcast.EnfeeblingINT, {
+        main = "Daybreak",
+        sub = "Ammurapi Shield"
+    })
 
     sets.midcast.Impact = set_combine(sets.midcast.EnfeeblingAcc, {
         body = "Crepuscular Cloak",
@@ -566,7 +567,7 @@ function define_sets()
         body = relic.body,
         hands = relic.gloves,
         legs = af.legs,
-        feet = empyrean.feet,
+        feet = empy.feet,
         neck = "Incanter's Torque",
         waist = "Olympus Sash",
         left_ear = "Andoaa Earring",
@@ -584,12 +585,11 @@ function define_sets()
         sub = "Ammurapi Shield",
         ranged = empty,
         ammo = "Sapience Orb",
-        head = empyrean.head,
-        body = empyrean.body,
-        -- body = relic.body,
+        head = empy.head,
+        body = empy.body,
         hands = af.hands,
-        legs = empyrean.legs,
-        feet = empyrean.feet,
+        legs = empy.legs,
+        feet = empy.feet,
         neck = "Dls. Torque +2",
         waist = "Embla Sash",
         left_ear = "Loquac. Earring",
@@ -606,11 +606,10 @@ function define_sets()
         },
         sub = "Ammurapi Shield",
         head = telchine.head.enhfc,
-        body = telchine.body.enhfc,
-        -- body = relic.body,
+        body = relic.body,
         hands = af.hands,
         legs = telchine.legs.enhfc,
-        feet = empyrean.feet,
+        feet = empy.feet,
         neck = "Dls. Torque +2",
         waist = "Embla Sash",
         left_ear = "Loquac. Earring",
@@ -635,7 +634,7 @@ function define_sets()
     sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {
         head = amalric.head,
         body = af.body,
-        legs = empyrean.legs
+        legs = empy.legs
     })
     sets.midcast.PhalanxSelf = set_combine(sets.midcast.EnhancingDuration, {
         main = sakpata.sword,
@@ -656,7 +655,7 @@ function define_sets()
         main = bunzi.rod,
         sub = "Daybreak",
         -- sub = "Ammurapi Shield",
-        -- ranged = empty,
+        ranged = empty,
         ammo = "Pemphredo Tathlum",
         head = "Cath Palug Crown",
         body = amalric.body,
@@ -676,14 +675,11 @@ function define_sets()
         body = ea.body,
         hands = amalric.hands,
         legs = ea.legs,
-        neck = "Mizu. Kubikazari"
+        neck = "Mizu. Kubikazari",
+        right_ring = "Mujin Band"
     })
-    sets.midcast.Elemental.Acc = set_combine(sets.midcast.Elemental, {
-        main = "Daybreak"
-    });
     sets.midcast.ElementalMB.Acc = set_combine(sets.midcast.ElementalMB, {
-        hands = bunzi.hands,
-        main = "Daybreak"
+        hands = bunzi.hands
     })
     sets.midcast.Stone = set_combine(sets.midcast.Elemental, {
         neck = "Quanpur Necklace"

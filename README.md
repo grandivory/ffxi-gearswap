@@ -9,7 +9,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * For every set you define, you can create a corresponding set that uses one of your modes. When you are in that mode, the mode-specific set will be used.
     * For example, suppose you have a set `sets.TP` already defined. You've decided to add a `DT` mode to `Melee_Modes`, so you add the line `Melee_Modes = T{'Normal', 'DT'}` to your lua. Then, you can define `sets.TP.DT`. Whenever you switch to `DT` mode, `sets.TP.DT` will be used. When in `Normal` mode, `sets.TP` will be used.
   * All spells and abilities that you use have a corresponding mode that is correlated with them:
-    * Melee Modes: TP, Job Abilities, Weapon Skills, and Ranged Attacks
+    * Melee Modes: TP, Job Abilities (except Quick Draw), Weapon Skills, and Ranged Attacks
     * Idle Modes: Idle (not engaged) and Resting
     * Magic Modes: Everything Else
   * TP modes can be cycled with `f9`, Idle modes can be cycled with `f10`, and Magic modes can be cycled with `f11`

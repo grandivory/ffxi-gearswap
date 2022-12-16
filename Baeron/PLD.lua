@@ -124,21 +124,22 @@ function define_sets()
         right_ring = "Moonlight Ring",
         back = back.block
     }
-    sets.Idle.Phalanx = {
-        main = sakpata.sword,
+    sets.Idle.Phalanx = { -- 36
+        main = sakpata.sword, -- 5
+        sub = "Priwen", -- 5
         ammo = "Staunch Tathlum +1",
-        head = yorium.head.phalanx,
-        body = yorium.body.phalanx,
-        hands = souveran.hands,
-        legs = sakpata.legs,
-        feet = souveran.feet,
+        head = yorium.head.phalanx, -- 3
+        body = yorium.body.phalanx, -- 3
+        hands = souveran.hands, -- 5
+        legs = sakpata.legs, -- 5
+        feet = souveran.feet, -- 5
         neck = "Unmoving Collar +1",
         waist = "Audumbla Sash",
         left_ear = "Mimir Earring",
         right_ear = "Andoaa Earring",
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1",
-        back = "Weard Mantle"
+        back = "Weard Mantle" -- 5
     }
 
     -- =========================================================================================================
@@ -321,7 +322,7 @@ function define_sets()
     sird = { -- 106%, plus 10% from merits
         ammo = "Staunch Tathlum +1", -- 11%
         head = souveran.head, -- 20%
-        legs = "Founder's Host", -- 30%
+        legs = founders.hose, -- 30%
         feet = odyssean.feet.fc, -- 20%
         neck = "Moonlight Necklace", -- 15%
         waist = "Audumbla Sash" -- 10%
@@ -332,7 +333,7 @@ function define_sets()
         body = "Hjarrandi Breast.", -- 12% DT
         -- body = af.body,
         hands = sakpata.hands, -- 8% DT
-        legs = "Founder's Hose", -- 30%
+        legs = founders.hose, -- 30%
         feet = odyssean.feet.fc, -- 20%
         neck = "Moonlight Necklace", -- 15%
         waist = "Audumbla Sash", -- 10%
@@ -344,13 +345,13 @@ function define_sets()
         -- back = back.pdt -- 10% DT
     }
 
-    sets.midcast.Cure = {
+    sets.midcast.Cur = {
         ammo = "Staunch Tathlum +1",
         head = souveran.head,
         body = souveran.body,
         hands = souveran.hands,
         -- hands = "Macabre Gauntlets +1",
-        legs = "Founder's Hose",
+        legs = founders.hose,
         feet = odyssean.feet.fc,
         neck = "Moonlight Necklace",
         waist = "Audumbla Sash",
@@ -369,7 +370,7 @@ function define_sets()
         -- body = relic.body,
         hands = souveran.hands,
         -- hands = "Eschite Gauntlets",
-        legs = "Founder's Hose",
+        legs = founders.hose,
         feet = souveran.feet,
         neck = "Incanter's Torque",
         waist = "Bishop's Sash",
@@ -388,7 +389,7 @@ function define_sets()
         -- body = relic.body,
         hands = souveran.hands,
         -- hands = "Eschite Gauntlets",
-        legs = "Founder's Hose",
+        legs = founders.hose,
         feet = souveran.feet,
         neck = "Incanter's Torque",
         waist = "Audumbla Sash",
@@ -422,7 +423,7 @@ function define_sets()
         body = souveran.body,
         -- body = af.body,
         hands = souveran.hands,
-        legs = "Founder's Hose",
+        legs = founders.hose,
         feet = odyssean.feet.fc,
         neck = "Moonlight Necklace",
         waist = "Audumbla Sash",
@@ -460,7 +461,7 @@ function define_sets()
         head = souveran.head,
         body = "Shabti Cuirass +1",
         hands = "Regal Gauntlets",
-        legs = "Founder's Hose",
+        legs = founders.hose,
         feet = odyssean.feet.fc,
         neck = "Moonlight Necklace",
         waist = "Audumbla Sash",
@@ -478,11 +479,12 @@ function define_sets()
     sets.midcast.Phalanx = sets.Idle.Phalanx
     sets.midcast.Phalanx.SIRD = {
         main = sakpata.sword,
+        sub = "Priwen",
         ammo = "Staunch Tathlum +1",
         head = souveran.head,
         body = yorium.body.phalanx,
         hands = souveran.hands,
-        legs = "Founder's Hose",
+        legs = founders.hose,
         feet = souveran.feet,
         neck = "Moonlight Necklace",
         waist = "Audumbla Sash",
@@ -499,7 +501,7 @@ function define_sets()
         head = souveran.head,
         body = "Shabti Cuirass +1",
         hands = "Regal Gauntlets",
-        legs = "Founder's Hose",
+        legs = founders.hose,
         feet = odyssean.feet.fc,
         neck = "Moonlight Necklace",
         waist = "Audumbla Sash",
@@ -510,16 +512,7 @@ function define_sets()
         back = back.fc
     }
 
-    sets.midcast.Jettatura = sird_enmity
-    sets.midcast['Blank Gaze'] = sird_enmity
-    sets.midcast.Soporific = sird_enmity
-    sets.midcast.Sandspin = sird_enmity
-    sets.midcast['Sheep Song'] = sird_enmity
-    sets.midcast['Geist Wall'] = sird_enmity
-    sets.midcast['Healing Breeze'] = sird_enmity
-    sets.midcast['Wild Carrot'] = sird_enmity
-    sets.midcast.Pollen = sird_enmity
-    sets.midcast.Cocoon = sird_enmity
+    sets.midcast.Generic = sird_enmity
 
     -- ==========================================================================================================
     -- Distance Gear

@@ -150,6 +150,12 @@ tatenashi = {
     feet = "Tatena. Sune. +1"
 }
 
+cacoethic = {
+    ring = "Cacoethic Ring +1"
+}
+gazu = {
+    bracelet = "Gazu Bracelets +1"
+}
 kentarch = {
     belt = "Kentarch Belt +1"
 }
@@ -178,7 +184,8 @@ carmine = {
 
 kaykaus = {
     body = "Kaykaus Bliaut +1",
-    hands = "Kaykaus Cuffs +1"
+    hands = "Kaykaus Cuffs +1",
+    feet = "Kaykaus Boots +1"
 }
 lustratio = {
     legs = "Lustr. Subligar +1",
@@ -235,13 +242,17 @@ turms = {
     feet = "Turms Leggings +1"
 }
 
+pinga = {
+    legs = "Pinga Pants +1"
+}
+
 -- =========================================================================================================
 -- Geas Fete Sets
 -- =========================================================================================================
 vanya = {
     head = {
         name = "Vanya Hood",
-        augments = {'MP+50', '"Fast Cast"+10', 'Haste+2%'}
+        augments = {'MP+50', '"Cure" potency +7%', 'Enmity-6'}
     },
     hands = {
         name = "Vanya Cuffs",
@@ -360,6 +371,12 @@ chironic.head = {
     refresh = {
         name = "Chironic Hat",
         augments = {'Pet: DEX+4', 'Attack+6', '"Refresh"+2', 'Mag. Acc.+3 "Mag.Atk.Bns."+3'}
+    }
+}
+chironic.hands = {
+    mabrefresh = {
+        name = "Chironic Gloves",
+        augments = {'INT+6', '"Mag.Atk.Bns."+19', '"Refresh"+1', 'Accuracy+17 Attack+17'}
     }
 }
 chironic.legs = {
@@ -529,4 +546,8 @@ yorium.feet = {
 malevolence = {
     name = "Malevolence",
     augments = {'INT+10', 'Mag. Acc.+10', '"Mag.Atk.Bns."+8', '"Fast Cast"+5'}
+}
+
+founders = {
+    hose = "Founder's Hose"
 }
