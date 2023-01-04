@@ -85,7 +85,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.Refresh = { -- Refresh +18, +4 MDB, -24% PDT, -9% MDT
+    sets.Idle.Refresh = { -- Refresh +18, -27% PDT, -12% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -94,7 +94,7 @@ function define_sets()
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
         },
-        ammo = "Vanir Battery", -- +4 MDB
+        ammo = "Staunch Tathlum +1", -- 3% DT
         head = herc.head.refresh, -- Refresh +2
         body = jhakri.body, -- Refresh +4
         hands = herc.hands.refresh, -- Refresh +2, PDT -2%
@@ -108,7 +108,7 @@ function define_sets()
         back = back.tp -- PDT -10%
     }
 
-    sets.Idle.Hybrid = { -- Refresh +16, +4 MDB, -39% PDT, -25% MDT
+    sets.Idle.Hybrid = { -- Refresh +16, +4 MDB, -42% PDT, -28% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -117,7 +117,7 @@ function define_sets()
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
         },
-        ammo = "Vanir Battery", -- +4 MDB
+        ammo = "Staunch Tathlum +1", -- DT -3%
         head = herc.head.refresh, -- Refresh +2
         body = jhakri.body, -- Refresh +4
         hands = herc.hands.refresh, -- Refresh +2, PDT -2%
@@ -135,7 +135,7 @@ function define_sets()
     }
 
     -- TODO: Replace a Colada with Sakpata's Sword, and use more Herculean refresh pieces
-    sets.Idle.DT = { -- Refresh +12, +4 MDB, -52% PDT, -38% MDT
+    sets.Idle.DT = { -- Refresh +12, -55% PDT, -41% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -144,7 +144,7 @@ function define_sets()
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
         },
-        ammo = "Vanir Battery", -- +4 MDB
+        ammo = "Staunch Tathlum +1", -- DT -3%
         head = malignance.head, -- DT - 6%
         body = jhakri.body, -- Refresh +4
         hands = herc.hands.refresh, -- Refresh +2, PDT -2%
@@ -161,7 +161,7 @@ function define_sets()
         back = back.tp -- PDT -10%
     }
 
-    sets.Idle.Speed = { -- Refresh +8, +4 MDB, -50% PDT, -40% MDT
+    sets.Idle.Speed = { -- Refresh +8, +4 MDB, -50=3% PDT, -43% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -170,7 +170,7 @@ function define_sets()
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+16', '"Mag.Atk.Bns."+5'}
         },
-        ammo = "Vanir Battery", -- +4 MDB
+        ammo = "Staunch Tathlum +1", -- DT -3%
         head = malignance.head, -- DT - 6%
         body = jhakri.body, -- Refresh +4
         hands = malignance.hands, -- DT -5%
@@ -209,7 +209,7 @@ function define_sets()
     -- ***Engaged Sets***
     -- =========================================================================================================
     aftermath = {
-        ammo = "Ginsen", -- Aurgelmir Orb +1
+        ammo = "Aurgelmir Orb +1",
         head = malignance.head,
         body = malignance.body,
         hands = malignance.hands,
@@ -227,7 +227,7 @@ function define_sets()
     sets.TP.Att = {
         main = "Tizona",
         sub = "Thibron",
-        ammo = "Ginsen",
+        ammo = "Aurgelmir Orb +1",
         head = adhemar.head,
         body = ayanmo.body,
         hands = adhemar.hands,
@@ -382,7 +382,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 73%
+    sets.precast.FastCast = { -- 85%
         main = { -- 4%
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -393,9 +393,9 @@ function define_sets()
         },
         ammo = "Sapience Orb", -- 2%
         head = herc.head.refresh, -- 7%
-        body = taeon.body.fcphalanx, -- 9%
+        body = pinga.body, -- 15%
         hands = "Leyline Gloves", -- 7%
-        legs = psycloth.legs, -- 7%
+        legs = pinga.legs, -- 13%
         feet = "Carmine Greaves +1", -- 8%
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Loquac. Earring", -- 2%
@@ -415,7 +415,7 @@ function define_sets()
         main = "Bunzi's Rod",
         sub = "Nibiru Cudgel",
         head = telchine.head.enhfc,
-        body = amalric.body,
+        body = pinga.body,
         hands = empy.hands,
         legs = "Gyve Trousers",
         feet = "Medium's Sabots",
@@ -468,7 +468,7 @@ function define_sets()
     }
 
     sets.midcast.BlueMagic.Physical = {
-        ammo = "Ginsen",
+        ammo = "Aurgelmir Orb +1",
         head = empy.head,
         body = gleti.body,
         hands = empy.hands,
@@ -538,7 +538,7 @@ function define_sets()
             name = "Medium's Sabots",
             augments = {'MP+40', 'MND+6', '"Conserve MP"+5', '"Cure" potency +3%'}
         },
-        neck = "Phalaina Locket",
+        neck = "Dualism Collar +1",
         waist = "Eschan Stone",
         left_ear = "Tuisto Earring",
         right_ear = "Odnowa Earring +1",

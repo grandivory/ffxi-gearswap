@@ -1,3 +1,4 @@
+-- Last Updated: December 21st, 2022
 include('set-behavior')
 include('augments')
 
@@ -43,9 +44,9 @@ function define_sets()
 
     empy = {
         head = "Arbatel Bonnet +3",
-        body = "Arbatel Gown +2",
+        body = "Arbatel Gown +3",
         hands = "Arbatel Bracers +3",
-        legs = "Arbatel Pants +1",
+        legs = "Arbatel Pants +3",
         feet = "Arbatel Loafers +3",
         ear = "Arbatel Earring +1"
     }
@@ -61,18 +62,18 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.DT = { -- 50% DT (53% MDT), Refresh +9~12
-        -- main = "Contemplator +1", -- Refresh +1~2
-        main = "Malignance Pole", -- 20% DT
+    sets.Idle.DT = { -- 54% DT (57% MDT), Refresh +9~12
+        main = "Contemplator +1", -- Refresh +1~2
+        -- main = "Malignance Pole", -- 20% DT
         sub = "Oneiros Grip", -- Refresh +0~1
         ammo = "Homiliary", -- Refresh +1
-        -- head = nyame.head, -- 7% DT
+        -- head = empy.head, -- 10% DT
         head = chironic.head.refresh, -- Refresh +2
         -- body = nyame.body, -- 9% DT
-        body = jhakri.body, -- Refresh +4
+        body = empy.body, -- 13% DT, Refresh +4
         hands = nyame.hands, -- 7% DT
-        -- legs = nyame.legs, -- 8% DT
-        legs = "Assiduity Pants +1", -- Refresh +1~2
+        legs = empy.legs, -- 12% DT
+        -- legs = "Assiduity Pants +1", -- Refresh +1~2
         feet = nyame.feet, -- 7% DT
         neck = "Loricate Torque +1", -- 6% DT
         waist = "Fucho-no-obi", -- Refresh +0~1
@@ -88,7 +89,7 @@ function define_sets()
         head = af.head,
         waist = "Embla Sash"
     })
-    sets.Idle.Speed = set_combine(sets.Idle.DT, { -- 49% DT (52% MDT), Refresh +9~11
+    sets.Idle.Speed = set_combine(sets.Idle.DT, { -- 53% DT (56% MDT), Refresh +9~11
         sub = "Khonsu", -- 6% DT, -0~1 Refresh
         feet = "Herald's Gaiters" -- -7% DT
     })
@@ -111,7 +112,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Combatant's Torque",
-        waist = "Windbuffet Belt +1",
+        waist = "Olseni Belt",
         left_ear = "Crep. Earring",
         right_ear = "Telos Earring",
         left_ring = "Chirich Ring +1",
@@ -128,7 +129,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Combatant's Torque",
-        waist = "Windbuffet Belt +1",
+        waist = "Olseni Belt",
         left_ear = "Crep. Earring",
         right_ear = "Telos Earring",
         left_ring = "Chirich Ring +1",
@@ -235,13 +236,12 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 75% FC, 25% Grimoire
-        -- main = "Musa", -- 6~10%
+    sets.precast.FastCast = { -- 81% FC, 25% Grimoire
+        main = "Musa", -- 10%
         sub = "Khonsu",
         ammo = "Sapience Orb", -- 2%
         head = relic.head, -- 13% Grimoire
-        body = "Zendik Robe", -- 13%
-        -- body = pinga.body, -- 15%
+        body = pinga.body, -- 15%
         hands = af.hands, -- 9%
         legs = pinga.legs, -- 13%
         feet = af.feet, -- 12% Grimoire
@@ -358,17 +358,18 @@ function define_sets()
     sets.midcast.EnhancingDuration.withBuffs["Addendum: Black"] = darkarts_enhancing
 
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
-        -- main = "Musa", -- +25 Potency, Duration +20%
-        -- sub = "Khonsu",
-        main = "Bolelabunga", -- 10% +1 Potency
-        sub = "Ammurapi Shield", -- Duration +10%
+        main = "Musa", -- +25 Potency, Duration +20%
+        sub = "Khonsu",
         head = empy.head,
         body = telchine.body.enhfc,
         back = back.nuke -- Duration + 15%
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {
+        legs = "Shedir Seraweels",
+        neck = "Nodens Gorget",
         waist = "Siegel Sash"
     })
+    -- TODO: Add in dark arts sets for Stoneskin and Aquaveil
     sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration, {
         head = amalric.head,
         hands = "Regal Cuffs"
@@ -381,7 +382,7 @@ function define_sets()
         head = af.head, -- MAcc +52
         body = af.body, -- MAcc +50
         hands = kaykaus.hands, -- MAcc +53, Enfeebling +16
-        legs = af.legs, -- MAcc +49, "Light Arts" + 24
+        legs = empy.legs, -- MAcc +63, Enfeebling +28, Grimoire +36
         feet = af.feet, -- MAcc +66
         neck = "Argute Stole +2", -- Macc +30
         waist = "Obstinate Sash", -- MAcc +15, Enfeebling +10, MND +5, Duration +5%
@@ -401,14 +402,12 @@ function define_sets()
     sets.midcast.Sleep = enfeeblingSet
     sets.midcast.Sleep.TH = set_combine(enfeeblingSet, th)
 
-    -- TODO: Pick Up Here
     sets.midcast.Elemental = {
         main = "Bunzi's Rod",
         sub = "Ammurapi Shield",
         ammo = "Ghastly Tathlum +1",
         head = agwu.head,
-        body = agwu.body,
-        -- body = empy.body,
+        body = empy.body,
         hands = agwu.hands,
         legs = agwu.legs,
         feet = empy.feet,
@@ -472,19 +471,16 @@ function define_sets()
         neck = "Quanpur Necklace"
     })
     sets.midcast.ElementalMB.withBuffs = {}
-    sets.midcast.ElementalMB.withBuffs.Ebullience = set_combine(sets.midcast.ElementalMB, {
-        head = relic.head
-    })
 
     sets.midcast.helix = {
         main = "Bunzi's Rod",
         sub = "Culminus",
         ammo = "Ghastly Tathlum +1",
         head = agwu.head,
-        body = agwu.body,
-        hands = amalric.hands,
-        legs = agwu.legs,
-        feet = amalric.feet,
+        body = empy.body,
+        hands = empy.hands,
+        legs = empy.legs,
+        feet = empy.feet,
         neck = "Argute Stole +2",
         waist = "Sacro Cord",
         left_ear = "Regal Earring",
@@ -499,7 +495,7 @@ function define_sets()
         ammo = "Sapience Orb", -- 2% FC
         head = "Pixie Hairpin +1",
         body = "Zendik Robe", -- 13% FC
-        hands = "Gendewitha Gages +1", -- 7% FC
+        hands = "Gendewitha Gages +1", -- 7% FC -- TODO: Replace these
         legs = "Psycloth Lappas", -- 7% FC
         feet = telchine.feet.enhfc, -- 5% FC
         neck = "Orunmila's Torque", -- 5% FC
@@ -514,7 +510,7 @@ function define_sets()
         head = relic.head,
         hands = agwu.hands,
         feet = empy.feet,
-        right_ear = "Crematio Earring",
+        right_ear = empy.ear,
         right_ring = "Mujin Band"
     })
     sets.midcast.Luminohelix = set_combine(sets.midcast.helix, {
@@ -523,8 +519,14 @@ function define_sets()
     sets.midcast.LuminohelixMB = set_combine(sets.midcast.helixMB, {
         main = "Daybreak"
     })
-    sets.midcast.Kaustra = set_combine(sets.midcast.Elemental, {
+    sets.midcast.Kaustra = set_combine(sets.midcast.helix, {
         head = "Pixie Hairpin +1",
+        left_ring = "Metamorph Ring +1",
+        right_ring = "Archon Ring"
+    })
+    sets.midcast.KaustraMB = set_combine(sets.midcast.helixMB, {
+        head = "Pixie Hairpin +1",
+        left_ring = "Metamorph Ring +1",
         right_ring = "Archon Ring"
     })
     sets.midcast.Impact = {
@@ -533,10 +535,11 @@ function define_sets()
         ammo = "Pemphredo Tathlum",
         head = empty,
         body = "Crepuscular Cloak",
-        hands = kaykaus.hands,
-        legs = af.legs,
-        feet = af.feet,
+        hands = af.hands,
+        legs = empy.legs,
+        feet = empy.feet,
         neck = "Argute Stole +2",
+        waist = "Acuity Belt +1",
         left_ear = "Regal Earring",
         right_ear = "Malignance Earring",
         left_ring = "Stikini Ring +1",
@@ -549,8 +552,8 @@ function define_sets()
         sub = "Ammurapi Shield",
         ammo = "Ghastly Tathlum +1",
         head = "Pixie Hairpin +1",
-        body = jhakri.body,
-        hands = jhakri.hands,
+        body = af.body,
+        hands = empy.hands,
         legs = relic.legs,
         feet = agwu.feet,
         neck = "Erra Pendant",
@@ -601,4 +604,11 @@ function define_sets()
     sets.WakeUp = {
         main = "Prime Staff"
     }
+end
+
+function pretarget(spell)
+    if string.find(spell.english, 'helix II') and (spell.target.name == 'Gartell' or spell.target.name == 'Leshonn') then
+        cancel_spell()
+        notice("Helix II disabled on " .. spell.target.name)
+    end
 end

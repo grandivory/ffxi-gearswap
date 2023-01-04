@@ -1,3 +1,4 @@
+-- Last updated: September 2022
 include('set-behavior')
 include('augments')
 
@@ -51,17 +52,18 @@ function define_sets()
         body = "Erilaz Surcoat +2",
         hands = "Erilaz Gauntlets +1",
         legs = "Eri. Leg Guards +2",
-        feet = "Erilaz Greaves +2"
+        feet = "Erilaz Greaves +2",
+        ear = "Erilaz Earring +1"
     }
 
-    enmity = { -- +88, PDT -52%, MDT -36%
+    enmity = { -- +88, PDT -58%, MDT -46%
         main = "Epeolatry", -- +23
         ammo = "Staunch Tathlum +1", -- DT -3%
         head = "Halitus Helm", -- +8
         body = "Emet Harness +1", -- +10, PDT -6%
         hands = "Kurys Gloves", -- +9
         legs = empy.legs, -- +12, DT -12%
-        feet = "Ahosi Leggings", -- +7, PDT -4%
+        feet = empy.feet, -- +7, DT -10%
         neck = "Futhark Torque +2", -- +10, DT -7%
         waist = "Kasiri Belt", -- +3,
         left_ear = "Cryptic Earring", -- +4
@@ -386,7 +388,7 @@ function define_sets()
     -- =========================================================================================================
     sird = { -- 85%
         main = "Epeolatry",
-        ammo = "Staunch Tathlum +1", -- Switch for Staunch Tathlum +1, 11%
+        ammo = "Staunch Tathlum +1", -- 11%
         head = agwu.head, -- 10%
         body = af.body,
         hands = "Rawhide Gloves", -- 15%
@@ -403,7 +405,7 @@ function define_sets()
 
     sird_enmity = { -- 80%, Enmity +69
         main = "Epeolatry",
-        ammo = "Staunch Tathlum +1", -- Switch for Staunch Tathlum +1, 11%
+        ammo = "Staunch Tathlum +1", -- 11%
         head = agwu.head, -- 10%, Enmity +15
         body = "Emet Harness +1", -- Enmity +10
         hands = "Rawhide Gloves", -- 15%
@@ -418,10 +420,10 @@ function define_sets()
         back = back.tank -- Enmity +10
     }
 
-    sird_dt = { -- 80%, PDT -46%, MDT -31%
+    sird_dt = { -- 80%, PDT -50%, MDT -35%
         main = "Epeolatry",
         sub = "Mensch Strap +1", -- PDT -5%
-        ammo = "Staunch Tathlum +1", -- Switch for Staunch Tathlum +1, 11%, DT -3%
+        ammo = "Staunch Tathlum +1", -- 11%, DT -3%
         head = agwu.head,
         body = af.body, -- DT -9%
         hands = "Rawhide Gloves", -- 15%
@@ -429,14 +431,15 @@ function define_sets()
         feet = taeon.feet.sird, -- 10%
         neck = "Moonlight Necklace", -- 15%
         waist = "Audumbla Sash", -- 10%, PDT -4%
-        left_ear = "Cryptic Earring",
-        right_ear = "Odnowa Earring +1", -- PDT -3%, MDT -5%
+        left_ear = "Odnowa Earring +1", -- PDT -3%, MDT -5%
+        right_ear = empy.ear, -- DT -4%
         left_ring = "Defending Ring", -- DT -10%
         right_ring = "Gelatinous Ring +1", -- PDT -7%, MDT +1%
         back = back.dimidiation -- DT -5%
     }
 
     sets.midcast.Enhancing = {
+        main = "Pukulatmuj +1",
         head = carmine.head,
         body = "Manasa Chasuble",
         hands = af.hands,
@@ -501,7 +504,7 @@ function define_sets()
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
         head = af.head,
         neck = "Sacro Gorget",
-        right_ear = "Erilaz Earring"
+        right_ear = empy.ear
     })
     sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {
         head = empy.head
@@ -510,7 +513,7 @@ function define_sets()
     sets.midcast.Generic = sird -- If no other set is found, this set is used instead
 
     -- =========================================================================================================
-    -- ***Distance Gear***
+    -- ***Special Sets***
     -- =========================================================================================================
 
     sets.Distance = {

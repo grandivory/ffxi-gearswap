@@ -3,7 +3,7 @@ include('augments')
 
 lockstyleset = 5
 function define_sets()
-    Melee_Modes = T {'Swords', 'Aeolian', 'Acc', 'Enspell', 'Odin', 'TH'}
+    Melee_Modes = T {'Swords', 'Aeolian', 'Evis', 'Acc', 'Enspell', 'Odin', 'TH'}
     Idle_Modes = T {'DT', 'Refresh'}
     Magic_Modes = T {'MAB', 'Acc'}
     stances.RDM = S {'Composure'}
@@ -31,7 +31,8 @@ function define_sets()
         body = "Lethargy Sayon +2",
         hands = "Lethargy Gantherots +2",
         legs = "Lethargy Fuseau +2",
-        feet = "Lethargy Houseaux +3"
+        feet = "Lethargy Houseaux +3",
+        ear = "Lethargy Earring +1"
     }
 
     back = {
@@ -131,6 +132,10 @@ function define_sets()
     sets.TP.Aeolian = set_combine(sets.TP.Swords, {
         main = malevolence,
         sub = bunzi.rod
+    })
+    sets.TP.Evis = set_combine(sets.TP.Swords, {
+        main = "Tauret",
+        sub = "Genmei Shield"
     })
 
     sets.TP.Enspell = {
@@ -400,7 +405,7 @@ function define_sets()
     sets.precast.FastCast = {
         head = af.head, -- 16%
         body = relic.body, -- 15%
-        hands = "Gendewitha Gages +1", -- 7%
+        hands = "Gendewitha Gages +1", -- 7% -- TODO: Replace these
         legs = "Volte Brais", -- 8%
         feet = amalric.feet, -- 6%
         neck = "Orunmila's Torque", -- 5%
@@ -623,12 +628,14 @@ function define_sets()
         hands = relic.hands
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.Enhancing, {
-        -- neck = "Nodens Gorget",
+        legs = "Shedir Seraweels",
+        neck = "Nodens Gorget",
         waist = "Siegel Sash"
     })
     sets.midcast.Aquaveil = set_combine(sets.midcast.Enhancing, {
         head = amalric.head,
-        hands = "Regal Cuffs"
+        hands = "Regal Cuffs",
+        legs = "Shedir Seraweels"
     })
 
     sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration, {

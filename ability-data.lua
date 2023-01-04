@@ -328,6 +328,17 @@ CancelSpells = {
     ['Utsusemi: Ichi'] = {
         ['Copy Image'] = 2.6,
         ['Copy Image (2)'] = 2.6
+    },
+    ['Valiance'] = {
+        ['Vallation'] = 0
+    },
+    -- ['Vallation'] = {
+    --     ['Valiance'] = 0
+    -- },
+    ['Sublimation'] = {
+        ['Refresh'] = 0,
+        ['Refresh II'] = 0,
+        ['Refresh III'] = 0
     }
 }
 

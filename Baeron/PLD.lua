@@ -84,44 +84,44 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.Phys = {
-        main = "Malignance Sword",
+    sets.Idle.Phys = { -- 57% DT, 18% PDT II
+        main = "Burtgang", -- 18% PDT II
         sub = "Duban",
-        ammo = "Staunch Tathlum +1",
-        head = sakpata.head,
-        body = sakpata.body,
-        hands = sakpata.hands,
-        legs = sakpata.legs,
-        feet = sakpata.feet,
+        ammo = "Staunch Tathlum +1", -- 3%
+        head = sakpata.head, -- 7%
+        body = sakpata.body, -- 10%
+        hands = sakpata.hands, -- 8%
+        legs = sakpata.legs, -- 9%
+        feet = sakpata.feet, -- 6%
         neck = "Unmoving Collar +1",
-        waist = "Flume Belt +1",
+        waist = "Flume Belt +1", -- 4%
         left_ear = "Tuisto Earring",
         right_ear = "Cryptic Earring",
-        left_ring = "Moonlight Ring",
-        right_ring = "Moonlight Ring",
+        left_ring = "Moonlight Ring", -- 5%
+        right_ring = "Moonlight Ring", -- 5%
         back = back.block
     }
-    sets.Idle.Speed = set_combine(sets.Idle.Phys, {
+    sets.Idle.Speed = set_combine(sets.Idle.Phys, { -- 48% DT
         legs = carmine.legs
     })
-    sets.Idle.Superfast = set_combine(sets.Idle.Speed, {
+    sets.Idle.Superfast = set_combine(sets.Idle.Speed, { -- 42% DT
         feet = "Hippomenes Socks +1"
     })
-    sets.Idle.Magic = {
-        main = "Malignance Sword",
-        sub = "Aegis",
-        ammo = "Staunch Tathlum +1",
-        head = nyame.head,
-        body = nyame.body,
-        hands = nyame.hands,
-        legs = nyame.legs,
-        feet = nyame.feet,
+    sets.Idle.Magic = { -- 51% DT, 18% PDT II, 50% MDT II
+        main = "Burtgang", -- 18% PDT II
+        sub = "Aegis", -- 50% MDT II
+        ammo = "Staunch Tathlum +1", -- 3%
+        head = nyame.head, -- 7%
+        body = nyame.body, -- 9%
+        hands = nyame.hands, -- 7%
+        legs = nyame.legs, -- 8%
+        feet = nyame.feet, -- 7%
         neck = "Unmoving Collar +1",
         waist = "Carrier's Sash",
         left_ear = "Tuisto Earring",
         right_ear = "Cryptic Earring",
-        left_ring = "Moonlight Ring",
-        right_ring = "Moonlight Ring",
+        left_ring = "Moonlight Ring", -- 5%
+        right_ring = "Moonlight Ring", -- 5%
         back = back.block
     }
     sets.Idle.Phalanx = { -- 36
@@ -148,7 +148,8 @@ function define_sets()
     sets.TP.Tank = sets.Idle.Phys
     sets.TP.MagicTank = sets.Idle.Magic
     sets.TP.DD = {
-        main = "Naegling",
+        -- main = "Naegling",
+        main = "Burtgang",
         sub = "Blurred Shield +1",
         ammo = "Aurgelmir Orb +1",
         head = sakpata.head,
@@ -330,8 +331,8 @@ function define_sets()
     sird_enmity = {
         ammo = "Staunch Tathlum +1", -- 11%, 3% DT
         head = souveran.head, -- 20%
-        body = "Hjarrandi Breast.", -- 12% DT
-        -- body = af.body,
+        -- body = "Hjarrandi Breast.", -- 12% DT
+        body = af.body, -- 11% DT
         hands = sakpata.hands, -- 8% DT
         legs = founders.hose, -- 30%
         feet = odyssean.feet.fc, -- 20%
@@ -349,18 +350,21 @@ function define_sets()
         ammo = "Staunch Tathlum +1",
         head = souveran.head,
         body = souveran.body,
-        hands = souveran.hands,
-        -- hands = "Macabre Gauntlets +1",
+        hands = "Macabre Gauntlets +1",
         legs = founders.hose,
         feet = odyssean.feet.fc,
         neck = "Moonlight Necklace",
         waist = "Audumbla Sash",
         left_ear = "Tuisto Earring",
-        -- right_ear = "Nourishing Earring +1",
+        right_ear = "Nourishing Earring +1",
         left_ring = "Gelatinous Ring +1",
         right_ring = "Eihwaz Ring"
         -- back = back.cure,
     }
+
+    sets.midcast.CurSelf = set_combine(sets.midcast.Cur, {
+        hands = souveran.hands
+    })
 
     sets.midcast.Divine = {
         main = "Brilliance",
@@ -373,7 +377,7 @@ function define_sets()
         legs = founders.hose,
         feet = souveran.feet,
         neck = "Incanter's Torque",
-        waist = "Bishop's Sash",
+        waist = "Asklepian Belt",
         left_ear = "Halasz Earring",
         -- left_ear = "Knight's Earring",
         -- right_ear = "Diving Earring",
@@ -403,8 +407,7 @@ function define_sets()
     sets.midcast.Flash = {
         ammo = "Sapience Orb",
         head = "Loess Barbuta +1",
-        body = souveran.body,
-        -- body = af.body,
+        body = af.body,
         hands = souveran.hands,
         legs = souveran.legs,
         feet = souveran.feet,
@@ -420,8 +423,7 @@ function define_sets()
     sets.midcast.Flash.SIRD = {
         ammo = "Staunch Tathlum +1",
         head = souveran.head,
-        body = souveran.body,
-        -- body = af.body,
+        body = af.body,
         hands = souveran.hands,
         legs = founders.hose,
         feet = odyssean.feet.fc,
@@ -515,11 +517,15 @@ function define_sets()
     sets.midcast.Generic = sird_enmity
 
     -- ==========================================================================================================
-    -- Distance Gear
+    -- Special Sets
     -- ==========================================================================================================
 
     sets.Distance = {
         waist = "Orpheus's Sash"
+    }
+
+    sets.WakeUp = {
+        neck = "Vim Torque"
     }
 
 end

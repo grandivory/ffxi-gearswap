@@ -312,7 +312,8 @@ function define_sets()
         waist = "Embla Sash"
     }
     sets.midcast.Stoneskin = set_combine(sets.midcast.Enhancing, {
-        -- neck = "Nodens Gorget",
+        legs = "Shedir Seraweels",
+        neck = "Nodens Gorget",
         waist = "Siegel Sash"
     })
     sets.midcast.Aquaveil = set_combine(sets.midcast.Enhancing, {

@@ -11,8 +11,9 @@ lockstyleset = 18
 autodeploy = true
 
 function define_sets()
-    Melee_Modes = T {'PDT', 'DT', 'Dual-Tank', 'TH', 'Bruiser'}
-    Idle_Modes = T {'Turtle', 'Bruiser', 'PUPDD', 'Ranger', 'BoneSlayer', 'PUPMagic', 'Speed'}
+    Melee_Modes = T {'DT', 'PDT', 'Dual-Tank', 'TH', 'Bruiser'}
+    Idle_Modes = T {'Speed', 'Turtle', 'Bruiser', 'PUPDD', 'Ranger', 'BoneSlayer', 'PUPMagic'}
+    stances.WAR = S {'Berserk'}
 
     back = {
         strda = {
@@ -297,7 +298,7 @@ function define_sets()
     sets.WS["Shijin Spiral"] = {
         head = nyame.head,
         body = nyame.body,
-        hands = herc.hands.dexta,
+        hands = malignance.hands,
         legs = nyame.legs,
         feet = herc.feet.dexta,
         neck = "Fotia Gorget",
@@ -491,7 +492,7 @@ function define_sets()
     -- =========================================================================================================
 
     sets.midcast.Cur = {
-        body = "Annointed Kalasiris",
+        body = "Vrikodara Jupon",
         legs = "Gyve Trousers",
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
@@ -581,13 +582,17 @@ function define_commands()
             autodeploy = not autodeploy
         end,
         clearmaneuvers = function()
-            if (maneuver_queue:length() > 0) then
-                maneuver_queue:clear()
-            elseif (current_maneuvers:length() > 0) then
-                current_maneuvers:pop()
-            end
+            target_maneuvers:clear()
         end
     }
+end
+
+local pet_target = nil
+
+function pet_status_change(new, old)
+    if new == 'Idle' then
+        pet_target = nil
+    end
 end
 
 -- =========================================================================================================
@@ -616,11 +621,11 @@ hud_defaults = {
 
 hud_text = [[| Kenbishi:      | Maneuvers (^f9 to clear): | Config(^f10):      |
 |  HP: ${pet_hp|0/0|%9s} |  Current: ${maneuvers||%14s}  |  Autodeploy: ${autodeploy||%5s} |
-|  MP: ${pet_mp|0/0|%9s} |  Upcoming: ${upcoming_maneuvers||%14s} |  Pet Mode: ${pet_mode||%5s}   |
+|  MP: ${pet_mp|0/0|%9s} |  Target:  ${upcoming_maneuvers||%14s}  |  Pet Mode: ${pet_mode||%5s}   |
 |  TP: [${pet_current_tp|0|%4s}]    |                           |                    |
 ]]
 
-function update_hud()
+function update_hud(current_maneuvers)
     if pet.isvalid and player.hpp > 0 then
         -- Pet stats
         current_hp = pet.hp
@@ -634,13 +639,12 @@ function update_hud()
         hud.pet_current_tp = colorize_tp(current_tp)
 
         -- Maneuvers
-        maneuvers = {}
-        index = 1
-        for maneuver in current_maneuvers:it() do
-            maneuvers[index] = maneuver_shorthand(maneuver)
-            index = index + 1
+        local short_maneuvers = {}
+        for i, name in ipairs(current_maneuvers) do
+            short_maneuvers[i] = maneuver_shorthand(name)
         end
-        maneuvers_string = table.concat(maneuvers, ',')
+
+        maneuvers_string = table.concat(short_maneuvers, ',')
         while index < 4 do
             if index == 1 then
                 maneuvers_string = maneuvers_string .. '    '
@@ -653,8 +657,8 @@ function update_hud()
 
         upcoming = {}
         index = 1
-        for maneuver in maneuver_queue:it() do
-            upcoming[index] = maneuver_shorthand(maneuver.name)
+        for maneuver in target_maneuvers:it() do
+            upcoming[index] = maneuver_shorthand(maneuver)
             index = index + 1
         end
         upcoming_string = table.concat(upcoming, ',')
@@ -666,7 +670,6 @@ function update_hud()
             end
             index = index + 1
         end
-
         hud.upcoming_maneuvers = upcoming_string
 
         -- Pet mode
@@ -729,25 +732,10 @@ end
 -- *** Custom Behavior ***
 -- =========================================================================================================
 
-previousTarget = nil
-currentTarget = nil
-
-function mod_status_change(new, old, set)
-    if new == "Engaged" then
-        if autodeploy == true and pet.isvalid then
-            if player.target then
-                currentTarget = player.target.index
-            end
-
-            send_command('@wait 2; input /pet "Deploy" <t>')
-        end
-    end
-
-    return set
-end
-
-maneuver_queue = Q {}
-current_maneuvers = Q {}
+-- The set of maneuvers that we want to maintain
+target_maneuvers = Q {}
+-- Whether the next usage of a maneuver sets the target (set to false temporarily when auto-using new maneuvers)
+set_target_maneuver = true
 
 function mod_precast(spell, set)
     local oil_count = 0
@@ -767,12 +755,26 @@ function mod_precast(spell, set)
         end
     end
 
+    if spell.name:endswith('Maneuver') then
+        if set_target_maneuver == true then
+            target_maneuvers:push(spell.name)
+
+            if target_maneuvers:length() > 3 then
+                target_maneuvers:pop()
+            end
+            update_hud(get_current_maneuvers())
+        else
+            set_target_maneuver = true
+        end
+    end
+
     return set
 end
 
 function mod_aftercast(spell, set)
-    if spell.name:endswith('Maneuver') and spell.interrupted == true and maneuver_queue:length() < 3 then
-        maneuver_queue:push(spell)
+    if spell.name == 'Deploy' then
+        notice('Updating Kenbishi\'s target to ' .. spell.target.name)
+        pet_target = spell.target.id
     end
 
     return set
@@ -780,36 +782,6 @@ end
 
 function mod_pet_aftercast(spell, set)
     pet_mode = "TP"
-
-    return set
-end
-
-function mod_buff_change(buff, is_gained, set)
-    if buff:endswith('Maneuver') then
-        -- Keep track of current maneuvers
-        if is_gained then
-            current_maneuvers:push(buff)
-        else
-            local maneuver_iterator = current_maneuvers:it()
-            local maneuver = maneuver_iterator()
-
-            -- Only pop a maneuver from the current maneuvers list if the one we just lost is the next one in the list
-            -- This should help to let the lua catch up when it's loaded while maneuvers are already active
-            if maneuver == buff or current_maneuvers:length() > 3 then
-                current_maneuvers:pop()
-
-                -- If we lose a maneuver and we have less than 3, then recast it
-                if player.hp > 0 and pet.isvalid and current_maneuvers:length() < 3 then
-                    send_command('input /ja "' .. buff .. '" <me>')
-                end
-            end
-        end
-    end
-
-    if buff == 'Overload' and is_gained then
-        current_maneuvers:clear()
-        maneuver_queue:clear()
-    end
 
     return set
 end
@@ -831,8 +803,41 @@ function mod_idle(set, mode, override_lock, is_user_command)
     end
 end
 
+function get_current_maneuvers()
+    local maneuvers = {}
+    index = 1
+    for _, buffid in pairs(player.buffs) do
+        if res.buffs[buffid] and res.buffs[buffid].name:endswith('Maneuver') then
+            maneuvers[index] = res.buffs[buffid].name
+            index = index + 1
+        end
+    end
+
+    return maneuvers
+end
+
 last_voke = nil
 last_flash = nil
+
+windower.register_event("action", function(action)
+    -- Keep track of the pet's current target by tracking their actions
+    -- 1 = melee attack
+    -- 4 = finish spell casting
+    -- 8 = begin spell casting
+    -- 11 = weapon skill, ranged attack, flash, provoke
+    if pet.isvalid and S {1, 4, 8, 11}:contains(action.category) and action.actor_id == pet.id then
+        _, next_target = next(action.targets)
+        if next_target.id == pet_target or next_target.id == pet.id then
+            return
+        end
+
+        local target = windower.ffxi.get_mob_by_id(next_target.id)
+        if target.in_alliance ~= true then
+            notice('Updating Kenbishi\'s target to ' .. target.name)
+            pet_target = target.id
+        end
+    end
+end)
 
 windower.register_event("incoming text", function(original, modified, mode)
     if buffactive["Fire Maneuver"] and original:contains(pet.name) and original:contains("Provoke") then
@@ -851,26 +856,39 @@ end)
 local tick = os.time()
 
 windower.register_event("prerender", function()
-    update_hud()
     if os.time() > tick then
         tick = os.time()
 
+        -- Get a list of the current active maneuvers
+        local current_maneuvers = get_current_maneuvers()
+        update_hud(current_maneuvers)
+
         -- Make sure we still have a pet
         if not pet.isvalid then
-            current_maneuvers:clear()
-            maneuver_queue:clear()
+            target_maneuvers:clear()
         end
 
-        -- Try to cast any maneuvers in the queue
-        if not midaction() and maneuver_queue:length() > 0 then
-            local maneuver_iterator = maneuver_queue:it()
-            local maneuver = maneuver_iterator()
+        -- 210 is the recast id for maneuvers
+        if not midaction() and buffactive['Overload'] == nil and windower.ffxi.get_ability_recasts()[210] <= 0 then
+            -- Compare the current maneuvers against the target maneuvers
+            -- Start by getting a count of each current maneuver
+            local current_count = {}
+            for _, name in ipairs(current_maneuvers) do
+                current_count[name] = (current_count[name] or 0) + 1
+            end
+            local target = {}
+            -- Then, compare that count against a count of each target maneuver
+            for maneuver in target_maneuvers:it() do
+                target[maneuver] = (target[maneuver] or 0) + 1
+            end
 
-            if windower.ffxi.get_ability_recasts()[res.job_abilities[maneuver.id].recast_id] <= 0 and
-                buffactive['Amnesia'] == nil then
-                send_command('@wait 0.5;input /ja "' .. maneuver.name .. '" <me>')
-                -- Remove the maneuver from the queue
-                maneuver_queue:pop()
+            -- If the current count of any maneuvers is below the target count, use that maneuver
+            for maneuver, count in pairs(target) do
+                if (current_count[maneuver] or 0) < count then
+                    set_target_maneuver = false
+                    send_command('input /ja "' .. maneuver .. '" <me>')
+                    break
+                end
             end
         end
 
@@ -897,20 +915,16 @@ windower.register_event("prerender", function()
 
         -- Check to see if we've switched targets and need to redeploy
         if autodeploy == true and player.status == "Engaged" then
-            previousTarget = currentTarget
 
-            if player.target then
-                currentTarget = player.target.index
+            -- 207 = Deploy
+            if player.target and player.target.id ~= pet_target and windower.ffxi.get_ability_recasts()[207] <= 0 then
+                send_command('input /pet "Deploy" <t>')
             end
 
-            if previousTarget ~= currentTarget then
-                send_command('@wait 1; input /pet "Deploy" <t>')
-            end
         end
     end
 end)
 
 windower.raw_register_event("zone change", function()
-    current_maneuvers:clear()
-    maneuver_queue:clear()
+    target_maneuvers:clear()
 end)

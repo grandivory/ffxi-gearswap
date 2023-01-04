@@ -689,8 +689,9 @@ function midcast(spell)
     end
 
     -- If distance_threshold is set and the player is closer than the threshold, equip distance gear
-    if distance_threshold ~= nil and spell.target.distance < distance_threshold and WeatherSpells:contains(spell.name) and
-        spell.skill ~= "Healing Magic" and sets.Distance ~= nil then
+    if distance_threshold ~= nil and spell.target.distance < distance_threshold and
+        (WeatherSpells:contains(spell.name) or string.find(spell.name, "helix")) and spell.skill ~= "Healing Magic" and
+        sets.Distance ~= nil then
         log_debug("Adding in distance gear")
         midcast_set = set_combine(midcast_set, get_set(sets.Distance, mode))
     end

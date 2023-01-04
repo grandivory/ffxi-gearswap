@@ -31,7 +31,8 @@ function define_sets()
     af = {
         head = "Pill. Bonnet +3",
         body = "Pillager's Vest +3",
-        legs = "Pill. Culottes +3"
+        legs = "Pill. Culottes +3",
+        feet = "Pill. Poulaines +1"
     }
 
     relic = {
@@ -233,6 +234,9 @@ function define_sets()
         feet = empy.feet
     }
     sets.JA.Bully = th_gear
+    sets.JA.Flee = {
+        feet = af.feet
+    }
 
     -- Non-THF JAs
     sets.JA['Waltz'] = {
@@ -254,7 +258,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Asn. Gorget +2",
-        waist = "Kentarch Belt +1",
+        waist = kentarch.belt,
         left_ear = "Sherida Earring",
         right_ear = "Moonshade Earring",
         left_ring = "Epaminondas's Ring",
@@ -285,7 +289,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Asn. Gorget +2",
-        waist = "Kentarch Belt +1",
+        waist = kentarch.belt,
         left_ear = "Odr Earring",
         right_ear = "Moonshade Earring",
         left_ring = "Epaminondas's Ring",

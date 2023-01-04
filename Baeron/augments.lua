@@ -243,6 +243,7 @@ turms = {
 }
 
 pinga = {
+    body = "Pinga Tunic +1",
     legs = "Pinga Pants +1"
 }
 

@@ -28,7 +28,7 @@ function define_sets()
     }
 
     empy = {
-        head = "Azimuth Hood +1",
+        head = "Azimuth Hood +2",
         body = "Azimuth Coat +1",
         hands = "Azimuth Gloves +1",
         legs = "Azimuth Tights +1",
@@ -227,7 +227,8 @@ function define_sets()
         back = "Fi Follet Cape +1" -- 10%
     }
     sets.precast.Geomancy = set_combine(sets.precast.FastCast, {
-        range = "Dunna"
+        range = "Dunna",
+        ammo = empty
     })
     sets.precast.Impact = set_combine(sets.precast.FastCast, {
         head = empty,
@@ -241,6 +242,7 @@ function define_sets()
         main = "Solstice",
         sub = "Genmei Shield",
         range = "Dunna",
+        ammo = empty,
         head = empy.head,
         body = relic.body,
         hands = af.hands,
@@ -255,6 +257,7 @@ function define_sets()
         main = "Solstice",
         sub = "Genmei Shield",
         range = "Dunna",
+        ammo = empty,
         head = empy.head,
         body = relic.body,
         hands = af.hands,
@@ -332,7 +335,8 @@ function define_sets()
     })
 
     sets.midcast.Stoneskin = set_combine(sets.midcast.Enhancing, {
-        -- neck = "Nodens Gorget",
+        legs = "Shedir Seraweels",
+        neck = "Nodens Gorget",
         waist = "Siegel Sash"
     })
     sets.midcast.Aquaveil = set_combine(sets.midcast.Enhancing, {

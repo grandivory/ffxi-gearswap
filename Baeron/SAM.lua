@@ -47,7 +47,8 @@ function define_sets()
         head = "Kasuga Kabuto +2",
         body = "Kasuga Domaru +2",
         hands = "Kasuga Kote +1",
-        legs = "Kasuga Haidate +2"
+        legs = "Kasuga Haidate +2",
+        ear = "Kasuga Earring +1"
     }
 
     jseneck = "Samurai's Nodowa +2"
@@ -97,8 +98,8 @@ function define_sets()
         feet = ryuo.feet,
         neck = jseneck,
         waist = "Sailfi Belt +1",
-        left_ear = "Kasuga Earring +1",
-        right_ear = "Dedition Earring",
+        left_ear = "Schere Earring",
+        right_ear = empy.ear,
         left_ring = "Defending Ring",
         right_ring = "Niqmaddu Ring",
         back = back.tp
@@ -115,8 +116,8 @@ function define_sets()
         feet = ryuo.feet,
         neck = jseneck,
         waist = "Ioskeha Belt +1",
-        left_ear = "Kasuga Earring +1",
-        right_ear = "Schere Earring",
+        left_ear = "Schere Earring",
+        right_ear = empy.ear,
         left_ring = "Defending Ring",
         right_ring = "Niqmaddu Ring",
         back = back.tp
@@ -135,8 +136,8 @@ function define_sets()
         feet = ryuo.feet,
         neck = jseneck,
         waist = "Sailfi Belt +1",
-        left_ear = "Kasuga Earring +1",
-        right_ear = "Dedition Earring",
+        left_ear = "Schere Earring",
+        right_ear = empy.ear,
         left_ring = "Niqmaddu Ring",
         right_ring = "Chirich Ring +1",
         back = "Takaha Mantle"
@@ -217,7 +218,6 @@ function define_sets()
     }
     sets.WS.Generic.Omen = {
         sub = "Utu Grip",
-        ammo = "Ginsen",
         head = af.head,
         body = af.body,
         hands = ryuo.hands,
@@ -249,7 +249,6 @@ function define_sets()
     }
     sets.WS.MAB.Omen = {
         sub = "Utu Grip",
-        ammo = "Ginsen",
         head = af.head,
         body = af.body,
         hands = ryuo.hands,
@@ -403,6 +402,10 @@ function define_sets()
 
     sets.Distance = {
         waist = "Orpheus's Sash"
+    }
+
+    sets.WakeUp = {
+        neck = "Vim Torque"
     }
 
 end

@@ -100,6 +100,7 @@ function define_sets()
         legs = "Fili Rhingrave +2",
         feet = "Fili Cothurnes +2"
     }
+    sets.empy = empy
 
     -- =========================================================================================================
     -- ***Not Engaged Sets***
@@ -186,8 +187,9 @@ function define_sets()
         back = back.tp -- 10% PDT
     }
     sets.TP.DT1H = {
-        main = "Naegling",
+        -- main = "Naegling",
         -- main = "Twashtar",
+        main = "Tauret",
         sub = "Genmei Shield",
         range = linos.tp,
         head = bunzi.head,
@@ -436,6 +438,8 @@ function define_sets()
         waist = "Embla Sash"
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.Enhancing, {
+        legs = "Shedir Seraweels",
+        neck = "Nodens Gorget",
         waist = "Siegel Sash"
     })
 
