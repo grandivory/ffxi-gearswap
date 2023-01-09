@@ -402,4 +402,8 @@ function define_sets()
         waist = "Hachirin-no-obi"
     }
 
+    sets.WakeUp = {
+        main = "Mpu Gandring"
+    }
+
 end

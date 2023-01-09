@@ -52,7 +52,7 @@ function define_sets()
         body = "Erilaz Surcoat +2",
         hands = "Erilaz Gauntlets +1",
         legs = "Eri. Leg Guards +2",
-        feet = "Erilaz Greaves +2",
+        feet = "Erilaz Greaves +3",
         ear = "Erilaz Earring +1"
     }
 
@@ -63,7 +63,7 @@ function define_sets()
         body = "Emet Harness +1", -- +10, PDT -6%
         hands = "Kurys Gloves", -- +9
         legs = empy.legs, -- +12, DT -12%
-        feet = empy.feet, -- +7, DT -10%
+        feet = empy.feet, -- +8, DT -11%
         neck = "Futhark Torque +2", -- +10, DT -7%
         waist = "Kasiri Belt", -- +3,
         left_ear = "Cryptic Earring", -- +4
@@ -126,7 +126,7 @@ function define_sets()
         body = af.body,
         hands = nyame.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = empy.feet,
         neck = "Futhark Torque +2",
         waist = "Engraved Belt",
         left_ear = "Eabani Earring",

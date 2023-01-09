@@ -551,15 +551,16 @@ function define_sets()
         main = "Rubicundity",
         sub = "Ammurapi Shield",
         ammo = "Ghastly Tathlum +1",
-        head = "Pixie Hairpin +1",
+        head = empy.head,
         body = af.body,
         hands = empy.hands,
         legs = relic.legs,
-        feet = agwu.feet,
+        feet = empy.feet,
         neck = "Erra Pendant",
+        waist = "Acuity Belt +1",
         left_ear = "Regal Earring",
         right_ear = "Mani Earring",
-        left_ring = "Freke Ring",
+        left_ring = "Stikini Ring +1",
         right_ring = "Archon Ring",
         back = "Bookworm's Cape"
     }
@@ -607,7 +608,9 @@ function define_sets()
 end
 
 function pretarget(spell)
-    if string.find(spell.english, 'helix II') and (spell.target.name == 'Gartell' or spell.target.name == 'Leshonn') then
+    local bad_helix_nms = S {'Gartell', 'Leshonn', 'Haughty Tulittia'}
+
+    if string.find(spell.english, 'helix II') and (bad_helix_nms:contains(spell.target.name)) then
         cancel_spell()
         notice("Helix II disabled on " .. spell.target.name)
     end

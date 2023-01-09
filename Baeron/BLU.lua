@@ -8,6 +8,7 @@ function define_sets()
     Melee_Modes = T {'DT', 'Att', 'Acc', 'Refresh'}
     Idle_Modes = T {'Speed', 'Refresh', 'Hybrid', 'DT', 'Evasion'}
     Magic_Modes = T {'Acc', 'MAB', 'TH', 'Enmity', 'DT'}
+    stances.WAR = S {'Berserk'}
     fastcast = .8
 
     th_gear = {

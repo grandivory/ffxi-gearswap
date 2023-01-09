@@ -46,7 +46,7 @@ function define_sets()
     empy = {
         head = "Kasuga Kabuto +2",
         body = "Kasuga Domaru +2",
-        hands = "Kasuga Kote +1",
+        hands = "Kasuga Kote +2",
         legs = "Kasuga Haidate +2",
         ear = "Kasuga Earring +1"
     }

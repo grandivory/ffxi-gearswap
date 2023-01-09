@@ -712,6 +712,8 @@ end
 function aftercast(spell)
     log_debug("Aftercast: " .. spell.name)
 
+    local aftercast_set = nil
+
     if spell.interrupted ~= true and spell.cast_time ~= nil and MB_Mode then
         MB_Mode = false
         notice('Magic Burst mode is OFF')
@@ -720,7 +722,7 @@ function aftercast(spell)
     -- If you or a pet is mid-action, then don't swap sets
     if midaction() or
         (pet.isvalid and (pet_midaction() or spell.type == 'Monster' or string.find(spell.type, 'BloodPact'))) then
-        log_debug("Pet is mid-action. Not changing sets.")
+        log_debug("Player or pet is mid-action. Not changing sets.")
         return
     end
 
@@ -1080,7 +1082,6 @@ end)
 
 local tick = os.time()
 
--- Make sure that we stay in the right stance once it's set
 windower.register_event('prerender', function()
     if os.time() > tick then
         tick = os.time()
@@ -1136,38 +1137,47 @@ function cleanup()
 end
 
 function mod_precast(spell, set)
+    log_debug("Default mod_precast")
     return set
 end
 
 function mod_midcast(spell, set)
+    log_debug("Default mod_midcast")
     return set
 end
 
 function mod_aftercast(spell, set)
+    log_debug("Default mod_aftercast")
     return set
 end
 
 function mod_pet_midcast(spell, set)
+    log_debug("Default mod_pet_midcast")
     return set
 end
 
 function mod_pet_aftercast(spell, set)
+    log_debug("Default mod_pet_aftercast")
     return set
 end
 
 function mod_status_change(new_status, old_status, set)
+    log_debug("Default mod_status_change")
     return set
 end
 
 function mod_buff_change(buff, is_gained, set)
+    log_debug("Default mod_buff_change")
     return set
 end
 
 function mod_tp(set, mode, override_lock, is_user_command)
+    log_debug("Default mod_tp")
     return set
 end
 
 function mod_idle(set, mode, override_lock, is_user_command)
+    log_debug("Default mod_idle")
     return set
 end
 
@@ -1229,15 +1239,19 @@ function idle(buff_override, override_lock, is_user_command)
 
     if pet.isvalid then
         if Avatars:contains(pet.name) and next(sets.Idle_Avatar) ~= nil then
+            log_debug('Idle_Avatar')
             idle_set = get_set(sets.Idle_Avatar, mode, override_lock, is_user_command)
         elseif string.find(pet.name, 'Spirit') and next(sets.Idle_Spirit) ~= nil then
+            log_debug('Idle_Spirit')
             idle_set = get_set(sets.Idle_Spirit, mode, override_lock, is_user_command)
         elseif next(sets.Idle_Pet) ~= nil then
+            log_debug('Idle_Pet')
             idle_set = get_set(sets.Idle_Pet, mode, override_lock, is_user_command)
         end
     end
 
     if idle_set == nil then
+        log_debug('sets.Idle')
         idle_set = get_set(sets.Idle, mode, override_lock, is_user_command)
     end
 

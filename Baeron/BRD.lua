@@ -188,8 +188,8 @@ function define_sets()
     }
     sets.TP.DT1H = {
         -- main = "Naegling",
-        -- main = "Twashtar",
-        main = "Tauret",
+        main = "Twashtar",
+        -- main = "Tauret",
         sub = "Genmei Shield",
         range = linos.tp,
         head = bunzi.head,
@@ -547,4 +547,46 @@ function define_sets()
         waist = "Orpheus's Sash"
     }
 
+    sets.WakeUp = {
+        range = "Prime Horn"
+    }
+
+end
+
+local daurdabla = false
+
+function define_commands()
+    return {
+        use_daurdabla = function()
+            daurdabla = true
+        end
+    }
+end
+
+function mod_precast(spell, set)
+    if daurdabla == true and spell.skill == "Singing" then
+        return set_combine(set, {
+            range = "Daurdabla"
+        })
+    end
+
+    return set
+end
+
+function mod_midcast(spell, set)
+    if daurdabla == true and spell.skill == "Singing" then
+        return set_combine(set, {
+            range = "Daurdabla"
+        })
+    end
+
+    return set
+end
+
+function mod_aftercast(spell, set)
+    if spell.skill == "Singing" then
+        daurdabla = false
+    end
+
+    return set
 end

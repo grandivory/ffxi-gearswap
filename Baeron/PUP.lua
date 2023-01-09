@@ -773,7 +773,6 @@ end
 
 function mod_aftercast(spell, set)
     if spell.name == 'Deploy' then
-        notice('Updating Kenbishi\'s target to ' .. spell.target.name)
         pet_target = spell.target.id
     end
 
@@ -833,7 +832,6 @@ windower.register_event("action", function(action)
 
         local target = windower.ffxi.get_mob_by_id(next_target.id)
         if target.in_alliance ~= true then
-            notice('Updating Kenbishi\'s target to ' .. target.name)
             pet_target = target.id
         end
     end
@@ -869,7 +867,8 @@ windower.register_event("prerender", function()
         end
 
         -- 210 is the recast id for maneuvers
-        if not midaction() and buffactive['Overload'] == nil and windower.ffxi.get_ability_recasts()[210] <= 0 then
+        if pet.isvalid and not midaction() and buffactive['Overload'] == nil and
+            windower.ffxi.get_ability_recasts()[210] <= 0 then
             -- Compare the current maneuvers against the target maneuvers
             -- Start by getting a count of each current maneuver
             local current_count = {}

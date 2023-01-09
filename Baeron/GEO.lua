@@ -32,7 +32,7 @@ function define_sets()
         body = "Azimuth Coat +1",
         hands = "Azimuth Gloves +1",
         legs = "Azimuth Tights +1",
-        feet = "Azimuth Gaiters +1"
+        feet = "Azimuth Gaiters +2"
     }
 
     back = {
