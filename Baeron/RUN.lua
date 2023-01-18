@@ -48,10 +48,10 @@ function define_sets()
     }
 
     empy = {
-        head = "Erilaz Galea +2",
+        head = "Erilaz Galea +3",
         body = "Erilaz Surcoat +2",
         hands = "Erilaz Gauntlets +1",
-        legs = "Eri. Leg Guards +2",
+        legs = "Eri. Leg Guards +3",
         feet = "Erilaz Greaves +3",
         ear = "Erilaz Earring +1"
     }

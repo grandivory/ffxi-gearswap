@@ -53,6 +53,8 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * You can define stances in sets, like `stances.sam = S {'Hasso', 'Seigan'}`. If you use an ability in that set, gearswap will attempt to reuse that same ability any time the buff by the same name runs out.
   * Hitting `Ctrl+f10` will clear your current stances.
   * It's possible to have multiple sets of stances so that multiple abilities will be kept active.
+* By default, any weapon skill targeted on an enemy that is out of range will be canceled so that you don't lose TP. You can set an extra margin under the max that will be used to check by specifying `ws_safety_margin`.
+  * For example, if the maximum range for a weapon skill is 5 yalms and you set `ws_safety_margin = 1`, the weapon skill will be canceled if you are 4 or more yalms from your target
 
 ## Special Commands
 * In addition to the commands below, you can define any job-specific commands by creating a function `define_commands()`.

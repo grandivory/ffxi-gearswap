@@ -27,8 +27,8 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.Speed = {
-        main = agwu.axe,
+    sets.Idle = {
+        main = ikenga.axe,
         sub = "Adapa Shield",
         ammo = "Crepuscular Pebble",
         head = nyame.head,
@@ -44,8 +44,11 @@ function define_sets()
         right_ring = "Thur. Ring +1",
         back = back.petmabfc
     }
+    sets.Idle_Pet.Speed = set_combine(sets.Idle.Speed, {
+        main = agwu.axe
+    })
 
-    sets.Idle.PetAtt = {
+    sets.Idle_Pet.PetAtt = {
         ammo = "Voluspa Tathlum",
         head = taliah.head,
         body = taeon.body.pet,
@@ -61,7 +64,7 @@ function define_sets()
         back = back.petmabfc
     }
 
-    sets.Idle.PetDT = {
+    sets.Idle_Pet.PetDT = {
         main = agwu.axe,
         ammo = "Voluspa Tathlum",
         head = "Anwig Salade",
@@ -82,6 +85,7 @@ function define_sets()
     -- ***Engaged Sets***
     -- =========================================================================================================
     sets.TP.DT = {
+        main = ikenga.axe,
         ammo = "Coiste Bodhar",
         head = "Malignance Chapeau",
         body = "Gleti's Cuirass",
@@ -98,6 +102,8 @@ function define_sets()
     }
 
     sets.TP.DW = {
+        main = ikenga.axe,
+        sub = agwu.axe,
         ammo = "Coiste Bodhar",
         head = "Malignance Chapeau",
         body = "Gleti's Cuirass",
@@ -140,7 +146,7 @@ function define_sets()
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Baetyl Pendant",
+        neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Moonshade Earring",
         right_ear = "Friomisi Earring",

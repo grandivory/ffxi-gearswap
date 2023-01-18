@@ -124,10 +124,7 @@ function define_sets()
         feet = empy.feet
     })
     sets.Idle.Refresh = set_combine(sets.Idle.DT, {
-        main = {
-            name = "Contemplator +1",
-            augments = {'Path: A'}
-        },
+        main = "Contemplator +1",
         sub = "Oneiros Grip",
         right_ring = "Stikini Ring +1"
     })
@@ -155,6 +152,8 @@ function define_sets()
     sets.TP.Att = {
         main = "Naegling",
         sub = tpdagger,
+        -- main = "Twashtar",
+        -- sub = "Crepuscular Knife",
         range = linos.tp,
         head = bunzi.head,
         body = "Ashera Harness",
@@ -187,8 +186,8 @@ function define_sets()
         back = back.tp -- 10% PDT
     }
     sets.TP.DT1H = {
-        -- main = "Naegling",
-        main = "Twashtar",
+        main = "Naegling",
+        -- main = "Twashtar",
         -- main = "Tauret",
         sub = "Genmei Shield",
         range = linos.tp,

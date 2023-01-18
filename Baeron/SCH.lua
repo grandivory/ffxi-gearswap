@@ -94,7 +94,7 @@ function define_sets()
         feet = "Herald's Gaiters" -- -7% DT
     })
     sets.Idle.Speed.withBuffs = {}
-    sets.Idle.Speed.withBuffs["Sublimation: Activated"] = set_combine(sets.Idle.DT, {
+    sets.Idle.Speed.withBuffs["Sublimation: Activated"] = set_combine(sets.Idle.Speed, {
         head = af.head,
         waist = "Embla Sash"
     })
@@ -431,8 +431,8 @@ function define_sets()
         sub = "Khonsu",
         ammo = "Pemphredo Tathlum",
         head = "Befouled Crown",
-        body = jhakri.body,
-        hands = jhakri.hands,
+        body = jhakri.body, -- TODO: Remove this
+        hands = jhakri.hands, -- TODO: Remove this
         legs = psycloth.legs,
         feet = af.feet,
         neck = "Loricate Torque +1",

@@ -65,6 +65,7 @@ function get_sets()
     tool_threshold = 10
     pet_food_threshold = 5
     distance_threshold = 10
+    ws_safety_margin = 0
 
     Melee_Modes = T {}
     Idle_Modes = T {}
@@ -148,6 +149,18 @@ function precast(spell)
     log_debug("Precast: " .. spell.name)
 
     precast_set = nil
+
+    if spell.type == 'WeaponSkill' then
+        local ws_range = Weapon_Skill_Range[spell.range]
+        local player_size = player.model_size
+        local target_size = spell.target.model_size
+        local max_ws_distance = player_size + ws_range + target_size
+
+        if spell.target.distance >= max_ws_distance - ws_safety_margin then
+            notice("Canceling " .. spell.name .. ". The target is too far.")
+            cancel_spell()
+        end
+    end
 
     -- Determine which mode to use for this ability
     if spell.cast_time == nil and spell.type ~= "CorsairShot" then
@@ -1097,7 +1110,7 @@ windower.register_event('prerender', function()
         end
 
         -- Auto-ws if one is set
-        if autows ~= false and player.tp > autows_threshold and not midaction() and player.status == 'Engaged' then
+        if autows ~= false and player.tp >= autows_threshold and not midaction() and player.status == 'Engaged' then
             send_command('input /ws "' .. autows .. '" <t>')
         end
 
@@ -1239,13 +1252,13 @@ function idle(buff_override, override_lock, is_user_command)
 
     if pet.isvalid then
         if Avatars:contains(pet.name) and next(sets.Idle_Avatar) ~= nil then
-            log_debug('Idle_Avatar')
+            log_debug('sets.Idle_Avatar')
             idle_set = get_set(sets.Idle_Avatar, mode, override_lock, is_user_command)
         elseif string.find(pet.name, 'Spirit') and next(sets.Idle_Spirit) ~= nil then
-            log_debug('Idle_Spirit')
+            log_debug('sets.Idle_Spirit')
             idle_set = get_set(sets.Idle_Spirit, mode, override_lock, is_user_command)
         elseif next(sets.Idle_Pet) ~= nil then
-            log_debug('Idle_Pet')
+            log_debug('sets.Idle_Pet')
             idle_set = get_set(sets.Idle_Pet, mode, override_lock, is_user_command)
         end
     end

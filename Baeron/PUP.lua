@@ -8,7 +8,7 @@ res = require('resources')
 
 lockstyleset = 18
 
-autodeploy = true
+autodeploy = false
 
 function define_sets()
     Melee_Modes = T {'DT', 'PDT', 'Dual-Tank', 'TH', 'Bruiser'}
@@ -215,8 +215,8 @@ function define_sets()
         feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
-        left_ear = "Telos Earring",
-        right_ear = "Mache Earring +1",
+        left_ear = "Mache Earring +1",
+        right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -233,8 +233,8 @@ function define_sets()
         feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Moonbow Belt +1",
-        left_ear = "Telos Earring",
-        right_ear = "Odnowa Earring +1",
+        left_ear = "Mache Earring +1",
+        right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
@@ -780,6 +780,7 @@ function mod_aftercast(spell, set)
 end
 
 function mod_pet_aftercast(spell, set)
+    -- TODO: Fix this logic. Right now, it selects the "WS" set or "ENM" set, then resets the pet mode without changing gear
     pet_mode = "TP"
 
     return set
@@ -867,7 +868,7 @@ windower.register_event("prerender", function()
         end
 
         -- 210 is the recast id for maneuvers
-        if pet.isvalid and not midaction() and buffactive['Overload'] == nil and
+        if pet.isvalid and not midaction() and player.status ~= 'Resting' and buffactive['Overload'] == nil and
             windower.ffxi.get_ability_recasts()[210] <= 0 then
             -- Compare the current maneuvers against the target maneuvers
             -- Start by getting a count of each current maneuver

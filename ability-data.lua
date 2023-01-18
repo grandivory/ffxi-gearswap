@@ -779,3 +779,10 @@ Skillchains = {
         elements = S {'Lightning'}
     }
 }
+
+Weapon_Skill_Range = {
+    [2] = 3,
+    [4] = 8,
+    [10] = 14,
+    [12] = 20
+}
