@@ -62,9 +62,9 @@ function define_sets()
 
     empy = {
         head = "Wicce Petasos +2",
-        body = "Wicce Coat +1",
+        body = "Wicce Coat +2",
         hands = "Wicce Gloves +1",
-        legs = "Wicce Tonban +1",
+        legs = "Wicce Tonban +2",
         feet = "Wicce Sabots +2"
     }
 

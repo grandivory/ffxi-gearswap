@@ -24,6 +24,30 @@ function define_sets()
         }
     }
 
+    af = {
+        head = "Totemic Helm +1",
+        body = "Totemic Jackcoat +3",
+        hands = "Totemic Gloves +1",
+        legs = "Totemic Trousers +1",
+        feet = "Totemic Gaiters +1"
+    }
+
+    relic = {
+        head = "Ankusa Helm +1",
+        body = "Ankusa Jackcoat +1",
+        hands = "Ankusa Gloves",
+        legs = "Ankusa Trousers",
+        feet = "Ankusa Gaiters"
+    }
+
+    empy = {
+        head = "Nukumi Cabasset",
+        body = "Nukumi Gausape",
+        hands = "Nukumi Manoplas",
+        legs = "Nukumi Quijotes",
+        feet = "Nukumi Ocreae"
+    }
+
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
@@ -49,6 +73,7 @@ function define_sets()
     })
 
     sets.Idle_Pet.PetAtt = {
+        main = agwu.axe,
         ammo = "Voluspa Tathlum",
         head = taliah.head,
         body = taeon.body.pet,
@@ -124,6 +149,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
+    -- TODO: Use Empy body to ws with Killer Instinct active
     sets.WS.Generic = {
         ammo = "Aurgelmir Orb +1",
         head = nyame.head,
@@ -301,10 +327,10 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 43%
+    sets.precast.FastCast = { -- 48%
         ammo = "Sapience Orb", -- 2%
         head = taeon.head.fcphalanx, -- 5%
-        body = taeon.body.fcphalanx, -- 5%
+        body = "Sacro Breastplate", -- 10%
         hands = "Leyline Gloves", -- 7%
         legs = taeon.legs.fcphalanx, -- 5%
         feet = taeon.feet.fcphalanx, -- 5%

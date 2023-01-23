@@ -615,3 +615,11 @@ function pretarget(spell)
         notice("Helix II disabled on " .. spell.target.name)
     end
 end
+
+function mod_aftercast(spell, set)
+    if spell.name == 'Klimaform' then
+        send_command('@wait 300; input /echo RECAST KLIMAFORM')
+    end
+
+    return set
+end

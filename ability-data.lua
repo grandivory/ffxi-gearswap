@@ -706,6 +706,7 @@ ReadyMoves = {
     ['Tickling Tendrils'] = PetAbilityTypes.multihit,
     ['Tortoise Stomp'] = PetAbilityTypes.physical,
     ['Toxic Spit'] = PetAbilityTypes.debuff,
+    ['TP Drainkiss'] = PetAbilityTypes.debuff,
     ['Venom'] = PetAbilityTypes.magic,
     ['Venom Shower'] = PetAbilityTypes.magic,
     ['Venom Spray'] = PetAbilityTypes.debuff,

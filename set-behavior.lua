@@ -76,7 +76,7 @@ function get_sets()
 
     lock_gear = S {"Warp Ring", "Dim. Ring (Holla)", "Dim. Ring (Dem)", "Dim. Ring (Mea)", "Reraise Hairpin",
                    "Reraise Earring", "Echad Ring", "Endorsement Ring", "Trizek Ring", "Capacity Ring", "Facility Ring",
-                   "Caliber Ring", "Shobuhouou Kabuto"}
+                   "Caliber Ring", "Shobuhouou Kabuto", "S. Reraiser Tank"}
 
     MB_Mode = false
 
@@ -732,10 +732,9 @@ function aftercast(spell)
         notice('Magic Burst mode is OFF')
     end
 
-    -- If you or a pet is mid-action, then don't swap sets
-    if midaction() or
-        (pet.isvalid and (pet_midaction() or spell.type == 'Monster' or string.find(spell.type, 'BloodPact'))) then
-        log_debug("Player or pet is mid-action. Not changing sets.")
+    -- If your pet is mid-action, then don't swap sets
+    if pet.isvalid and (pet_midaction() or spell.type == 'Monster' or string.find(spell.type, 'BloodPact')) then
+        log_debug("Pet is mid-action. Not changing sets.")
         return
     end
 
