@@ -13,10 +13,10 @@ function define_sets()
 
     af = {
         head = "Geomancy Galero +1",
-        body = "Geomancy Tunic +1",
-        hands = "Geomancy Mitaines +1",
+        body = "Geomancy Tunic +2",
+        hands = "Geomancy Mitaines +2",
         legs = "Geomancy Pants +1",
-        feet = "Geomancy Sandals +1"
+        feet = "Geomancy Sandals +2"
     }
 
     relic = {
@@ -29,7 +29,7 @@ function define_sets()
 
     empy = {
         head = "Azimuth Hood +2",
-        body = "Azimuth Coat +1",
+        body = "Azimuth Coat +2",
         hands = "Azimuth Gloves +1",
         legs = "Azimuth Tights +1",
         feet = "Azimuth Gaiters +2"
@@ -69,7 +69,8 @@ function define_sets()
         right_ear = "Halasz Earring", -- MP +45
         left_ring = "Stikini Ring +1", -- Refresh +1
         right_ring = "Stikini Ring +1", -- Refresh +1
-        back = back.tp -- 10% PDT
+        -- back = back.tp -- 10% PDT
+        back = "Mecisto. Mantle"
     }
     sets.Idle.Speed = set_combine(sets.Idle, {
         feet = af.feet
@@ -101,7 +102,8 @@ function define_sets()
         right_ear = "Halasz Earring",
         left_ring = "Defending Ring",
         right_ring = "Stikini Ring +1",
-        back = back.luopan
+        -- back = back.luopan
+        back = "Mecisto. Mantle"
     }
 
     -- =========================================================================================================

@@ -8,7 +8,7 @@ lockstyleset = 16
 function define_sets()
     Melee_Modes = T {'DT', 'Att', 'Refresh'}
     Idle_Modes = T {'Speed', 'DT', 'Evasion'}
-    Magic_Modes = T {'Acc', 'MAB', 'TH', 'Enmity', 'DT'}
+    Magic_Modes = T {'Acc', 'MAB', 'TH', 'Enmity'}
     stances.WAR = S {'Berserk'}
     fastcast = .8
 
@@ -77,9 +77,9 @@ function define_sets()
     empy = {
         head = "Hashishin Kavuk +3",
         body = "Hashishin Mintan +3",
-        hands = "Hashi. Bazu. +2",
-        legs = "Hashishin Tayt +2",
-        feet = "Hashi. Basmak +2"
+        hands = "Hashi. Bazu. +3",
+        legs = "Hashishin Tayt +3",
+        feet = "Hashi. Basmak +3"
     }
 
     sets.empy = empy
@@ -250,10 +250,10 @@ function define_sets()
     sets.WS["Sanguine Blade"] = {
         ammo = "Ghastly Tathlum +1",
         head = "Pixie Hairpin +1",
-        body = amalric.body,
+        body = empy.body,
         hands = empy.hands,
         legs = relic.legs,
-        feet = amalric.feet,
+        feet = empy.feet,
         neck = "Baetyl Pendant",
         waist = "Sacro Cord",
         left_ear = "Friomisi Earring",
@@ -330,8 +330,8 @@ function define_sets()
         sub = "Nibiru Cudgel", -- 10% Potency, 11 MND
         head = empy.head, -- 35 MND
         body = pinga.body, -- 15% Potency, 40 MND
-        hands = empy.hands, -- 45 MND, 9% DT
-        legs = empy.legs, -- 38 MND, 11% DT
+        hands = empy.hands, -- 50 MND, 10% DT
+        legs = empy.legs, -- 43 MND, 12% DT
         feet = carmine.feet, -- 31 MND
         neck = "Loricate Torque +1", -- 6% DT
         waist = "Luminary Sash", -- 10 MND
@@ -352,9 +352,9 @@ function define_sets()
         ammo = "Ghastly Tathlum +1",
         head = empy.head,
         body = empy.body,
-        hands = amalric.hands,
-        legs = amalric.legs,
-        feet = amalric.feet,
+        hands = empy.hands,
+        legs = empy.legs,
+        feet = empy.feet,
         neck = "Sibyl Scarf",
         waist = "Sacro Cord",
         left_ear = "Friomisi Earring",
@@ -367,7 +367,7 @@ function define_sets()
         main = "Tizona",
         sub = bunzi.rod,
         ammo = "Pemphredo Tathlum",
-        head = af.head,
+        head = empy.head,
         body = empy.body,
         hands = empy.hands,
         legs = empy.legs,
@@ -386,7 +386,7 @@ function define_sets()
         head = empy.head,
         body = empy.body,
         hands = empy.hands,
-        legs = empy.feet,
+        legs = empy.legs,
         feet = empy.feet,
         neck = "Mirage Stole +2",
         waist = "Wanion Belt",
@@ -400,9 +400,9 @@ function define_sets()
         ammo = "Amar Cluster", -- Acc +10
         head = empy.head, -- Acc +61, MAcc +61
         body = empy.body, -- Acc +64, MAcc +64
-        hands = empy.hands, -- Acc +52, MAcc +52
-        legs = empy.legs, -- Acc +53, MAcc +53
-        feet = empy.feet, -- Acc +50, MAcc +50
+        hands = empy.hands, -- Acc +62, MAcc +62
+        legs = empy.legs, -- Acc +63, MAcc +63
+        feet = empy.feet, -- Acc +60, MAcc +60
         neck = "Mirage Stole +2", -- Acc +25, MAcc +25
         waist = "Eschan Stone", -- Acc +15, MAcc +7
         left_ear = "Digni. Earring", -- Acc +10, Macc +10
@@ -417,16 +417,6 @@ function define_sets()
     })
     sets.midcast["Palling Salvo"] = sets.midcast["Tenebral Crush"]
     sets.midcast["Atra. Libations"] = sets.midcast["Tenebral Crush"]
-    sets.midcast.BlueMagic.MAB.DT = set_combine(sets.midcast.Elemental, {
-        body = empy.body, -- 13%
-        hands = empy.hands, -- 9%
-        legs = empy.legs -- 11%
-    })
-    sets.midcast["Tenebral Crush"].DT = set_combine(sets.midcast["Tenebral Crush"], {
-        body = empy.body, -- 13%
-        hands = empy.hands, -- 9%
-        legs = empy.legs -- 11%
-    })
     sets.midcast["Palling Salvo"].DT = sets.midcast["Tenebral Crush"].DT
     sets.midcast["Atra. Libations"].DT = sets.midcast["Tenebral Crush"].DT
     sets.midcast.BlueMagic.Breath = set_combine(sets.midcast.Elemental, {
@@ -464,7 +454,7 @@ function define_sets()
         head = relic.head, -- +13
         body = af.body, -- +24
         hands = "Rawhide Gloves", -- +10
-        legs = empy.legs, -- +28
+        legs = empy.legs, -- +33
         feet = relic.feet, -- +8
         neck = "Mirage Stole +2", -- +20
         right_ear = "Hashi. Earring +1", -- +11
@@ -475,12 +465,12 @@ function define_sets()
     }
     sets.midcast.BlueMagic.Debuff = sets.midcast.Enfeebling
 
-    sets.midcast.BlueMagic.Static = { -- 62% DT, 20% FC
+    sets.midcast.BlueMagic.Static = { -- 63% DT, 20% FC
         ammo = "Sapience Orb", -- 2% FC
         head = malignance.head, -- 6% DT
         body = empy.body, -- 13% DT
-        hands = empy.hands, -- 9% DT
-        legs = empy.legs, -- 11% DT
+        hands = empy.hands, -- 10% DT
+        legs = empy.legs, -- 12% DT
         feet = malignance.feet, -- 4% DT
         neck = "Orunmila's Torque", -- 5% FC
         waist = "Flume Belt +1", -- 4% PDT
@@ -501,7 +491,7 @@ function define_sets()
         head = malignance.head, -- 6% DT
         body = af.body, -- +23 Skill
         hands = malignance.hands, -- 5% DT
-        legs = empy.legs, -- +23 Skill
+        legs = empy.legs, -- +33 Skill
         feet = relic.feet, -- +8 Skill
         neck = "Mirage Stole +2", -- +20 Skill
         waist = "Flume Belt +1", -- 4% PDT
@@ -525,9 +515,9 @@ function define_sets()
         head = carmine.head, -- 50 Macc, 14% FC, 8% Haste
         body = empy.body, -- 64 Macc, 4% Haste
         -- body = relic.body, -- 40 Macc, 9% FC
-        hands = empy.hands, -- 52 Macc, 3% Haste, 15% Recast delay
-        legs = empy.legs, -- 53 Macc, 28 Skill, 5% Haste
-        feet = empy.feet, -- 50 Macc, 3% Haste
+        hands = empy.hands, -- 62 Macc, 3% Haste, 16% Recast delay
+        legs = empy.legs, -- 63 Macc, 33 Skill, 5% Haste
+        feet = empy.feet, -- 60 Macc, 3% Haste
         neck = "Mirage Stole +2", -- 25 Macc, 20 Skill,
         waist = "Acuity Belt +1", -- 15 Macc
         left_ear = "Digni. Earring", -- 10 Macc

@@ -139,10 +139,10 @@ function define_sets()
     })
 
     sets.TP.Enspell = {
-        main = "Naegling",
-        sub = "Thibron",
+        main = "Crocea Mors",
+        sub = "Genmei Shield",
         ranged = empty,
-        ammo = "Coiste Bodhar",
+        ammo = "Sroda Tathlum",
         head = malignance.head,
         body = malignance.body,
         hands = ayanmo.hands,
@@ -166,7 +166,7 @@ function define_sets()
         sub = "Esikuva",
         ranged = "Ullr",
         ammo = empty,
-        body = ayanmo.body,
+        body = malignance.body,
         neck = "Dls. Torque +2",
         left_ear = "Eabani Earring",
         right_ring = "Metamorph Ring +1"
@@ -563,23 +563,23 @@ function define_sets()
     })
     sets.midcast.Inundation = set_combine(sets.midcast.Enfeebling, th_gear)
 
-    sets.midcast.Enhancing = {
-        main = "Pukulatmuj +1",
-        sub = "Forfend +1",
+    sets.midcast.Enhancing = { -- +204
+        main = "Pukulatmuj +1", -- +11
+        sub = "Forfend +1", -- +10
         ranged = empty,
         ammo = "Homiliary",
-        head = "Befouled Crown",
-        body = relic.body,
-        hands = relic.gloves,
-        legs = af.legs,
-        feet = empy.feet,
-        neck = "Incanter's Torque",
-        waist = "Olympus Sash",
-        left_ear = "Andoaa Earring",
-        right_ear = "Mimir Earring",
-        left_ring = "Stikini Ring +1",
-        right_ring = "Stikini Ring +1",
-        back = "Ghostfyre Cape"
+        head = "Befouled Crown", -- +16
+        body = relic.body, -- +23
+        hands = relic.gloves, -- +24
+        legs = af.legs, -- +21
+        feet = empy.feet, -- +35
+        neck = "Incanter's Torque", -- +10
+        waist = "Olympus Sash", -- +5
+        left_ear = "Andoaa Earring", -- +5
+        right_ear = "Mimir Earring", -- +10
+        left_ring = "Stikini Ring +1", -- +8
+        right_ring = "Stikini Ring +1", -- +8
+        back = "Ghostfyre Cape" -- +9
     }
 
     sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {

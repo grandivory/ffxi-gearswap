@@ -8,7 +8,7 @@ function define_sets()
     Melee_Modes = T {'DT', 'DW'}
     Idle_Modes = T {'Speed', 'PetAtt', 'PetDT'}
 
-    fastcast = .53 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
+    fastcast = .45 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
 
     th_gear = {
         ammo = "Per. Lucky Egg",
@@ -17,10 +17,27 @@ function define_sets()
     }
 
     back = {
+        petphys = {
+            name = "Artio's Mantle",
+            augments = {'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20', 'Pet: Attack+10 Pet: Rng.Atk.+10'}
+        },
         petmabfc = {
             name = "Artio's Mantle",
             augments = {'Pet: M.Acc.+20 Pet: M.Dmg.+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Pet: Mag. Acc.+10',
                         '"Fast Cast"+10', 'Pet: Damage taken -5%'}
+        },
+        tp = {
+            name = "Artio's Mantle",
+            augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
+        },
+        strda = {
+            name = "Artio's Mantle",
+            augments = {'STR+20', 'Accuracy+20 Attack+20', 'STR+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%'}
+        },
+        mabws = {
+            name = "Artio's Mantle",
+            augments = {'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'MND+10', 'Weapon skill damage +10%',
+                        'Phys. dmg. taken-10%'}
         }
     }
 
@@ -35,22 +52,25 @@ function define_sets()
     relic = {
         head = "Ankusa Helm +1",
         body = "Ankusa Jackcoat +1",
-        hands = "Ankusa Gloves",
-        legs = "Ankusa Trousers",
-        feet = "Ankusa Gaiters"
+        hands = "Ankusa Gloves +1",
+        legs = "Ankusa Trousers +1",
+        feet = "Ankusa Gaiters +1"
     }
 
     empy = {
-        head = "Nukumi Cabasset",
-        body = "Nukumi Gausape",
-        hands = "Nukumi Manoplas",
-        legs = "Nukumi Quijotes",
-        feet = "Nukumi Ocreae"
+        head = "Nukumi Cabasset +1",
+        body = "Nukumi Gausape +1",
+        hands = "Nukumi Manoplas +1",
+        legs = "Nukumi Quijotes +1",
+        feet = "Nukumi Ocreae +1"
     }
+
+    -- sets.empy = empy
 
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
+    -- TODO
     sets.Idle = {
         main = ikenga.axe,
         sub = "Adapa Shield",
@@ -75,10 +95,13 @@ function define_sets()
     sets.Idle_Pet.PetAtt = {
         main = agwu.axe,
         ammo = "Voluspa Tathlum",
+        -- ammo = "Hesperiidae",
         head = taliah.head,
         body = taeon.body.pet,
+        -- body = relic.body,
         hands = taeon.hands.pet,
         legs = taeon.legs.pet,
+        -- legs = relic.legs,
         feet = gleti.feet,
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
@@ -86,15 +109,16 @@ function define_sets()
         right_ear = "Enmerkar Earring",
         left_ring = "Varar Ring +1",
         right_ring = "Varar Ring +1",
-        back = back.petmabfc
+        back = back.petphys
     }
 
     sets.Idle_Pet.PetDT = {
         main = agwu.axe,
         ammo = "Voluspa Tathlum",
+        -- ammo = "Hesperiidae",
         head = "Anwig Salade",
-        body = taeon.body.pet,
-        hands = taeon.hands.pet,
+        body = af.body,
+        hands = gleti.hands,
         legs = taliah.legs,
         feet = taeon.feet.pet,
         neck = "Shepherd's Chain",
@@ -103,7 +127,7 @@ function define_sets()
         right_ear = "Enmerkar Earring",
         left_ring = "Varar Ring +1",
         right_ring = "Thur. Ring +1",
-        back = back.petmabfc
+        back = back.petphys
     }
 
     -- =========================================================================================================
@@ -112,36 +136,36 @@ function define_sets()
     sets.TP.DT = {
         main = ikenga.axe,
         ammo = "Coiste Bodhar",
-        head = "Malignance Chapeau",
-        body = "Gleti's Cuirass",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        head = malignance.head,
+        body = gleti.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
         neck = "Shulmanu Collar",
         waist = "Windbuffet Belt +1",
-        left_ear = "Eabani Earring",
+        left_ear = "Telos Earring",
         right_ear = "Sherida Earring",
         left_ring = "Gere Ring",
         right_ring = "Epona's Ring",
-        back = back.petmabfc
+        back = back.tp
     }
 
     sets.TP.DW = {
         main = ikenga.axe,
         sub = agwu.axe,
         ammo = "Coiste Bodhar",
-        head = "Malignance Chapeau",
-        body = "Gleti's Cuirass",
-        hands = "Malignance Gloves",
-        legs = "Malignance Tights",
-        feet = "Malignance Boots",
+        head = malignance.head,
+        body = gleti.body,
+        hands = malignance.hands,
+        legs = malignance.legs,
+        feet = malignance.feet,
         neck = "Shulmanu Collar",
         waist = "Reiki Yotai",
         left_ear = "Eabani Earring",
         right_ear = "Sherida Earring",
         left_ring = "Gere Ring",
         right_ring = "Epona's Ring",
-        back = back.petmabfc
+        back = back.tp
     }
 
     sets.TP.Dual = {}
@@ -151,7 +175,7 @@ function define_sets()
     -- =========================================================================================================
     -- TODO: Use Empy body to ws with Killer Instinct active
     sets.WS.Generic = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Oshasha's Treatise",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
@@ -162,11 +186,11 @@ function define_sets()
         left_ear = "Moonshade Earring",
         right_ear = "Thrud Earring",
         left_ring = "Gere Ring",
-        right_ring = "Epaminondas's Ring",
-        back = back.petmabfc
+        right_ring = "Beithir Ring",
+        back = back.strda
     }
     sets.WS.MAB = {
-        ammo = "Pemphredo Tathlum",
+        ammo = "Ghastly Tathlum +1",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
@@ -178,7 +202,7 @@ function define_sets()
         right_ear = "Friomisi Earring",
         left_ring = "Metamorph Ring +1",
         right_ring = "Epaminondas's Ring",
-        back = back.petmabfc
+        back = back.mabws
     }
     sets.WS.Decimation = {
         ammo = "Coiste Bodhar",
@@ -186,14 +210,14 @@ function define_sets()
         body = gleti.body,
         hands = gleti.hands,
         legs = gleti.legs,
-        feet = gleti.feet,
+        feet = empy.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
-        left_ear = "Sherida Earring",
-        right_ear = "Brutal Earring",
+        left_ear = "Brutal Earring",
+        right_ear = "Sherida Earring",
         left_ring = "Gere Ring",
         right_ring = "Epona's Ring",
-        back = back.petmabfc
+        back = back.strda
     }
     sets.WS.Ruinator = {
         ammo = "Coiste Bodhar",
@@ -201,59 +225,77 @@ function define_sets()
         body = gleti.body,
         hands = gleti.hands,
         legs = gleti.legs,
-        feet = gleti.feet,
+        feet = empy.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
-        left_ear = "Sherida Earring",
-        right_ear = "Brutal Earring",
+        left_ear = "Brutal Earring",
+        right_ear = "Sherida Earring",
         left_ring = "Gere Ring",
         right_ring = "Regal Ring",
-        back = back.petmabfc
+        back = back.strda
     }
     sets.WS["Primal Rend"] = {
-        ammo = "Pemphredo Tathlum",
+        ammo = "Oshasha's Treatise",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Baetyl Pendant",
+        neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Moonshade Earring",
         right_ear = "Friomisi Earring",
         left_ring = "Epaminondas's Ring",
         right_ring = "Metamorph Ring +1",
-        back = back.petmabfc
+        back = back.mabws
+    }
+    sets.WS.Cloudsplitter = {
+        ammo = "Oshasha's Treatise",
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Sibyl Scarf",
+        waist = "Orpheus's Sash",
+        left_ear = "Moonshade Earring",
+        right_ear = "Friomisi Earring",
+        left_ring = "Epaminondas's Ring",
+        right_ring = "Metamorph Ring +1",
+        back = back.mabws
     }
     sets.WS.Calamity = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Oshasha's Treatise",
         head = nyame.head,
-        body = gleti.body,
+        body = nyame.body,
+        -- body = empy.body,
         hands = nyame.hands,
         legs = gleti.legs,
         feet = gleti.feet,
-        neck = "Caro Necklace",
+        neck = "Rep. Plat. Medal",
         waist = "Sailfi Belt +1",
         left_ear = "Moonshade Earring",
         right_ear = "Thrud Earring",
-        left_ring = "Epaminondas's Ring",
+        left_ring = "Beithir Ring",
         right_ring = "Regal Ring",
-        back = back.petmabfc
+        back = back.strda
     }
     sets.WS["Mistral Axe"] = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Oshasha's Treatise",
         head = nyame.head,
-        body = gleti.body,
+        body = nyame.body,
+        -- body = empy.body,
         hands = nyame.hands,
         legs = gleti.legs,
         feet = gleti.feet,
-        neck = "Caro Necklace",
+        -- feet = empy.feet,
+        neck = "Rep. Plat. Medal",
         waist = "Sailfi Belt +1",
         left_ear = "Moonshade Earring",
-        right_ear = "Thrud Earring",
-        left_ring = "Epaminondas's Ring",
+        right_ear = "Sherida Earring",
+        left_ring = "Beithir Ring",
         right_ring = "Regal Ring",
-        back = back.petmabfc
+        back = back.strda
     }
     sets.WS.Rampage = {
         ammo = "Aurgelmir Orb +1",
@@ -268,39 +310,49 @@ function define_sets()
         right_ear = "Sherida Earring",
         left_ring = "Begrudging Ring",
         right_ring = "Regal Ring",
-        back = back.petmabfc
+        back = back.strda
     }
 
     -- =========================================================================================================
     -- ***Job Ability Sets***
     -- =========================================================================================================
-    -- sets.JA['Call Beast'] = {}
-    -- sets.JA['Bestial Loyalty'] = sets.JA['Call Beast']
+    sets.JA['Call Beast'] = {
+        hands = relic.hands
+    }
+    sets.JA['Bestial Loyalty'] = sets.JA['Call Beast']
     sets.JA.Reward = {
         ammo = "Pet Food Theta",
         head = nyame.head,
-        body = nyame.body,
+        body = af.body,
         hands = malignance.hands,
-        legs = nyame.legs,
-        feet = nyame.feet,
+        legs = relic.legs,
+        feet = relic.feet,
         neck = "Phalaina Locket",
+        waist = "Engraved Belt",
         left_ring = "Metamor. Ring +1",
         right_ring = "Stikini Ring +1",
-        back = "Artio's Mantle"
+        back = back.mabws
     }
     sets.JA.Charm = {
         ammo = "Voluspa Tathlum",
+        head = af.head,
+        body = relic.body,
+        hands = relic.hands,
+        legs = relic.legs,
+        feet = relic.feet,
         neck = "Unmoving Collar +1",
         left_ear = "Enchntr. Earring +1",
-        left_ring = "Metamorph Ring +1"
+        left_ring = "Metamorph Ring +1",
+        back = back.mabws
     }
     sets.JA.Ready = {
+        hands = empy.hands,
         legs = gleti.legs
     }
     sets.JA["Feral Howl"] = {
         ammo = "Pemphredo Tathlum",
         head = nyame.head,
-        body = nyame.body,
+        body = relic.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
@@ -312,8 +364,15 @@ function define_sets()
         right_ring = "Stikini Ring +1",
         back = back.petmabfc
     }
-    -- sets.JA['Killer Instinct'] = {}
-    -- sets.JA.Spur = {}
+    sets.JA.Familiar = {
+        legs = relic.legs
+    }
+    sets.JA['Killer Instinct'] = {
+        head = relic.head
+    }
+    sets.JA.Spur = {
+        feet = empy.feet
+    }
 
     -- =========================================================================================================
     -- ***Item Sets***
@@ -327,7 +386,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 48%
+    sets.precast.FastCast = { -- 45%
         ammo = "Sapience Orb", -- 2%
         head = taeon.head.fcphalanx, -- 5%
         body = "Sacro Breastplate", -- 10%
@@ -336,11 +395,14 @@ function define_sets()
         feet = taeon.feet.fcphalanx, -- 5%
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Enchntr. Earring +1", -- 2%
-        right_ear = "Loquac. Earring", -- 5%
+        right_ear = "Loquac. Earring", -- 2%
         left_ring = "Rahab Ring", -- 2%
         back = back.petmabfc
-
     }
+
+    -- =========================================================================================================
+    -- ***Midcast Sets for Spells***
+    -- =========================================================================================================
 
     -- =========================================================================================================
     -- ***Pet Midcast Sets***
@@ -364,9 +426,11 @@ function define_sets()
     sets.pet_midcast.Magic = {
         main = agwu.axe,
         ammo = "Voluspa Tathlum",
+        -- ammo = "Hesperiidae",
         head = nyame.head,
-        body = nyame.body,
+        body = "Udug Jacket",
         hands = nyame.hands,
+        -- hands = empy.hands,
         legs = nyame.legs,
         feet = gleti.feet,
         neck = "Adad Amulet",
@@ -380,6 +444,7 @@ function define_sets()
     sets.pet_midcast.Physical = {
         main = agwu.axe,
         ammo = "Voluspa Tathlum",
+        -- ammo = "Hesperiidae",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
@@ -391,14 +456,16 @@ function define_sets()
         right_ear = "Enmerkar Earring",
         left_ring = "Thur. Ring +1",
         right_ring = "C. Palug Ring",
-        back = back.petmabfc
+        back = back.petphys
     }
     sets.pet_midcast.MultiHit = {
         main = agwu.axe,
         ammo = "Voluspa Tathlum",
+        -- ammo = "Hesperiidae",
         head = taeon.head.pet,
         body = taeon.body.pet,
         hands = taeon.hands.pet,
+        -- hands = empy.hands,
         legs = taeon.legs.pet,
         feet = gleti.feet,
         neck = "Shulmanu Collar",
@@ -407,7 +474,7 @@ function define_sets()
         right_ear = "Enmerkar Earring",
         left_ring = "Thur. Ring +1",
         right_ring = "C. Palug Ring",
-        back = back.petmabfc
+        back = back.petphys
     }
     sets.pet_midcast.Generic = sets.pet_midcast.Physical -- If no other set is found, this set is used instead
 

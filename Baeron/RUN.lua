@@ -90,7 +90,7 @@ function define_sets()
         body = af.body,
         hands = nyame.hands,
         legs = carmine.legs,
-        feet = nyame.feet,
+        feet = empy.feet,
         neck = "Futhark Torque +2",
         waist = "Flume Belt +1",
         left_ear = "Cryptic Earring",

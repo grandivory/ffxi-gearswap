@@ -445,6 +445,7 @@ function define_sets()
     sets.JA.Repair = {
         feet = "Foire Babouches +3",
         left_ear = "Guignol Earring",
+        right_ear = "Pratik Earring",
         back = "Visucius's Mantle"
     }
 
@@ -779,8 +780,8 @@ function mod_aftercast(spell, set)
     return set
 end
 
-function mod_pet_aftercast(spell, set)
-    -- TODO: Fix this logic. Right now, it selects the "WS" set or "ENM" set, then resets the pet mode without changing gear
+function mod_pet_midcast(spell, set)
+    -- This will actually change the pet mode after the set has already been determined, so it will be used the next time a set is checked (for aftercast)
     pet_mode = "TP"
 
     return set

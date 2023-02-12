@@ -87,7 +87,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * If you use a weapon skill and don't have a ws-specific set defined, then the lua will look for `sets.WS.MAB` or `sets.WS.Elemental` for elemental-based WS, or `sets.WS.Generic` for physical-based WS
   * Further, for elemental weapon skills, the lua will check against the current weather and day to equip `sets.Weather`, if it's defined
 * If the spell has a cast time, the lua looks for `sets.precast.FastCast` to equip
-* You can define a `mod_precast(spell, precast_set)` function in your lua to make any changes to the behavior defined up to this point! That function will be passed the current spell and the set that my lua thinks you should be using, and whatever is returned is what will actually be used.
+* You can define a `mod_precast(spell, precast_set, mode)` function in your lua to make any changes to the behavior defined up to this point! That function will be passed the current spell and the set that my lua thinks you should be using, and whatever is returned is what will actually be used.
 * Ammo counting! You can set an `ammo_threshold` variable (default 10) and the lua will warn you when you're running low on ammo.
 * If you define a `no_shoot_ammo` variable as `S{'Bullet 1', 'Bullet 2'}` (yes, the S matters), then the lua won't let you shoot that bullet, even if you put it into a set
 * Tool counting! You can set a `tool_threshold` variable (default 10) and the lua will warn you when you're running low on ninja tools. This works for both the spell-specific tools and the universal tools, if you're on ninja main.
@@ -152,7 +152,7 @@ These luas are meant to be a generic way to set up gearsets for any job and have
 * If the spell you are casting is affected by the currently active weather or day, then the lua will look for `sets.Weather` to add to your set
 * The lua will look through all sets defined in `sets.midcast.mod` to determine if they should be equipped based on current buffs
   * For example, I have a `sets.midcast.mod["Diffusion"] = { feet: "Luhlaza Charuqs +1" }` defined in my BLU lua. If Diffusion is active, the Luhlaza Charuqs +1 will be equipped for ANY spell I cast.
-* You can define a `mod_midcast(spell, midcast_set)` function to alter anything abou the gear that's been chosen up to this point.
+* You can define a `mod_midcast(spell, midcast_set, mode)` function to alter anything about the gear that's been chosen up to this point.
 
 ## Aftercast
 * Aftercast will always choose the steady state gear based on whether you're engaged (TP set) or not (Idle set)
@@ -172,11 +172,11 @@ These luas are meant to be a generic way to set up gearsets for any job and have
   * The lua will look for a `sets.pet_midcast.PhysicalTP` for physical blood pacts that can make use of a TP bonus
   * The lua will look for a `sets.pet_midcast["Summoning Skill"]` for blood pacts that rely mostly on summoning skill
 * The lua will look for a `sets.pet_midcast.Generic` if no other sets have yet been selected
-* You can define a `mod_pet_midcast(spell, midcast_set)` function to alter anything abou the gear that's been chosen up to this point.
+* You can define a `mod_pet_midcast(spell, midcast_set, mode)` function to alter anything abou the gear that's been chosen up to this point.
 
 ## Pet Aftercast
 * After a pet uses an ability, by default this lua will re-equip your steady-state set (based on whether you're engaged or idle)
-* You can define a `mod_pet_aftercast(spell, aftercast_set)` function to alter anything about the gear to equip
+* You can define a `mod_pet_aftercast(spell, aftercast_set, mode)` function to alter anything about the gear to equip
 
 ## Status Change
 * If you define `sets.Resting`, it will be equipped when you start resting

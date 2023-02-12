@@ -379,8 +379,8 @@ function define_sets()
         main = "Daybreak",
         sub = "Ammurapi Shield",
         ammo = "Pemphredo Tathlum", -- MAcc +8
-        head = af.head, -- MAcc +52
-        body = af.body, -- MAcc +50
+        head = empy.head, -- MAcc +61
+        body = empy.body, -- MAcc +64
         hands = kaykaus.hands, -- MAcc +53, Enfeebling +16
         legs = empy.legs, -- MAcc +63, Enfeebling +28, Grimoire +36
         feet = af.feet, -- MAcc +66
@@ -495,8 +495,8 @@ function define_sets()
         ammo = "Sapience Orb", -- 2% FC
         head = "Pixie Hairpin +1",
         body = "Zendik Robe", -- 13% FC
-        hands = "Gendewitha Gages +1", -- 7% FC -- TODO: Replace these
-        legs = "Psycloth Lappas", -- 7% FC
+        hands = af.hands, -- 9% FC
+        legs = psycloth.legs, -- 7% FC
         feet = telchine.feet.enhfc, -- 5% FC
         neck = "Orunmila's Torque", -- 5% FC
         waist = "Embla Sash", -- 5% FC

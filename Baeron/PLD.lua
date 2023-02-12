@@ -478,6 +478,9 @@ function define_sets()
         body = "Shabti Cuirass +1",
         hands = "Regal Gauntlets"
     })
+    sets.midcast.Protect = set_combine(sets.midcast.Enhancing, {
+        sub = "Srivatsa"
+    })
     sets.midcast.Phalanx = sets.Idle.Phalanx
     sets.midcast.Phalanx.SIRD = {
         main = sakpata.sword,

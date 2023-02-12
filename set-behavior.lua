@@ -8,12 +8,23 @@ res = require('resources')
 ---------------------------------------------------------
 lockstyleset = 1
 text_settings = {
+    bg = {
+        visible = false
+    },
     pos = {
         x = 1775,
         y = 1290
     },
     text = {
-        size = 14
+        size = 14,
+        font = "Lucida Sans Unicode",
+        stroke = {
+            width = 2,
+            alpha = 255,
+            red = 0,
+            green = 0,
+            blue = 0
+        }
     },
     padding = 1,
     flags = {
@@ -159,6 +170,7 @@ function precast(spell)
         if spell.target.distance >= max_ws_distance - ws_safety_margin then
             notice("Canceling " .. spell.name .. ". The target is too far.")
             cancel_spell()
+            return
         end
     end
 
@@ -272,15 +284,15 @@ function precast(spell)
         for name, set in pairs(sets.precast) do
             if string.find(spell.name, name) then
                 -- Spell-family sets
-                log_debug("Spell Family")
+                log_debug("Partial Name Match")
                 precast_set = get_set(set, mode)
             elseif string.find(spell.type, name) then
                 -- Spell-type sets
-                log_debug("Spell Family")
+                log_debug("Type Match")
                 precast_set = get_set(set, mode)
             elseif spell.skill ~= nil and string.find(spell.skill, name) then
                 -- Spell skill sets
-                log_debug("Spell Family")
+                log_debug("Skill Match")
                 precast_set = get_set(set, mode)
             end
         end
@@ -344,7 +356,7 @@ function precast(spell)
         precast_set = set_combine(precast_set, get_set(sets.Distance, mode))
     end
 
-    precast_set = mod_precast(spell, precast_set)
+    precast_set = mod_precast(spell, precast_set, mode)
 
     -- Get ammo counts
     -- Ammo count for: Ranged Attack, Ranged Weaponskill, Quick Draw, Ranged JAs
@@ -717,7 +729,7 @@ function midcast(spell)
         end
     end
 
-    midcast_set = mod_midcast(spell, midcast_set)
+    midcast_set = mod_midcast(spell, midcast_set, mode)
 
     equip(midcast_set)
 end
@@ -733,14 +745,15 @@ function aftercast(spell)
     end
 
     -- If your pet is mid-action, then don't swap sets
-    if pet.isvalid and (pet_midaction() or spell.type == 'Monster' or string.find(spell.type, 'BloodPact')) then
-        log_debug("Pet is mid-action. Not changing sets.")
+    if (spell.interrupted and midaction()) or
+        (pet.isvalid and (pet_midaction() or spell.type == 'Monster' or string.find(spell.type, 'BloodPact'))) then
+        log_debug("Player or pet is mid-action. Not changing sets.")
         return
     end
 
     aftercast_set = steady_state()
 
-    aftercast_set = mod_aftercast(spell, aftercast_set)
+    aftercast_set = mod_aftercast(spell, aftercast_set, mode)
 
     equip(aftercast_set)
 end
@@ -827,7 +840,7 @@ function pet_midcast(spell)
         pet_set = get_set(sets.pet_midcast.Generic, mode)
     end
 
-    pet_set = mod_pet_midcast(spell, pet_set)
+    pet_set = mod_pet_midcast(spell, pet_set, mode)
 
     equip(pet_set)
 end
@@ -836,7 +849,7 @@ function pet_aftercast(spell)
     log_debug("Pet aftercast: " .. spell.name)
 
     pet_aftercast_set = steady_state()
-    pet_aftercast_set = mod_pet_aftercast(spell, pet_aftercast_set)
+    pet_aftercast_set = mod_pet_aftercast(spell, pet_aftercast_set, mode)
     equip(pet_aftercast_set)
 end
 
@@ -1148,27 +1161,27 @@ end
 function cleanup()
 end
 
-function mod_precast(spell, set)
+function mod_precast(spell, set, mode)
     log_debug("Default mod_precast")
     return set
 end
 
-function mod_midcast(spell, set)
+function mod_midcast(spell, set, mode)
     log_debug("Default mod_midcast")
     return set
 end
 
-function mod_aftercast(spell, set)
+function mod_aftercast(spell, set, mode)
     log_debug("Default mod_aftercast")
     return set
 end
 
-function mod_pet_midcast(spell, set)
+function mod_pet_midcast(spell, set, mode)
     log_debug("Default mod_pet_midcast")
     return set
 end
 
-function mod_pet_aftercast(spell, set)
+function mod_pet_aftercast(spell, set, mode)
     log_debug("Default mod_pet_aftercast")
     return set
 end

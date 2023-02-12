@@ -399,7 +399,8 @@ function define_sets()
         right_ring = "Shiva Ring +1",
         back = back.nuke
     } -- This will be used when in 'Acc' magic mode
-    sets.midcast.Elemental.Coat = set_combine(sets.midcast.Elemental, {
+    -- This is here just for `gs validate`. It will never be equipped because `CoatCheck` isn't a normal mode
+    sets.midcast.Elemental.CoatCheck = set_combine(sets.midcast.Elemental, {
         body = af.body
     })
     sets.midcast.Elemental.DT = { -- 48% DT
@@ -490,11 +491,11 @@ function define_sets()
         back = back.nuke
 
     } -- This is used in 'Acc' mode during magic bursts
-    sets.midcast.ElementalMB.Coat = set_combine(sets.midcast.ElementalMB, {
-        main = bunzi.rod,
-        sub = "Ammurapi Shield",
-        body = af.body
-    })
+    -- sets.midcast.ElementalMB.Coat = set_combine(sets.midcast.ElementalMB, {
+    --     main = bunzi.rod,
+    --     sub = "Ammurapi Shield",
+    --     body = af.body
+    -- })
     sets.midcast.ElementalMB.DT = {
         main = "Marin Staff +1",
         sub = "Khonsu",
@@ -642,10 +643,16 @@ function mod_tp(set, mode, override_lock, is_user_command)
     return set
 end
 
-function mod_midcast(spell, set)
+function mod_midcast(spell, set, mode)
     if spell.name:contains("Stone") then
         return set_combine(set, {
             neck = "Quanpur Necklace"
+        })
+    end
+
+    if mode == 'Coat' and player.mp < spell.mp_cost * 2 then
+        return set_combine(set, {
+            body = af.body
         })
     end
 
