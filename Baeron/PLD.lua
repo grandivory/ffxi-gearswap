@@ -21,11 +21,11 @@ function define_sets()
     }
 
     relic = {
-        head = "Caballarius Coronet",
-        body = "Caballarius Surcoat",
-        hands = "Caballarius Gauntlets",
-        legs = "Caballarius Breeches",
-        feet = "Caballarius Leggings"
+        head = "Cab. Coronet +1",
+        body = "Cab. Surcoat +1",
+        hands = "Cab. Gauntlets +2",
+        legs = "Cab. Breeches +1",
+        feet = "Cab. Leggings +1"
     }
 
     empy = {
@@ -70,7 +70,7 @@ function define_sets()
         body = souveran.body,
         hands = souveran.hands,
         legs = souveran.legs,
-        feet = "Eschite Greaves",
+        feet = empy.feet,
         neck = "Moonlight Necklace",
         waist = "Creed Baudrier",
         left_ear = "Trux Earring",
@@ -84,7 +84,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.Phys = { -- 57% DT, 18% PDT II
+    sets.Idle.Phys = { -- 53% DT, 18% PDT II
         main = "Burtgang", -- 18% PDT II
         sub = "Duban",
         ammo = "Staunch Tathlum +1", -- 3%
@@ -94,7 +94,7 @@ function define_sets()
         legs = sakpata.legs, -- 9%
         feet = sakpata.feet, -- 6%
         neck = "Unmoving Collar +1",
-        waist = "Flume Belt +1", -- 4%
+        waist = "Plat. Mog. Belt",
         left_ear = "Tuisto Earring",
         right_ear = "Cryptic Earring",
         left_ring = "Moonlight Ring", -- 5%
@@ -124,9 +124,9 @@ function define_sets()
         right_ring = "Moonlight Ring", -- 5%
         back = back.block
     }
-    sets.Idle.Phalanx = { -- 36
+    sets.Idle.Phalanx = { -- 33
         main = sakpata.sword, -- 5
-        sub = "Priwen", -- 5
+        sub = "Priwen", -- 2
         ammo = "Staunch Tathlum +1",
         head = yorium.head.phalanx, -- 3
         body = yorium.body.phalanx, -- 3
@@ -158,7 +158,7 @@ function define_sets()
         legs = sakpata.legs,
         feet = sakpata.feet,
         neck = "Combatant's Torque",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Cessance Earring",
         right_ear = "Odnowa Earring +1",
         left_ring = "Moonlight Ring",
@@ -180,7 +180,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Fotia Gorget",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Thrud Earring",
         right_ear = "Moonshade Earring",
         left_ring = "Epaminondas's Ring",
@@ -211,7 +211,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Rep. Plat. Medal",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Thrud Earring",
         right_ear = "Moonshade Earring",
         left_ring = "Epaminondas's Ring",
@@ -257,30 +257,30 @@ function define_sets()
     -- ***Job Ability Sets***
     -- =========================================================================================================
     sets.JA.Invincible = set_combine(enmity, {
-        -- legs = relic.legs
+        legs = relic.legs
     })
     sets.JA["Holy Circle"] = set_combine(enmity, {
         feet = af.feet
     })
     sets.JA["Shield Bash"] = set_combine(enmity, {
-        -- hands = relic.hands
+        hands = relic.hands
     })
     sets.JA.Sentinel = set_combine(enmity, {
-        -- feet = relic.feet
+        feet = relic.feet
     })
     sets.JA.Cover = set_combine(enmity, {
         -- head = af.head,
-        -- body = relic.body
+        body = relic.body
     })
     sets.JA.Rampart = set_combine(enmity, {
-        -- head = relic.head
+        head = relic.head
     })
     sets.JA.Majesty = enmity
     sets.JA.Fealty = set_combine(enmity, {
-        -- body = relic.body
+        body = relic.body
     })
     sets.JA.Chivalry = set_combine(enmity, {
-        -- hands = relic.hands
+        hands = relic.hands
     })
     sets.JA["Divine Emblem"] = set_combine(enmity, {
         feet = empy.feet
@@ -303,11 +303,11 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast sets for spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 66%
+    sets.precast.FastCast = { -- 67%
         ammo = "Sapience Orb", -- 2%
         head = carmine.head, -- 14%
         body = "Sacro Breastplate", -- 10%
-        hands = "Leyline Gloves", -- 7%
+        hands = "Leyline Gloves", -- 8%
         feet = carmine.feet, -- 8%
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Enchntr. Earring +1", -- 2%
@@ -371,7 +371,7 @@ function define_sets()
         ammo = "Staunch Tathlum +1",
         head = souveran.head,
         -- head = "Jumalik Helm",
-        -- body = relic.body,
+        body = relic.body,
         hands = souveran.hands,
         -- hands = "Eschite Gauntlets",
         legs = founders.hose,
@@ -390,7 +390,7 @@ function define_sets()
         ammo = "Staunch Tathlum +1",
         head = souveran.head,
         -- head = "Jumalik Helm",
-        -- body = relic.body,
+        body = relic.body,
         hands = souveran.hands,
         -- hands = "Eschite Gauntlets",
         legs = founders.hose,
@@ -411,7 +411,7 @@ function define_sets()
         hands = souveran.hands,
         legs = souveran.legs,
         feet = souveran.feet,
-        -- feet = "Eschite Greaves",
+        -- feet = empy.feet,
         neck = "Moonlight Necklace",
         waist = "Creed Baudrier",
         left_ear = "Odnowa Earring +1",
@@ -528,6 +528,7 @@ function define_sets()
     }
 
     sets.WakeUp = {
+        sub = "Duban",
         neck = "Vim Torque"
     }
 

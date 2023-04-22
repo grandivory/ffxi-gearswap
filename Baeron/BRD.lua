@@ -88,9 +88,9 @@ function define_sets()
     relic = {
         head = "Bihu Roundlet +3",
         body = "Bihu Jstcorps. +3",
-        hands = "Bihu Cuffs +1",
-        legs = "Bihu Cannions +1",
-        feet = "Bihu Slippers +1"
+        hands = "Bihu Cuffs +2",
+        legs = "Bihu Cannions +3",
+        feet = "Bihu Slippers +3"
     }
 
     empy = {
@@ -105,10 +105,11 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.DT = { -- 67% PDT, 50% MDT
+    -- TODO: Redo these sets
+    sets.Idle.DT = { -- 66% PDT, 49% MDT
         sub = "Genmei Shield", -- 10% PDT
         head = empy.head, -- 10%
-        body = bunzi.body, -- 10%
+        body = nyame.body, -- 9%
         hands = empy.hands, -- 10%
         legs = "Assid. Pants +1",
         feet = nyame.feet, -- 7%
@@ -161,7 +162,7 @@ function define_sets()
         legs = telchine.legs.att,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Telos Earring",
         right_ear = "Cessance Earring",
         left_ring = "Chirich Ring +1",
@@ -178,7 +179,7 @@ function define_sets()
         legs = nyame.legs, -- 8%
         feet = nyame.feet, -- 7%
         neck = "Bard's Charm +2",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Telos Earring",
         right_ear = "Cessance Earring",
         left_ring = "Moonlight Ring", -- 5%
@@ -186,8 +187,8 @@ function define_sets()
         back = back.tp -- 10% PDT
     }
     sets.TP.DT1H = {
-        main = "Naegling",
-        -- main = "Twashtar",
+        -- main = "Naegling",
+        main = "Twashtar",
         -- main = "Tauret",
         sub = "Genmei Shield",
         range = linos.tp,
@@ -197,7 +198,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Telos Earring",
         right_ear = "Cessance Earring",
         left_ring = "Moonlight Ring",
@@ -217,7 +218,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Ilabrat Ring",
@@ -232,10 +233,10 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Sibyl Scarf",
-        waist = "Eschan Stone",
-        left_ear = "Regal Earring",
+        waist = "Orpheus's Sash",
+        left_ear = "Moonshade Earring",
         right_ear = "Friomisi Earring",
-        left_ring = "Metamor. Ring +1",
+        left_ring = "Epaminondas's Ring",
         right_ring = "Shiva Ring +1",
         back = back.strws
     }
@@ -247,7 +248,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Metamor. Ring +1",
@@ -277,9 +278,9 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Bard's Charm +2",
-        waist = kentarch.belt,
+        waist = sailfi.belt,
         left_ear = "Regal Earring",
-        right_ear = "Ishvara Earring",
+        right_ear = "Mache Earring +1",
         left_ring = "Metamor. Ring +1",
         right_ring = "Epaminondas's Ring",
         back = back.chrws
@@ -287,16 +288,16 @@ function define_sets()
     sets.WS.Evisceration = {
         range = linos.dexws,
         head = "Blistering Sallet +1",
-        body = ayanmo.body,
-        hands = bunzi.hands,
+        body = relic.body,
+        hands = nyame.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = lustratio.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Moonshade Earring",
-        right_ear = "Brutal Earring",
-        left_ring = "Hetairoi Ring",
-        right_ring = "Begrudging Ring",
+        right_ear = "Mache Earring +1",
+        left_ring = "Begrudging Ring",
+        right_ring = "Ilabrat Ring",
         back.tp
     }
     -- sets.WS.Evisceration.DT1H = {
@@ -400,10 +401,10 @@ function define_sets()
         main = "Daybreak",
         sub = "Ammurapi Shield",
         head = vanya.head,
-        body = bunzi.body,
-        hands = "Hieros Mittens",
+        body = kaykaus.body,
+        hands = kaykaus.hands,
         legs = vanya.legs,
-        feet = vanya.feet,
+        feet = kaykaus.feet,
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
         left_ear = "Mendi. Earring",
@@ -471,7 +472,7 @@ function define_sets()
         right_ear = "Etiolation Earring",
         left_ring = "Defending Ring",
         right_ring = "Gelatinous Ring +1",
-        waist = "Flume Belt +1",
+        waist = "Plat. Mog. Belt",
         back = back.maccfc
     }
     sets.midcast.Paeon = set_combine(sets.midcast.Songs.Buff, {
@@ -538,8 +539,7 @@ function define_sets()
     -- ***Weather Gear***
     -- =========================================================================================================
     sets.Weather = {
-        waist = "Hachirin-no-obi",
-        back = "Twilight Cape"
+        waist = "Hachirin-no-obi"
     }
 
     sets.Distance = {

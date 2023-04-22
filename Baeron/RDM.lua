@@ -32,7 +32,7 @@ function define_sets()
         hands = "Lethargy Gantherots +2",
         legs = "Lethargy Fuseau +2",
         feet = "Lethargy Houseaux +3",
-        ear = "Lethargy Earring +1"
+        ear = "Leth. Earring +1"
     }
 
     back = {
@@ -55,7 +55,8 @@ function define_sets()
         },
         rangedws = {
             name = "Sucellos's Cape",
-            augments = {'AGI+20', 'Rng.Acc.+20 Rng.Atk.+20', 'AGI+10', 'Weapon skill damage +10%'}
+            augments = {'AGI+20', 'Rng.Acc.+20 Rng.Atk.+20', 'AGI+10', 'Weapon skill damage +10%',
+                        'Phys. dmg. taken-10%'}
         }
     }
 
@@ -140,7 +141,7 @@ function define_sets()
 
     sets.TP.Enspell = {
         main = "Crocea Mors",
-        sub = "Genmei Shield",
+        sub = bunzi.rod,
         ranged = empty,
         ammo = "Sroda Tathlum",
         head = malignance.head,
@@ -196,10 +197,12 @@ function define_sets()
         ranged = empty,
         ammo = "Ghastly Tathlum +1",
         head = nyame.head,
+        -- head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
+        -- hands = empy.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = empy.feet,
         neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Malignance Earring",
@@ -211,16 +214,16 @@ function define_sets()
 
     sets.WS["Savage Blade"] = {
         ranged = empty,
-        ammo = "Crepuscular Pebble",
+        ammo = "Coiste Bodhar",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = empy.feet,
         neck = "Rep. Plat. Medal",
-        waist = "Sailfi Belt +1",
-        left_ear = "Regal Earring",
-        right_ear = "Moonshade Earring",
+        waist = sailfi.belt,
+        left_ear = "Moonshade Earring",
+        right_ear = "Sherida Earring",
         left_ring = "Epaminondas's Ring",
         right_ring = "Metamorph Ring +1",
         back = back.enfws
@@ -228,14 +231,14 @@ function define_sets()
 
     sets.WS["Black Halo"] = {
         ranged = empty,
-        ammo = "Crepuscular Pebble",
+        ammo = "Coiste Bodhar",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = empy.feet,
         neck = "Rep. Plat. Medal",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Regal Earring",
         right_ear = "Moonshade Earring",
         left_ring = "Epaminondas's Ring",
@@ -264,16 +267,16 @@ function define_sets()
         ranged = empty,
         ammo = "Yetshila +1",
         head = "Blistering Sallet +1",
-        body = nyame.body,
+        body = malignance.body,
         hands = nyame.hands,
-        legs = nyame.legs,
+        legs = "Zoar Subligar +1",
         feet = nyame.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Mache Earring +1",
         right_ear = "Sherida Earring",
         left_ring = "Ilabrat Ring",
-        right_ring = "Hetairoi Ring",
+        right_ring = "Begrudging Ring",
         back = back.crit
     }
 
@@ -283,14 +286,15 @@ function define_sets()
         head = "Pixie Hairpin +1",
         body = nyame.body,
         hands = nyame.hands,
+        -- hands = empy.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
-        neck = "Sanctity Necklace",
+        feet = empy.feet,
+        neck = "Baetyl Pendant",
         waist = "Orpheus's Sash",
         left_ear = "Malignance Earring",
         right_ear = "Regal Earring",
         left_ring = "Archon Ring",
-        right_ring = "Metamorph Ring +1",
+        right_ring = "Epaminondas's Ring",
         back = back.enfws
     }
 
@@ -298,33 +302,37 @@ function define_sets()
         ranged = empty,
         ammo = "Pemphredo Tathlum",
         head = nyame.head,
+        -- head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
+        -- hands = empy.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = empy.feet,
         neck = "Sibyl Scarf",
         waist = "Orpheus's Sash",
         left_ear = "Malignance Earring",
-        right_ear = "Friomisi Earring",
+        right_ear = "Moonshade Earring",
         left_ring = "Freke Ring",
-        right_ring = "Metamorph Ring +1",
+        right_ring = "Epaminondas's Ring",
         back = back.enfws
     }
 
     sets.WS["Seraph Blade"] = {
         ranged = empty,
-        ammo = "Regal Gem",
+        ammo = "Pemphredo Tathlum",
         head = nyame.head,
+        -- head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
+        -- hands = empy.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
-        neck = "Sibyl Scarf",
+        feet = empy.feet,
+        neck = "Fotia Gorget",
         waist = "Orpheus's Sash",
-        left_ear = "Regal Earring",
+        left_ear = "Malignance Earring",
         right_ear = "Moonshade Earring",
         left_ring = "Freke Ring",
-        right_ring = "Metamorph Ring +1",
+        right_ring = "Epaminondas's Ring",
         back = back.enfws
     }
 
@@ -332,16 +340,16 @@ function define_sets()
         ranged = empty,
         ammo = "Yetshila +1",
         head = "Blistering Sallet +1",
-        body = nyame.body,
-        hands = nyame.hands,
-        legs = nyame.legs,
+        body = malignance.body,
+        hands = malignance.hands,
+        legs = "Zoar Subligar +1",
         feet = nyame.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Mache Earring +1",
         right_ear = "Sherida Earring",
         left_ring = "Ilabrat Ring",
-        right_ring = "Hetairoi Ring",
+        right_ring = "Cacoethic Ring +1",
         back = back.crit
     }
 
@@ -349,8 +357,10 @@ function define_sets()
         ranged = empty,
         ammo = "Ghastly Tathlum +1",
         head = nyame.head,
+        -- head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
+        -- hands = empy.hands,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Sibyl Scarf",
@@ -405,13 +415,13 @@ function define_sets()
     sets.precast.FastCast = {
         head = af.head, -- 16%
         body = relic.body, -- 15%
-        hands = "Gendewitha Gages +1", -- 7% -- TODO: Replace these
+        hands = "Leyline Gloves", -- 8%
         legs = "Volte Brais", -- 8%
         feet = amalric.feet, -- 6%
         neck = "Orunmila's Torque", -- 5%
         waist = "Embla Sash", -- 5%
         left_ear = "Malignance Earring", -- 4%
-        right_ear = "Etiolation Earring", -- 2%
+        right_ear = empy.ear, -- 8%
         left_ring = "Rahab Ring", -- 2%
         right_ring = "Kishar Ring", -- 4%
         back = "Fi Follet Cape +1" -- 10%
@@ -436,7 +446,7 @@ function define_sets()
         sub = "Enki Strap",
         ranged = empty,
         ammo = "Regal Gem",
-        head = "Vanya Hood", -- +17%
+        head = vanya.head, -- +17%
         body = kaykaus.body, -- II +4%
         hands = kaykaus.hands, -- +11% II +4% (from the set bonus)
         legs = af.legs, -- 11~12%
@@ -489,7 +499,7 @@ function define_sets()
         neck = "Dls. Torque +2",
         waist = "Obstinate Sash",
         left_ear = "Regal Earring",
-        right_ear = "Digni. Earring",
+        right_ear = empy.ear,
         left_ring = "Stikini Ring +1",
         right_ring = "Metamorph Ring +1",
         back = back.enfws
@@ -598,7 +608,7 @@ function define_sets()
         neck = "Dls. Torque +2",
         waist = "Embla Sash",
         left_ear = "Loquac. Earring",
-        right_ear = "Etiolation Earring",
+        right_ear = empy.ear,
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1",
         back = "Ghostfyre Cape"
@@ -618,7 +628,7 @@ function define_sets()
         neck = "Dls. Torque +2",
         waist = "Embla Sash",
         left_ear = "Loquac. Earring",
-        right_ear = "Etiolation Earring",
+        right_ear = empy.ear,
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1",
         back = "Ghostfyre Cape"

@@ -7,7 +7,7 @@ lockstyleset = 20
 function define_sets()
     Melee_Modes = T {'Staff', 'Dagger'}
     Idle_Modes = T {'Speed', 'DT'}
-    Magic_Modes = T {'MAB', 'Vagary', 'Sortie', 'Occult', 'DT', 'TH'}
+    Magic_Modes = T {'MAB', 'Vagary', 'Sortie', 'DT', 'TH'}
     fastcast = .8
 
     back = {
@@ -192,6 +192,21 @@ function define_sets()
         head = "Pixie Hairpin +1",
         right_ring = "Archon Ring"
     })
+    sets.WS.Shattersoul = {
+        ammo = "Ghastly Tathlum +1",
+        head = nyame.head,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Argute Stole +2",
+        waist = "Fotia Belt",
+        left_ear = "Regal Earring",
+        right_ear = "Malignance Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Metamor. Ring +1",
+        back = back.intws
+    }
     sets.WS["Shell Crusher"] = {
         ammo = "Amar Cluster",
         head = nyame.head,
@@ -279,21 +294,22 @@ function define_sets()
         left_ear = "Mendicant's Earring", -- 5% Potency
         right_ear = "Regal Earring",
         left_ring = "Lebeche Ring", -- 3% Potency
-        right_ring = "Naji's Loop" -- 1% Potency, 1% Potency II
+        right_ring = "Naji's Loop", -- 1% Potency, 1% Potency II
+        back = "Oretan. Cape +1"
     }
     sets.midcast.CurSelf = set_combine(sets.midcast.Cur, {
         neck = "Phalaina Locket",
         waist = "Gishdubar Sash",
         right_ring = "Kunaji Ring"
     })
-    sets.midcast.Cur.DT = { -- 42% Cure Pot, 49% DT
+    sets.midcast.Cur.DT = { -- 48% Cure Pot, 53% DT
         main = "Chatoyant Staff",
         sub = "Khonsu", -- 6% DT
         ammo = "Staunch Tathlum +1", -- 3% DT
         head = vanya.head, -- 17% Cure Pot
-        body = nyame.body, -- 9% DT
+        body = empy.body, -- 13% DT
         hands = nyame.hands, -- 7% DT
-        legs = nyame.hands, -- 8% DT
+        legs = nyame.legs, -- 8% DT
         feet = kaykaus.feet, -- 17% Cure Pot
         neck = "Loricate Torque +1", -- 6% DT
         waist = "Shinjutsu-no-Obi +1", -- 15 Conserve MP
@@ -301,7 +317,7 @@ function define_sets()
         right_ear = "Regal Earring", -- 1~5 MND
         left_ring = "Lebeche Ring", -- 3% Cure Pot
         right_ring = "Defending Ring", -- 10% DT
-        back = "Twilight Cape"
+        back = "Oretan. Cape +1" -- 6% Cure Pot
     }
     sets.midcast.CurSelf.DT = set_combine(sets.midcast.CurSelf, {
         neck = "Phalaina Locket",
@@ -309,7 +325,7 @@ function define_sets()
         right_ring = "Kunaji Ring"
     })
 
-    sets.midcast.Cursna = set_combine(sets.midcast.Cure, {
+    sets.midcast.Cursna = set_combine(sets.midcast.Cur, {
         main = "Gada",
         sub = "Genmei Shield",
         head = vanya.head,
@@ -325,12 +341,12 @@ function define_sets()
         back = "Oretania's Cape +1"
     })
 
-    sets.midcast.EnhancingDuration = { -- +69, Duration +80%
+    sets.midcast.EnhancingDuration = { -- +69, Duration +82%
         main = "Musa", -- 20% Duration
         sub = "Khonsu",
-        head = telchine.head.enhfc, -- Duration +9%
+        head = telchine.head.enhfc, -- Duration +10%
         body = relic.body, -- +19, Duration +12%
-        hands = telchine.hands.enhfc, -- Duration +9%
+        hands = telchine.hands.enhfc, -- Duration +10%
         legs = telchine.legs.enhfc, -- Duration +10%
         feet = telchine.feet.enhfc, -- Duration +10%
         neck = "Incanter's Torque", -- +10
@@ -361,7 +377,7 @@ function define_sets()
         main = "Musa", -- +25 Potency, Duration +20%
         sub = "Khonsu",
         head = empy.head,
-        body = telchine.body.enhfc,
+        body = telchine.body.enhfc, -- Duration +12, Duration +10%
         back = back.nuke -- Duration + 15%
     })
     sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration, {
@@ -373,6 +389,9 @@ function define_sets()
     sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration, {
         head = amalric.head,
         hands = "Regal Cuffs"
+    })
+    sets.midcast.storm = set_combine(sets.midcast.EnhancingDuration, {
+        feet = relic.feet
     })
 
     enfeeblingSet = {
@@ -403,7 +422,7 @@ function define_sets()
     sets.midcast.Sleep.TH = set_combine(enfeeblingSet, th)
 
     sets.midcast.Elemental = {
-        main = "Bunzi's Rod",
+        main = bunzi.rod,
         sub = "Ammurapi Shield",
         ammo = "Ghastly Tathlum +1",
         head = agwu.head,
@@ -431,8 +450,10 @@ function define_sets()
         sub = "Khonsu",
         ammo = "Pemphredo Tathlum",
         head = "Befouled Crown",
-        body = jhakri.body, -- TODO: Remove this
-        hands = jhakri.hands, -- TODO: Remove this
+        body = pinga.body,
+        -- body = jhakri.body, -- TODO: Remove this
+        hands = af.hands,
+        -- hands = jhakri.hands, -- TODO: Remove this
         legs = psycloth.legs,
         feet = af.feet,
         neck = "Loricate Torque +1",
@@ -473,7 +494,7 @@ function define_sets()
     sets.midcast.ElementalMB.withBuffs = {}
 
     sets.midcast.helix = {
-        main = "Bunzi's Rod",
+        main = bunzi.rod,
         sub = "Culminus",
         ammo = "Ghastly Tathlum +1",
         head = agwu.head,
@@ -490,7 +511,7 @@ function define_sets()
         back = back.nuke
     }
     sets.midcast.helix.Sortie = { -- 63% FC
-        main = "Malignance Pole",
+        main = "Levin",
         sub = "Khonsu",
         ammo = "Sapience Orb", -- 2% FC
         head = "Pixie Hairpin +1",
@@ -519,16 +540,40 @@ function define_sets()
     sets.midcast.LuminohelixMB = set_combine(sets.midcast.helixMB, {
         main = "Daybreak"
     })
-    sets.midcast.Kaustra = set_combine(sets.midcast.helix, {
-        head = "Pixie Hairpin +1",
-        left_ring = "Metamorph Ring +1",
-        right_ring = "Archon Ring"
-    })
-    sets.midcast.KaustraMB = set_combine(sets.midcast.helixMB, {
-        head = "Pixie Hairpin +1",
-        left_ring = "Metamorph Ring +1",
-        right_ring = "Archon Ring"
-    })
+    sets.midcast.Kaustra = {
+        main = bunzi.rod,
+        sub = "Ammurapi Shield",
+        ammo = "Ghastly Tathlum +1",
+        head = empy.head,
+        body = empy.body,
+        hands = agwu.hands,
+        legs = agwu.legs,
+        feet = empy.feet,
+        neck = "Argute Stole +2",
+        waist = "Sacro Cord",
+        left_ear = "Malignance Earring",
+        right_ear = "Regal Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Metamor. Ring +1",
+        back = back.nuke
+    }
+    sets.midcast.KaustraMB = {
+        main = bunzi.rod, -- 10 MB
+        sub = "Ammurapi Shield",
+        ammo = "Ghastly Tathlum +1",
+        head = empy.head,
+        body = agwu.body, -- 10 MB
+        hands = agwu.hands, -- 8 MB, 6 MB2
+        legs = agwu.legs, -- 9 MB
+        feet = empy.feet, -- 5 MB2
+        neck = "Argute Stole +2", -- 5 MB
+        waist = "Sacro Cord",
+        left_ear = "Malignance Earring",
+        right_ear = "Regal Earring",
+        left_ring = "Freke Ring",
+        right_ring = "Metamor. Ring +1",
+        back = back.nuke
+    }
     sets.midcast.Impact = {
         main = "Contemplator +1",
         sub = "Khonsu",
@@ -616,9 +661,25 @@ function pretarget(spell)
     end
 end
 
+function mod_midcast(spell, set, mode)
+    if spell.target.name == 'Bumba' and (string.endswith(spell.english, 'helix') or spell.name == 'Aero') then
+        return sets.midcast.helix.Sortie
+    end
+
+    if spell.name == 'Kaustra' and world.weather_element == 'Dark' or world.day_element == 'Dark' then
+        return set_combine(set, {
+            waist = "Anrin Obi"
+        })
+    end
+
+    return set
+end
+
 function mod_aftercast(spell, set)
     if spell.name == 'Klimaform' then
         send_command('@wait 300; input /echo RECAST KLIMAFORM')
+    elseif spell.name == 'Kaustra' then
+        send_command('timers create Kaustra 150 down')
     end
 
     return set

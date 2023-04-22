@@ -5,7 +5,7 @@ include('set-behavior')
 lockstyleset = 19
 
 function define_sets()
-    Melee_Modes = T {'Club', 'Staff'}
+    Melee_Modes = T {'Club', 'Staff', 'Aeolian', 'Omen'}
     Idle_Modes = T {'Speed', 'Refresh'}
     Magic_Modes = T {'MAB', 'Acc'}
 
@@ -13,35 +13,47 @@ function define_sets()
 
     af = {
         head = "Geomancy Galero +1",
-        body = "Geomancy Tunic +2",
-        hands = "Geomancy Mitaines +2",
-        legs = "Geomancy Pants +1",
-        feet = "Geomancy Sandals +2"
+        body = "Geomancy Tunic +3",
+        hands = "Geomancy Mitaines +3",
+        legs = "Geomancy Pants +3",
+        feet = "Geomancy Sandals +3"
     }
 
     relic = {
-        head = "Bagua Galero +1",
-        body = "Bagua Tunic +1",
+        head = "Bagua Galero +3",
+        body = "Bagua Tunic +3",
         hands = "Bagua Mitaines +1",
-        legs = "Bagua Pants +1",
-        feet = "Bagua Sandals +1"
+        legs = "Bagua Pants +3",
+        feet = "Bagua Sandals +3"
     }
 
     empy = {
         head = "Azimuth Hood +2",
         body = "Azimuth Coat +2",
-        hands = "Azimuth Gloves +1",
-        legs = "Azimuth Tights +1",
+        hands = "Azimuth Gloves +2",
+        legs = "Azimuth Tights +2",
         feet = "Azimuth Gaiters +2"
     }
 
     back = {
-        luopan = {},
-        mab = {},
-        macc = {},
-        tp = {},
-        strws = {},
-        mabws = {},
+        luopan = {
+            name = "Nantosuelta's Cape",
+            augments = {'VIT+20', 'Eva.+20 /Mag. Eva.+20', 'Evasion+10', 'Pet: "Regen"+10', 'Pet: "Regen"+5'}
+        },
+        mab = {
+            name = "Nantosuelta's Cape",
+            augments = {'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', '"Mag.Atk.Bns."+10', 'Phys. dmg. taken-10%'}
+        },
+        -- macc = {},
+        tp = {
+            name = "Nantosuelta's Cape",
+            augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
+        },
+        strws = {
+            name = "Nantosuelta's Cape",
+            augments = {'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%'}
+        },
+        -- mabws = {},
         indi = "Lifestream Cape"
     }
 
@@ -54,23 +66,20 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle = { -- 83% PDT, 76% MDT, Refresh +3
-        main = "Malignance Pole", -- 20% DT
-        sub = "Khonsu", -- 6% DT
+    sets.Idle = { -- 64% PDT, 57% MDT, Refresh +3
         ammo = "Staunch Tathlum +1", -- 3% DT
-        head = nyame.head, -- 7% DT
+        head = empy.head, -- 11% DT
         body = nyame.body, -- 9% DT
         hands = nyame.hands, -- 7% DT
         legs = nyame.legs, -- 8% DT
-        feet = nyame.feet, -- 7% DT
+        feet = empy.feet, -- 10% DT
         neck = "Loricate Torque +1", -- 6% DT
         waist = "Fucho-no-Obi", -- Refresh +1
         left_ear = "Etiolation Earring", -- 3% MDT
         right_ear = "Halasz Earring", -- MP +45
         left_ring = "Stikini Ring +1", -- Refresh +1
         right_ring = "Stikini Ring +1", -- Refresh +1
-        -- back = back.tp -- 10% PDT
-        back = "Mecisto. Mantle"
+        back = back.tp -- 10% PDT
     }
     sets.Idle.Speed = set_combine(sets.Idle, {
         feet = af.feet
@@ -87,8 +96,9 @@ function define_sets()
     })
 
     -- With a luopan out
+    -- TODO: Tweak this for more refresh
     sets.Idle_Pet = {
-        main = "Solstice",
+        main = "Idris",
         sub = "Genmei Shield",
         ammo = "Staunch Tathlum +1",
         head = empy.head,
@@ -96,14 +106,13 @@ function define_sets()
         hands = af.hands,
         legs = nyame.legs,
         feet = relic.feet,
-        neck = "Loricate Torque +1",
+        neck = "Bagua Charm +2",
         waist = "Isa Belt",
         left_ear = "Etiolation Earring",
         right_ear = "Halasz Earring",
         left_ring = "Defending Ring",
-        right_ring = "Stikini Ring +1",
-        -- back = back.luopan
-        back = "Mecisto. Mantle"
+        right_ring = "Dark Ring",
+        back = back.luopan
     }
 
     -- =========================================================================================================
@@ -119,7 +128,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Combatant's Torque",
-        waist = "Grunfeld Rope",
+        waist = "Olseni Belt",
         left_ear = "Telos Earring",
         right_ear = "Crepuscular Earring",
         left_ring = "Chirich Ring +1",
@@ -136,14 +145,31 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Combatant's Torque",
-        waist = "Grunfeld Rope",
+        waist = "Olseni Belt",
         left_ear = "Telos Earring",
         right_ear = "Crepuscular Earring",
         left_ring = "Chirich Ring +1",
         right_ring = "Chirich Ring +1",
         back = back.tp
     }
-
+    sets.TP.Aeolian = {
+        main = malevolence,
+        sub = "Genmei Shield",
+        ammo = "Amar Cluster",
+        head = nyame.head,
+        body = nyame.body,
+        hands = gazu.bracelet,
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Combatant's Torque",
+        waist = "Olseni Belt",
+        left_ear = "Telos Earring",
+        right_ear = "Crepuscular Earring",
+        left_ring = "Chirich Ring +1",
+        right_ring = "Chirich Ring +1",
+        back = back.tp
+    }
+    sets.TP.Omen = sets.TP.Staff
     -- =========================================================================================================
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
@@ -175,10 +201,26 @@ function define_sets()
         right_ear = "Regal Earring",
         left_ring = "Metamor. Ring +1",
         right_ring = "Freke Ring",
-        back = back.mabws
+        back = back.mab
+        -- back = back.mabws
 
     } -- Any magical weapon skill that isn't otherwise specified
 
+    sets.WS.MAB.Omen = {
+        ammo = empty,
+        head = empty,
+        body = empty,
+        hands = empty,
+        legs = empty,
+        feet = empty,
+        neck = empty,
+        waist = empty,
+        left_ear = empty,
+        right_ear = empty,
+        left_ring = empty,
+        right_ring = empty,
+        back = empty
+    }
     -- =========================================================================================================
     -- ***Job Ability Sets***
     -- =========================================================================================================
@@ -211,14 +253,11 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 83%
-        main = "Solstice", -- 5%
-        sub = "Genmei Shield",
-        range = "Dunna", -- 3%
+    sets.precast.FastCast = { -- 82%
         head = amalric.head, -- 11%
         body = "Zendik Robe", -- 13%
         hands = agwu.hands, -- 6%
-        legs = af.legs, -- 9~15%
+        legs = af.legs, -- 15%
         feet = amalric.feet, -- 6%,
         neck = "Orunmila's Torque", -- 5%,
         waist = "Embla Sash", -- 5%,
@@ -228,6 +267,10 @@ function define_sets()
         right_ring = "Rahab Ring", -- 2%
         back = "Fi Follet Cape +1" -- 10%
     }
+    sets.precast.Dispelga = set_combine(sets.precast.FastCast, {
+        main = "Daybreak",
+        sub = "Genmei Shield"
+    })
     sets.precast.Geomancy = set_combine(sets.precast.FastCast, {
         range = "Dunna",
         ammo = empty
@@ -241,7 +284,7 @@ function define_sets()
     -- ***Midcast Sets for Spells***
     -- =========================================================================================================
     sets.midcast["Indi-"] = {
-        main = "Solstice",
+        main = "Idris",
         sub = "Genmei Shield",
         range = "Dunna",
         ammo = empty,
@@ -250,27 +293,12 @@ function define_sets()
         hands = af.hands,
         legs = relic.legs,
         feet = empy.feet,
-        neck = "Incanter's Torque",
+        neck = "Bagua Charm +2",
         left_ring = "Stikini Ring +1",
         right_ring = "Stikini Ring +1",
         back = back.indi
     }
-    sets.midcast["Geo-"] = {
-        main = "Solstice",
-        sub = "Genmei Shield",
-        range = "Dunna",
-        ammo = empty,
-        head = empy.head,
-        body = relic.body,
-        hands = af.hands,
-        legs = relic.legs,
-        feet = "Medium's Sabots",
-        neck = "Incanter's Torque",
-        -- neck = "Bagua Charm +2",
-        left_ring = "Stikini Ring +1",
-        right_ring = "Stikini Ring +1",
-        back = back.indi
-    }
+    sets.midcast["Geo-"] = sets.midcast["Indi-"]
 
     sets.midcast.Healing = {
         main = "Daybreak",
@@ -354,14 +382,13 @@ function define_sets()
     })
 
     sets.midcast.Enfeebling = {
-        main = "Daybreak",
+        main = "Idris",
         sub = "Ammurapi Shield",
         ammo = "Pemphredo Tathlum",
         head = "Cath Palug Crown",
         body = agwu.body,
         hands = "Regal Cuffs",
-        legs = "Psycloth Lappas",
-        -- legs = af.legs,
+        legs = af.legs,
         feet = agwu.feet,
         neck = "Incanter's Torque",
         waist = "Luminary Sash",
@@ -369,8 +396,11 @@ function define_sets()
         right_ear = "Regal Earring",
         left_ring = "Kishar Ring",
         right_ring = "Stikini Ring +1",
-        back = back.macc
+        back = back.mab
+        -- back = back.macc
     }
+
+    sets.midcast.Dia = th
 
     sets.midcast.Dispelga = set_combine(sets.midcast.Enfeebling, {
         main = "Daybreak",
@@ -398,15 +428,12 @@ function define_sets()
         main = bunzi.rod,
         sub = "Ammurapi Shield",
         ammo = "Ghastly Tathlum +1",
-        head = agwu.head,
-        -- head = ea.head,
-        body = amalric.body,
-        -- body = ea.body,
+        head = ea.head,
+        body = ea.body,
         hands = amalric.hands,
-        legs = agwu.legs,
-        -- legs = ea.legs,
+        legs = ea.legs,
         feet = agwu.feet,
-        -- feet = relic.feet,
+        -- feet = empy.feet,
         neck = "Mizukage-no-Kubikazari",
         waist = "Sacro Cord",
         left_ear = "Malignance Earring",
@@ -436,15 +463,12 @@ function define_sets()
         main = bunzi.rod,
         sub = "Ammurapi Shield",
         ammo = "Pemphredo Tathlum",
-        head = agwu.head,
-        -- head = ea.head,
-        body = agwu.body,
-        -- body = ea.body,
+        head = ea.head,
+        body = ea.body,
         hands = agwu.hands,
-        legs = agwu.legs,
-        -- legs = ea.legs,
+        legs = ea.legs,
         feet = agwu.feet,
-        -- feet = relic.feet,
+        -- feet = empy.feet,
         neck = "Mizukage-no-Kubikazari",
         waist = "Sacro Cord",
         left_ear = "Malignance Earring",
@@ -497,8 +521,7 @@ function define_sets()
     -- ***Special Gear***
     -- =========================================================================================================
     sets.Weather = {
-        waist = "Hachirin-no-obi",
-        back = "Twilight Cape"
+        waist = "Hachirin-no-obi"
     }
 
     sets.Distance = {

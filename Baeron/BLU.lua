@@ -6,9 +6,9 @@ include('augments')
 lockstyleset = 16
 
 function define_sets()
-    Melee_Modes = T {'DT', 'Att', 'Refresh'}
+    Melee_Modes = T {'DT', 'Refresh'}
     Idle_Modes = T {'Speed', 'DT', 'Evasion'}
-    Magic_Modes = T {'Acc', 'MAB', 'TH', 'Enmity'}
+    Magic_Modes = T {'MAB', 'Acc', 'TH', 'Enmity'}
     stances.WAR = S {'Berserk'}
     fastcast = .8
 
@@ -20,7 +20,7 @@ function define_sets()
 
     enmity_gear = {
         ammo = "Sapience Orb",
-        head = nyame.head,
+        head = "Rabid Visor",
         body = "Emet Harness +1",
         hands = nyame.hands,
         legs = nyame.legs,
@@ -69,9 +69,9 @@ function define_sets()
     }
 
     relic = {
-        head = "Luhlaza Keffiyeh +1",
+        head = "Luhlaza Keffiyeh +3",
         legs = "Luhlaza Shalwar +3",
-        feet = "Luhlaza Charuqs +1"
+        feet = "Luhlaza Charuqs +3"
     }
 
     empy = {
@@ -79,7 +79,8 @@ function define_sets()
         body = "Hashishin Mintan +3",
         hands = "Hashi. Bazu. +3",
         legs = "Hashishin Tayt +3",
-        feet = "Hashi. Basmak +3"
+        feet = "Hashi. Basmak +3",
+        ear = "Hashi. Earring +1"
     }
 
     sets.empy = empy
@@ -87,7 +88,7 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.DT = { -- Refresh +17, 32% DT, 20% PDT, 3% MDT
+    sets.Idle.DT = { -- Refresh +17, 35% DT, 16% PDT, 3% MDT
         main = { -- Refresh +2
             name = "Colada",
             augments = {'"Refresh"+2', 'INT+2', 'Mag. Acc.+3', 'DMG:+2'}
@@ -105,14 +106,14 @@ function define_sets()
         neck = "Loricate Torque +1", -- DT -6%
         left_ear = "Etiolation Earring", -- MDT -3%, Resist Silence +15
         right_ear = "Sanare Earring", -- MDB +4
-        waist = "Flume Belt +1", -- PDT -4%
+        waist = "Plat. Mog. Belt", -- DT -3%
         left_ring = "Defending Ring", -- DT -10%
         right_ring = "Stikini Ring +1", -- Refresh +1
         back = back.tp -- PDT -10%
     }
 
     sets.Idle.Speed = set_combine(sets.Idle.DT, { -- Refresh +15, 32% DT, 18% PDT, 3% MDT
-        legs = "Carmine Cuisses +1"
+        legs = carmine.legs
     })
 
     sets.Idle.Evasion = { -- +590~600 Evasion, 55% PDT, 47% MDT
@@ -152,35 +153,24 @@ function define_sets()
         back = back.tp
     }
 
-    sets.TP.Att = {
+    -- DT Sets
+    sets.TP.DT = { -- 51% DT
         main = "Tizona",
         sub = "Thibron",
-        ammo = "Aurgelmir Orb +1",
-        head = adhemar.head,
-        body = ayanmo.body,
-        hands = adhemar.hands,
-        legs = "Samnuha Tights",
-        feet = herc.feet.dexta,
-        neck = "Mirage Stole +2",
-        waist = "Windbuffet Belt +1",
-        left_ear = "Telos Earring",
-        right_ear = "Cessance Earring",
-        left_ring = "Petrov Ring",
-        right_ring = "Epona's Ring",
-        back = back.tp
-    }
-
-    -- DT Sets
-    sets.TP.DT = set_combine(sets.TP.Att, { -- 50% DT
+        ammo = "Coiste Bodhar",
         head = malignance.head, -- 6% DT
         body = malignance.body, -- 9% DT
         hands = malignance.hands, -- 5% DT
         legs = malignance.legs, -- 7% DT
         feet = malignance.feet, -- 4%
         neck = "Mirage Stole +2",
+        waist = "Windbuffet Belt +1",
+        left_ear = "Telos Earring",
+        right_ear = "Cessance Earring",
         left_ring = "Defending Ring", -- 10%
-        back = back.tp
-    })
+        right_ring = "Epona's Ring",
+        back = back.tp -- 10%
+    }
 
     for mode, set in pairs(sets.TP) do
         set.withBuffs = {}
@@ -193,12 +183,15 @@ function define_sets()
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
     sets.WS["Chant du Cygne"] = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Coiste Bodhar",
         head = adhemar.head,
         body = nyame.body,
+        -- body = gleti.body,
         hands = adhemar.hands,
         legs = nyame.legs,
+        -- legs = gleti.legs
         feet = nyame.feet,
+        -- feet = gleti.feet,
         neck = "Mirage Stole +2",
         waist = "Fotia Belt",
         left_ear = "Mache Earring +1",
@@ -217,23 +210,23 @@ function define_sets()
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Moonshade Earring",
-        right_ear = "Brutal Earring",
+        right_ear = "Regal Earring",
         left_ring = "Rufescent Ring",
-        right_ring = "Epona's Ring",
+        right_ring = "Metamor. Ring +1",
         back = back.strws
     }
     sets.WS["Savage Blade"] = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Coiste Bodhar",
         head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Mirage Stole +2",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
-        left_ring = "Rufescent Ring",
+        left_ring = "Beithir Ring",
         right_ring = "Epaminondas's Ring",
         back = back.strws
     }
@@ -252,7 +245,7 @@ function define_sets()
         head = "Pixie Hairpin +1",
         body = empy.body,
         hands = empy.hands,
-        legs = relic.legs,
+        legs = empy.legs,
         feet = empy.feet,
         neck = "Baetyl Pendant",
         waist = "Sacro Cord",
@@ -270,7 +263,7 @@ function define_sets()
         legs = nyame.legs,
         feet = nyame.feet,
         neck = "Mirage Stole +2",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Moonshade Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Rufescent Ring",
@@ -282,7 +275,7 @@ function define_sets()
         head = empy.head,
         body = nyame.body,
         hands = nyame.hands,
-        legs = relic.legs,
+        legs = empy.legs,
         feet = herc.feet.thmab,
         neck = "Baetyl Pendant",
         waist = "Sacro Cord",
@@ -305,12 +298,12 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 82%
+    sets.precast.FastCast = { -- 83%
         head = carmine.head, -- 14%
         body = pinga.body, -- 15%
-        hands = "Leyline Gloves", -- 7%
+        hands = "Leyline Gloves", -- 8%
         legs = pinga.legs, -- 13%
-        feet = "Carmine Greaves +1", -- 8%
+        feet = carmine.feet, -- 8%
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Loquac. Earring", -- 2%
         right_ear = "Enchntr. Earring +1", -- 2%
@@ -375,21 +368,21 @@ function define_sets()
         neck = "Mirage Stole +2",
         waist = "Acuity Belt +1",
         left_ear = "Regal Earring",
-        right_ear = "Hashi. Earring +1",
+        right_ear = empy.ear,
         left_ring = "Stikini Ring +1",
         right_ring = "Metamorph Ring +1",
         back = "Aurist's Cape +1"
     }
 
     sets.midcast.BlueMagic.Physical = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Coiste Bodhar",
         head = empy.head,
         body = empy.body,
         hands = empy.hands,
         legs = empy.legs,
         feet = empy.feet,
         neck = "Mirage Stole +2",
-        waist = "Wanion Belt",
+        waist = kentarch.belt,
         left_ear = "Telos Earring",
         right_ear = "Odr Earring",
         left_ring = "Ilabrat Ring",
@@ -406,12 +399,15 @@ function define_sets()
         neck = "Mirage Stole +2", -- Acc +25, MAcc +25
         waist = "Eschan Stone", -- Acc +15, MAcc +7
         left_ear = "Digni. Earring", -- Acc +10, Macc +10
-        right_ear = "Hashi. Earring +1", -- Acc +12, Macc +12, Skill +11
+        right_ear = empy.ear, -- Acc +12, Macc +12, Skill +11
         left_ring = "Stikini Ring +1", -- Macc +8, BLU +8
         right_ring = "Stikini Ring +1", -- Macc +8, BLU +8
         back = "Aurist's Cape +1" -- Acc +33, MAcc +33
     }
     sets.midcast.BlueMagic.MAB = set_combine(sets.midcast.Elemental, {})
+    sets.midcast.Entomb = set_combine(sets.midcast.BlueMagic.MAB, {
+        neck = "Quanpur Necklace"
+    })
     sets.midcast["Tenebral Crush"] = set_combine(sets.midcast.BlueMagic.MAB, {
         head = "Pixie Hairpin +1"
     })
@@ -430,7 +426,7 @@ function define_sets()
         waist = "Gishdubar Sash",
         left_ring = "Kunaji Ring"
     })
-    sets.midcast["White Wind"] = { -- 1300 HP, 55% Cure Potency
+    sets.midcast["White Wind"] = { -- 1270 + 10% HP, 55% Cure Potency
         main = bunzi.rod, -- 30% Potency
         sub = "Nibiru Cudgel", -- 10% Potency
         ammo = "Psilomene", -- 15 HP
@@ -442,7 +438,7 @@ function define_sets()
         legs = nyame.legs, -- 114 HP
         feet = nyame.feet, -- 68 HP
         neck = "Dualism Collar +1", -- 60 HP
-        waist = "Kasiri Belt", -- 30 HP
+        waist = "Plat. Mog. Belt", -- 10% HP
         left_ear = "Tuisto Earring", -- 150 HP
         right_ear = "Odnowa Earring +1", -- 110 HP
         left_ring = "Ilabrat Ring", -- 60 HP
@@ -457,7 +453,7 @@ function define_sets()
         legs = empy.legs, -- +33
         feet = relic.feet, -- +8
         neck = "Mirage Stole +2", -- +20
-        right_ear = "Hashi. Earring +1", -- +11
+        right_ear = empy.ear, -- +11
         left_ring = "Stikini Ring +1", -- +8
         right_ring = "Stikini Ring +1", -- +8
         back = back.bluskill -- +15
@@ -465,7 +461,7 @@ function define_sets()
     }
     sets.midcast.BlueMagic.Debuff = sets.midcast.Enfeebling
 
-    sets.midcast.BlueMagic.Static = { -- 63% DT, 20% FC
+    sets.midcast.BlueMagic.Static = { -- 62% DT, 20% FC
         ammo = "Sapience Orb", -- 2% FC
         head = malignance.head, -- 6% DT
         body = empy.body, -- 13% DT
@@ -473,7 +469,7 @@ function define_sets()
         legs = empy.legs, -- 12% DT
         feet = malignance.feet, -- 4% DT
         neck = "Orunmila's Torque", -- 5% FC
-        waist = "Flume Belt +1", -- 4% PDT
+        waist = "Plat. Mog. Belt", -- 3% DT
         left_ear = "Etiolation Earring", -- 1% FC, 3% MDT
         right_ear = "Enchntr. Earring +1", -- 2% FC
         left_ring = "Defending Ring", -- 10% DT
@@ -489,14 +485,14 @@ function define_sets()
     sets.midcast["Occultation"] = { -- 551 skill (11 shadows), 40% PDT, 30% MDT, 5% FC
         ammo = "Sapience Orb", -- 2% FC
         head = malignance.head, -- 6% DT
-        body = af.body, -- +23 Skill
+        body = af.body, -- +24 Skill
         hands = malignance.hands, -- 5% DT
         legs = empy.legs, -- +33 Skill
         feet = relic.feet, -- +8 Skill
         neck = "Mirage Stole +2", -- +20 Skill
-        waist = "Flume Belt +1", -- 4% PDT
+        waist = "Plat. Mog. Belt", -- 3% DT
         left_ear = "Etiolation Earring", -- 1% FC, 3% MDT
-        right_ear = "Enchntr. Earring +1", -- 2% FC
+        right_ear = empy.ear, -- +11 Skill
         left_ring = "Defending Ring", -- 10% DT
         right_ring = { -- 5% PDT, 6% MDT
             name = "Dark Ring",
@@ -521,11 +517,10 @@ function define_sets()
         neck = "Mirage Stole +2", -- 25 Macc, 20 Skill,
         waist = "Acuity Belt +1", -- 15 Macc
         left_ear = "Digni. Earring", -- 10 Macc
-        right_ear = "Hashi. Earring +1", -- 12 Macc, 11 Skill
+        right_ear = empy.ear, -- 12 Macc, 11 Skill
         left_ring = "Stikini Ring +1", -- 11 Macc, 8 Skill
         right_ring = "Stikini Ring +1", -- 11 Macc, 8 Skill
         back = "Aurist's Cape +1" -- 33 Macc
-
     }
     sets.midcast["Feather Tickle"] = acc_fc
     sets.midcast["Reaving Wind"] = acc_fc
@@ -546,7 +541,7 @@ function define_sets()
         legs = herc.legs.phalanx,
         feet = taeon.feet.fcphalanx,
         neck = "Orunmila's Torque",
-        -- waist = "Olumpus Sash",
+        -- waist = "Olympus Sash",
         left_ear = "Odnowa Earring +1",
         right_ear = "Enchntr. Earring +1",
         left_ring = "Stikini Ring +1",
@@ -590,8 +585,7 @@ function define_sets()
 
     -- Pieces to switch out when the day/weather matches
     sets.Weather = {
-        waist = "Hachirin-no-obi",
-        back = "Twilight Cape"
+        waist = "Hachirin-no-obi"
     }
 
     sets.Distance = {

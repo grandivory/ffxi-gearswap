@@ -34,11 +34,8 @@ function define_sets()
         waist = "Chaac Belt"
     }
     af = {
-        head = " +3",
-        body = " +3",
-        hands = " +3",
-        legs = " +3",
-        feet = " +3"
+        hands = "Foire Dastanas +3",
+        feet = "Foire Babouches +3"
     }
     relic = {
         body = "Pitre Tobe +3"
@@ -47,7 +44,8 @@ function define_sets()
         head = "Kara. Cappello +2",
         body = "Karagoz Farsetto +2",
         hands = "Karagoz Guanti +2",
-        legs = "Kara. Pantaloni +2"
+        legs = "Kara. Pantaloni +2",
+        ear = "Kara. Earring +1"
     }
     -- =========================================================================================================
     -- ***Overdrive Definitions***
@@ -65,7 +63,7 @@ function define_sets()
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
-        right_ear = "Enmerkar Earring",
+        right_ear = empy.ear,
         left_ring = "Thur. Ring +1",
         right_ring = "C. Palug Ring",
         back = back.pet
@@ -82,7 +80,7 @@ function define_sets()
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Rimeice Earring",
-        right_ear = "Enmerkar Earring",
+        right_ear = empy.ear,
         left_ring = "Thurandaut Ring +1",
         right_ring = "Cath Palug Ring",
         back = "Dispersal Mantle"
@@ -190,14 +188,14 @@ function define_sets()
     sets.Idle.BoneSlayer.withBuffs = {}
     sets.Idle.BoneSlayer.withBuffs.Overdrive = ve_overdrive
 
-    sets.Idle.PUPMagic = set_combine(sets.Idle.PUPDD, {
-        main = "Denouements",
-        range = "Animator P +1",
-        ammo = "Automat. Oil +3",
-        waist = "Ukko Sash",
-        left_ear = "Burana Earring",
-        left_ring = taliah.ring
-    })
+    -- sets.Idle.PUPMagic = set_combine(sets.Idle.PUPDD, {
+    --     main = "Denouements",
+    --     range = "Animator P +1",
+    --     ammo = "Automat. Oil +3",
+    --     waist = "Ukko Sash",
+    --     left_ear = "Burana Earring",
+    --     left_ring = taliah.ring
+    -- })
 
     -- =========================================================================================================
     -- ***Engaged Sets***
@@ -361,7 +359,7 @@ function define_sets()
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Caro Necklace",
+        neck = "Rep. Plat. Medal",
         waist = "Moonbow Belt +1",
         left_ear = "Moonshade Earring",
         right_ear = "Schere Earring",
@@ -398,8 +396,8 @@ function define_sets()
         feet = mpaca.feet,
         neck = "Shulmanu Collar",
         waist = "Incarnation Sash",
-        left_ear = "Burana Earring",
-        right_ear = "Domes. Earring",
+        left_ear = "Domes. Earring",
+        right_ear = empy.ear,
         left_ring = "Thur. Ring +1",
         right_ring = "C. Palug Ring",
         back = back.pet
@@ -415,7 +413,7 @@ function define_sets()
         neck = "Shulmanu Collar",
         waist = "Klouskap Sash +1",
         left_ear = "Burana Earring",
-        right_ear = "Enmerkar Earring",
+        right_ear = empy.ear,
         left_ring = "Thur. Ring +1",
         right_ring = "Overbearing Ring",
         back = "Dispersal Mantle"
@@ -443,7 +441,7 @@ function define_sets()
     }
 
     sets.JA.Repair = {
-        feet = "Foire Babouches +3",
+        feet = af.feet,
         left_ear = "Guignol Earring",
         right_ear = "Pratik Earring",
         back = "Visucius's Mantle"
@@ -451,7 +449,7 @@ function define_sets()
 
     sets.JA.Maneuver = {
         body = empy.body,
-        hands = "Foire Dastanas +3",
+        hands = af.hands,
         neck = "Buffoon's Collar +1",
         left_ear = "Burana Earring",
         back = "Visucius's Mantle"
@@ -549,7 +547,7 @@ function define_sets()
     --     -- hands = herc.hands.petmab,
     --     -- legs = relic.legs,
     --     -- feet = relic.feet,
-    --     feet = "Foire Babouches +3",
+    --     feet = af.feet,
     --     neck = "Adad Amulet",
     --     waist = "Ukko Sash",
     --     left_ear = "Burana Earring",
@@ -581,9 +579,11 @@ function define_commands()
     return {
         autodeploy = function()
             autodeploy = not autodeploy
+            hud.autodeploy = tostring(autodeploy)
         end,
         clearmaneuvers = function()
             target_maneuvers:clear()
+            update_hud(get_current_maneuvers())
         end
     }
 end

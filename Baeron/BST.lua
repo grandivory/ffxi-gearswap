@@ -117,9 +117,11 @@ function define_sets()
         ammo = "Voluspa Tathlum",
         -- ammo = "Hesperiidae",
         head = "Anwig Salade",
+        -- head = taeon.head.pet,
         body = af.body,
         hands = gleti.hands,
         legs = taliah.legs,
+        -- legs = empy.legs,
         feet = taeon.feet.pet,
         neck = "Shepherd's Chain",
         waist = "Isa Belt",
@@ -139,10 +141,10 @@ function define_sets()
         head = malignance.head,
         body = gleti.body,
         hands = malignance.hands,
-        legs = malignance.legs,
-        feet = malignance.feet,
-        neck = "Shulmanu Collar",
-        waist = "Windbuffet Belt +1",
+        legs = gleti.legs,
+        feet = nyame.feet,
+        neck = "Anu Torque",
+        waist = sailfi.belt,
         left_ear = "Telos Earring",
         right_ear = "Sherida Earring",
         left_ring = "Gere Ring",
@@ -157,9 +159,9 @@ function define_sets()
         head = malignance.head,
         body = gleti.body,
         hands = malignance.hands,
-        legs = malignance.legs,
-        feet = malignance.feet,
-        neck = "Shulmanu Collar",
+        legs = gleti.legs,
+        feet = nyame.feet,
+        neck = "Anu Torque",
         waist = "Reiki Yotai",
         left_ear = "Eabani Earring",
         right_ear = "Sherida Earring",
@@ -190,7 +192,7 @@ function define_sets()
         back = back.strda
     }
     sets.WS.MAB = {
-        ammo = "Ghastly Tathlum +1",
+        ammo = "Oshasha's Treatise",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
@@ -206,14 +208,15 @@ function define_sets()
     }
     sets.WS.Decimation = {
         ammo = "Coiste Bodhar",
-        head = gleti.head,
-        body = gleti.body,
-        hands = gleti.hands,
-        legs = gleti.legs,
+        head = nyame.head,
+        body = nyame.body,
+        -- body = empy.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
         feet = empy.feet,
         neck = "Fotia Gorget",
-        waist = "Fotia Belt",
-        left_ear = "Brutal Earring",
+        waist = sailfi.belt,
+        left_ear = "Thrud Earring",
         right_ear = "Sherida Earring",
         left_ring = "Gere Ring",
         right_ring = "Epona's Ring",
@@ -222,14 +225,16 @@ function define_sets()
     sets.WS.Ruinator = {
         ammo = "Coiste Bodhar",
         head = gleti.head,
+        -- head = relic.head,
         body = gleti.body,
-        hands = gleti.hands,
-        legs = gleti.legs,
+        -- body = empy.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
         feet = empy.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
-        left_ear = "Brutal Earring",
-        right_ear = "Sherida Earring",
+        left_ear = lugra.earring,
+        right_ear = "Thrud Earring",
         left_ring = "Gere Ring",
         right_ring = "Regal Ring",
         back = back.strda
@@ -261,55 +266,57 @@ function define_sets()
         left_ear = "Moonshade Earring",
         right_ear = "Friomisi Earring",
         left_ring = "Epaminondas's Ring",
-        right_ring = "Metamorph Ring +1",
+        right_ring = "Beithir Ring",
         back = back.mabws
     }
     sets.WS.Calamity = {
-        ammo = "Oshasha's Treatise",
+        ammo = "Coiste Bodhar",
         head = nyame.head,
+        -- head = relic.head,
         body = nyame.body,
         -- body = empy.body,
         hands = nyame.hands,
-        legs = gleti.legs,
-        feet = gleti.feet,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Rep. Plat. Medal",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Moonshade Earring",
         right_ear = "Thrud Earring",
-        left_ring = "Beithir Ring",
+        left_ring = "Gere Ring",
         right_ring = "Regal Ring",
         back = back.strda
     }
     sets.WS["Mistral Axe"] = {
-        ammo = "Oshasha's Treatise",
+        ammo = "Coiste Bodhar",
         head = nyame.head,
+        -- head = relic.head,
         body = nyame.body,
         -- body = empy.body,
         hands = nyame.hands,
-        legs = gleti.legs,
-        feet = gleti.feet,
-        -- feet = empy.feet,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Rep. Plat. Medal",
-        waist = "Sailfi Belt +1",
+        waist = sailfi.belt,
         left_ear = "Moonshade Earring",
-        right_ear = "Sherida Earring",
+        right_ear = "Thrud Earring",
         left_ring = "Beithir Ring",
-        right_ring = "Regal Ring",
+        right_ring = "Gere Ring",
         back = back.strda
     }
     sets.WS.Rampage = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Coiste Bodhar",
         head = "Blistering Sallet +1",
         body = gleti.body,
         hands = gleti.hands,
+        -- hands = empy.hands,
         legs = gleti.legs,
         feet = gleti.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Moonshade Earring",
-        right_ear = "Sherida Earring",
-        left_ring = "Begrudging Ring",
-        right_ring = "Regal Ring",
+        right_ear = "Thrud Earring",
+        left_ring = "Gere Ring",
+        right_ring = "Beithir Ring",
         back = back.strda
     }
 
@@ -386,11 +393,11 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 45%
+    sets.precast.FastCast = { -- 46%
         ammo = "Sapience Orb", -- 2%
         head = taeon.head.fcphalanx, -- 5%
         body = "Sacro Breastplate", -- 10%
-        hands = "Leyline Gloves", -- 7%
+        hands = "Leyline Gloves", -- 8%
         legs = taeon.legs.fcphalanx, -- 5%
         feet = taeon.feet.fcphalanx, -- 5%
         neck = "Orunmila's Torque", -- 5%
@@ -482,8 +489,7 @@ function define_sets()
     -- ***Weather Gear***
     -- =========================================================================================================
     sets.Weather = {
-        waist = "Hachirin-no-obi",
-        back = "Twilight Cape"
+        waist = "Hachirin-no-obi"
     }
 
     sets.Distance = {
@@ -491,3 +497,57 @@ function define_sets()
     }
 
 end
+
+local pet_target = nil
+local autodeploy = true
+
+function pet_status_change(new, old)
+    if new == 'Idle' then
+        pet_target = nil
+    end
+end
+
+function mod_aftercast(spell, set)
+    if spell.name == 'Fight' then
+        pet_target = spell.target.id
+    end
+
+    return set
+end
+
+windower.register_event("action", function(action)
+    -- Keep track of the pet's current target by tracking their actions
+    -- 1 = melee attack
+    -- 4 = finish spell casting
+    -- 8 = begin spell casting
+    -- 11 = weapon skill, ranged attack, flash, provoke
+    if pet.isvalid and S {1, 4, 8, 11}:contains(action.category) and action.actor_id == pet.id then
+        _, next_target = next(action.targets)
+        if next_target.id == pet_target or next_target.id == pet.id then
+            return
+        end
+
+        local target = windower.ffxi.get_mob_by_id(next_target.id)
+        if target.in_alliance ~= true then
+            pet_target = target.id
+        end
+    end
+end)
+
+local tick = os.time()
+
+windower.register_event("prerender", function()
+    if os.time() > tick then
+        tick = os.time()
+
+        -- Check to see if we've switched targets and need to redeploy
+        if autodeploy == true and player.status == "Engaged" and pet.isvalid == true then
+
+            -- 100 = Fight
+            if player.target and player.target.id ~= pet_target and windower.ffxi.get_ability_recasts()[100] <= 0 then
+                send_command('input /pet "Fight" <t>')
+            end
+
+        end
+    end
+end)

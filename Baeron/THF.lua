@@ -32,7 +32,7 @@ function define_sets()
         head = "Pill. Bonnet +3",
         body = "Pillager's Vest +3",
         legs = "Pill. Culottes +3",
-        feet = "Pill. Poulaines +1"
+        feet = "Pill. Poulaines +3"
     }
 
     relic = {
@@ -55,7 +55,7 @@ function define_sets()
     -- ***Not Engaged Sets***
     -- =========================================================================================================
 
-    sets.Idle.Evasion = { -- 50% PDT, 47% MDT, +215 AGI, +582~592 Evasion
+    sets.Idle.Evasion = { -- 49% PDT, 50% MDT, +215 AGI, +582~592 Evasion
         ammo = "Yamarang", -- 15 Evasion
         head = malignance.head, -- 33 AGI, 91 Evasion, 6% DT
         body = malignance.body, -- 42 AGI, 102 Evasion, 9% DT
@@ -63,7 +63,7 @@ function define_sets()
         legs = malignance.legs, -- 42 AGI, 85 Evasion, 7% DT
         feet = malignance.feet, -- 49 AGI, 119 Evasion, 4% DT
         neck = "Bathy Choker +1", -- 20~30 Evasion, +3 Regen
-        waist = "Flume Belt +1", -- 4% PDT
+        waist = "Plat. Mog. Belt", -- 3% DT
         left_ear = "Eabani Earring", -- 15 Evasion
         right_ear = "Infused Earring", -- 4 AGI, 10 Evasion, +1 Regen
         left_ring = "Defending Ring", -- 10% DT
@@ -87,7 +87,7 @@ function define_sets()
     sets.TP.Att = {
         main = "Twashtar",
         sub = "Gleti's Knife",
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Coiste Bodhar",
         head = empy.head,
         body = af.body,
         hands = adhemar.hands,
@@ -104,7 +104,7 @@ function define_sets()
     sets.TP.Acc = {
         main = "Twashtar",
         sub = "Gleti's Knife",
-        ammo = "Cath Palug Stone",
+        ammo = "Coiste Bodhar",
         head = empy.head,
         body = af.body,
         hands = adhemar.hands,
@@ -167,7 +167,7 @@ function define_sets()
         legs = malignance.legs, -- 85 Evasion
         feet = malignance.feet, -- 119 Evasion
         neck = "Asn. Gorget +2", -- 25 Evasion
-        waist = "Flume Belt +1", -- PDT -4%
+        waist = "Plat. Mog. Belt", -- DT -3%
         left_ear = "Eabani Earring", -- 15 Evasion
         right_ear = "Infused Earring", -- 10 Evasion
         left_ring = "Defending Ring", -- DT -10%
@@ -183,30 +183,6 @@ function define_sets()
     -- =========================================================================================================
     -- ***Job Ability Sets***
     -- =========================================================================================================
-    sets.JA['Sneak Attack'] = set_combine(set, {
-        head = adhemar.head,
-        body = relic.body,
-        hands = adhemar.hands,
-        legs = af.legs,
-        feet = malignance.feet,
-        neck = "Assassin's Gorget +2",
-        waist = "Wanion Belt",
-        left_ear = "Brutal Earring",
-        right_ear = "Odr Earring",
-        left_ring = "Ilabrat Ring",
-        right_ring = "Regal Ring",
-        back = back.dexws
-    })
-    sets.JA['Trick Attack'] = set_combine(set, {
-        head = adhemar.head,
-        body = relic.body,
-        hands = malignance.hands,
-        legs = malignance.legs,
-        feet = malignance.feet,
-        neck = "Assassin's Gorget +2",
-        left_ring = "Ilabrat Ring",
-        right_ring = "Regal Ring"
-    })
     sets.JA.Steal = {
         head = relic.head
     }
@@ -251,7 +227,7 @@ function define_sets()
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
     sets.WS.Generic = {
-        ammo = "Seeth. Bomblet +1",
+        ammo = "Oshasha's Treatise",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
@@ -282,7 +258,7 @@ function define_sets()
     }
 
     rudras = {
-        ammo = "Aurgelmir Orb +1",
+        ammo = "Coiste Bodhar",
         head = nyame.head,
         body = empy.body,
         hands = nyame.hands,
@@ -290,64 +266,92 @@ function define_sets()
         feet = nyame.feet,
         neck = "Asn. Gorget +2",
         waist = kentarch.belt,
-        left_ear = "Odr Earring",
+        left_ear = "Sherida Earring",
         right_ear = "Moonshade Earring",
-        left_ring = "Epaminondas's Ring",
+        left_ring = "Ilabrat Ring",
         right_ring = "Regal Ring",
         back = back.dexws
     }
     sets.WS["Rudra's Storm"] = copy(rudras)
     sets.WS["Rudra's Storm"].withBuffs = {}
     sets.WS["Rudra's Storm"].withBuffs["Sneak Attack"] = set_combine(rudras, {
-        ammo = "Yetshila +1"
+        ammo = "Yetshila +1",
+        head = af.head,
+        left_ear = "Odr Earring",
+        left_ring = "Epaminondas's Ring"
     })
     sets.WS["Mandalic Stab"] = sets.WS["Rudra's Storm"]
 
     sets.WS.Evisceration = {
         ammo = "Yetshila +1",
-        head = adhemar.head,
+        head = blistering.sallet,
         body = relic.body,
-        hands = mummu.hands,
+        hands = adhemar.hands,
         legs = empy.legs,
-        feet = gleti.feet,
+        feet = lustratio.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Odr Earring",
         right_ear = "Moonshade Earring",
-        left_ring = "Ilabrat Ring",
+        left_ring = "Begrudging Ring",
         right_ring = "Regal Ring",
         back = back.dexws
     }
     sets.WS.Exenterator = {
-        ammo = "Seeth. Bomblet +1",
-        head = nyame.head,
-        body = nyame.body,
+        ammo = "Coiste Bodhar",
+        head = empy.head,
+        body = empy.body,
         hands = nyame.hands,
         legs = nyame.legs,
-        feet = nyame.feet,
+        feet = relic.feet,
         neck = "Fotia Gorget",
         waist = "Fotia Belt",
         left_ear = "Sherida Earring",
         right_ear = "Brutal Earring",
-        left_ring = "Ilabrat Ring",
+        left_ring = "Gere Ring",
         right_ring = "Regal Ring",
         back = back.agida
     }
+    sets.WS.Exenterator.withBuffs = {}
+    sets.WS.Exenterator.withBuffs["Sneak Attack"] = set_combine(sets.WS.Exenterator, {
+        ammo = "Yetshila +1",
+        head = af.head,
+        feet = nyame.feet,
+        left_ring = "Ilabrat Ring"
+    })
+    sets.WS.Exenterator.withBuffs["Trick Attack"] = set_combine(sets.WS.Exenterator, {
+        ammo = "Yetshila +1",
+        head = af.head,
+        feet = nyame.feet,
+        left_ring = "Ilabrat Ring"
+    })
     sets.WS["Savage Blade"] = {
-        ammo = "Seeth. Bomblet +1",
+        ammo = "Coiste Bodhar",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
         legs = nyame.legs,
         feet = nyame.feet,
-        neck = "Caro Necklace",
-        waist = "Sailfi Belt +1",
+        neck = "Rep. Plat. Medal",
+        waist = sailfi.belt,
         left_ear = "Moonshade Earring",
-        right_ear = "Ishvara Earring",
+        right_ear = "Telos Earring",
         left_ring = "Regal Ring",
-        right_ring = "Epaminondas's Ring",
+        right_ring = "Beithir Ring",
         back = back.dexws
     }
+    sets.WS["Savage Blade"].withBuffs = {}
+    sets.WS["Savage Blade"].withBuffs["Sneak Attack"] = set_combine(sets.WS["Savage Blade"], {
+        ammo = "Yetshila +1",
+        head = af.head,
+        right_ear = "Ishvara Earring",
+        right_ring = "Epaminondas's Ring"
+    })
+    sets.WS["Savage Blade"].withBuffs["Trick Attack"] = set_combine(sets.WS["Savage Blade"], {
+        ammo = "Yetshila +1",
+        head = af.head,
+        right_ear = "Ishvara Earring"
+    })
     sets.WS["Sanguine Blade"] = {
         ranged = empty,
         ammo = "Pemphredo Tathlum",
@@ -379,11 +383,11 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 34%
+    sets.precast.FastCast = { -- 35%
         ammo = "Sapience Orb", -- 2%
         head = "Herculean Helm", -- 7%
         body = taeon.body.fcphalanx, -- 9%
-        hands = "Leyline Gloves", -- 7%
+        hands = "Leyline Gloves", -- 8%
         neck = "Orunmila's Torque", -- 5%
         left_ear = "Loquac. Earring", -- 2%
         right_ear = "Enchntr. Earring +1", -- 2%

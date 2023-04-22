@@ -1,4 +1,4 @@
--- Last updated: September 2022
+-- Last updated: February 15, 2023
 include('set-behavior')
 include('augments')
 
@@ -7,7 +7,7 @@ lockstyleset = 4
 
 function define_sets()
     Melee_Modes = T {'Parry', 'Magic Tank', 'DD', 'DD Tank'}
-    Idle_Modes = T {'Speed', 'Physical Tank', 'Magic Tank', 'Refresh'}
+    Idle_Modes = T {'Speed', 'Physical Tank', 'Hybrid Tank', 'Magic Tank', 'Refresh'}
 
     fastcast = .8
 
@@ -25,9 +25,13 @@ function define_sets()
             name = "Ogma's Cape",
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Store TP"+10', 'Phys. dmg. taken-10%'}
         },
-        dimidiation = {
+        dexws = {
             name = "Ogma's Cape",
             augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%'}
+        },
+        sird = {
+            name = "Ogma's Cape",
+            augments = {'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Evasion+10', 'Enmity+10', 'Spell interruption rate down-10%'}
         }
     }
 
@@ -42,21 +46,21 @@ function define_sets()
     relic = {
         head = "Fu. Bandeau +3",
         body = "Futhark Coat +3",
-        hands = "Futhark Mitons +1",
+        hands = "Futhark Mitons +3",
         legs = "Futhark Trousers +3",
-        feet = "Futhark Boots +1"
+        feet = "Futhark Boots +3"
     }
 
     empy = {
         head = "Erilaz Galea +3",
-        body = "Erilaz Surcoat +2",
+        body = "Erilaz Surcoat +3",
         hands = "Erilaz Gauntlets +1",
         legs = "Eri. Leg Guards +3",
         feet = "Erilaz Greaves +3",
-        ear = "Erilaz Earring +1"
+        ear = "Erilaz Earring +2"
     }
 
-    enmity = { -- +88, PDT -58%, MDT -46%
+    enmity = { -- +117, PDT -32%, MDT -23%
         main = "Epeolatry", -- +23
         ammo = "Staunch Tathlum +1", -- DT -3%
         head = "Halitus Helm", -- +8
@@ -64,12 +68,12 @@ function define_sets()
         hands = "Kurys Gloves", -- +9
         legs = empy.legs, -- +12, DT -12%
         feet = empy.feet, -- +8, DT -11%
-        neck = "Futhark Torque +2", -- +10, DT -7%
+        neck = "Moonlight Necklace", -- +15
         waist = "Kasiri Belt", -- +3,
         left_ear = "Cryptic Earring", -- +4
         right_ear = "Trux Earring", -- +5
-        left_ring = "Defending Ring", -- DT -10%
-        right_ring = "Gelatinous Ring +1", -- PDT -7%, MDT +1%
+        left_ring = "Supershear Ring", -- +5
+        right_ring = "Eihwaz Ring", -- +5
         back = back.tank -- +10
     }
 
@@ -82,57 +86,76 @@ function define_sets()
     -- =========================================================================================================
     -- ***Not Engaged Sets***
     -- =========================================================================================================
-    sets.Idle.Speed = {
-        main = "Epeolatry",
-        sub = "Refined Grip +1",
-        ammo = "Staunch Tathlum +1",
-        head = nyame.head,
-        body = af.body,
-        hands = nyame.hands,
+    sets.Idle.Speed = { -- 52% DT, 7% PDT, 1% MDT, 25% PDT II, Refresh +3
+        main = "Epeolatry", -- 25% PDT II
+        sub = "Refined Grip +1", -- 3% DT
+        ammo = "Staunch Tathlum +1", -- 3% DT
+        head = nyame.head, -- 7% DT
+        body = af.body, -- Refresh +3
+        hands = nyame.hands, -- 7% DT
         legs = carmine.legs,
-        feet = empy.feet,
-        neck = "Futhark Torque +2",
-        waist = "Flume Belt +1",
-        left_ear = "Cryptic Earring",
-        right_ear = "Odnowa Earring +1",
-        left_ring = "Moonlight Ring",
-        right_ring = "Gelatinous Ring +1",
+        feet = empy.feet, -- 11% DT
+        neck = "Futhark Torque +2", -- 7% DT
+        waist = "Plat. Mog. Belt",
+        left_ear = "Odnowa Earring +1", -- 110 MP to HP, 3% DT, 2% MDT
+        right_ear = empy.ear, -- 6% DT
+        left_ring = "Moonlight Ring", -- 5% DT
+        right_ring = "Gelatinous Ring +1", -- 135 HP, 7% PDT, +1% MDT
         back = back.tank
     }
 
-    sets.Idle['Physical Tank'] = {
-        main = "Epeolatry",
-        sub = "Refined Grip +1",
-        ammo = "Staunch Tathlum +1",
-        head = nyame.head,
-        body = af.body,
-        hands = nyame.hands,
-        legs = nyame.legs,
-        feet = nyame.feet,
-        neck = "Futhark Torque +2",
-        waist = "Flume Belt +1",
-        left_ear = "Tuisto Earring",
-        right_ear = "Odnowa Earring +1",
-        left_ring = "Moonlight Ring",
-        right_ring = "Gelatinous Ring +1",
+    sets.Idle['Physical Tank'] = { -- 60% DT, 7% PDT, 1% MDT, 25% PDT II
+        main = "Epeolatry", -- 25% PDT II
+        sub = "Refined Grip +1", -- 3% DT
+        ammo = "Staunch Tathlum +1", -- 3% DT
+        head = nyame.head, -- 7% DT
+        body = af.body, -- Refresh +3
+        hands = nyame.hands, -- 7% DT
+        legs = nyame.legs, -- 8% DT
+        feet = empy.feet, -- 11% DT
+        neck = "Futhark Torque +2", -- 7% DT
+        waist = "Plat. Mog. Belt",
+        left_ear = "Odnowa Earring +1", -- 110 MP to HP, 3% DT, 2% MDT
+        right_ear = empy.ear, -- 6% DT
+        left_ring = "Moonlight Ring", -- 5% DT
+        right_ring = "Gelatinous Ring +1", -- 135 HP, 7% PDT, +1% MDT
         back = back.tank
     }
 
-    sets.Idle['Magic Tank'] = {
-        main = "Aettir",
-        sub = "Irenic Strap +1",
-        ammo = "Staunch Tathlum +1",
-        head = nyame.head,
-        body = af.body,
-        hands = nyame.hands,
-        legs = nyame.legs,
-        feet = empy.feet,
-        neck = "Futhark Torque +2",
-        waist = "Engraved Belt",
-        left_ear = "Eabani Earring",
-        right_ear = "Odnowa Earring +1",
-        left_ring = "Shadow Ring",
-        right_ring = "Vexer Ring +1",
+    sets.Idle['Hybrid Tank'] = { -- 64% DT, 2% MDT, 25% PDT II, +55 all resistances
+        main = "Epeolatry", -- 25% PDT II
+        sub = "Refined Grip +1", -- 3% DT
+        ammo = "Staunch Tathlum +1", -- 3% DT
+        head = nyame.head, -- 7% DT
+        body = nyame.body, -- 9% DT
+        hands = nyame.hands, -- 7% DT
+        legs = nyame.legs, -- 8% DT
+        feet = empy.feet, -- 11% DT, +35 all resistances
+        neck = "Futhark Torque +2", -- 7% DT
+        waist = "Engraved Belt", -- +20 all resistances
+        left_ear = "Odnowa Earring +1", -- 110 MP to HP, 3% DT, 2% MDT
+        right_ear = empy.ear, -- 6% DT
+        left_ring = "Shadow Ring", -- Resist Death
+        right_ring = "Vexer Ring +1", -- MDB +4
+        back = back.tank
+    }
+
+    sets.Idle['Magic Tank'] = { -- 52% DT, 7% MDT, 5% PDT II, +94 all resistances
+        main = "Aettir", -- 5% PDT II, +50 Meva
+        sub = "Irenic Strap +1", -- 5% MDT, +15 Meva
+        ammo = "Staunch Tathlum +1", -- 3% DT
+        head = nyame.head, -- 7% DT
+        body = af.body, -- +39 all resistances, Refresh +3
+        -- body = empy.body,
+        hands = nyame.hands, -- 7% DT
+        legs = nyame.legs, -- 8% DT
+        feet = empy.feet, -- 11% DT, +35 all resistances
+        neck = "Futhark Torque +2", -- 7% DT
+        waist = "Engraved Belt", -- +20 all resistances
+        left_ear = "Odnowa Earring +1", -- 110 MP to HP, 3% DT, 2% MDT
+        right_ear = empy.ear, -- 6% DT
+        left_ring = "Shadow Ring", -- Resist Death
+        right_ring = "Vexer Ring +1", -- MDB +4
         back = back.tank
     }
 
@@ -146,7 +169,7 @@ function define_sets()
         legs = herc.legs.refresh,
         feet = herc.feet.refresh,
         neck = "Bathy Choker +1",
-        waist = "Flume Belt +1",
+        waist = "Plat. Mog. Belt",
         left_ear = "Tuisto Earring",
         right_ear = "Etiolation Earring",
         left_ring = "Stikini Ring +1",
@@ -174,6 +197,8 @@ function define_sets()
         right_ring = "Gelatinous Ring +1",
         back = back.tank
     }
+
+    sets.TP['Hybrid Tank'] = sets.Idle['Hybrid Tank']
 
     sets.TP['Magic Tank'] = sets.Idle['Magic Tank']
 
@@ -229,7 +254,7 @@ function define_sets()
         right_ear = "Ishvara Earring",
         left_ring = "Epaminondas's Ring",
         right_ring = "Niqmaddu Ring",
-        back = back.dimidiation
+        back = back.dexws
     }
     sets.WS.MAB = {
         ammo = "Ghastly Tathlum +1",
@@ -244,22 +269,22 @@ function define_sets()
         right_ear = "Friomisi Earring",
         left_ring = "Metamorph Ring +1",
         right_ring = "Shiva Ring +1",
-        back = back.dimidiation
+        back = back.dexws
     }
     sets.WS.Dimidiation = {
         ammo = "Knobkierrie",
         head = nyame.head,
         body = nyame.body,
         hands = nyame.hands,
-        legs = lustratio.legs,
-        feet = lustratio.feet,
-        neck = "Fotia Gorget",
-        waist = "Fotia Belt",
-        left_ear = "Sherida Earring",
+        legs = nyame.legs,
+        feet = nyame.feet,
+        neck = "Rep. Plat. Medal",
+        waist = sailfi.belt,
+        left_ear = "Odr Earring",
         right_ear = "Moonshade Earring",
-        left_ring = "Epaminondas's Ring",
+        left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
-        back = back.dimidiation
+        back = back.dexws
     }
     sets.WS.Shockwave = set_combine(sets.WS.Generic, th_gear)
     sets.WS['Fell Cleave'] = {
@@ -273,9 +298,9 @@ function define_sets()
         waist = "Fotia Belt",
         left_ear = "Sherida Earring",
         right_ear = "Ishvara Earring",
-        left_ring = "Epaminondas's Ring",
+        left_ring = "Regal Ring",
         right_ring = "Niqmaddu Ring",
-        back = back.dimidiation
+        back = back.dexws
     }
 
     -- =========================================================================================================
@@ -292,7 +317,7 @@ function define_sets()
     }
 
     magic_damage = {
-        ammo = "Seething Bomblet +1",
+        ammo = "Ghastly Tathlum +1",
         head = agwu.head,
         body = agwu.body,
         hands = agwu.hands,
@@ -300,7 +325,7 @@ function define_sets()
         feet = agwu.feet,
         neck = "Baetyl Pendant",
         waist = "Orpheus's Sash",
-        left_ear = "Hermetic Earring",
+        left_ear = "Crematio Earring",
         right_ear = "Friomisi Earring",
         left_ring = "Mujin Band",
         right_ring = "Shiva Ring +1"
@@ -346,17 +371,17 @@ function define_sets()
     -- =========================================================================================================
     -- ***Precast Sets for Spells***
     -- =========================================================================================================
-    sets.precast.FastCast = { -- 61%
+    sets.precast.FastCast = { -- 64%
         ammo = "Sapience Orb", -- 2%
-        head = carmine.head, -- 14%
-        body = taeon.body.fcphalanx, -- 9%
-        hands = "Leyline Gloves", -- 7%
-        legs = ayanmo.legs, -- 6%
+        head = af.head, -- 14%
+        body = empy.body, -- 13%
+        hands = "Leyline Gloves", -- 8%
+        legs = agwu.legs, -- 7%
         feet = carmine.feet, -- 8%
         neck = "Orunmila's Torque", -- 5%
         waist = "Kasiri Belt",
         left_ear = "Etiolation Earring", -- 1%
-        right_ear = "Loquacious Earring", -- 5%
+        right_ear = "Loquacious Earring", -- 2%
         left_ring = "Kishar Ring", -- 4%
         right_ring = "Gelatinous Ring +1",
         back = back.tank
@@ -364,78 +389,43 @@ function define_sets()
     sets.precast.Enhancing = set_combine(sets.precast.FastCast, {
         legs = relic.legs
     })
-    -- sets.precast.FastCast.withBuffs = {}
-    -- sets.precast.FastCast.withBuffs.Vallation = {
-    --     ammo = "Staunch Tathlum +1",
-    --     head = nyame.head,
-    --     body = taeon.body.fcphalanx,
-    --     hands = "Leyline Gloves",
-    --     legs = ayanmo.legs,
-    --     feet = carmine.feet,
-    --     neck = "Orunmila's Torque",
-    --     waist = "Kasiri Belt",
-    --     left_ear = "Etiolation Earring",
-    --     right_ear = "Loquacious Earring",
-    --     left_ring = "Kishar Ring",
-    --     right_ring = "Gelatinous Ring +1",
-    --     back = back.tank
-
-    -- }
-    -- sets.precast.FastCast.withBuffs.Valliance = sets.precast.FastCast.withBuffs.Vallation
 
     -- =========================================================================================================
     -- ***Midcast Sets for Spells***
     -- =========================================================================================================
-    sird = { -- 85%
-        main = "Epeolatry",
-        ammo = "Staunch Tathlum +1", -- 11%
-        head = agwu.head, -- 10%
-        body = af.body,
+    -- I need 93% SIRD to cap with merits
+    sird_enmity = { -- 94% SIRD, Enmity +66, PDT -62%, MDT -27%
+        main = "Epeolatry", -- PDT II -25%
+        ammo = "Staunch Tathlum +1", -- 11%, DT -3%
+        head = empy.head, -- 20%
+        body = "Emet Harness +1", -- Enmity +10, PDT -6%
         hands = "Rawhide Gloves", -- 15%
-        legs = carmine.legs, -- 20%
-        feet = taeon.feet.sird, -- 10%
-        neck = "Moonlight Necklace", -- 15%
-        waist = "Audumbla Sash", -- 10%
-        left_ear = "Cryptic Earring",
-        right_ear = "Halasz Earring", -- 5%
-        left_ring = "Defending Ring",
-        right_ring = "Gelatinous Ring +1",
-        back = back.tank
-    }
-
-    sird_enmity = { -- 80%, Enmity +69
-        main = "Epeolatry",
-        ammo = "Staunch Tathlum +1", -- 11%
-        head = agwu.head, -- 10%, Enmity +15
-        body = "Emet Harness +1", -- Enmity +10
-        hands = "Rawhide Gloves", -- 15%
-        legs = carmine.legs, -- 20%
-        feet = taeon.feet.sird, -- 10%
+        legs = empy.legs, -- Enmity +13, DT -13%
+        feet = empy.feet, -- Enmity +8, DT -11%
         neck = "Moonlight Necklace", -- 15%, Enmity +15
-        waist = "Audumbla Sash", -- 10%
-        left_ear = "Cryptic Earring", -- Enmity +4
-        right_ear = "Trux Earring", -- Enmity +5
+        waist = "Audumbla Sash", -- 10%, PDT -4%
+        left_ear = "Halasz Earring", -- 5%
+        right_ear = "Magnetic Earring", -- 8%
         left_ring = "Supershear Ring", -- Enmity +5
         right_ring = "Eihwaz Ring", -- Enmity +5,
-        back = back.tank -- Enmity +10
+        back = back.sird -- 10%, Enmity +10
     }
 
-    sird_dt = { -- 80%, PDT -50%, MDT -35%
-        main = "Epeolatry",
-        sub = "Mensch Strap +1", -- PDT -5%
+    sird_dt = { -- 94% SIRD, Enmity +46, PDT -75%, MDT -40%
+        main = "Epeolatry", -- PDT II -25%
         ammo = "Staunch Tathlum +1", -- 11%, DT -3%
-        head = agwu.head,
-        body = af.body, -- DT -9%
+        head = empy.head, -- 20%
+        body = nyame.body, -- DT -9%
         hands = "Rawhide Gloves", -- 15%
-        legs = carmine.legs, -- 20%
-        feet = taeon.feet.sird, -- 10%
-        neck = "Moonlight Necklace", -- 15%
+        legs = empy.legs, -- Enmity +13, DT -13%
+        feet = empy.feet, -- Enmity +8, DT -11%
+        neck = "Moonlight Necklace", -- 15%, Enmity +15
         waist = "Audumbla Sash", -- 10%, PDT -4%
-        left_ear = "Odnowa Earring +1", -- PDT -3%, MDT -5%
-        right_ear = empy.ear, -- DT -4%
-        left_ring = "Defending Ring", -- DT -10%
-        right_ring = "Gelatinous Ring +1", -- PDT -7%, MDT +1%
-        back = back.dimidiation -- DT -5%
+        left_ear = "Odnowa Earring +1", -- DT -3%, MDT -2%
+        right_ear = "Magnetic Earring", -- 8%
+        left_ring = "Evanescence Ring", -- 5%
+        right_ring = "Gelatinous Ring +1", -- PDT -7%, MDT +1% (HP +100)
+        back = back.sird -- 10%, Enmity +10
     }
 
     sets.midcast.Enhancing = {
@@ -449,6 +439,7 @@ function define_sets()
         left_ear = "Mimir Earring",
         right_ear = "Andoaa Earring"
     }
+    sets.midcast.Aquaveil = sird_dt
     sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {
         head = empy.head,
         hands = "Regal Gauntlets",
@@ -460,7 +451,7 @@ function define_sets()
         body = herc.body.phalanx, -- +4
         hands = taeon.hands.fcphalanx, -- +3
         legs = herc.legs.phalanx, -- +4
-        feet = taeon.feet.fcphalanx, -- +#
+        feet = taeon.feet.fcphalanx, -- +3
         neck = "Incanter's Torque",
         waist = "Olympus Sash",
         left_ear = "Mimir Earring",
@@ -489,8 +480,6 @@ function define_sets()
     sets.midcast.Foil = sird_enmity
     sets.midcast.Jettatura = sird_enmity
     sets.midcast['Blank Gaze'] = sird_enmity
-    sets.midcast.Soporific = sird_enmity
-    sets.midcast.Sandspin = sird_enmity
 
     -- SIRD Spells
     sets.midcast['Sheep Song'] = sird_dt
@@ -499,6 +488,8 @@ function define_sets()
     sets.midcast['Wild Carrot'] = sird_dt
     sets.midcast.Pollen = sird_dt
     sets.midcast.Cocoon = sird_dt
+    sets.midcast.Soporific = sird_dt
+    sets.midcast.Sandspin = sird_dt
 
     -- Spell-specific gear
     sets.midcast.Regen = set_combine(sets.midcast.EnhancingDuration, {
@@ -510,7 +501,7 @@ function define_sets()
         head = empy.head
     })
 
-    sets.midcast.Generic = sird -- If no other set is found, this set is used instead
+    sets.midcast.Generic = sird_dt -- If no other set is found, this set is used instead
 
     -- =========================================================================================================
     -- ***Special Sets***

@@ -37,18 +37,18 @@ function define_sets()
     }
 
     af = {
-        body = "Anch. Cyclas +1",
+        body = "Anch. Cyclas +3",
         feet = "Anch. Gaiters +3"
     }
 
     relic = {
-        hands = "Hes. Gloves +1",
+        hands = "Hes. Gloves +3",
         legs = "Hes. Hose +3"
     }
 
     empy = {
         head = "Bhikku Crown +2",
-        body = "Bhikku Cyclas +2",
+        body = "Bhikku Cyclas +3",
         legs = "Bhikku Hose +3",
         feet = "Bhikku Gaiters +2"
     }
@@ -101,7 +101,7 @@ function define_sets()
     })
     sets.TP.DT = { -- 50% PDT, 32% MDT
         main = "Verethragna",
-        ammo = "Crepuscular Pebble",
+        ammo = "Crepuscular Pebble", -- 3% DT
         -- ammo = "Coiste Bodhar",
         head = empy.head, -- 10% DT
         body = kendatsuba.body,
@@ -197,8 +197,8 @@ function define_sets()
     -- ***Weapon Skill Sets***
     -- =========================================================================================================
     sets.WS["Victory Smite"] = {
-        ammo = "Knobkierrie",
-        head = adhemar.head,
+        ammo = "Coiste Bodhar",
+        head = mpaca.head,
         body = kendatsuba.body,
         hands = ryuo.hands,
         legs = mpaca.legs,
@@ -206,18 +206,15 @@ function define_sets()
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
-        right_ear = "Odr Earring",
+        right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         -- back = back.strcrit
-        back.strws
+        back = back.strda
     }
     sets.WS["Victory Smite"].withBuffs = {}
     sets.WS["Victory Smite"].withBuffs.Impetus = set_combine(sets.WS["Victory Smite"], {
-        ammo = "Coiste Bodhar",
-        body = empy.body,
-        right_ear = "Schere Earring",
-        back = back.strda
+        body = empy.body
     })
     sets.WS["Raging Fists"] = {
         ammo = "Knobkierrie",
@@ -235,27 +232,33 @@ function define_sets()
         back = back.strda
     }
     sets.WS["Shijin Spiral"] = {
-        ammo = "Aurgelmir Orb +1",
-        head = kendatsuba.head,
+        ammo = "Coiste Bodhar",
+        head = mpaca.head,
         body = malignance.body,
         hands = malignance.hands,
+        -- hands = empy.hands,
         legs = mpaca.legs,
         feet = herc.feet.dexta,
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
         left_ear = "Sherida Earring",
-        right_ear = "Mache Earring +1",
+        right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.dexda
     }
+    sets.WS["Shijin Spiral"].withBuffs = {}
+    sets.WS["Shijin Spiral"].withBuffs.Impetus = set_combine(sets.WS["Shijin Spiral"], {
+        body = empy.body
+    })
+
     sets.WS["Howling Fist"] = {
-        ammo = "Knobkierrie",
+        ammo = "Coiste Bodhar",
         head = mpaca.head,
-        body = tatenashi.body,
-        hands = mpaca.hands,
-        legs = mpaca.legs,
-        feet = mpaca.feet,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
+        feet = nyame.feet,
         neck = "Fotia Gorget",
         waist = "Moonbow Belt +1",
         left_ear = "Moonshade Earring",
@@ -267,18 +270,20 @@ function define_sets()
     sets.WS["Tornado Kick"] = {
         ammo = "Coiste Bodhar",
         head = mpaca.head,
-        body = tatenashi.body,
-        hands = adhemar.hands,
-        legs = mpaca.legs,
+        body = nyame.body,
+        hands = nyame.hands,
+        legs = nyame.legs,
         feet = af.feet,
         neck = "Monk's Nodowa +2",
         waist = "Moonbow Belt +1",
-        left_ear = "Sherida Earring",
-        right_ear = "Moonshade Earring",
+        left_ear = "Moonshade Earring",
+        right_ear = "Schere Earring",
         left_ring = "Gere Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strda
     }
+
+    sets.WS["Dragon Kick"] = sets.WS["Tornado Kick"]
     sets.WS["Shell Crusher"] = {
         ammo = "Pemphredo Tathlum",
         head = malignance.head,
@@ -332,7 +337,7 @@ function define_sets()
         legs = nyame.legs,
         feet = herc.feet.thmab,
         neck = "Sibyl Scarf",
-        waist = "Eschan Stone",
+        waist = "Orpheus's Sash",
         left_ear = "Friomisi Earring",
         right_ear = "Ishvara Earring",
         left_ring = "Metamor. Ring +1",
@@ -359,7 +364,7 @@ function define_sets()
         head = mpaca.head,
         body = af.body,
         hands = relic.hands,
-        legs = tatenashi.legs,
+        legs = mpaca.legs,
         feet = mpaca.feet,
         neck = "Unmoving Collar +1",
         left_ear = "Tuisto Earring",
@@ -368,7 +373,24 @@ function define_sets()
         right_ring = "Niqmaddu Ring",
         back = back.vitws
     }
-    sets.JA["Chi Blast"] = th_gear
+    sets.JA["Chi Blast"] = set_combine(th_gear, {
+        head = empy.head
+    })
+    sets.JA.Dodge = {
+        feet = af.feet
+    }
+    sets.JA.Footwork = {
+        feet = empy.feet
+    }
+    sets.JA.Counterstance = {
+        feet = relic.feet
+    }
+    sets.JA.Mantra = {
+        feet = relic.feet
+    }
+    sets.JA['Formless Strikes'] = {
+        body = relic.body
+    }
 
     -- =========================================================================================================
     -- ***Item Sets***

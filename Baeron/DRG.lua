@@ -74,4 +74,9 @@ function define_sets()
     sets.JA['Call Wyvern'] = {
         body = relic.body
     }
+
+    sets.WakeUp = {
+        neck = "Vim Torque"
+    }
+
 end

@@ -56,4 +56,9 @@ function define_sets()
     -- =========================================================================================================
     stances.SAM = S {'Hasso', 'Seigan'}
     stances.WAR = S {'Retaliation'}
+
+    sets.WakeUp = {
+        neck = "Vim Torque"
+    }
+
 end

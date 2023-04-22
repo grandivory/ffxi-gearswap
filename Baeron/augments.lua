@@ -64,19 +64,19 @@ ikenga = {
 -- Ambuscade Sets
 -- =========================================================================================================
 sulevia = {
-    head = "Sulevia's Mask +1",
-    body = "Sulevia's Plate. +1",
-    hands = "Sulev. Gauntlets +1",
-    legs = "Sulevi. Cuisses +1",
-    feet = "Sulev. Leggings +1",
+    head = "Sulevia's Mask +2",
+    body = "Sulevia's Plate. +2",
+    hands = "Sulev. Gauntlets +2",
+    legs = "Sulevi. Cuisses +2",
+    feet = "Sulev. Leggings +2",
     ring = "Sulevia's Ring"
 }
 hizamaru = {
-    head = "Hizamaru Somen +1",
-    body = "Hiza. Haramaki +1",
-    hands = "Hizamaru Kote +1",
-    legs = "Hiza. Hizayoroi +1",
-    feet = "Hiza. Sune-Ate +1",
+    head = "Hizamaru Somen +2",
+    body = "Hiza. Haramaki +2",
+    hands = "Hizamaru Kote +2",
+    legs = "Hiza. Hizayoroi +2",
+    feet = "Hiza. Sune-Ate +2",
     ring = "Hizamaru Ring"
 }
 inyanga = {
@@ -108,16 +108,16 @@ flamma = {
     head = "Flam. Zucchetto +2",
     body = "Flamma Korazin +2",
     hands = "Flam. Manopolas +2",
-    legs = "Flamma Dirs +1",
-    feet = "Flam. Gambieras +1",
+    legs = "Flamma Dirs +2",
+    feet = "Flam. Gambieras +2",
     ring = "Flamma Ring"
 }
 taliah = {
     head = "Tali'ah Turban +2",
     body = "Tali'ah Manteel +2",
-    hands = "Tali'ah Gages +1",
+    hands = "Tali'ah Gages +2",
     legs = "Tali'ah Seraweels +2",
-    feet = "Tali'ah Crackows +1",
+    feet = "Tali'ah Crackows +2",
     ring = "Tali'ah Ring"
 }
 mummu = {
@@ -138,10 +138,10 @@ ayanmo = {
 }
 mallquis = {
     head = "Mallquis Chapeau +2",
-    body = "Mallquis Saio +1",
-    hands = "Mallquis Cuffs +1",
-    legs = "Mallquis Trews +1",
-    feet = "Mallquis Clogs +1",
+    body = "Mallquis Saio +2",
+    hands = "Mallquis Cuffs +2",
+    legs = "Mallquis Trews +2",
+    feet = "Mallquis Clogs +2",
     ring = "Mallquis Ring"
 }
 
@@ -150,10 +150,14 @@ mallquis = {
 -- =========================================================================================================
 tatenashi = {
     body = "Tatena. Harama. +1",
+    hands = "Tatena. Gote +1",
     legs = "Tatena. Haidate +1",
     feet = "Tatena. Sune. +1"
 }
 
+blistering = {
+    sallet = "Blistering Sallet +1"
+}
 cacoethic = {
     ring = "Cacoethic Ring +1"
 }
@@ -162,6 +166,12 @@ gazu = {
 }
 kentarch = {
     belt = "Kentarch Belt +1"
+}
+lugra = {
+    earring = "Lugra Earring +1"
+}
+sailfi = {
+    belt = "Sailfi Belt +1"
 }
 
 -- =========================================================================================================
@@ -493,19 +503,19 @@ telchine = {}
 telchine.head = {
     enhfc = {
         name = "Telchine Cap",
-        augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +9'}
+        augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
     }
 }
 telchine.body = {
     enhfc = {
         name = "Telchine Chas.",
-        augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +9'}
+        augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
     }
 }
 telchine.hands = {
     enhfc = {
         name = "Telchine Gloves",
-        augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +9'}
+        augments = {'"Fast Cast"+5', 'Enh. Mag. eff. dur. +10'}
     }
 }
 telchine.legs = {

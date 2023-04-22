@@ -42,7 +42,7 @@ local previousTarget = nil
 local currentTarget = nil
 local current_stances = {}
 local autows_threshold = 1500
-local autows = false
+local autows = nil
 local active_skillchains = {}
 
 local is_debug = false
@@ -87,7 +87,7 @@ function get_sets()
 
     lock_gear = S {"Warp Ring", "Dim. Ring (Holla)", "Dim. Ring (Dem)", "Dim. Ring (Mea)", "Reraise Hairpin",
                    "Reraise Earring", "Echad Ring", "Endorsement Ring", "Trizek Ring", "Capacity Ring", "Facility Ring",
-                   "Caliber Ring", "Shobuhouou Kabuto", "S. Reraiser Tank"}
+                   "Vocation Ring", "Caliber Ring", "Shobuhouou Kabuto", "S. Reraiser Tank"}
 
     MB_Mode = false
 
@@ -1017,18 +1017,24 @@ function self_command(commandArgs)
         end,
         autows = function(args)
             if #args > 0 then
-                autows = table.concat(args, " ")
-                notice("Setting auto-ws to " .. autows .. " at " .. tostring(autows_threshold) .. " TP.")
+                local ws_name = T(args):map(string.ucfirst):concat(" ")
+                local ws = res.weapon_skills:with('name', ws_name)
+                if ws ~= nil then
+                    autows = ws
+                    notice("Setting auto-ws to " .. autows.name .. " at " .. tostring(autows_threshold) .. " TP.")
+                else
+                    notice("Unknown weapon skill " .. ws_name)
+                end
             else
-                autows = false
+                autows = nil
                 notice("Disabling auto-ws")
             end
         end,
         wsthreshold = function(args)
             if #args > 0 then
                 autows_threshold = table.remove(args, 1) + 0 -- Convert to a number
-                if autows ~= false then
-                    notice("Setting auto-ws to " .. autows .. " at " .. tostring(autows_threshold) .. " TP.")
+                if autows ~= nil then
+                    notice("Setting auto-ws to " .. autows.name .. " at " .. tostring(autows_threshold) .. " TP.")
                 else
                     notice("Setting auto-ws threshold to " .. autows_threshold)
                 end
@@ -1122,8 +1128,12 @@ windower.register_event('prerender', function()
         end
 
         -- Auto-ws if one is set
-        if autows ~= false and player.tp >= autows_threshold and not midaction() and player.status == 'Engaged' then
-            send_command('input /ws "' .. autows .. '" <t>')
+        if autows ~= nil and player.tp >= autows_threshold and not midaction() then
+            if autows.targets:contains('Self') then
+                send_command('input /ws "' .. autows.name .. '" <me>')
+            elseif player.status == 'Engaged' then
+                send_command('input /ws "' .. autows.name .. '" <t>')
+            end
         end
 
         -- Clear out any inactive skillchains
