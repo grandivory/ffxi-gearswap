@@ -102,7 +102,7 @@ function get_sets()
 
     define_sets()
 
-    local text_settings_final = text_settings_defaults:update(text_settings)
+    local text_settings_final = text_settings_defaults:update(text_settings, true)
 
     melee_settings = table.copy(text_settings_final)
     idle_settings = table.copy(text_settings_final)

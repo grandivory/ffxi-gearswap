@@ -3,7 +3,6 @@ include('augments')
 
 lockstyleset = 12
 
--- TODO: Jump sets, Empy +2
 function define_sets()
     Melee_Modes = T {'Glass', 'DT'} -- , 'Acc', 'Omen', 'SB'}
     Idle_Modes = T {'Speed', 'DT'}
