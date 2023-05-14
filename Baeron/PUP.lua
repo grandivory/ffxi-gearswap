@@ -533,7 +533,7 @@ function define_sets()
         body = herc.body.phalanx,
         hands = taeon.hands.fcphalanx,
         legs = herc.legs.phalanx,
-        feet = taeon.feet.fcphalanx
+        feet = herc.feet.phalanx
     })
 
     -- =========================================================================================================
@@ -620,7 +620,7 @@ hud_defaults = {
     }
 }
 
-hud_text = [[| Kenbishi:      | Maneuvers (^f9 to clear): | Config(^f10):      |
+hud_text = [[| ${pet_name|Puppet|%-15s}| Maneuvers (^f9 to clear): | Config(^f10):      |
 |  HP: ${pet_hp|0/0|%9s} |  Current: ${maneuvers||%14s}  |  Autodeploy: ${autodeploy||%5s} |
 |  MP: ${pet_mp|0/0|%9s} |  Target:  ${upcoming_maneuvers||%14s}  |  Pet Mode: ${pet_mode||%5s}   |
 |  TP: [${pet_current_tp|0|%4s}]    |                           |                    |
@@ -635,6 +635,7 @@ function update_hud(current_maneuvers)
         max_mp = pet.max_mp
         current_tp = pet.tp
 
+        hud.pet_name = pet.name
         hud.pet_hp = colorize_percent(current_hp, max_hp)
         hud.pet_mp = colorize_percent(current_mp, max_mp)
         hud.pet_current_tp = colorize_tp(current_tp)
@@ -773,7 +774,7 @@ function mod_precast(spell, set)
 end
 
 function mod_aftercast(spell, set)
-    if spell.name == 'Deploy' then
+    if spell.name == 'Deploy' and not spell.interrupted then
         pet_target = spell.target.id
     end
 

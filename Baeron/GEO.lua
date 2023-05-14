@@ -102,7 +102,7 @@ function define_sets()
         sub = "Genmei Shield",
         ammo = "Staunch Tathlum +1",
         head = empy.head,
-        body = af.body,
+        body = jhakri.body,
         hands = af.hands,
         legs = nyame.legs,
         feet = relic.feet,

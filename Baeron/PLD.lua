@@ -9,6 +9,7 @@ function define_sets()
     Idle_Modes = T {'Speed', 'Phys', 'Magic', 'Phalanx', 'Superfast'}
     Magic_Modes = T {'Normal', 'SIRD', 'TH'}
     stances.WAR = S {'Berserk', 'Defender'}
+    stances.PLD = S {'Majesty'}
 
     fastcast = .56 -- This defines how much fast cast you have, which is used when canceling spell effects (.8 = 80%)
 
@@ -23,8 +24,8 @@ function define_sets()
     relic = {
         head = "Cab. Coronet +1",
         body = "Cab. Surcoat +1",
-        hands = "Cab. Gauntlets +2",
-        legs = "Cab. Breeches +1",
+        hands = "Cab. Gauntlets +3",
+        legs = "Cab. Breeches +3",
         feet = "Cab. Leggings +1"
     }
 

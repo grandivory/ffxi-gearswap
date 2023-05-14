@@ -306,11 +306,11 @@ function define_sets()
         right_ring = "Stikini Ring +1",
         back = "Fi Follet Cape +1"
     }
-    sets.midcast.EnhancingDuration = {
+    sets.midcast.EnhancingDuration = set_combine(sets.midcast.Enhancing, {
         main = "Gada",
         sub = "Ammurapi Shield",
         waist = "Embla Sash"
-    }
+    })
     sets.midcast.Stoneskin = set_combine(sets.midcast.Enhancing, {
         legs = "Shedir Seraweels",
         neck = "Nodens Gorget",

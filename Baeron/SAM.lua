@@ -240,7 +240,7 @@ function define_sets()
         waist = sailfi.belt,
         left_ear = "Moonshade Earring",
         right_ear = "Thrud Earring",
-        left_ring = "Epaminondas's Ring",
+        left_ring = "Beithir Ring",
         right_ring = "Niqmaddu Ring",
         back = back.strws
     }

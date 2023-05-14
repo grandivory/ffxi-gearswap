@@ -7,7 +7,7 @@ res = require('resources')
 ---- Configuration                                   ----
 ---------------------------------------------------------
 lockstyleset = 1
-text_settings = {
+text_settings_defaults = T {
     bg = {
         visible = false
     },
@@ -32,6 +32,7 @@ text_settings = {
         draggable = false
     }
 }
+text_settings = {}
 
 ---------------------------------------------------------
 ---- State                                           ----
@@ -101,12 +102,14 @@ function get_sets()
 
     define_sets()
 
-    melee_settings = table.copy(text_settings)
-    idle_settings = table.copy(text_settings)
-    magic_settings = table.copy(text_settings)
-    stance_settings = table.copy(text_settings)
+    local text_settings_final = text_settings_defaults:update(text_settings)
 
-    line_height = text_settings.text.size * 1.5 + text_settings.padding * 2 + 3
+    melee_settings = table.copy(text_settings_final)
+    idle_settings = table.copy(text_settings_final)
+    magic_settings = table.copy(text_settings_final)
+    stance_settings = table.copy(text_settings_final)
+
+    line_height = text_settings_final.text.size * 1.5 + text_settings_final.padding * 2 + 3
     idle_settings.pos.y = idle_settings.pos.y + line_height
     magic_settings.pos.y = magic_settings.pos.y + line_height * 2
     stance_settings.pos.y = stance_settings.pos.y + line_height * 3
@@ -193,14 +196,16 @@ function precast(spell)
     end
 
     -- Check stances to see if we need to update
-    for stance_set, abilities in pairs(stances) do
-        for name in pairs(abilities) do
-            if name == spell.name then
-                log_debug("Setting " .. stance_set .. " to " .. name)
-                current_stances[stance_set] = spell
+    if stances ~= nil then
+        for stance_set, abilities in pairs(stances) do
+            for name in pairs(abilities) do
+                if name == spell.name then
+                    log_debug("Setting " .. stance_set .. " to " .. name)
+                    current_stances[stance_set] = spell
+                end
             end
+            update_stance_display()
         end
-        update_stance_display()
     end
 
     -- If a pet is mid-action, then don't swap sets
@@ -1118,12 +1123,14 @@ windower.register_event('prerender', function()
         tick = os.time()
 
         -- Keep up any stances that the player has set
-        for stance_set in pairs(stances) do
-            local ability = current_stances[stance_set]
-            if current_stances[stance_set] ~= nil and not buffactive[ability.name] and not midaction() and
-                windower.ffxi.get_ability_recasts()[res.job_abilities[ability.id].recast_id] <= 0 then
-                send_command('input /ja ' .. ability.name .. ' <me>')
+        if stances ~= nil then
+            for stance_set in pairs(stances) do
+                local ability = current_stances[stance_set]
+                if current_stances[stance_set] ~= nil and not buffactive[ability.name] and not midaction() and
+                    windower.ffxi.get_ability_recasts()[res.job_abilities[ability.id].recast_id] <= 0 then
+                    send_command('input /ja ' .. ability.name .. ' <me>')
 
+                end
             end
         end
 

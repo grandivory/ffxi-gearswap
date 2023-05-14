@@ -374,6 +374,10 @@ herc.feet = {
     strcrit = {
         name = "Herculean Boots",
         augments = {'Attack+11', 'Crit. hit damage +4%', 'STR+9'}
+    },
+    phalanx = {
+        name = "Herculean Boots",
+        augments = {'Pet: INT+4', 'Pet: Accuracy+13 Pet: Rng. Acc.+13', 'Phalanx +5'}
     }
 }
 

@@ -20,6 +20,10 @@ function define_sets()
             name = "Intarabus's Cape",
             augments = {'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Damage taken-5%'}
         },
+        dexws = {
+            name = "Intarabus's Cape",
+            augments = {'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%'}
+        },
         chrws = {
             name = "Intarabus's Cape",
             augments = {'CHR+20', 'Accuracy+20 Attack+20', 'CHR+10', 'Weapon skill damage +10%', 'Damage taken-5%'}

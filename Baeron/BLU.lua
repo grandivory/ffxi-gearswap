@@ -539,7 +539,7 @@ function define_sets()
         body = herc.body.phalanx,
         hands = taeon.hands.fcphalanx,
         legs = herc.legs.phalanx,
-        feet = taeon.feet.fcphalanx,
+        feet = herc.feet.phalanx,
         neck = "Orunmila's Torque",
         -- waist = "Olympus Sash",
         left_ear = "Odnowa Earring +1",

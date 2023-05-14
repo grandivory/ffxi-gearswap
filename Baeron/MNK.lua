@@ -42,8 +42,11 @@ function define_sets()
     }
 
     relic = {
+        head = "Hes. Crown +1",
+        body = "Hes. Cyclas +1",
         hands = "Hes. Gloves +3",
-        legs = "Hes. Hose +3"
+        legs = "Hes. Hose +3",
+        feet = "Hes. Gaiters +1"
     }
 
     empy = {
@@ -382,15 +385,15 @@ function define_sets()
     sets.JA.Footwork = {
         feet = empy.feet
     }
-    sets.JA.Counterstance = {
-        feet = relic.feet
-    }
-    sets.JA.Mantra = {
-        feet = relic.feet
-    }
-    sets.JA['Formless Strikes'] = {
-        body = relic.body
-    }
+    -- sets.JA.Counterstance = {
+    --     feet = relic.feet
+    -- }
+    -- sets.JA.Mantra = {
+    --     feet = relic.feet
+    -- }
+    -- sets.JA['Formless Strikes'] = {
+    --     body = relic.body
+    -- }
 
     -- =========================================================================================================
     -- ***Item Sets***
